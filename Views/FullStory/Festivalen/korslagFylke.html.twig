@@ -1,0 +1,75 @@
+<script>
+	$(document).ready(function() {
+		UKMKonkurranse.on('1:svar', function( response ) {
+			$('#korslaget-fylke').hide();
+			$('#korslaget-thanks').fadeIn(200);
+		});
+		
+		UKMKonkurranse.on('1:get', function( response ) {
+			$('#korslaget-fylke').hide();
+			$('#korslaget-mitt-fylke').html( response.svar );
+			$('#korslaget-valgt').show();
+		});
+		
+		if( UKMMobil.har() ) {
+			$('#korslaget-mobil').val( UKMMobil.get() );
+			UKMKonkurranse.get(1);
+		}
+	});
+	
+	$(document).on('click', '#korslaget-submit', function() {
+		$('#korslaget-submit').html('Lagrer...');
+		UKMMobil.set( $('#korslaget-mobil').val() );
+		UKMKonkurranse.svar(1, $('#korslaget-valgt-fylke').val());
+	});
+	
+</script>
+<div id="korslaget-valgt" style="display:none; margin-top:30vh;">
+	<h2>May the odds be ever in your favor!</h2>
+
+	<p>
+		La oss alle heie på <span id="korslaget-mitt-fylke">ditt fylke</span>!
+	</p>
+</div>
+
+<div id="korslaget-thanks" style="display:none;">
+	<h2>May the odds be ever in your favor!</h2>
+</div>
+<form id="korslaget-fylke">
+	<h2>Hvilket fylke bør vinne korslaget?</h2>
+
+	<div class="form-group mt-3" required>
+		<select class="form-control" name="fylke" id="korslaget-valgt-fylke">
+			<option value="false" disabled="disabled" selected="selected">Velg fylke</option>
+			<option value="akershus">Akershus</option>
+			<option value="aust-agder">Aust-Agder</option>
+			<option value="buskerud">Buskerud</option>
+			<option value="finnmark">Finnmark</option>
+			<option value="hedmark">Hedmark</option>
+			<option value="hordaland">Hordaland</option>
+			<option value="moreogromsdal">Møre og Romsdal</option>
+			<option value="nord-trondelag">Nord-Trøndelag</option>
+			<option value="nordland">Nordland</option>
+			<option value="oppland">Oppland</option>
+			<option value="oslo">Oslo</option>
+			<option value="rogaland">Rogaland</option>
+			<option value="sognogfjordane">Sogn og Fjordane</option>
+			<option value="sor-trondelag">Sør-Trøndelag</option>
+			<option value="telemark">Telemark</option>
+			<option value="troms">Troms</option>
+			<option value="vest-agder">Vest-Agder</option>
+			<option value="vestfold">Vestfold</option>
+			<option value="ostfold">Østfold</option>
+		</select>
+	</div>
+	
+	<div class="form-group">
+		<label>Ditt mobilnummer</label>
+		<input type="tel" class="form-control" name="mobil" id="korslaget-mobil" required />
+	</div>
+	
+	<div class="form-group">
+		<button class="btn btn-outline-primary" style="background-color: #fff;" type="button" id="korslaget-submit">Let the games begin!</button>
+	</div>
+</form>
+

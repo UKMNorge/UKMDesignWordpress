@@ -1,0 +1,16 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				{{ page.getPage().content|raw }}
+
+				{% for id, element in THEME_CONFIG.get('logoer') %}
+					<h2 class="mt-5">{{ THEME_CONFIG.get('logoer')[ id ].navn }}</h2>
+					{% include "UKMDesignBundle:GrafiskProfil:element.html.twig"|UKMpath  with { element: element } %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<h2>Direktesending</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<iframe id="ls_embed_1561455458" src="https://livestream.com/accounts/183084/events/8721508/player?width=960&height=540&enableInfoAndActivity=true&defaultDrawer=feed&autoPlay=true&mute=false" width="960" height="540" frameborder="0" scrolling="no" allowfullscreen> </iframe><script type="text/javascript" data-embed_id="ls_embed_1561455458" src="https://livestream.com/assets/plugins/referrer_tracking.js"></script>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

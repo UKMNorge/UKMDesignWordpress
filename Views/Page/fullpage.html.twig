@@ -1,0 +1,51 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	{% embed "UKMDesignBundle:Page:topImage.html.twig"|UKMpath %}{% endembed %}	
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 ml-md-auto mr-md-auto col-lg-8">
+				<article>
+					{% if not page.getPage().meta.hideTitle %}
+						<h1>{{ page.getPage().title|raw }}</h1>
+					{% endif %}
+					{{ page.getPage().content|raw }}
+				</article>
+			</div>
+		</div>
+	</div>
+
+	{% if page.getPage().meta.UKMviseng is defined and page.getPage().meta.UKMviseng == 'liste' %}
+
+		<style>
+			.pageListItem.icon > .pageListItemContent {
+				margin-left: 4rem;
+			}
+			.pageListItem.icon .pageListItemIcon {
+				margin-left: -3.6rem;
+			    margin-top: 0.1rem;
+				font-size: 2rem;
+				float: left;
+			}
+			.pageListItem .pageListItemHeader {
+				font-weight: bold;
+			}
+			
+		</style>
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-md-10 ml-auto mr-auto col-lg-8">
+					<ol class="list-group pageList">
+	{% endif %}	
+	{% for section in page.getPageBlocks().getAll() %}
+		{% embed ("UKMDesignBundle:PageBlock:"~ section.template ~".html.twig")|UKMpath with{ block: section } %}{% endembed %}
+	{% endfor %}
+
+	{% if page.getPage().meta.UKMviseng is defined and page.getPage().meta.UKMviseng == 'liste' %}
+					</ol>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-10 ml-md-auto mr-md-auto col-lg-8">
+				<article>
+					<h1>{{ page.getPage().title|raw }}</h1>
+					{{ page.getPage().content|raw }}
+				</article>
+			</div>
+		</div>
+		<div class="col-12 col-md-10 col-lg-8 ml-auto mr-auto">
+			<div class="row">
+				<div class="row">
+					{% for kontakt in kontaktkart.kontaktObjekter %}
+						<div class="col-12 col-sm-6 col-md-4 ml-auto mr-auto my-3">
+							{% embed "UKMDesignBundle:Kontaktpersoner:grid.html.twig"|UKMpath %}{% endembed %}
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,418 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'newsletter_base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	<script>
+		$(document).on('click', '.clickContainer', function(e){
+			e.preventDefault();
+			window.location.href = $(this).find('.momClickMeClickMe').attr('href');
+		});
+	</script>
+	<style>
+		h1, .h1,
+		h2, .h2,
+		h3,	.h3,
+		h4,	.h4,
+		h5,	.h5,
+		h6,	.h6,
+		p,	.p {
+			opacity: 1;
+		}
+		
+		.blackBG {
+			background-color: #000;
+			color: #fff;
+		}
+		
+		.UKMfestivalBox {
+			height: 40vw;
+			overflow: hidden;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center center;
+		}
+		#UKMheader_separator {
+			border-bottom: 0.4em solid #000;
+		}
+		.white {
+			color: #fff;
+		}
+		footer.mt-4 {
+			margin-top: 0px !important;
+		}
+		
+		.clickContainer {
+			cursor: pointer;
+		}
+		
+		a,
+		a:hover,
+		a:active,
+		a:visited {
+			color: inherit;
+			text-decoration: none;
+		}
+		
+		#forste_linje {
+			margin-top: -1em;
+		}
+		@media (min-width: 992px) {
+			#forste_linje {
+			    margin-top: -1.4em;
+			}
+		}
+		
+		/** MOBIL **/
+		#boxProgram {
+			min-height: 30vh !important;
+			background-image: url('//grafikk.ukm.no/UKMresponsive/img/festival/program.jpg'); 
+		}
+		#boxProgram h2 {
+			margin-top: Calc( 35% - 1em);
+			margin-bottom: Calc( 35% - 1em );
+		}
+		#boxDeltaker {
+			background-color: #afd6b7;
+		}
+		#boxPublikum {
+			background-color: #151e3f;
+		}
+		#boxHvaEr {
+			background-color: #ddd;
+			background-image: url('//grafikk.ukm.no/UKMresponsive/img/festival/hvaer.jpg');
+			background-position: bottom right;
+		}
+		#boxDeltar {
+			background: #5c3b8a;
+		}
+		#boxDeltakerprogram {
+			background: #151e3f;
+		}
+		#boxWorkshops {
+			background: #afd6b7;
+		}
+
+		.textOverlayHeader {
+			color: #f4df42;
+			background: none;
+		}
+
+		.textOverlay {
+			position: absolute;
+			font-family: 'Crimson Text', bold serif;
+			font-weight: 500;
+			
+			width: 100%;
+		}
+
+		.headerTitle {
+			font-size: 3em;
+			color: #FCF7BD;
+			/*letter-spacing: 0.3rem;*/
+			left: 50%;
+			top: 29%;
+
+		}
+
+		.fullsizeTekst {
+			position: absolute;
+			color: #FCF7BD;
+			/*transform: translate(-50%, -50%);*/
+			font-family: 'Crimson Text', serif;
+			width: 100%;
+			line-height: 0.5rem;
+		}
+
+		.fullsizeTekst > a.big {
+			font-size: 1.9rem;
+		}
+
+		.oskarSak > a.small {
+			font-size: 1.4rem;
+			letter-spacing: -0.05rem;
+		}
+
+		#forste_linje {
+			background-color: black;
+		}
+
+		/* #### NYHETSBREV #### */
+		.ticker {
+			/*width: 110%;*/
+			min-height: 1.6em;
+			display: block;
+			font-family: 'anton', bold sans-serif;
+			font-size: 1.1em;
+			padding: 0.3em;
+			padding-left: 0em;
+			background-color: #f4d909;
+			white-space:nowrap;
+    		overflow:hidden;
+    		letter-spacing: 0.1rem;
+		}
+
+		.ticker < marquee {
+			padding-top: 0.3rem;
+		}
+
+		.topBox {
+			background-color: black;
+			display: block;
+		}
+
+		.anton {
+			font-family: 'Anton', sans-serif;
+			font-size: 2em;
+		}
+
+		.anton.big {
+			font-size: 2.6em!important;
+		}
+
+		.inline-row {
+			height: 50vw;
+		}
+
+		.fullwidthBox {
+			background-color: black; 
+			display: block;
+			height: 60vw;
+			overflow: hidden;
+			background-repeat: no-repeat;
+			background-size: 100% auto;
+		}
+
+		.fullwidthBox > a {
+			top: 50%;
+			transform: translate(-50%, -50% -.5px);
+			font-family: 'Crimson Text', serif;
+		}
+
+		.fullwidthBox > a.anton {
+			font-family: 'Anton', sans-serif;
+		}
+
+		.halfwidthBox > a {
+			font-family: 'Work Sans';
+			font-size: 26px;
+			color: white;
+			display: block;
+			transform: translate(0, 75%-.5px);
+			text-align: center;
+		}
+
+		.halfwidthBox > a.left {
+			text-align: left;
+			color: #FCF7BD;
+		}
+		
+		a.left {
+			text-align: left;
+		}
+
+		.halfwidthBox > a.anton {
+			font-family: 'Anton', sans-serif;
+			padding-bottom: 0.4rem;
+		}
+
+		.headerBox {
+			height: auto;
+		}
+
+		.newsletter_green {
+			background-color: #00be41;
+		}
+
+		.newsletter_purple {
+			background-color: #d32efc;
+		}
+
+		.newsletter_yellow {
+			background-color: #f7ea55;
+		}
+
+		.newsletter_cream {
+			background-color: #fffff7;
+		}
+
+		/* Override color on each sticker element! */
+		.sticker {
+			border-radius: 50%;
+			height: 30vw;
+			width: 30vw;
+			display: inline-block;
+			position: absolute;
+			z-index: 10000;
+			/*box-shadow: 3px 3px 3px #999999;*/
+		}
+
+		.sticker.center {
+			left: 50%;
+			transform: translate(-50%, 115% - .5px);
+			/*-webkit-filter: blur(0.000001px);
+			-webkit-font-smoothing: antialiased;*/
+		}
+
+		.sticker.right {
+			left: 75vw;
+			transform: translate(-50%, 145% -.5px);
+			height: 20vw;
+			width: 20vw;
+		}
+
+		.sticker {
+			transform: translate(-50%, 145% -.5px);
+			height: 20vw;
+			width: 20vw;
+		}
+
+		.sticker.left {
+			margin-left: 0%;
+		}
+		.sticker.right > a {
+			font-size: 3vw;
+		}
+		.sticker.right > a.big {
+			font-size: 8vw;
+		}
+
+		.sticker > a {
+			position: relative;
+			font-family: 'anton', sans-serif;
+			font-size: 4vw;
+			color: white;
+			display: block;
+			text-align: center;
+		}
+
+		.rotate {
+			transform: rotate(-15deg);
+		}
+
+		.sticker > a.big {
+			top: 37%;
+			font-size: 10vw;
+		}
+
+		.thanks {
+			line-height: 1.8rem;
+			font-family: 'anton', sans-serif;
+			font-size: 1.4rem;
+		}
+
+		.thanks > span.big {
+			font-size: 2.5rem;
+		}
+		
+		iframe {
+			border: none;
+		}
+	</style>
+	<div class="container-fluid" id="forste_linje" style="overflow: hidden; max-width: 560px;">
+		<div class="row center" style="height: 100vh; background-color: black;">
+			<div class="expandOnClick momDiv">
+				<a href="#" class="articleLink clickMomDiv" data-articleBox-id=1 id="video-1">
+					<img src="{{ UKMasset('img/newsletter/magnus.png') }}" style="width: 100; object-fit: cover;">
+				</a>
+			</div>
+		</div>
+
+		<div class="row articleBox newsletter_cream" id="articleBox-1" style="display:none;">
+			<br />
+			<div class="articleContent col-12" style="height: Calc( (100vw/16)*9); padding: 0%; margin-top: 0%; background-color: black;">
+				{{ openingVideo.embedCodeVH()|raw }}
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+	$(document).on('click', '.clickMomDiv', function(e) {
+		e.preventDefault();
+		$(this).parents('.momDiv').click();
+	});
+	$ ( document ).ready(function () {
+
+
+		var latestArticle = null;
+		$(".expandOnClick").click(function(event) {
+			if (jQuery(event.target).is("a") ) {
+				return;
+			}
+			event.preventDefault();
+			var link = jQuery(event.target).find(".articleLink");
+			console.log('link: ');
+			console.log(link);
+			var articleBox = jQuery('.articleBox#articleBox-'+jQuery(link).attr('data-articleBox-id'));
+			var articleContent = jQuery(articleBox).find(".articleContent");
+			var newArticle = jQuery(link).attr('id');
+			/*console.log(newArticle);*/
+			var url = link.attr("href");
+			
+			if (undefined == url) {
+				url = jQuery(event.target).attr("href");
+			}
+
+			if ( "{{ UKM_HOSTNAME }}" == "ukm.dev" ) {
+				url = "https://ukm.dev/blog/2014/06/06/av-med-og-for-ungdom/?singleMode=true";
+			}
+
+			// Lukk samme artikkel
+			if( articleBox.is(':visible') && latestArticle == newArticle ) {
+				articleBox.slideUp();
+				if(newArticle.indexOf("video") == -1) {
+					articleContent.html("Laster inn...");
+				}
+			}
+			// Ny artikkel, men en annen vises
+			else if (latestArticle != null && latestArticle != newArticle) {
+				// Load content if not a video
+				if(newArticle.indexOf("video") == -1){
+					articleContent.html("Laster inn...");
+
+					jQuery.post(
+						url+"?singleMode=true",
+						{
+							'singleMode': true,
+						},
+						function(data) {
+							articleContent.html(data);
+						},
+					);
+					latestArticle = newArticle;	
+				}
+			}
+			// Første gang artikkelboks åpnes.
+			else {
+				articleBox.slideDown();
+
+				if(newArticle.indexOf("video") == -1) {
+					jQuery.post(
+						url+"?singleMode=true",
+						{
+							'singleMode': true,
+						},
+						function(data) {
+							jQuery(articleBox).find(".articleContent").html(data);
+						},
+					);
+					latestArticle = newArticle;
+					}
+				}
+				window.setTimeout(function () {
+					$('html, body').animate({ scrollTop: jQuery(articleContent).offset().top + 50 }, 50);
+					jQuery(articleContent).find("#my-video").click();
+				}, 500);
+				
+		});
+
+		$(".closeButton").click( function (event) {
+			jQuery(event.target).parent().parent().slideUp();
+			console.log(jQuery(event.target).parent().parent().attr("id"));
+			scrollTo(jQuery(event.target).parent().parent().attr("id"));
+		});
+	});
+	</script>
+{% endblock %}
+
+{% block css %}
+	
+{% endblock %}

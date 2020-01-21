@@ -1,0 +1,14 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="row">
+			{% for post in posts.getAll() %}
+				<div class="col-12 col-sm-6">
+					{% embed "Post:grid-pretty.html.twig"|UKMpath with { post: post, showLead: true } %}{% endembed %}
+				</div>
+			{% endfor %}
+		</div>
+		{% embed "Category:next_prev_links.html.twig"|UKMpath %}{% endembed %}
+	</div>
+{% endblock %}

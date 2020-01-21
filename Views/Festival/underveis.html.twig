@@ -1,0 +1,85 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block css %}
+	<style>
+		#UKMheader {
+			height: 60vh;
+			background-position-y: 40% !important;
+		}
+		.icon {
+			font-size: 1.8em;
+		}
+		.white {
+			color: #fff !important;
+		}
+		.white a,
+		.white a:hover,
+		.white a:active,
+		.white a:visited,
+		.white a:focus {
+			color: #fff !important;
+		}
+
+		.smallish {
+			font-size: .9em;
+		}
+		.imblue {
+			color: #000047;
+		}
+		.feelinblue {
+			background-color: #000047;
+		}
+	</style>
+{% endblock %}
+{% block content %}
+<div class="feelinblue">
+    <div class="container white smallish" style="margin-top: -1rem;">
+        <div class="row py-3">
+            <div class="col-4">
+                <div class="center navigate">
+                    <a class="animateOnExit" href="direkte/">
+                        <span class="icon icon-tv"></span>
+                        <br>
+                        Direkte
+                    </a>
+                </div>
+            </div>
+			
+            <div class="col-4">
+                <div class="center navigate">
+                    <a class="animateOnExit" href="deltaker/">
+                        <span class="icon icon-info"></span>
+                        <br/>
+                        Deltakere
+                    </a>
+                </div>
+            </div>
+
+{#}            <div class="col-3">
+                <div class="center navigate">
+                    <a class="animateOnExit" href="pameldte/">
+                        <span class="icon icon-users"></span>
+                        <br/>
+                        Påmeldte
+                    </a>
+                </div>
+            </div>
+#}
+			<div class="col-4">
+                <div class="center navigate">
+                    <a class="animateOnExit" href="program/">
+                        <span class="icon icon-ticket"></span>
+                        <br/>
+                        Publikum
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <div class="container mt-4">
+        {% embed "Category:the_list.html.twig"|UKMpath with {'posts': posts.posts } %}{% endembed %}
+    </div>
+</div>
+{% endblock %}

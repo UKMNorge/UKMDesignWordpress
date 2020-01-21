@@ -1,0 +1,16 @@
+{% extends "Layout:_framework.html.twig"|UKMpath %}
+
+{% block framework_content %}
+  {% block content %}
+  {% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script type="text/javascript">
+        jQuery(document).ready(function () {
+            $('.ticker-text').animate( { scrollLeft: '-=1000' }, 1000);
+        });
+    </script>
+{% endblock %}

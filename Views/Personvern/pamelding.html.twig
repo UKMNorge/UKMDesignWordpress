@@ -1,0 +1,49 @@
+{% extends "Layout/_base.html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+        <div class="row">
+            <div class="col-12">
+                {% include "UKMDesignBundle:Personvern:pameldingSkjema.html.twig"|UKMpath %}
+            </div>
+        </div>
+
+        <div class="row">
+			<div class="col-12">
+				{# CONTENT #}
+                <h2>{{ trans['datalagring'].overskrift }}</h2>
+				<p class="lead">{{ trans['datalagring'].ingress }}</p>					
+				<p>
+				   {{ trans['datalagring'].kort|nl2br }}
+				</p>
+				
+				<p class="right">
+					<a href="/datalagring/" target="_blank" class="btn btn-outline-secondary btn-sm">{{ trans['versjon'].lang|nl2br }}</a>
+				</p>
+				
+			</div>
+
+			<div class="col-12">
+                <h2>{{ trans['media'].overskrift }}</h2>
+
+				{# CONTENT #}
+				<p class="lead">{{ trans['media'].ingress }}</p>
+					
+				<p>
+				    {{ trans['media'].kort|nl2br }}
+				</p>
+				
+				<p class="right">
+					<a href="/dokumentasjon/" target="_blank" class="btn btn-outline-secondary btn-sm">{{ trans['versjon'].lang|nl2br }}</a>
+				</p>
+			</div>
+		</div>
+		
+		
+	</div>
+{% endblock %}
+
+
+{% block langversjon_som_ma_flyttes %}
+
+{% endblock %}

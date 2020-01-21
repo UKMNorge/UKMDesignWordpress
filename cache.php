@@ -1,0 +1,3 @@
+<?php
+	
+	# IF FOUND CACHE, PRINT AND DIE

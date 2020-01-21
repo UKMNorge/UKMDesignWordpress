@@ -1,0 +1,46 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row-flex mt-2">
+            <div class="col-12">
+                <p class="lead text-danger">
+                    {{ omrade.getNavn() }} har ikke registrert sine UKM-arrangementer enda.
+                </p>
+            </h1>
+        </div>
+
+        {% if har_infoside %}
+            <div class="row mt-2">
+                <div class="col-12 col-sm-12">
+                    {{ infoside|raw|nl2br }}
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="col-12">
+            <h2>Kontakt</h2>
+            {% if omrade.getKontaktpersoner().getAntall() > 0 %}
+                <div class="row">
+                    {% for kontakt in omrade.getKontaktpersoner().getAll() %}
+                        <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                            {% embed "UKMDesignBundle:Kontaktpersoner:grid.html.twig"|UKMpath %}{% endembed %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="col-12">
+                    <p>
+                        Vi har ikke kontaktinformasjon for
+                        {{ omrade.getNavn() }}
+                        enda.
+                        Vi jobber med å skaffe det, så du må gjerne prøve igjen om noen dager.
+                    </p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    {% set singleMode = true %}
+    {% embed "UKMDesignBundle:Category:list.html.twig"|UKMpath with {posts: posts.getAll(), hideNoneFound: true} %}{% endembed %}
+</div>{% endblock %}

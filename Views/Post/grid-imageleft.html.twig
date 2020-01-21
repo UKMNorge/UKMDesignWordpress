@@ -1,0 +1,15 @@
+<div class="col-3 px-0 post-grid-default mt-2">
+	<div class="image" style="background-image: url('{{ post.image.medium.src }}');">
+		{% if post.meta.video_on_top is defined and post.meta.video_on_top is not empty %}
+			<img src="{{ UKMasset('img/circle-play.png') }}" class="featured-image-play" />
+		{% endif %}
+	</div>	
+</div>
+<div class="col-9 py-1 pr-1">
+	<a href="{{ post.url }}">
+		<p class="bold pt-0 mt-0 mb-0">{{ post.title|raw }}</p>
+		<p class="nocolor mt-0 mb-1">
+			{{ post.lead|raw }}
+		</p>
+	</a>
+</div>

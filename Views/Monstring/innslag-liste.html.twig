@@ -1,0 +1,44 @@
+{# Embedded element - brukes for kjapp innlasting av oversikts-siden. Se innslag.html.twig for hovedsiden som lastes inn når man trykker på en deltaker. #}
+<div class="card-body m-0 p-0 innslag" attr-id="{{ innslag.id }}">
+	<div class="header click m-2">
+		{% if hendelse is defined and hendelse is not empty %}
+			<div class="order">
+				{{ hendelse.getNummer( innslag ) }}
+			</div>
+		{% endif %}
+		<div>
+			<div class="geografi is-breakable">
+				{% if monstring.getType() == 'land' %}
+					{{ innslag.getFylke() }}
+				{% else %}
+					{{ innslag.getKommune() }}
+				{% endif %}
+			</div>
+			
+			<div class="name autoshrink">
+				<a href="../pameldte/{{ innslag.getId() }}/{{ hendelse is defined ? '?cid=' ~ hendelse.getId() ~ '&nr=' ~ hendelse.getNummer( innslag ) }}">
+					{{ innslag.getNavn() }}
+				</a>
+			</div>
+			<div class="sjanger">
+				{% if innslag.getSjanger() is empty %}
+					{{ innslag.getType() }}
+				{% else %}
+					{{ innslag.getType() }}: {{ innslag.getSjanger() }}
+				{% endif %}
+			</div>
+		
+			<div class="row">
+				<div class="col-8 right innslagType small">
+					<div class="type"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="innslagData" style="display:none; margin-left: -.5rem !important; margin-top: 1rem;">
+		<div class="center">Vennligst vent, laster inn..</div>
+	</div>
+	<div class="innslagCancel m-2" style="text-align:right; display:none;">
+		<button type="button" class="btn btn-outline-primary btn-sm hideInnslag">Lukk</button>
+	</div>
+</div>

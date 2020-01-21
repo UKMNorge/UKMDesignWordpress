@@ -1,0 +1,62 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<h1>Påmeldte</h1>
+		<div class="row">
+			<div class="col-12 mb-1">
+				<input type="text" name="filtrer" id="filterInnslag" placeholder="Skriv her for å søke i listen..." class="form-control block" />
+				<p class="small right text-muted mt-1" id="innslagCount">Viser alle innslag.</p>
+				<p class="text-muted mt-2">Du kan også <a href="#" class="toggleFilters">velge filter</a> for å finne innslag.</p>
+			</div>
+		</div>
+		
+        <div class="row mb-4" id="filters" style="display:none;">
+            <div class="col-12">
+           		{% if monstring.getType() == 'land' %}
+                    <p class="bold mb-1">
+                        Fylke
+                    </p>
+                    <div class="row" style="padding-left: .75em; padding-right: .75em;">
+                        {% for fylke in fylker %}
+                            <button class="col btn btn-sm m-1 btn-outline-primary filterFylke" id="fylke-{{ fylke.getId() }}" data-id="{{ fylke.getId() }}">{{ fylke.getNavn() }}</button>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
+                <p class="bold mb-1 mt-3">
+                    Kategori
+                </p>
+                
+                <div class="row" style="padding-left: .75em; padding-right:.75em;">
+                    {% for kategori in kategorier %}
+                        <button class="col btn btn-sm m-1 btn-outline-primary filterKategori" id="kategori-{{ kategori.getId() }}" data-id="{{ kategori.getId() }}" >{{ kategori.getNavn() }}</button>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="row mt-3" style="padding-left: .75em; padding-right:.75em;">
+                <div class="col-12">
+                    <a href="#" class="btn btn-block btn-sm m-1 btn-outline-primary toggleFilters">Skjul filtre</a>
+                </div>
+            </div>
+        </div>
+	 	
+	 	<div class="row">
+	 		<div class="col-12" id="searchList">
+				{% for innslag in monstring.getInnslag().getAll() %}
+					<div class="card innslagCard UKMcard mb-2 p-0 filter filter-kategori-{{ innslag.getType().getId() }} filter-fylke-{{ innslag.getFylke().getId() }}" data-visning="skjult" data-id="{{ innslag.getId() }}" id="innslag-{{innslag.getId()}}" data-filter="{{ innslag.getNavn() }}{% for person in innslag.getPersoner().getAll() %} {{ person.getNavn() }}{% endfor %}">
+				 		{% embed 'Monstring/innslag-liste.html.twig' with {'innslag': innslag} %}{% endembed %}
+					</div>
+				{% endfor %}
+	 		</div>
+	 	</div>
+	 	<div class="row">
+	 		<div class="col-12" id="searchListNoneFound" style="display:none;">
+	 			Beklager, ingen treff.
+	 		</div>
+	 	</div>
+	</div>
+   	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+{% endblock content %}

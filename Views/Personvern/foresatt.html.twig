@@ -1,0 +1,37 @@
+{% extends "Layout/_base.html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>En ting til</h1>
+				<p>
+					Fordi du er under 15 år, må vi ha samtykke fra en av dine foreldre/foresatte.
+					<br />
+					Skriv inn navn og mobilnummer nedenfor, så sender vi en gratis sms.
+				</p>
+
+				<form method="POST">
+					<input type="hidden" name="save" value="request-parent" />
+					<input type="hidden" name="prosjekt" value="{{ GET('prosjekt') }}" />
+					<input type="hidden" name="samtykke" value="{{ GET('samtykke') }}" />
+				
+
+					<div class="form-group">
+						<label for="navn">Navn</label>
+						<input type="text" class="form-control" id="navn" name="navn" placeholder="Skriv fornavn og etternavn" required />
+					</div>
+					<div class="form-group">
+						<label for="mobil">Mobilnummer</label>
+						<input type="tel" class="form-control" id="mobil" name="mobil" placeholder="Kun tall" required />
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-xs btn-primary btn-outline-primary">Send sms</button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+{% endblock %}

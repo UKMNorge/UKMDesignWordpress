@@ -1,0 +1,19 @@
+{% extends "Layout/_base.html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>En feil har oppstått!</h1>
+				<p>
+					Vennligst prøv å åpne lenken igjen, eller 
+					<a href="https://org.ukm.no/kontakt/administrasjonen/">kontakt UKM Norge</a>.
+				</p>
+				
+				<p>
+					Systemet sier: {{ melding }}
+				</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}	

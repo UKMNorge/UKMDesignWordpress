@@ -1,0 +1,80 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	<style>
+		.topimage-xs {
+			padding-bottom: 33%;
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			margin-left: -.4em;
+		}	
+	</style>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>{{ hendelse.getNavn() }}</h1>
+				<p class="lead">{{ hendelse.getStart()|dato('l j.M H:i')|capitalize }}, {{ hendelse.getSted() }}</p>
+				<p>{{ kategori.description|raw }}</p>
+				{% if hendelse.getBeskrivelse() is not empty %}
+					<p>{{ hendelse.getBeskrivelse()|nl2br }}</p>
+				{% endif %}
+
+				{% for post in posts.getAll() %}
+					<div class="card UKMcard mb-2 p-0 showPost post" data-post-url="{{ post.url }}" data-post-hideTopImage="true">
+						<div class="topimage-xs" style="background-image: url('{{ post.image.large.src }}');"></div>
+						<div class="card-body m-0 p-0">
+							<div class="husk m-2 float-right">
+								<div class="icon icon-star-{{ HUSK('hendelse_post-'~ post.ID ) ? 'full' : 'outlined'}} click huskMeg" data-husk="hendelse_post" data-husk-id="{{ post.ID }}" data-husk-status="{{ HUSK('hendelse_post-'~ post.ID ) ? 'true':'false' }}"></div>
+							</div>
+
+							<div class="header click m-2">
+								<div class="hendelse">
+									<div class="name bold">
+										<a href="{{ post.url }}">{{ post.title|raw }}</a>
+									</div>
+									<div class="description">
+										{{ post.lead|raw }}
+									</div>
+								</div>
+							</div>
+							<div class="data" style="display:none; margin-left: -.4rem !important; margin-top: 1rem;">
+								<div class="center">Vennligst vent, laster inn..</div>
+							</div>
+
+							{% if post.meta.type == 'workshop' %}
+								<div class="categories my-2" style="margin-left: -.4rem !important;">
+									<div class="col-12">
+										<p class="small text-muted">
+											<b>STED</b>
+											<br />
+											{{ post.meta.sted }}
+										</p>
+										<p class="mt-0 small text-muted">
+											<b>I PROGRAMMET</b>
+											<br /> 
+											{% for category in post.categories|filter(category => category.term_id != 3) %}
+												{#<a href="{{ category.url }}" class="badge badge-primary">{{ category.name }}</a>#}
+												{{ category.name }}{#{ not loop.last ? ', ' :'' }#}
+											{% endfor %}
+										</p>
+									</div>
+								</div>
+							{% endif %}
+
+							<div class="cancel m-2" style="text-align:right; display:none;">
+								<button type="button" class="btn btn-outline-primary btn-sm hidePost">Lukk</button>
+							</div>
+
+						</div>
+					</div>
+				{% endfor %}
+
+				<p class="my-4">
+					<a href="../">Tilbake til rammeprogrammet</a>
+				</p>
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

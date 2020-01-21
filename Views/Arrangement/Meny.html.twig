@@ -1,0 +1,69 @@
+<div class="page-menu">
+	<div class="row">
+		{% if visNettside is defined and visNettside != false %}
+			<div class="col menu-item">
+				<a href="{{ arrangement.getLink() }}">
+					<div class="icon icon-home"></div>
+					<div class="text">Gå til nettsiden</div>
+				</a>
+			</div>
+		{% endif %}
+		{% if har_program %}
+			<div class="col menu-item">
+				<a href="{{ arrangement.getLink() }}program/">
+					<div class="icon icon-calendar"></div>
+					<div class="text">Program</div>
+				</a>
+			</div>
+		{% endif %}
+		{% if harTV %}
+			<div class="col menu-item">
+				<a href="//tv.ukm.no/fylke/{{ fylke.getPath() }}/{{ fylke.getSesong() }}/">
+					<div class="icon icon-tv"></div>
+					<div class="text">UKM-TV</div>
+				</a>
+			</div>
+		{% endif %}
+		{% if har_pameldte %}
+		<div class="col menu-item">
+			<a href="{{ arrangement.getLink() }}pameldte/">
+                {% if antall_pameldte is defined %}
+                    <div class="badge badge-pill badge-primary pameldte-badge">
+                        {{ antall_pameldte }}
+                    </div>
+                {% endif %}
+				<div class="icon icon-users"></div>
+				<div class="text">Påmeldte</div>
+			</a>
+		</div>
+		{% endif %}
+		{% if harInfoPage and posts.getAntall() > 0 %}
+			<div class="col menu-item">
+				<a href="{{ arrangement.getLink() }}info/">
+					<div class="icon icon-info-with-circle"></div>
+					<div class="text">Festival-info</div>
+				</a>
+			</div>
+		{% endif %}
+        {% if not skjulKontaktpersoner is defined %}
+            <div class="col menu-item">
+                <a href="{{ arrangement.getLink() }}kontaktpersoner/">
+                    <div class="icon icon-mobile"></div>
+                    <div class="text">Kontakt</div>
+                </a>
+            </div>
+        {% endif %}
+	</div>
+	<div class="row">
+		<div class="col-12">
+			{% if meny is defined and meny|length > 0 %}
+				{% for element in meny %}
+					<a href="{{ element.url }}" class="btn btn-outline-primary btn-block btn-sm">
+						{{ element.title }}
+					</a>
+				{% endfor %}
+			{% endif %}
+		</div>
+
+	</div>
+</div>

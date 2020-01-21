@@ -1,0 +1,22 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	{% if hideTopImage is not defined %}
+		{% embed "UKMDesignBundle:Page:topImage.html.twig"|UKMpath %}{% endembed %}	
+	{% endif %}
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 ml-md-auto mr-md-auto col-lg-8">
+				<article>
+					<h1>{{ post.title|raw }}</h1>
+					{{ post.content|raw }}
+				</article>
+				
+				<p class="my-4">
+					<a href="../">Tilbake til rammeprogrammet</a>
+				</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}

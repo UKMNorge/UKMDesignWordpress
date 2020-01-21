@@ -1,0 +1,25 @@
+<div class="fylke">
+	<div class="cover" style="background-image: url('{{ fylke.cover.portrait.url }}')">
+		<div class="header px-1">
+			<h3>
+				<a href="{{ fylke.link }}">{{ fylke.title }}</a>
+			</h3>
+		</div>
+	</div>
+	<div class="content">
+		<ol class="list-unstyled nyheter">
+			{% for post in fylke.postdata %}
+				<div class="row">
+					{% embed "UKMDesignBundle:Post:grid-imageleft.html.twig"|UKMpath %}{% endembed %}
+				</div>
+			{% endfor %}
+		</ol>
+	</div>
+	<div class="clearfix"></div>
+
+	<div class="col-12 my-3">
+		<a href="{{ fylke.link }}" class="btn btn-outline-primary btn-block autoshrink">Alt om {{ fylke.title }}</a>
+	</div>
+
+	<div class="clearfix"></div>
+</div>

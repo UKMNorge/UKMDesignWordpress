@@ -1,0 +1,122 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	<script>
+		$(document).on('click', '.clickContainer', function(e){
+			e.preventDefault();
+			window.location.href = $(this).find('.momClickMeClickMe').attr('href');
+		});
+	</script>
+	<style>
+		h1, .h1,
+		h2, .h2,
+		h3,	.h3,
+		h4,	.h4,
+		h5,	.h5,
+		h6,	.h6,
+		p,	.p {
+			opacity: 1;
+		}
+		
+		.blackBG {
+			background-color: #000;
+			color: #fff;
+		}
+		
+		.UKMfestivalBox {
+			min-height: 20vh;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center center;
+		}
+		#UKMheader_separator {
+			border-bottom: 0.4em solid #000;
+		}
+		.white {
+			color: #fff;
+		}
+		footer.mt-4 {
+			margin-top: 0px !important;
+		}
+		
+		.clickContainer {
+			cursor: pointer;
+		}
+		
+		a,
+		a:hover,
+		a:active,
+		a:visited {
+			color: inherit;
+		}
+		
+		
+		#forste_linje {
+			margin-top: -1em;
+		}
+		@media (min-width: 992px) {
+			#forste_linje {
+			    margin-top: -1.4em;
+			}
+		}
+		
+		/** MOBIL **/
+		#boxProgram {
+			min-height: 30vh !important;
+			background-image: url('//grafikk.ukm.no/UKMresponsive/img/festival/program.jpg'); 
+		}
+		#boxProgram h2 {
+			margin-top: Calc( 35% - 1em);
+			margin-bottom: Calc( 35% - 1em );
+		}
+		#boxDeltaker {
+			background-color: #afd6b7;
+		}
+		#boxPublikum {
+			background-color: #151e3f;
+		}
+		#boxHvaEr {
+			background-color: #ddd;
+			background-image: url('//grafikk.ukm.no/UKMresponsive/img/festival/hvaer.jpg');
+			background-position: bottom right;
+		}
+		#boxDeltar {
+			background: #5c3b8a;
+		}
+		#boxDeltakerprogram {
+			background: #151e3f;
+		}
+		#boxWorkshops {
+			background: #afd6b7;
+		}
+
+		/** DESKTOP **/
+		@media (min-width: 992px) {
+			#boxDeltaker {
+				color: #fff;
+				background-image: url('//grafikk.ukm.no/UKMresponsive/img/festival/deltaker.jpg');
+			}
+
+			#boxPublikum {
+				background-color: #afd6b7; /* Mobil-fargen fra deltaker-boksen */
+			}
+		}
+		
+	</style>
+	<div class="container-fluid" id="forste_linje">
+		<div class="row">
+			<div class="col-12" style="background-image: url('//grafikk.ukm.no/UKMresponsive/img/festival/deltaker.jpg')">
+				{# ÅPNINGSBILDE #}
+				<span class="">KONFERANSIEREN</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12" style="background: #000;">
+				<h2 class="my-2 white">SISTE NYHETER</h2>
+			</div>
+		</div>
+	</div>
+	<div class="container mt-3">
+		{% embed "Category:the_list.html.twig"|UKMpath with {'posts': posts.posts } %}{% endembed %}
+	</div>
+{% endblock %}

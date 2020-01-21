@@ -1,0 +1,81 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script>
+		$(document).ready(function() {
+			UKMKonkurranse.on('{{ reprise_id }}:svar', function( response ) {
+				$('#reprise-valg').hide();
+				$('#reprise-thanks').fadeIn(200);
+			});
+			
+			UKMKonkurranse.on('{{ reprise_id }}:get', function( response ) {
+				if( response.harSvart ) {
+					$('#reprise-valg').hide();
+					$('#reprise-mitt-valg').html( response.innslag );
+					$('#reprise-valgt').show();
+				}
+			});
+			
+			if( UKMMobil.har() ) {
+				$('#reprise-mobil').val( UKMMobil.get() ).attr('type', 'hidden');
+				$('#reprise-mobil-show').html( UKMMobil.get() ).show();
+				UKMKonkurranse.get('{{ reprise_id }}');
+			}
+		});
+		
+		$(document).on('submit', '#reprise-valg', function(e) {
+			e.preventDefault();
+			$('#reprise-submit').html('Lagrer...');
+			UKMMobil.set( $('#reprise-mobil').val() );
+			UKMKonkurranse.svar('{{ reprise_id }}', $('#reprise-innslag').val());
+			return false;
+		});
+		
+	</script>
+{% endblock %}
+
+{% block content %}
+	{% embed "UKMDesignBundle:Page:topImage.html.twig"|UKMpath %}{% endembed %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 ml-md-auto mr-md-auto col-lg-8">
+				<div id="reprise-valgt" style="display:none;">
+					<h2>Takk for din stemme!</h2>
+				
+					<p>
+						La oss alle heie på <span id="reprise-mitt-valg">din favoritt</span>!
+					</p>
+				</div>
+				
+				<div id="reprise-thanks" style="display:none;">
+					<h2>Takk for din stemme!</h2>
+				</div>
+				<form id="reprise-valg">
+					<h2>Hvem vil du se igjen på avslutningen?</h2>
+				
+					<div class="form-group mt-3" required>
+						<select class="form-control" name="innslag" id="reprise-innslag">
+							<option value="false" disabled="disabled" selected="selected">Velg innslag</option>
+
+							{% for innslag in hendelse.getInnslag().getAll() %}
+								<option value="{{ innslag.getId() }}">{{ hendelse.getNummer(innslag) }}. {{ innslag.getNavn() }}</option>
+							{% endfor %}
+						</select>
+					</div>
+					
+					<div class="form-group">
+						<label>Ditt mobilnummer</label>
+						<input type="tel" class="form-control" name="mobil" id="reprise-mobil" required />
+						<p id="reprise-mobil-show" style="display: none;"></p>
+					</div>
+					
+					<div class="form-group">
+						<button class="btn btn-outline-primary" style="background-color: #fff;" type="submit" id="reprise-submit">Hakuna matata!</button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+{% endblock %}

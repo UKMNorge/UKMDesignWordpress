@@ -1,0 +1,44 @@
+<div class="card">
+	{% if kontakt.getBilde() is not empty %}
+		<div class="card-img-top center">
+			<div class="card-img-top kontaktperson-bilde" style="background-image: url('{{ kontakt.getBilde() }}');">&nbsp;</div>
+		</div>
+	{% else %}
+		<div class="card-img-top center">
+			<div class="icon icon-user kontaktPlaceholder"></div>
+		</div>
+	{% endif %}
+	<div class="card-body px-2 pt-0">
+		<h3 class="card-title my-1 bold">{{ kontakt.getNavn() }}</h3>
+		{% if kontakt.getTittel() is not empty %}
+			<p class="col card-text mt-0">{{ kontakt.getTittel() }}</p>
+		{% endif %}
+		{% if kontakt.getBeskrivelse() is not empty %}
+			<p>{{ kontakt.getBeskrivelse()|raw }}</p>
+		{% endif %}
+		<div style="height: 10px; width: 10px;"></div>
+		<!-- Lager mellomrom mellom navn eller tittel og informasjonen under.  -->
+		{% if kontakt.getTelefon() is not empty %}
+			<div class="text-og-ikon">
+				<div class="icon icon-mobile kontakt-elment-ikon"></div>
+				<a href="tel:{{ kontakt.getTelefon() }}" class="telefon">
+					{{ kontakt.getTelefon()|telefon }}
+				</a>
+			</div>
+		{% endif %}
+		{% if kontakt.getEpost() is not empty %}
+			<div class="text-og-ikon">
+				<div class="icon icon-chat kontakt-elment-ikon"></div>
+				<a href="mailto:{{ kontakt.getEpost() }}" class="epost">
+					Send epost
+				</a>
+			</div>
+		{% endif %}
+		{% if kontakt.getFacebook() is not empty %}
+			<div class="text-og-ikon">
+				<div class="icon icon-facebook kontakt-elment-ikon"></div>
+				<a href="{{ kontakt.getFacebook() }}" class="facebook">Facebook</a>
+			</div>
+		{% endif %}
+	</div>
+</div>

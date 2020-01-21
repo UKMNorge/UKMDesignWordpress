@@ -1,0 +1,47 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="row-flex">
+			{# HVA ER UKM? #}
+			<div class="col-12 col-md-7 float-left mt-3 mb-2">
+				<p class="lead">
+					{{ page.getPage().getContentBeforeMore()|raw }}
+				</p>
+				<p class="d-block d-md-none">
+					<a href="#" class="UKMtoggleShow phoneReadMoreUKM" data-target="phoneReadMoreUKM">Les mer om UKM Media</a>
+				</p>
+
+				<div class="UKMtoggleContent" style="display:none" id="phoneReadMoreUKM">
+					{{ page.getPage().getContentAfterMore()|raw }}
+					<p>
+						<a href="#" class="UKMtoggleHide phoneReadMoreUKM" data-target="phoneReadMoreUKM">Lukk</a>
+					</p>
+				</div>
+				<div class="d-none d-md-block">
+					{{ page.getPage().getContentAfterMore|raw }}
+				</div>
+			</div>
+
+			{# NYHETER #}
+			<div class="col-12 col-md-5 float-right">
+				<h4 class="mt-3">Snarveier</h4>
+				{% for element in meny %}
+					<a href="{{ element.url }}" class="btn btn-outline-primary btn-block btn-sm">
+						{{ element.title }}
+					</a>
+				{% endfor %}
+
+				<h4 class="mt-3">Nyheter fra UKM Media</h4>
+				<div class="row">
+					{% for post in posts.getAll() %}
+						<div class="col-6">
+							{% embed "Post:grid-default.html.twig"|UKMpath with { post: post } %}{% endembed %}
+						</div>
+					{% endfor %}
+				</div>
+				{% embed "Category:next_prev_links.html.twig"|UKMpath %}{% endembed %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

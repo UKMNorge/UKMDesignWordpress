@@ -1,0 +1,8 @@
+{% if page.page.image.large.src is defined and page.page.image.large.src is not empty and page.page.meta.noImageOnTop is not defined %}
+	{% if page.page.meta.headerPosition is defined %}
+		{% set position = 'background-position: '~ page.page.meta.headerPosition ~';' %}
+	{% else %}
+		{% set position = '' %}
+	{% endif %}
+	<div id="the_post_image" style="background-image: url('{{ page.page.image.large.src }}'); {{ position }}"></div>
+{% endif %}

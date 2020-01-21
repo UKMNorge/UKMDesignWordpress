@@ -1,0 +1,55 @@
+<div class="mt-4">
+	{% if monstring.getFrist1() == monstring.getFrist2() %}
+		Påmeldingsfristen går ut 
+		{{ monstring.getFrist1()|dato('l j. F') }} 
+		kl. {{ monstring.getFrist1()|dato('H:i') }}
+	{% else %}
+		<div class="frister mb">
+			<div class="frist mb-3">
+				<div class="header-line">
+					{% if monstring.erPameldingApen(1) %}
+						<div class="float-left">
+							Frist 1:
+						</div>
+						<div class="float-right">
+							{{ monstring.getFrist1()|dato('l j. F') }} kl. {{ monstring.getFrist1()|dato('H:i')}}
+						</div>	
+					{% else %}
+						Påmeldingsfristen har gått ut for
+					{% endif %}
+					<div class="clearfix"></div>
+				</div>
+				{% if monstring.erPameldingApen(1) %}
+					Gjelder:
+				{% endif %}
+				{% for type in monstring.getInnslagTyper()|filter(type => type.getFrist() == 1) %}
+					{{ type }}, 
+				{% endfor %}
+			</div>
+				
+			<div class="frist mb-3">
+				<div class="header-line">
+					{% if monstring.erPameldingApen(2) %}
+						<div class="float-left">
+							Frist 2:
+						</div>
+						<div class="float-right">
+							{{ monstring.getFrist2()|dato('l j. F') }} kl. {{ monstring.getFrist2()|dato('H:i')}}
+						</div>	
+					{% else %}
+						Påmeldingsfristen har gått ut for
+					{% endif %}
+					<div class="clearfix"></div>
+				</div>
+				{% if monstring.erPameldingApen(2) %}
+					Gjelder:
+				{% endif %}
+				{% for type in monstring.getInnslagTyper()|filter(type => type.getFrist() == 2) %}
+					{{ type }}, 
+				{% endfor %}
+			</div>
+
+		</div>
+	{% endif %}
+	<div class="clearfix"></div>
+</div>

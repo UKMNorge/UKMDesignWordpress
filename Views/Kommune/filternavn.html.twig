@@ -1,0 +1,6 @@
+{{kommune.getNavn()}}
+{{ kommune.getNavn()|lower != kommune.getFilterNavn()|lower ? ' '~kommune.getFilterNavn() }}
+{% for tidligere in kommune.getTidligere()%}
+ {{ tidligere.getNavn() }}
+ {{ tidligere.getNavn()|lower != tidligere.getFilterNavn()|lower ? ' '~tidligere.getFilterNavn() }}
+{% endfor %}

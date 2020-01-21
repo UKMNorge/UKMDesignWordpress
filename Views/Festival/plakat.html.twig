@@ -1,0 +1,69 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block css %}
+	{{ parent() }}
+	<style>
+		.bakgrunn {
+			background-image: url(https://grafikk.ukm.no/forside/festivalen.jpg);
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: cover;
+			width: 100vw;
+			height: 101vh;
+			color: #fff;
+			text-align: center;
+			margin-bottom: -1.7em;
+			margin-top: -1rem;
+			padding-top: 12vh;
+		}
+
+		h1 {
+			
+		}
+
+		h1 {
+			font-size: 3em;
+			margin: 1rem 1rem;
+		}
+		p.lead.huge {
+			font-size: 1.8em;
+		}
+		p.lead.big {
+			font-size: 1.2em;
+		}
+		@media (min-width: 768px ) {
+			h1 {
+				font-size: 8vw;
+			}
+		}
+		@media (min-width: 1200px ) {
+			h1 {
+				font-size: 8vw;
+			}
+			p.lead.huge {
+				font-size: 3vw;
+			}
+			p.lead.big {
+				font-size: 1vw;
+			}
+		}
+	</style>
+{% endblock %}
+
+{% block content %}
+	<div class="bakgrunn">
+		<div align="center">
+			<h1>
+				<span style="background: rgba(0,0,0,.8);  padding: .1em .3em; line-height: 1.4em; -webkit-box-decoration-break: clone;">UKM-FESTIVALEN <br />2019</span>
+			</h1>
+			
+			<p class="lead huge">
+				<span style="text-shadow: 0px 0px 15px #000">Stjørdal, 24.-28.juni</span>
+			</p>
+			<p class="lead big">
+				<span style="text-shadow: 0px 0px 15px #000">Vi gleder oss allerede! Mer info kommer 5. april.</span>
+			</p>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+{% endblock %}

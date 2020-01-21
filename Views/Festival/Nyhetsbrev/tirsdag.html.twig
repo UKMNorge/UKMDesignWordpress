@@ -1,0 +1,421 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'newsletter_base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	<script>
+		$(document).on('click', '.clickContainer', function(e){
+			e.preventDefault();
+			window.location.href = $(this).find('.momClickMeClickMe').attr('href');
+		});
+	</script>
+	<style>
+		h1, .h1,
+		h2, .h2,
+		h3,	.h3,
+		h4,	.h4,
+		h5,	.h5,
+		h6,	.h6,
+		p,	.p {
+			opacity: 1;
+		}
+		
+		.blackBG {
+			background-color: #000;
+			color: #fff;
+		}
+		
+		.UKMfestivalBox {
+			height: 40vw;
+			overflow: hidden;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center center;
+		}
+		#UKMheader_separator {
+			border-bottom: 0.4em solid #000;
+		}
+		.white {
+			color: #fff;
+		}
+		footer.mt-4 {
+			margin-top: 0px !important;
+		}
+		
+		.clickContainer {
+			cursor: pointer;
+		}
+		
+		a,
+		a:hover,
+		a:active,
+		a:visited {
+			color: inherit;
+			text-decoration: none;
+		}
+		
+		#forste_linje {
+			margin-top: -1em;
+		}
+		@media (min-width: 992px) {
+			#forste_linje {
+			    margin-top: -1.4em;
+			}
+		}
+		
+		/** MOBIL **/
+		#boxProgram {
+			min-height: 30vh !important;
+			background-image: url('//grafikk.ukm.no/UKMresponsive/img/festival/program.jpg'); 
+		}
+		#boxProgram h2 {
+			margin-top: Calc( 35% - 1em);
+			margin-bottom: Calc( 35% - 1em );
+		}
+		#boxDeltaker {
+			background-color: #afd6b7;
+		}
+		#boxPublikum {
+			background-color: #151e3f;
+		}
+		#boxHvaEr {
+			background-color: #ddd;
+			background-image: url('//grafikk.ukm.no/UKMresponsive/img/festival/hvaer.jpg');
+			background-position: bottom right;
+		}
+		#boxDeltar {
+			background: #5c3b8a;
+		}
+		#boxDeltakerprogram {
+			background: #151e3f;
+		}
+		#boxWorkshops {
+			background: #afd6b7;
+		}
+
+		.textOverlayHeader {
+			color: #f4df42;
+			background: none;
+		}
+
+		.textOverlay {
+			position: absolute;
+			
+			transform: translate(-50%, -50%);
+			font-family: 'Crimson Text', bold serif;
+			font-weight: 500;
+			
+			width: 100%;
+		}
+
+		.headerTitle {
+			font-size: 3em;
+			color: #FCF7BD;
+			/*letter-spacing: 0.3rem;*/
+			left: 50%;
+			top: 29%;
+
+		}
+
+		.fullsizeTekst {
+			position: absolute;
+			color: #FCF7BD;
+			/*transform: translate(-50%, -50%);*/
+			font-family: 'Crimson Text', serif;
+			width: 100%;
+			line-height: 0.5rem;
+		}
+
+		.fullsizeTekst > a.big {
+			font-size: 1.9rem;
+		}
+
+		.oskarSak > a.small {
+			font-size: 1.4rem;
+			letter-spacing: -0.05rem;
+		}
+
+		#forste_linje {
+			background-color: black;
+		}
+
+		/* #### NYHETSBREV #### */
+		.ticker {
+			/*width: 110%;*/
+			min-height: 1.6em;
+			display: block;
+			font-family: 'anton', bold sans-serif;
+			font-size: 1.1em;
+			padding: 0.3em;
+			padding-left: 0em;
+			background-color: #f4d909;
+			white-space:nowrap;
+    		overflow:hidden;
+    		letter-spacing: 0.1rem;
+		}
+
+		.ticker < marquee {
+			padding-top: 0.3rem;
+		}
+
+		.topBox {
+			background-color: black;
+			display: block;
+		}
+
+		.anton {
+			font-family: 'Anton', sans-serif;
+			font-size: 2em;
+		}
+
+		.anton.big {
+			font-size: 2.6em!important;
+		}
+
+		.inline-row {
+			height: 50vw;
+		}
+
+		.fullwidthBox {
+			background-color: black; 
+			display: block;
+			height: 50vw;
+			overflow: hidden;
+			background-repeat: no-repeat;
+			background-size: 100% auto;
+		}
+
+		.fullwidthBox > a {
+			top: 50%;
+			transform: translate(-50%, -50%);
+			font-family: 'Crimson Text', serif;
+		}
+
+		.fullwidthBox > a.anton {
+			font-family: 'Anton', sans-serif;
+		}
+
+		.halfwidthBox > a {
+			font-family: 'Work Sans';
+			font-size: 26px;
+			color: white;
+			display: block;
+			transform: translate(0, 75%);
+			text-align: center;
+		}
+
+		.halfwidthBox > a.left {
+			text-align: left;
+			color: #FCF7BD;
+		}
+		
+		a.left {
+			text-align: left;
+		}
+
+		.halfwidthBox > a.anton {
+			font-family: 'Anton', sans-serif;
+			padding-bottom: 0.4rem;
+		}
+
+		.headerBox {
+			height: auto;
+		}
+
+		.newsletter_green {
+			background-color: #00be41;
+		}
+
+		.newsletter_purple {
+			background-color: #d32efc;
+		}
+
+		.newsletter_yellow {
+			background-color: #f7ea55;
+		}
+
+		/* Override color on each sticker element! */
+		.sticker {
+			border-radius: 50%;
+			height: 30vw;
+			width: 30vw;
+			display: inline-block;
+			position: absolute;
+			z-index: 10000;
+			box-shadow: 3px 3px 3px #999999;
+		}
+
+		.sticker.center {
+			left: 50%;
+			transform: translate(-50%, 115%);
+		}
+
+		.sticker.right {
+			left: 85vw;
+			transform: translate(-50%, 145%);
+			height: 20vw;
+			width: 20vw;
+		}
+
+		.sticker.right > a {
+			font-size: 3vw;
+		}
+		.sticker.right > a.big {
+			font-size: 8vw;
+		}
+
+		.sticker > a {
+			position: relative;
+			font-family: 'anton', sans-serif;
+			font-size: 4vw;
+			color: white;
+			display: block;
+			text-align: center;
+		}
+
+		.sticker > a.big {
+			top: 37%;
+			font-size: 10vw;
+		}
+
+		.thanks {
+			line-height: 1.8rem;
+			font-family: 'anton', sans-serif;
+			font-size: 1.4rem;
+		}
+
+		.thanks > span.big {
+			font-size: 2.5rem;
+		}
+		
+	</style>
+	<div class="container-fluid" id="forste_linje" style="overflow: hidden; max-width: 560px;">
+		<div class="row center clickContainer" style="max-height: 50vh">
+			<img src="https://ukm.no/festivalen/files/2018/06/HBR1022apningsshow_foto_helen_roestum-768x904.jpg" style="object-fit: cover;" />
+			<div class="textOverlay headerTitle center" style="margin-top: 2rem;">
+				<a href="https://tv.ukm.no/pningsshow-i-teltet/12934" class="big center momClickMeClickMe" style="letter-spacing: 0.05rem; font-size: 2.3rem;">ÅPNINGSSHOWET</a>
+			</div>
+		</div>
+
+		<div class="row ticker clickContainer newsletter_green">
+			<marquee behavior="scroll" scrollamount="5" direction="left" style="padding-top: 0.3rem;">FORESTILLINGER UKM TV - FORESTILLINGER UKM TV</marquee>
+			<a href="https://tv.ukm.no/festivalen/2018/" class="momClickMeClickMe hidden">
+		</div>
+
+		{# HALVBREDDE-SAK #}
+		<div class="row">
+			{# <div class="UKMfestivalBox col-6 halfwidthBox clickContainer newsletter_green">
+				<a href="https://tv.ukm.no/festivalen/2018/12930-Festival-guide/" class="anton momClickMeClickMe" style="margin-top: 1.4rem; font-size: 2.3rem; padding-bottom: 0.2rem;">FESTIVAL-</a>
+				<a href="https://tv.ukm.no/festivalen/2018/12930-Festival-guide/" class="anton big" style="margin-top: 0.25em;margin-left:-0.05em;">GUIDEN</a>
+			</div> #}
+			<div class="UKMfestivalBox col-6 halfwidthBox center newsletter_purple">
+				<a href="https://festivalen.ukm.no/2018/06/26/ukm-hvor-oredobbposer-og-silkeband-er-prioritetene-i-bagen/" class="anton " style="margin-top: 1.4rem; font-size: 1.8rem; padding-bottom: 0.2rem;">HVA HAR DU</a>
+				<a href="https://festivalen.ukm.no/2018/06/26/ukm-hvor-oredobbposer-og-silkeband-er-prioritetene-i-bagen/" class="anton big" style="margin-top: 0.25em;margin-left:-0.05em;">PAKKA?</a>
+			</div>
+
+			<div class="UKMfestivalBox col-6 halfwidthBox clickContainer newsletter_purple" style="background-image: url('https://ukm.no/festivalen/files/2018/06/DSC0410_artikkelbilder_japansak_bildeav_StoneHeart_Foto_Deivid_Garcia-1-768x512.jpg'); background-position: 0,0;
+			">
+				<a href="https://festivalen.ukm.no/2018/06/26/valgte-ukm-over-japan/" class="left momClickMeClickMe" style="font-family: 'Crimson Text', serif; margin-top: 3.4rem; font-size: 1.2rem; padding-bottom: 0.2rem;">JAPAN? NÆH</a>
+				<a href="https://festivalen.ukm.no/2018/06/26/valgte-ukm-over-japan/" class="left " style="font-family: 'Crimson Text', serif; font-size: 1.2rem; margin-top: 0rem;margin-left:-0.05em;">UKM? JA!</a>
+			</div>
+			{# <div class="UKMfestivalBox col-6 halfwidthBox" style="overflow:hidden;">
+				<div class="row inline-row">
+					<img src="https://media.giphy.com/media/wNOsMItba4FwY/giphy.gif">
+				</div>
+			</div> #}
+			<div class="clickContainer sticker right newsletter_yellow">
+				<a href="https://no.wikipedia.org/wiki/Trondheim" class="momClickMeClickMe" style="font-size: 2.5rem; margin-top: 1.7rem;">?</a>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		{# FULLBREDDE-SAK #}
+		<div class="row fullwidthBox clickContainer" style="background-image: url('https://ukm.no/festivalen/files/2018/06/Screen-Shot-2018-06-26-at-16.04.39-768x480.png'); background-size: 110%; background-position: 0px,-240px;
+			">
+			<div class="fullsizeTekst" style="margin-top: 6rem; margin-left: 0.75rem;">
+				<a href="https://tv.ukm.no/Luftakrobatikk/12958" class="left momClickMeClickMe" style="color: black; font-size: 1.6rem; position: relative; top: 6vw; margin-left: 0.2rem;">HO ELSKAR Å</a><br />
+				<a href="https://tv.ukm.no/Luftakrobatikk/12958" class="left momClickMeClickMe" style="position: relative; top: 9.5vw; margin-left: 0.2rem; font-size: 1.6rem;">HENGE OPP NED</a>
+			</div>
+		</div>
+		{# <div class="row fullwidthBox  headerBox big center clickContainer" style=" padding-top: 0.6rem; padding-bottom: 0.2rem;">
+			<a href="https://festivalen.ukm.no/category/workshop-foredrag/" class="anton center momClickMeClickMe" style="max-height: 0.1vw; font-size: 1.4rem; overflow-x: hidden;"></a>
+		</div> #}
+		<div class="row fullwidthBox newsletter_green big center" style="color: white; padding-top: 0.6em; line-height: 2.15rem;">
+			<br /><a href="https://festivalen.ukm.no/2018/06/26/hva-er-det-i-vannet/" class="anton big center momClickMeClickMe">ER DET NOE</a><br />
+			<a href="https://festivalen.ukm.no/2018/06/26/hva-er-det-i-vannet/" class="anton big center momClickMeClickMe">I VANNET..?</a><br />
+		</div>
+		
+		{# <div class="row ticker newsletter_green">
+			<marquee behavior="scroll" scrollamount="5" direction="left" style="padding-top: 0.3rem;">FORESTILLINGER UKM TV - FORESTILLINGER UKM TV</marquee>
+		</div> #}
+		<div class="row ticker">
+			<marquee behavior="scroll" scrollamount="5" direction="left" style="padding-top: 0.3rem;">I DAG BLE DET IKKE NOE TEKST AKKURAT HER</marquee>
+		</div>
+		
+		<div class="row">
+			<div class="UKMfestivalBox col-6 halfwidthBox clickContainer newsletter_purple">
+				<a href="https://festivalen.ukm.no/2018/06/26/3-2-1-rumpeldunk/" class="anton momClickMeClickMe" style="margin-top: 1rem; font-size: 2rem; padding-bottom: 0.2rem;">3 - 2 - 1</a>
+				<a href="https://festivalen.ukm.no/2018/06/26/3-2-1-rumpeldunk/" class="anton" style="font-size: 1.4rem; margin-top: 0.20em; letter-spacing: 0.11rem;">RUMPELDUNK</a>
+			</div>
+			<div class="UKMfestivalBox col-6 halfwidthBox" style="overflow:hidden;">
+				<div class="row inline-row" style="background-image: url('https://festivalen.ukm.no/files/2018/06/rumpeldunk-1200x775.jpg'); background-size: 140%; background-position: center, center; ">
+					<p>&nbsp;</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="UKMfestivalBox col-6 halfwidthBox newsletter_green">
+				<div class="row inline-row" >
+					<img src="https://media.giphy.com/media/LqafmeaBVxCRG/giphy.gif">
+				</div>
+			</div>
+			<div class="clickContainer sticker right newsletter_yellow" style="left: 40vw; margin-top: -10vw;">
+				<a href="https://pent.no/63.43048,10.39506" class="momClickMeClickMe" style="transform: rotate(-20deg); color: black; font-size: 1rem; margin-top: 1rem;">HVA MED VÆRET?</a>
+			</div>
+			<div class="clearfix"></div>
+			<div class="UKMfestivalBox col-6 halfwidthBox newsletter_green" style="overflow:hidden;">
+				<a href="https://festivalen.ukm.no/2018/06/26/vans-sang-og-sokker-i-sandaler/" class="anton momClickMeClickMe" style="margin-top: 2rem; font-size: 4rem; padding-bottom: 0.2rem;">UKM</a>
+				<a href="https://festivalen.ukm.no/2018/06/26/vans-sang-og-sokker-i-sandaler/" class="anton" style="letter-spacing: 0.08rem; font-size: 1rem; margin-top: 0.40em; margin-left:-0.05em;">STARTER PACK</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="UKMfestivalBox col-6 halfwidthBox clickContainer newsletter_yellow center">
+				<a href="https://festivalen.ukm.no/2018/06/26/3-kjappe-til-3-pa-gata/" class="anton momClickMeClickMe" style="font-size: 1.8em; letter-spacing: 0.05rem; margin-top: 2rem;">U KÅ ÆMM?</a>
+			</div>
+			<div class="UKMfestivalBox col-6 center halfwidthBox clickContainer newsletter_purple" style="background-image: url('https://ukm.no/festivalen/files/2018/06/DSC0418Artikkelbilder_fra_ukm_til_em_paabildet_Switch_Foto_Deivid_Garcia-1-768x512.jpg'); background-position: 0px,-100px;
+			">
+				<a href="https://ukm.no/festivalen/2018/06/26/fra-ukm-og-rett-til-em/" class="center momClickMeClickMe" style="color: white; font-family: 'Crimson Text', serif; margin-top: 5.6rem; font-size: 1.2rem; padding-bottom: 0.2rem;">FRA UKM TIL EM</a>
+			</div>
+			{# <div class="UKMfestivalBox col-6 halfwidthBox newsletter_purple" style="overflow:hidden;">
+				<a href="https://tv.ukm.no/festivalen/2018/12930-Festival-guide/" class="anton momClickMeClickMe" style="margin-top: 2.3rem; font-size: 5rem; padding-bottom: 0.2rem;">UKM</a>
+				<a href="https://tv.ukm.no/festivalen/2018/12930-Festival-guide/" class="anton" style="margin-top: 1em; margin-left:-0.05em;">STARTERPACK</a>
+			</div> #}
+		</div>
+		<div class="row fullwidthBox clickContainer" style="background-image: url('https://ukm.no/festivalen/files/2018/06/Klem-til-nyhetsbrevet-768x516.jpg'); background-position: 0,0;
+			">
+			<div class="fullsizeTekst center" style="margin-top: 6rem; margin-left: 0.75rem;">
+				<a href="https://www.klemmalin.no/til-info" class="big momClickMeClickMe" style="color: white; position: relative; top: 0vw; margin-left: -5%;">Å GI EN KLEM</a>
+
+				<br class="line-height: 1rem;"/>
+			</div>
+		</div>
+		<div class="row fullwidthBox" style="background-image: url('{{ UKMasset("img/newsletter/oskar_sak.png" ) }}'); background-position: 0,0;
+			">
+			<div class="row inline-row">
+				<img src="https://media.giphy.com/media/mhDwIpbsgGKk/giphy.gif">
+			</div>
+		</div>
+		<div class="row fullwidthBox newsletter_yellow" style="min-height: 20vh; height: auto;">
+			<div class="col-xs-12 center thanks" style="color:black; letter-spacing:0.05rem; font-size: 1.3rem;">
+				<br />
+				<span>NYHETSBREVET KOMMER HVER </span><br />
+				<span style="letter-spacing: 0.08rem;">DAG MED BILDER, VIDEOER, </span><br />
+				<span>OG ANNET GØY FRA FESTIVALEN.</span><br />
+				<br />
+				<span class="big">SES I MORRA!</span>
+				<br /><br />
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block css %}
+	
+{% endblock %}

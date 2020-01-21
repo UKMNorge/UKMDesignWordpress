@@ -1,0 +1,63 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% set daysUntil = date( fylke.getStart() ).diff( date(now) ).days %}
+
+{% block content %}
+	{% embed "UKMDesignBundle:Monstring:banner.html.twig"|UKMpath with{monstring: fylke} %}{% endembed %}
+	
+	<div class="container-fluid">
+		<div class="row-flex">
+			<div class="col-12 col-lg-4 float-right mb-4">
+				<div class="center small mb-4">
+					<p>
+						{% if fylke.erAktiv() %}
+							{{ fylke.getNavn() }} er endelig i gang!
+							<br />
+							{{ fylke.getStart()|dato('D j.M')|capitalize }} til {{ fylke.getStop()|dato('D j.M') }}.
+						{% elseif daysUntil < 4 and daysUntil > 1 and not fylke.erFerdig() %}
+							{{ daysUntil }} dager igjen! {{ fylke.getNavn() }} starter {{ fylke.getStart()|dato('d.M') }} kl. {{ fylke.getStart()|dato('H:i') }}
+						{% elseif daysUntil == 1 %}
+							{{ fylke.getNavn() }} starter kl {{ fylke.getStart()|dato('H:i') }} i dag.
+						{% elseif daysUntil < 1 %}
+							Bare timer igjen! {{ fylke.getNavn() }}: {{ fylke.getStart()|dato('l j.F') }} til {{ fylke.getStop()|dato('l j.F') }}.
+						{% elseif fylke.erFerdig() %}
+							{{ fylke.getNavn() }} var fra {{ fylke.getStart()|dato('l j.F') }} til {{ fylke.getStop()|dato('l j.F') }}.
+						{% else %}
+						 	Bare {{ daysUntil }} dag{{ daysUntil > 1 ? 'er' }} til {{ fylke.getNavn() }}!
+						{% endif %}
+					</p>
+				</div>
+				{% if not fylke.erFerdig() %}
+					<div class="center mb-4">
+						{% if direkte is defined and direkte != false and direkte.type == 'embed' %}
+							<div class="row mt-3">
+								<div class="col-12">
+									{{ direkte.code|raw }}
+								</div>
+							</div>
+						{% elseif direkte is defined and direkte != false and direkte.type == 'link' %}
+							<a href="{{ direkte.link }}" class="btn btn-primary btn-block">Vi sender direkte</a>
+						{% endif %}
+					</div>
+				{% endif %}
+				{% embed "UKMDesignBundle:Fylke:meny.html.twig"|UKMpath %}{% endembed %}
+				<p class="mt-3 center small">
+					<a href="lokalmonstringer/" class="btn btn-outline-primary btn-sm btn-block">Info om UKM i din {{ fylke.erOslo() ? 'bydel' : 'kommune' }}</a>
+				</p>
+
+			</div>
+		
+			<div class="col-12 col-lg-8 float-left">
+				{% if posts.getAntall() == 0 and harInfoPage %}
+					{{ infoPage.getPage().content|raw }}
+				{% else %}
+					<div class="row">
+						{% embed "UKMDesignBundle:Category:list.html.twig"|UKMpath with {singleMode: true, posts: posts.getAll(), hideNoneFound: true} %}{% endembed %}
+					</div>
+				{% endif %}
+			</div>
+			
+		</div>
+	</div>
+
+{% endblock %}

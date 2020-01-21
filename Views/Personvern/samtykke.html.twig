@@ -1,0 +1,78 @@
+{% extends "Layout/_base.html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>Samtykke</h1>
+				<p>
+					Jeg, 
+					{% if foresatt %}
+						<b>{{ approval.getForesattNavn() }} ({{ approval.getForesattMobil() }})</b> gir på vegne av
+					{% endif %}
+					<b>{{ request.getFornavn() ~' '~ request.getEtternavn() }} ({{ request.getMobil() }})</b>
+					{{ not foresatt ? 'gir' }} UKM Norge tillatelse til å
+					<b>{{ prosjekt.getSetning() }}</b>.
+				</p>
+				<p>
+					Tillatelsen gjelder <b>{{ prosjekt.getVarighet() }}</b> for følgende {#{ request.getLenker()|length > 1 ? request.getLenker()|length }} bilde{{ request.getLenker()|length > 1 ? 'r' }#}
+				</p>
+				
+				<div class="mb-3">
+					{% for element in request.getLenker() %}
+						{% if element.type == 'bilde' %}
+							<a href="{{ element.url }}" target="_blank">
+								<img src="{{ element.url }}" style="max-height: 50vh; max-width: 50vw;" />
+							</a>
+						{% endif %}
+					{% endfor %}
+				</div>
+
+				<h2>Mer om {{ prosjekt.getTittel() }}</h2>
+				<p>
+					{{ prosjekt.getBeskrivelse()|nl2br }}
+				</p>
+				
+				
+				<form method="POST">
+					<input type="hidden" name="prosjekt" value="{{ GET('prosjekt') }}" />
+					<input type="hidden" name="samtykke" value="{{ GET('samtykke') }}" />
+
+					{% if foresatt %}
+						<input type="hidden" name="save" value="approval-foresatt" />
+					{% else %}
+						<input type="hidden" name="save" value="approval" />
+						<div class="form-group">
+							<label for="tittel">Hvor gammel er du?</label>
+							<select class="form-control" name="alder" required>
+								<option value="false" selected disabled>Velg alder</option>
+								<option value="under10">Under 10 år</option>
+								{% for alder in 10..20 %}
+									<option value="{{ alder }}">{{ alder }} år</option>
+								{% endfor %}
+								<option value="over20">Over 20 år</option>
+							</select>
+						</div>
+					{% endif %}
+
+					
+					<div class="form-group">
+						<button type="submit" class="btn btn-xs btn-primary btn-outline-primary">Ja, dette er OK</button>
+					</div>
+				</form>
+				
+				<h2>Datalagring</h2>
+				<p>
+					UKM Norge vil lagre ditt samtykke (ditt navn, mobilnummer, alder, IP-adresse og annen informasjon oppgitt i skjemaet).
+					<br />
+					Etter ett år vil informasjonen slettes fra vår web-server (og dermed ikke være tilgjengelig via internett),
+					men en kopi vil fortsatt bli beholdt i arkivet vårt, som et bevis på at du har gitt ditt samtykke.
+				</p>
+				<p>
+					Virker dette skummelt? Det er ikke meningen. Vi ønsker å være helt ærlig med deg på hva vi gjør med informasjonen du gir oss,
+					slik at du kan føle deg trygg på at vi ikke deler dette med andre, og gjør vårt beste for å ivareta ditt personvern.
+				</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}

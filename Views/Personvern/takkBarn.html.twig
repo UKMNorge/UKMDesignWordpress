@@ -1,0 +1,16 @@
+{% extends "Layout/_base.html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>Takk!</h1>
+				<p>
+					Vi har sendt en SMS til {{ foresatt }} ({{ mobil }}).
+					<br />
+					Du har ikke gitt samtykke før {{ foresatt }} har gått inn på lenken og trykket "ok".
+				</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,1892 @@
+{% extends "Festival:Nyhetsbrev:2019_framework.html.twig"|UKMpath %}
+
+{% block content %}
+    <script>
+        $(document).on('click', '.clickContainer', function (e) {
+            console.log(e);
+            
+            e.preventDefault();
+            window.location.href = $(this).find('.momClickMeClickMe').attr('href');
+        });
+    </script>
+
+    <script type="text/javascript">
+    $(document).on('click', '.clickMomDiv', function(e) {
+        e.preventDefault();
+        $(this).parents('.momDiv').click();
+    });
+    $ ( document ).ready(function () {
+
+
+        var latestArticle = null;
+        $(".expandOnClick").click(function(event) {
+            // if (jQuery(event.target).is("a") ) {
+            //     return;
+            // }
+            console.log(event);
+            event.preventDefault();            
+            var link = jQuery(event.target).find(".articleLink");
+            console.log('link: ');
+            console.log(link);
+            var articleBox = jQuery('.articleBox#articleBox-'+jQuery(link).attr('data-articleBox-id'));
+            var articleContent = jQuery(articleBox).find(".articleContent");
+            var newArticle = jQuery(link).attr('id');
+            /*console.log(newArticle);*/
+            var url = link.attr("href");
+            
+            if (undefined == url) {
+                url = jQuery(event.target).attr("href");
+            }
+
+            if ( "{{ UKM_HOSTNAME }}" == "ukm.dev" ) {
+                url = "https://ukm.dev/blog/2014/06/06/av-med-og-for-ungdom/?singleMode=true";
+            }
+
+            // Lukk samme artikkel
+            if( articleBox.is(':visible') && latestArticle == newArticle ) {
+                articleBox.slideUp();
+                // Sleep 300ms??
+                articleContent.html("Laster inn...");
+            }
+            // Ny artikkel, men en annen vises
+            else if (latestArticle != null && latestArticle != newArticle) {
+                articleContent.html("Laster inn...");
+
+                jQuery.post(
+                    url+"?singleMode=true",
+                    {
+                        'singleMode': true,
+                    },
+                    function(data) {
+                        articleContent.html(data);
+                    },
+                );
+                latestArticle = newArticle;
+            }
+            // Første gang artikkelboks åpnes.
+            else {
+                articleBox.slideDown();
+
+                jQuery.post(
+                    url+"?singleMode=true",
+                    {
+                        'singleMode': true,
+                    },
+                    function(data) {
+                        jQuery(articleBox).find(".articleContent").html(data);
+                    },
+                );
+                latestArticle = newArticle;
+            }
+        });
+
+        $(".closeButton").click( function (event) {
+            jQuery(event.target).parent().parent().slideUp();
+            console.log(jQuery(event.target).parent().parent().attr("id"));
+            scrollTo(jQuery(event.target).parent().parent().attr("id"));
+        });
+    });
+    </script>
+
+
+    <style>:root
+    {
+        --ukm_blaa: rgba(0, 0, 71, 1);
+        --ukm_rosa: rgba(255, 18, 139, 1);
+        --ukm_gul: rgba(255, 240, 86, 1);
+        --ukm_gronn: rgba(0, 255, 137, 1);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    a,
+    p,
+    a:link,
+    marquee {
+        font-family: 'itcavantgardeprobold' !important;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .bg-blaa {
+        background: var(--ukm_blaa);
+    }
+    .bg-rosa {
+        background: var(--ukm_rosa);
+    }
+    .bg-gul {
+        background: var(--ukm_gul);
+    }
+    .bg-gronn {
+        background: var(--ukm_gronn);
+    }
+
+    .text-blaa {
+        color: var(--ukm_blaa) !important;
+        opacity: 1;
+    }
+    .text-rosa {
+        color: var(--ukm_rosa) !important;
+        opacity: 1;
+    }
+    .text-gul {
+        color: var(--ukm_gul) !important;
+        opacity: 1;
+    }
+    .text-gronn {
+        color: var(--ukm_gronn) !important;
+        opacity: 1;
+    }
+    .text-white {
+        color: white !important;
+        opacity: 1;
+    }
+    .text-black {
+        color: black !important;
+        opacity: 1;
+    }
+
+    .nav-link {
+        font-size: .5rem !important;
+        padding: .1rem;
+        
+    }
+
+    .nav-tabs .nav-item {
+        border-right: 1px solid var(--ukm_gul);
+        border-left: 1px solid var(--ukm_gul);
+        background: var(--ukm_blaa);
+    }
+
+    .nav-tabs .nav-item .active {
+        background: var(--ukm_gul);
+        color: var(--ukm_blaa);
+        border: none;
+        border-top-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+    }
+
+    .nav-tabs .nav-link {
+        border: none;
+        color: var(--ukm_gul)
+
+    }
+</style>
+
+
+<style>
+    #box2 {
+        font-size: 18vw;
+        padding-top: 5rem;
+        padding-bottom: 4rem;
+        width: 100%;
+        text-transform: uppercase;
+        text-justify: distribute;
+        text-align: center;
+        line-height: 22vw;
+        background: var(--ukm_gronn);
+        color: var(--ukm_rosa);
+        z-index: -10;
+    }
+
+
+    #box3 {
+        height: 46vw;
+        width: 50vw;
+        font-size: 10vw;
+        text-transform: uppercase;
+        text-justify: distribute;
+        text-align: center;
+        background: url('https://media.giphy.com/media/lvzdeWk12qjmM/source.gif');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        margin-right: -1rem;
+    }
+
+    
+
+    #box4 {
+        height: 46vw;
+        font-size: 10vw;
+        padding-top: 3.8rem;
+        text-transform: uppercase;
+        text-justify: distribute;
+        text-align: center;
+        line-height: 0;
+        margin-left: -1rem;
+    }
+
+    #box4fix {
+        margin: 0;
+        padding: 0;
+        height: 46vw;
+    }
+
+    #box4a {
+        font-size: 9vw;
+    }
+
+    #dagens_blinkskudd {
+        position: absolute;
+        top: 34vw;
+        left: 18vw;
+        width: 50%;
+        z-index: 10;
+
+    }
+
+    #box7 {
+        padding: 27rem;
+        width: 50vw;
+        font-size: 10vw;
+        text-transform: uppercase;
+        text-justify: distribute;
+        text-align: center;
+        background: url('https://ukm-festivalen.no/files/2019/06/IMG_5063-900x1200.jpg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        margin-left: -1rem;
+    }
+    #box71 {
+        height: 100%;
+        width: 50vw;
+        font-size: 6rem;
+        padding-top: 9rem;
+        padding-bottom: 8rem;
+        text-transform: uppercase;
+        text-justify: distribute;
+        text-align: center;
+        background: url('https://media.giphy.com/media/eSQKNSmg07dHq/giphy.gif');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        margin-left: 0;
+    }
+
+    
+
+    /* iPhone 5 */
+    @media only screen and (min-width: 320px) {
+        #box1 {
+            padding-top: 4rem;
+            padding-bottom: 2rem;
+            padding-left: 15%;
+            padding-right: 15%;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 5rem;
+        }
+
+        #marqee_top {
+            padding: 2.6rem 0 1.6 0;
+            font-size: 1.8rem;
+        }
+
+        marquee p {
+            margin-top: .2rem;
+            margin-bottom: -.6rem;
+        }
+
+        #advarsel {
+            position: relative;
+            top: -2.4rem;
+            width: 40%;
+            left: .4rem;
+            z-index: 10;
+            margin-bottom: 4.2rem;
+        }
+
+        #box4b {
+            position: absolute;
+            font-size: 1.2rem;
+            bottom: 2rem;
+            left: 2rem;
+        }
+        
+        #box2 {
+            margin-top: -.2rem;
+            padding-top: 2rem;
+            padding-bottom: 1rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 12rem;
+            background: var(--ukm_rosa);
+        }
+
+        #box2a {
+            font-size: 3rem;
+            color: var(--ukm_gul);
+        }
+
+        #box21 {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+            width: 100%;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 2rem;
+            background: var(--ukm_gul);
+            z-index: -10;
+        }
+        #box21a {
+            font-size: 2rem;
+            color: var(--ukm_gul);
+        }
+        #box21b {
+            font-size: 2.1rem;
+            color: var(--ukm_gul);
+        }
+
+        #box3 {
+            height: 46vw;
+            width: 50vw;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('https://media.giphy.com/media/FbyqoWvEHmV9K/giphy.gif');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            color: var(--ukm_gul);
+            margin-right: -1rem;
+            padding-top: 3rem;
+            line-height: 2.2rem;
+        }
+
+        #box6 {
+            padding-top: 6rem;
+            padding-bottom: 2rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 1.6rem;
+        }
+
+        #box6a {
+            position: absolute;
+            font-size: 1.1rem;
+            margin-left: -3.2rem;
+            top: 1rem;
+            color: var(--ukm_gronn);
+        }
+
+        #box6b {
+            position: absolute;
+            font-size: 4rem;
+            margin-top: -2rem;
+            margin-left: -1.4rem;
+        }
+
+        #box61 {
+            padding-top: 4rem;
+            padding-bottom: 14rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 1.6rem;
+        }
+
+        #box6a1 {
+            position: absolute;
+            font-size: 4rem;
+            margin-left: -13rem;
+            margin-top: 4rem;
+            color: var(--ukm_rosa);
+        }
+
+        #box6b1 {
+            position: absolute;
+            margin-top: 2;
+            padding-top: 13rem;
+            font-size: 10rem;
+            margin-left: -4.8rem;
+        }
+
+
+        #box7 {
+            padding: 5rem;
+            font-size: 10vw;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('https://ukm-festivalen.no/files/2019/06/IMG_5063-900x1200.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-left: -1rem;
+        }
+
+        #box5 {
+            /* height: 250px; */
+            z-index: -10;
+            padding-top: 16rem;
+            padding-bottom: 5rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 10vw;
+        }
+
+        #box5a {
+            font-size: 30vw;
+            color: var(--ukm_gronn);
+        }
+
+        #box5b {
+            font-size: 10vw;
+            color: var(--ukm_gronn);
+        }
+
+        #sesimorgen {
+            font-size: 1.8rem;
+            padding-top: 8rem;
+            padding-bottom: 8rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('https://media.giphy.com/media/2kPNhIczyPjrycQR8R/giphy.gif');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+        /* DANSEMOVES */
+        #box64 {
+            /* height: 250px; */
+            z-index: -10;
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 2rem;
+            margin-right: -1rem;
+            background: url('http://ukm.no/festivalen/files/2019/06/2019_5508_48875.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-bottom: -1rem;
+        }
+
+        #box64a {
+            font-size: 2.1rem;
+            color: var(--ukm_gronn);
+        }
+
+        #box64b {
+            font-size: 2.2rem;
+            color: var(--ukm_gronn);
+        }
+
+        /* 5 på ukm */
+        #box74 {
+            /* height: 250px; */
+            z-index: -10;
+            padding-top: 3rem;
+            padding-bottom: 2rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 2.4rem;
+            margin-left: -1rem;
+            margin-bottom: -1rem;
+        }
+
+        #box74a {
+            font-size: 3rem;
+            color: var(--ukm_blaa);
+        }
+
+        #box74b {
+            font-size: 3rem;
+            color: var(--ukm_blaa);
+        }
+
+        
+
+        #box8 {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+            text-align: center;
+            background: url('https://ukm.no/festivalen/files/2019/06/tilthomashhe-600x424.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-bottom: -1rem;
+            line-height: 2rem;
+        }
+
+        #box8a {
+            font-size: 2.4rem;
+        }
+
+        #box8b {
+            font-size: 2.9rem;            
+        }
+
+        #box10 {
+            font-size: 3.4rem;
+            padding-top: 13rem;
+            padding-bottom: 11rem;
+            height: 100%;
+            padding-left: 1rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('http://ukm.no/festivalen/files/2019/06/2019_5508_48758.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+        }
+
+        #box10a{
+            position: absolute;
+            left: 8rem;
+            top: 6rem;
+            padding-bottom: 8rem;
+            font-size: 16rem;
+        }
+
+         #fotosticker {
+            position: absolute;
+            top: 27.5rem;
+            right: 2rem;
+            width: 26%;
+            z-index: 10;
+        }
+    }
+    /* iPhone X, 6/7 */
+    @media only screen and (min-width: 375px) {
+        #box1 {
+            padding-top: 4rem;
+            padding-bottom: 2rem;
+            padding-left: 15%;
+            padding-right: 15%;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 5rem;
+        }
+
+        #marqee_top {
+            padding: 2.6rem 0 1.6 0;
+            font-size: 1.8rem;
+        }
+
+        marquee p {
+            margin-top: .2rem;
+            margin-bottom: -.6rem;
+        }
+
+        #advarsel {
+            position: relative;
+            top: -1.4rem;
+            width: 40%;
+            left: .8rem;
+            z-index: 10;
+            margin-bottom: 3.8rem;
+        }
+
+        #box4b {
+            position: absolute;
+            font-size: 1.6rem;
+            bottom: 2rem;
+            left: 2rem;
+        }
+        
+        #box2 {
+            margin-top: -.2rem;
+            padding-top: 4rem;
+            padding-bottom: 2rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 12rem;
+            background: var(--ukm_rosa);
+        }
+
+        #box2a {
+            font-size: 4rem;
+            color: var(--ukm_gul);
+        }
+
+        #box21 {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+            width: 100%;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 2rem;
+            background: var(--ukm_gul);
+            z-index: -10;
+        }
+        #box21a {
+            font-size: 2rem;
+            color: var(--ukm_gul);
+        }
+        #box21b {
+            font-size: 2.1rem;
+            color: var(--ukm_gul);
+        }
+
+        #box3 {
+            height: 46vw;
+            width: 50vw;
+            font-size: 3rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('https://media.giphy.com/media/FbyqoWvEHmV9K/giphy.gif');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            color: var(--ukm_gul);
+            margin-right: -1rem;
+            padding-top: 3rem;
+            line-height: 3rem;
+        }
+
+        #box6 {
+            padding-top: 6rem;
+            padding-bottom: 4rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 1.6rem;
+        }
+
+        #box6a {
+            position: absolute;
+            font-size: 1.4rem;
+            margin-left: -4.2rem;
+            top: 1rem;
+            color: var(--ukm_gronn);
+        }
+
+        #box6b {
+            position: absolute;
+            font-size: 6rem;
+            margin-top: 0;
+            margin-left: -2.4rem;
+        }
+
+        #box61 {
+            padding-top: 4rem;
+            padding-bottom: 14rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 1.6rem;
+        }
+
+        #box6a1 {
+            position: absolute;
+            font-size: 4rem;
+            margin-left: -13rem;
+            margin-top: 4rem;
+            color: var(--ukm_rosa);
+        }
+
+        #box6b1 {
+            position: absolute;
+            margin-top: 2;
+            padding-top: 13rem;
+            font-size: 10rem;
+            margin-left: -4.8rem;
+        }
+
+
+        #box7 {
+            padding: 6rem;
+            font-size: 10vw;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('https://ukm-festivalen.no/files/2019/06/IMG_5063-900x1200.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-left: -1rem;
+        }
+
+        #box5 {
+            /* height: 250px; */
+            z-index: -10;
+            padding-top: 16rem;
+            padding-bottom: 5rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 10vw;
+        }
+
+        #box5a {
+            font-size: 30vw;
+            color: var(--ukm_gronn);
+        }
+
+        #box5b {
+            font-size: 10vw;
+            color: var(--ukm_gronn);
+        }
+
+        #sesimorgen {
+            font-size: 2.4rem;
+            padding-top: 8rem;
+            padding-bottom: 8rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('https://media.giphy.com/media/2kPNhIczyPjrycQR8R/giphy.gif');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+        /* DANSEMOVES */
+        #box64 {
+            /* height: 250px; */
+            z-index: -10;
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 2rem;
+            margin-right: -1rem;
+            background: url('http://ukm.no/festivalen/files/2019/06/2019_5508_48875.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-bottom: -1rem;
+        }
+
+        #box64a {
+            font-size: 2.1rem;
+            color: var(--ukm_gronn);
+        }
+
+        #box64b {
+            font-size: 2.2rem;
+            color: var(--ukm_gronn);
+        }
+
+        /* 5 på ukm */
+        #box74 {
+            /* height: 250px; */
+            z-index: -10;
+            padding-top: 3rem;
+            padding-bottom: 2rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 2.4rem;
+            margin-left: -1rem;
+            margin-bottom: -1rem;
+        }
+
+        #box74a {
+            font-size: 3rem;
+            color: var(--ukm_blaa);
+        }
+
+        #box74b {
+            font-size: 3rem;
+            color: var(--ukm_blaa);
+        }
+
+        
+
+        #box8 {
+            padding-top: 4rem;
+            padding-bottom: 3rem;
+            text-align: center;
+            background: url('https://ukm.no/festivalen/files/2019/06/tilthomashhe-600x424.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-bottom: -1rem;
+            line-height: 5rem;
+        }
+
+        #box8a {
+            font-size: 3.3rem;
+        }
+
+        #box8b {
+            font-size: 3.9rem;            
+        }
+
+        #box10 {
+            font-size: 3.4rem;
+            padding-top: 13rem;
+            padding-bottom: 11rem;
+            height: 100%;
+            padding-left: 1rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('http://ukm.no/festivalen/files/2019/06/2019_5508_48758.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+        }
+
+        #box10a{
+            position: absolute;
+            left: 8rem;
+            top: 6rem;
+            padding-bottom: 8rem;
+            font-size: 16rem;
+        }
+
+         #fotosticker {
+            position: absolute;
+            top: 28.5rem;
+            right: 2rem;
+            width: 26%;
+            z-index: 10;
+        }
+    }
+    /* 
+        iPad
+        iPad
+        iPad
+        iPad
+        iPad
+        iPad
+        iPad
+        iPad
+        iPad
+    */
+    @media only screen and (min-width: 768px) {
+        #box1 {
+            padding-top: 18rem;
+            padding-bottom: 10rem;
+            padding: 15%;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 5rem;
+        }
+
+        #marqee_top {
+            padding: 2.6rem 0 1.6 0;
+            font-size: 3rem;
+        }
+
+        marquee p {
+            margin-top: .6rem;
+            margin-bottom: -.8rem;
+        }
+
+        #advarsel {
+            position: relative;
+            top: 1.4rem;
+            width: 40%;
+            left: .8rem;
+            z-index: 10;
+            margin-bottom: 3.8rem;
+        }
+
+        #box4b {
+            position: absolute;
+            font-size: 3.2rem;
+            bottom: 4rem;
+            left: 4rem;
+        }
+        
+        #box2 {
+            margin-top: -.2rem;
+            padding-top: 10rem;
+            padding-bottom: 10rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 12rem;
+            background: var(--ukm_rosa);
+        }
+
+        #box2a {
+            font-size: 8rem;
+            color: var(--ukm_gul);
+        }
+        #box2b {
+            font-size: 15.4rem;
+            color: var(--ukm_gul);
+            margin-left: -3rem;
+        }
+
+        #box21 {
+            padding-top: 8rem;
+            padding-bottom: 8rem;
+            width: 100%;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 4rem;
+            background: var(--ukm_gul);
+            z-index: -10;
+        }
+        #box21a {
+            font-size: 4rem;
+            color: var(--ukm_gul);
+        }
+        #box21b {
+            font-size: 4.2rem;
+            color: var(--ukm_gul);
+        }
+
+        #box3 {
+            height: 46vw;
+            width: 50vw;
+            font-size: 6rem;
+            line-height: 6rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('https://media.giphy.com/media/FbyqoWvEHmV9K/giphy.gif');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            color: var(--ukm_gul);
+            margin-right: -1rem;
+            padding-top: 6rem;
+        }
+
+        #box6 {
+            padding-top: 10rem;
+            padding-bottom: 8rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 1.6rem;
+        }
+
+        #box6a {
+            position: absolute;
+            font-size: 2.8rem;
+            margin-left: -8.2rem;
+            top: 4rem;
+            color: var(--ukm_gronn);
+        }
+
+        #box6b {
+            position: absolute;
+            padding-top: 2rem;
+            font-size: 10rem;
+            margin-top: 1rem;
+            margin-left: -3.8rem;
+        }
+
+        #box61 {
+            padding-top: 4rem;
+            padding-bottom: 14rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 1.6rem;
+        }
+
+        #box6a1 {
+            position: absolute;
+            font-size: 4rem;
+            margin-left: -13rem;
+            margin-top: 4rem;
+            color: var(--ukm_rosa);
+        }
+
+        #box6b1 {
+            position: absolute;
+            margin-top: 2;
+            padding-top: 13rem;
+            font-size: 10rem;
+            margin-left: -4.8rem;
+        }
+
+
+        #box7 {
+            padding: 12rem;
+            font-size: 10vw;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('https://ukm-festivalen.no/files/2019/06/IMG_5063-900x1200.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-left: -1rem;
+        }
+
+        #box5 {
+            /* height: 250px; */
+            z-index: -10;
+            padding-top: 16rem;
+            padding-bottom: 5rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 10vw;
+        }
+
+        #box5a {
+            font-size: 30vw;
+            color: var(--ukm_gronn);
+        }
+
+        #box5b {
+            font-size: 10vw;
+            color: var(--ukm_gronn);
+        }
+
+        #sesimorgen {
+            font-size: 4.4rem;
+            padding-top: 14rem;
+            padding-bottom: 12rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('https://media.giphy.com/media/2kPNhIczyPjrycQR8R/giphy.gif');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+        /* DANSEMOVES */
+        #box64 {
+            /* height: 250px; */
+            z-index: -10;
+            padding-top: 8rem;
+            padding-bottom: 5rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 10vw;
+            margin-right: -1rem;
+            background: url('http://ukm.no/festivalen/files/2019/06/2019_5508_48875.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-bottom: -1rem;
+        }
+
+        #box64a {
+            font-size: 5rem;
+            color: var(--ukm_gronn);
+        }
+
+        #box64b {
+            font-size: 5.2rem;
+            color: var(--ukm_gronn);
+        }
+
+        /* 5 på ukm */
+        #box74 {
+            /* height: 250px; */
+            z-index: -10;
+            padding-top: 7rem;
+            padding-bottom: 5rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 10vw;
+            margin-left: -1rem;
+            margin-bottom: -1rem;
+        }
+
+        #box74a {
+            font-size: 8rem;
+            color: var(--ukm_blaa);
+        }
+
+        #box74b {
+            font-size: 8rem;
+            color: var(--ukm_blaa);
+        }
+
+        
+
+        #box8 {
+            padding-top: 10rem;
+            padding-bottom: 10rem;
+            text-align: center;
+            background: url('https://ukm.no/festivalen/files/2019/06/tilthomashhe-600x424.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-bottom: -1rem;
+            line-height: 5rem;
+        }
+
+        #box8a {
+            font-size: 5rem;
+        }
+
+        #box8b {
+            font-size: 5.9rem;            
+        }
+
+
+        #box9 {
+            font-family: 'itcavantgardeprobold';
+            background: var(--ukm_gul);
+            padding-top: 20rem;
+            padding-bottom: 20rem;
+            margin-top: -1rem;
+        }
+        #box9a {
+            margin-right: -3rem;
+            padding-left: 6rem;
+        }
+        #box9b {
+            text-align: right;
+            color: var(--ukm_blaa);
+        }
+        #box9c {
+            font-size: 5rem;
+            letter-spacing: .4rem
+        }
+        #box9d {
+            font-size: 3rem;
+            margin-top: -.6rem;
+        }
+        #box9e {
+            text-align: left;
+            padding-top: 4.6em;
+            color: var(--ukm_rosa);
+        }
+        #box9f {
+            font-size: 10rem;
+            letter-spacing: .3rem;
+        }
+
+        #box10 {
+            font-size: 3.4rem;
+            padding-top: 13rem;
+            padding-bottom: 11rem;
+            height: 100%;
+            padding-left: 1rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('http://ukm.no/festivalen/files/2019/06/2019_5508_48758.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+        }
+
+        #box10a{
+            position: absolute;
+            left: 8rem;
+            top: 6rem;
+            padding-bottom: 8rem;
+            font-size: 16rem;
+        }
+
+         #fotosticker {
+            position: absolute;
+            top: 60rem;
+            right: 4rem;
+            width: 26%;
+            z-index: 10;
+        }
+    }
+
+
+
+    /* 
+        iPad Pro
+        iPad Pro
+        iPad Pro
+        iPad Pro
+        iPad Pro
+        iPad Pro
+        iPad Pro
+        iPad Pro
+        iPad Pro
+    */
+    @media only screen and (min-width: 1024px) {
+        #box1 {
+            padding-top: 18rem;
+            padding-bottom: 10rem;
+            padding: 15%;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 5rem;
+        }
+
+        #marqee_top {
+            padding: 2.6rem 0 1.6 0;
+            font-size: 4rem;
+        }
+
+        marquee p {
+            margin-top: .6rem;
+            margin-bottom: -.8rem;
+        }
+
+        #advarsel {
+            position: relative;
+            top: 1.4rem;
+            width: 40%;
+            left: .8rem;
+            z-index: 10;
+            margin-bottom: 3.8rem;
+        }
+
+        #box4b {
+            position: absolute;
+            font-size: 3.2rem;
+            bottom: 8rem;
+            left: 7.2rem;
+        }
+        
+        #box2 {
+            margin-top: -.2rem;
+            padding-top: 10rem;
+            padding-bottom: 10rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 12rem;
+            background: var(--ukm_rosa);
+        }
+
+        #box2a {
+            font-size: 8rem;
+            color: var(--ukm_gul);
+        }
+        #box2b {
+            font-size: 15.4rem;
+            color: var(--ukm_gul);
+            margin-left: -3rem;
+        }
+
+        #box21 {
+            padding-top: 8rem;
+            padding-bottom: 8rem;
+            width: 100%;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 7rem;
+            background: var(--ukm_gul);
+            z-index: -10;
+        }
+        #box21a {
+            font-size: 6rem;
+            color: var(--ukm_gul);
+        }
+        #box21b {
+            font-size: 6.2rem;
+            color: var(--ukm_gul);
+        }
+
+        #box3 {
+            height: 46vw;
+            width: 50vw;
+            font-size: 8rem;
+            line-height: 8rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('https://media.giphy.com/media/FbyqoWvEHmV9K/giphy.gif');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            color: var(--ukm_gul);
+            margin-right: -1rem;
+            padding-top: 6rem;
+        }
+
+        #box6 {
+            padding-top: 12rem;
+            padding-bottom: 10rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 1.6rem;
+        }
+
+        #box6a {
+            position: absolute;
+            font-size: 3.5rem;
+            margin-left: -11.2rem;
+            top: 4rem;
+            padding: 4rem 0;
+            color: var(--ukm_gronn);
+        }
+
+        #box6b {
+            position: absolute;
+            padding-top: 5rem;
+            font-size: 12rem;
+            margin-top: 2rem;
+            margin-left: -5rem;
+        }
+
+        #box61 {
+            padding-top: 4rem;
+            padding-bottom: 14rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 1.6rem;
+        }
+
+        #box6a1 {
+            position: absolute;
+            font-size: 4rem;
+            margin-left: -13rem;
+            margin-top: 4rem;
+            color: var(--ukm_rosa);
+        }
+
+        #box6b1 {
+            position: absolute;
+            margin-top: 2;
+            padding-top: 13rem;
+            font-size: 10rem;
+            margin-left: -4.8rem;
+        }
+
+
+        #box7 {
+            padding: 16rem;
+            font-size: 10vw;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('https://ukm-festivalen.no/files/2019/06/IMG_5063-900x1200.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-left: -1rem;
+        }
+
+        #box5 {
+            /* height: 250px; */
+            z-index: -10;
+            padding-top: 16rem;
+            padding-bottom: 5rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 10vw;
+        }
+
+        #box5a {
+            font-size: 30vw;
+            color: var(--ukm_gronn);
+        }
+
+        #box5b {
+            font-size: 10vw;
+            color: var(--ukm_gronn);
+        }
+
+        #sesimorgen {
+            font-size: 7rem;
+            padding-top: 16rem;
+            padding-bottom: 14rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('https://media.giphy.com/media/2kPNhIczyPjrycQR8R/giphy.gif');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+        /* DANSEMOVES */
+        #box64 {
+            /* height: 250px; */
+            z-index: -10;
+            padding-top: 12rem;
+            padding-bottom: 6rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 10vw;
+            margin-right: -1rem;
+            background: url('http://ukm.no/festivalen/files/2019/06/2019_5508_48875.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-bottom: -1rem;
+        }
+
+        #box64a {
+            font-size: 5.8rem;
+            color: var(--ukm_gronn);
+        }
+
+        #box64b {
+            font-size: 6rem;
+            color: var(--ukm_gronn);
+        }
+
+        /* 5 på ukm */
+        #box74 {
+            /* height: 250px; */
+            z-index: -10;
+            padding-top: 12rem;
+            padding-bottom: 6rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 10vw;
+            margin-left: -1rem;
+            margin-bottom: -1rem;
+        }
+
+        #box74a {
+            font-size: 8rem;
+            color: var(--ukm_blaa);
+        }
+
+        #box74b {
+            font-size: 8rem;
+            color: var(--ukm_blaa);
+        }
+
+        
+
+        #box8 {
+            padding-top: 16rem;
+            padding-bottom: 14rem;
+            text-align: center;
+            background: url('https://ukm.no/festivalen/files/2019/06/tilthomashhe-600x424.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-bottom: -1rem;
+            line-height: 8rem;
+        }
+
+        #box8a {
+            font-size: 8rem;
+        }
+
+        #box8b {
+            font-size: 9.5rem;            
+        }
+
+
+        #box9 {
+            font-family: 'itcavantgardeprobold';
+            background: var(--ukm_gul);
+            padding-top: 20rem;
+            padding-bottom: 20rem;
+            margin-top: -1rem;
+        }
+        #box9a {
+            margin-right: -3rem;
+            padding-left: 6rem;
+        }
+        #box9b {
+            text-align: right;
+            color: var(--ukm_blaa);
+        }
+        #box9c {
+            font-size: 5rem;
+            letter-spacing: .4rem
+        }
+        #box9d {
+            font-size: 3rem;
+            margin-top: -.6rem;
+        }
+        #box9e {
+            text-align: left;
+            padding-top: 4.6em;
+            color: var(--ukm_rosa);
+        }
+        #box9f {
+            font-size: 10rem;
+            letter-spacing: .3rem;
+        }
+
+        #box10 {
+            font-size: 3.4rem;
+            padding-top: 13rem;
+            padding-bottom: 11rem;
+            height: 100%;
+            padding-left: 1rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('http://ukm.no/festivalen/files/2019/06/2019_5508_48758.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+        }
+
+        #box10a{
+            position: absolute;
+            left: 8rem;
+            top: 6rem;
+            padding-bottom: 8rem;
+            font-size: 16rem;
+        }
+
+         #fotosticker {
+            position: absolute;
+            top: 75rem;
+            right: 4rem;
+            width: 26%;
+            z-index: 10;
+        }
+    }
+
+    #box6fix {
+        margin: 0;
+        padding: 0;
+        height: 46vw;
+    }
+    
+
+</style>
+<div class="row">
+    <div class="col-12">
+        <ul class="nav nav-tabs nav-fill">
+            <li class="nav-item">
+                <a class="nav-link" href="../mandag/">Mandag</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../tirsdag/">Tirsdag</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="../onsdag/">Onsdag</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../torsdag/">Torsdag</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../fredag/">Fredag</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{# FULLBREDDE-SAK - MUST HAVES NÅR DU ER PÅ FESTIVAL #}
+<div class="row">
+    <div class="col-12 bg-gronn">
+        <p id="box1" class="clickContainer">
+            <a href="https://ukm-festivalen.no/2019/06/26/tetris-battle/">
+            <svg id="tetris_battle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 248 92.95">
+    <defs>
+        <style>
+            .tetris-battle-cls-1 {
+                fill: #ff128b;
+            }
+
+            .tetris-battle-cls-2,
+            .tetris-battle-cls-6,
+            .tetris-battle-cls-7 {
+                fill: #00004c;
+            }
+
+            .tetris-battle-cls-3 {
+                fill: #6bbdf9;
+            }
+
+            .tetris-battle-cls-4 {
+                fill: #fff056;
+            }
+
+            .tetris-battle-cls-5,
+            .tetris-battle-cls-6,
+            .cls-7 {
+                isolation: isolate;
+            }
+
+            .tetris-battle-cls-6,
+            .tetris-battle-cls-7 {
+                font-size: 32px;
+                font-family: 'itcavantgardeprobold';
+                font-weight: 700;
+            }
+
+            .tetris-battle-cls-6 {
+                letter-spacing: 0.04em;
+            }
+        </style>
+    </defs>
+    <title>tetris_battle</title>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="svg2">
+            <g id="Group_26" data-name="Group 26">
+                <g id="Group_25" data-name="Group 25">
+                    <g id="Group_24" data-name="Group 24">
+                        <rect id="Rectangle_35" data-name="Rectangle 35" class="tetris-battle-cls-1" x="31.18" y="0.84" width="29.76"
+                            height="29.76" />
+                        <rect id="Rectangle_38" data-name="Rectangle 38" class="tetris-battle-cls-1" x="62.35" y="32.02" width="29.76"
+                            height="29.76" />
+                        <rect id="Rectangle_37" data-name="Rectangle 37" class="tetris-battle-cls-1" x="31.18" y="32.02" width="29.76"
+                            height="29.76" />
+                        <rect id="Rectangle_36" data-name="Rectangle 36" class="tetris-battle-cls-1" x="62.35" y="0.84" width="29.76"
+                            height="29.76" />
+                    </g>
+                    <g id="Group_23" data-name="Group 23">
+                        <rect id="Rectangle_32" data-name="Rectangle 32" class="tetris-battle-cls-2" y="32.02" width="29.76"
+                            height="29.76" />
+                        <rect id="Rectangle_33" data-name="Rectangle 33" class="tetris-battle-cls-2" y="63.19" width="29.76"
+                            height="29.76" />
+                        <rect id="Rectangle_34" data-name="Rectangle 34" class="tetris-battle-cls-2" x="31.18" y="63.19" width="29.76"
+                            height="29.76" />
+                        <rect id="Rectangle_31" data-name="Rectangle 31" class="tetris-battle-cls-2" y="0.84" width="29.76"
+                            height="29.76" />
+                    </g>
+                    <g id="Group_21" data-name="Group 21">
+                        <rect id="Rectangle_44" data-name="Rectangle 44" class="tetris-battle-cls-3" x="93.53" y="63.19" width="29.76"
+                            height="29.76" />
+                        <rect id="Rectangle_45" data-name="Rectangle 45" class="tetris-battle-cls-3" x="124.71" y="63.19"
+                            width="29.76" height="29.76" />
+                        <rect id="Rectangle_46" data-name="Rectangle 46" class="tetris-battle-cls-3" x="155.89" y="63.19"
+                            width="29.76" height="29.76" />
+                        <rect id="Rectangle_43" data-name="Rectangle 43" class="tetris-battle-cls-3" x="62.35" y="63.19" width="29.76"
+                            height="29.76" />
+                    </g>
+                    <g id="Group_22" data-name="Group 22">
+                        <rect id="Rectangle_27" data-name="Rectangle 27" class="tetris-battle-cls-4" x="187.06" y="63.19"
+                            width="29.76" height="29.76" />
+                        <rect id="Rectangle_28" data-name="Rectangle 28" class="tetris-battle-cls-4" x="218.24" y="0.84" width="29.76"
+                            height="29.76" />
+                        <rect id="Rectangle_29" data-name="Rectangle 29" class="tetris-battle-cls-4" x="218.24" y="63.19"
+                            width="29.76" height="29.76" />
+                        <rect id="Rectangle_30" data-name="Rectangle 30" class="tetris-battle-cls-4" x="218.24" y="32.02"
+                            width="29.76" height="29.76" />
+                    </g>
+                </g>
+                <g id="TETRIS_BATTLE" data-name="TETRIS BATTLE" class="tetris-battle-cls-5">
+                    <text class="tetris-battle-cls-6" transform="translate(102.2 27.84)">TETRIS</text>
+                    <text class="tetris-battle-cls-7" transform="translate(100.55 56.84)">BATTLE</text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
+</a>
+            <a href="https://ukm-festivalen.no/2019/06/26/tetris-battle/" class="momClickMeClickMe"></a>
+        </p>
+    </div>
+</div>
+{# TICKER #}
+<div class="row ticker clickContainer bg-blaa text-gronn" id="marqee_top">
+    <marquee behavior="scroll" direction="left" loop="true" scrollamount="10"><p>{{currentText}} - {{currentText}} - {{currentText}} - {{currentText}} - {{currentText}} - {{currentText}} - {{currentText}} - {{currentText}}<p></marquee>
+    <a class="momClickMeClickMe hidden" href="https://tv.ukm.no/festivalen/2019/"></a>
+</div>
+
+<div class="row">
+    <div class="col-12 bg-gul clickContainer">
+        <p id="box21">
+            <a id="box21a" href="https://ukm-festivalen.no/2019/06/25/den-ideelle-publikummer/" class="text-rosa">HVA ER EN GOD</a>
+            <br>
+            <a id="box21b" href="https://ukm-festivalen.no/2019/06/25/den-ideelle-publikummer/" class="text-rosa">PUBLIKUMER?</a>
+            <a href="https://ukm-festivalen.no/2019/06/25/den-ideelle-publikummer/" class="momClickMeClickMe"></a>
+        </p>
+    </div>
+</div>
+
+{# Sticker #}
+<a href="https://www.flickr.com/photos/ukm/albums">
+<svg id="fotosticker" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100">
+    <defs>
+        <style>
+            .fotosticker-cls-1 {
+                fill: none;
+            }
+
+            .fotosticker-cls-2 {
+                clip-path: url(#clip-path);
+            }
+
+            .fotosticker-cls-3 {
+                fill: var(--ukm_gronn);
+            }
+
+            .fotosticker-cls-4,
+            .fotosticker-cls-5 {
+                isolation: isolate;
+            }
+
+            .fotosticker-cls-5 {
+                font-size: 22.01px;
+                fill: var(--ukm_blaa);
+                font-family: 'itcavantgardeprobold';
+                font-weight: 700;
+            }
+
+            .fotosticker-cls-6 {
+                letter-spacing: -0.01em;
+            }
+
+            .fotosticker-cls-7 {
+                letter-spacing: 0em;
+            }
+        </style>
+        <clipPath id="clip-path">
+            <rect class="fotosticker-cls-1" width="100" height="100" />
+        </clipPath>
+    </defs>
+    <title>fotosticker</title>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="svg2">
+            <g id="Group_10" data-name="Group 10">
+                <g id="Group_4" data-name="Group 4">
+                    <g class="fotosticker-cls-2">
+                        <g id="Component_3_9" data-name="Component 3 9">
+                            <circle id="Ellipse_1" data-name="Ellipse 1" class="fotosticker-cls-3" cx="50" cy="50" r="50" />
+                        </g>
+                    </g>
+                    <g id="FOTO" class="fotosticker-cls-4"><text class="fotosticker-cls-5" transform="translate(21.7 54.91) rotate(6.02)">F
+                            <tspan class="fotosticker-cls-6" x="11.14" y="0">OT</tspan>
+                            <tspan class="fotosticker-cls-7" x="40.19" y="0">O</tspan>
+                        </text></g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
+</a>
+
+{# HALVSIDE-SAK ADVARSEL + BILDE #}
+<div class="row" style="margin-top: -1rem;">
+    <div class="col-6 bg-blaa">
+        <a href="https://ukm.no/festivalen/files/2019/06/anbefaling-400x600.png">
+            <p class="text-gronn" id="box6">
+                <span id="box6a">
+                Anbefaling:
+                </span>
+                <br>
+                <span id="box6b">
+                😍
+                </span>
+            </p>
+        </a>
+
+    </div>
+    <div class="col-6 clickContainer momDiv" >
+        <a class="momClickMeClickMe hidden" style="" href="https://ukm.no/festivalen/2019/06/26/diskvalifisert-fylkeskontakt-stoppa-av-politiet/">
+            <p id="box7" class="">
+                ...
+            </p>
+        </a>
+    </div>
+</div>
+<div class="row" style="margin-top: -1rem;">
+    <div class="col-6">
+            <p id="box3">
+                <a href="https://ukm-festivalen.no/2019/06/26/festivalmote-ukm-edition/" class="text-gul"><span id="box3a">UKM-</span></a>
+                <a href="https://ukm-festivalen.no/2019/06/26/festivalmote-ukm-edition/" class="text-gul"><span id="box3b">MOTE</span></a>
+            </p>
+    </div>
+    <div class="col-6 bg-rosa" id="box4fix">
+    <a href="https://ukm.no/festivalen/files/2019/06/advarsel-600x400.png">
+            <p class="text-blaa" id="box4">
+                <span id="box4a">
+<svg id="advarsel" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 867 797.16">
+    <defs>
+        <style>
+            .advarsel-cls-1 {
+                fill: var(--ukm_blaa);
+            }
+
+            .advarsel-cls-2,
+            .advarsel-cls-3 {
+                isolation: isolate;
+
+            }
+
+            .advarsel-cls-3 {
+                font-size: 30rem;
+                fill: var(--ukm_rosa);
+                font-family: 'itcavantgardeprobold';
+                font-weight: 700;
+            }
+        </style>
+    </defs>
+    <title>advarsel</title>
+    <a href="https://ukm.no/festivalen/files/2019/06/advarsel-600x400.png">
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="Layer_1-2" data-name="Layer 1">
+            <g id="Group_5" data-name="Group 5">
+                <path id="Polygon_1" data-name="Polygon 1" class="advarsel-cls-1" d="M433.5,0,867,746.58H0Z" />
+                <g id="_" data-name=" " class="advarsel-cls-2">
+                <text class="advarsel-cls-3" transform="translate(353.3 662.29)">!</text>
+                </g>
+            </g>
+        </g>
+    </g>
+    </a>
+</svg>
+
+        </span>
+        <br>
+        <span id="box4b">
+            ADVARSEL:</span>
+        </p>
+        </a>
+    </div>
+</div>
+
+{# HALVSIDE-SAK BILDE + FEM PÅ UKM #}
+<div class="row" style="margin-top: -1rem;">
+    <div class="col-6">
+        <p class="text-gronn" id="box64">
+            <a href="https://ukm.no/festivalen/2019/06/26/ukms-sjukaste-dansemoves/"><span id="box64a">DANSE-</span></a>
+            <br>
+            <a href="https://ukm.no/festivalen/2019/06/26/ukms-sjukaste-dansemoves/"><span id="box64b">MOVES</span></a>
+        </p>
+    </div>
+    <div class="col-6">
+        <p id="box74" class="bg-gronn">
+            <a href="https://ukm-festivalen.no/2019/06/26/5-pa-ukm/"><span id="box74a">5 PÅ</span></a>
+            <br>
+            <a href="https://ukm-festivalen.no/2019/06/26/5-pa-ukm/"><span id="box74b">UKM</span></a>
+        </p>
+    </div>
+</div>
+
+{# FULLBREDDE Morning Routine #}
+<div class="row">
+    <div class="col-12 text-gul">
+        <p id="box8" class="clickContainer">
+            <a href="https://ukm-festivalen.no/2019/06/26/tiarets-frisyre/" class="momClickMeClickMe" style="color: var(--ukm_gul);"><span id="box8a">MORNING</span></a>
+            <a href="https://ukm-festivalen.no/2019/06/26/tiarets-frisyre/" class="momClickMeClickMe" style="color: var(--ukm_gul);"><span id="box8b">ROUTINE</span></a>
+        </p>
+    </div>
+</div>
+
+{# FULLBREDDE-SAK - DILEMMA #}
+<div class="row">
+    <div class="col-12 bg-rosa clickContainer">
+        <p id="box2">
+            <a id="box2a" href="https://ukm-festivalen.no/2019/06/25/festivaldilemma-hva-hadde-du-gjort/" class="text-blaa">DILEMMA</a>
+            <a href="https://ukm-festivalen.no/2019/06/25/festivaldilemma-hva-hadde-du-gjort/" class="momClickMeClickMe"></a>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 text-rosa">
+        <p id="sesimorgen">
+            TAKK FOR I DAG!
+        </p>
+    </div>
+</div>
+{% endblock %}

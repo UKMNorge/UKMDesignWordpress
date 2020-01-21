@@ -1,0 +1,50 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 ml-md-auto mr-md-auto col-lg-8">
+				<h1>Glemt passord?</h1>
+				<p class="lead">No worries. Sånt skjer</p>
+				
+				
+				<h2>Er du en UKM-deltaker?</h2>
+				<p>
+					Da er du heldig. Skriv inn mobilnummeret ditt nedenfor, 
+					så får du en SMS som lar deg lage ditt eget passord med en gang.
+				</p>
+				<p>
+					PS: Dette gjelder også for deg som er eller vil 
+					melde deg på som arrangør-, media- eller konferansier-deltaker.
+				</p>
+				<form action="//delta.{{ UKM_HOSTNAME }}/check_email?email=92837360" method="POST" class="fos_user_resetting_request">
+					<div class="form-group">
+						<label for="username">Mobilnummer</label>
+						<input class="form-control" type="text" id="username" name="username" required="required" placeholder="Skriv inn ditt mobilnummer" value="" />
+					</div>
+					<div>
+						<input class="btn btn-outline-primary btn-block" type="submit" value="Nullstill passord" />
+					</div>
+					<div class="clearfix"></div>
+				</form>
+
+				<h2 class="mt-5">Er du en voksen UKM-arrangør?</h2>
+				<p>
+					Dette skjemaet gjelder innlogging til arrangørsystemet, og er beregnet for de voksne UKM-arrangørene. 
+					Skriv inn e-postadressen din nedenfor, så ordner vi nytt passord til deg.
+				</p>
+
+				<form method="POST" action="wp-login.php?action=lostpassword">
+					<div class="form-group">
+						<label for="email">E-postadresse</label>
+						<input class="form-control" type="email" id="email" name="user_login" required="required" placeholder="Skriv inn din e-postadresse" value="" />
+					</div>
+					<div>
+						<input class="btn btn-outline-primary btn-block" type="submit" value="Send meg passord" />
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+{% endblock %}

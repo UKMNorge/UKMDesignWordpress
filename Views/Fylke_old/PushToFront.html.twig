@@ -1,0 +1,21 @@
+{# PUSH TO FRONT #}
+{% if PtF != false %}
+	<div class="PushToFront">
+		{# DENNE UKEN #}
+		{% if PtF.current|length > 0 %}
+			<h2 class="mt-0">Fylkesfestivaler denne uken</h2>
+			{% for fylke in PtF.current %}
+				{% embed "UKMDesignBundle:Fylke:PushToFrontFylke.html.twig"|UKMpath %}{% endembed %}
+			{% endfor %}
+		{% endif %}
+		
+
+		{% if PtF.previous|length > 0 %}
+			<h2>Fylkesfestivaler forrige uke</h2>
+			{% for fylke in PtF.previous %}
+				{% embed "UKMDesignBundle:Fylke:PushToFrontFylke.html.twig"|UKMpath %}{% endembed %}
+			{% endfor %}
+		{% endif %}
+
+	</div>
+{% endif %}

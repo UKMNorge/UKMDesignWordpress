@@ -1,0 +1,16 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	{% embed "UKMDesignBundle:Page:topImage.html.twig"|UKMpath %}{% endembed %}	
+	
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-10">
+				<article>
+					<h1>{{ page.getPage().title|raw }}</h1>
+					{{ page.getPage().content|raw }}
+				</article>
+			</div>
+		</div>
+	</div>
+{% endblock %}

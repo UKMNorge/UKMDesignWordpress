@@ -1,0 +1,16 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>{{ THEME_CONFIG.get('firenullfire').title }}</h1>
+				<p class="lead">{{ THEME_CONFIG.get('firenullfire').text }}</p>
+				<p>Kanskje du kan finne det du leter etter i menyen nedenfor?</p>
+			</div>
+			<div class="col-12">
+				{% embed "Layout/nav.html.twig" %}{% endembed %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

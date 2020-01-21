@@ -1,0 +1,24 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<div class="col-12">
+			{% if kommune is defined %}
+				<h1>Beklager, UKM {{ kommune.getNavn() }} er avlyst!</h1>
+			
+				<p class="lead">
+					Kanskje du kan 
+					<a href="//{{ UKM_HOSTNAME }}/{{ kommune.getFylke().getLink() }}/">delta på UKM i en annen {{ kommune.getFylke().erOslo() ? 'bydel' : 'kommune' }} i {{ kommune.getFylke().getNavn() }}</a>?
+				</p>
+			{% else %}
+				<h1>Beklager, mønstringen er avlyst!</h1>
+			
+				<p class="lead">
+					Kanskje du kan 
+					<a href="{{ Sitemap.getPage('UKM','derdubor') }}">delta på UKM et annet sted</a>?
+				</p>
+			
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

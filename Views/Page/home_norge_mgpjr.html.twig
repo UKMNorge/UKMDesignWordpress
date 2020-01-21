@@ -1,0 +1,192 @@
+{% extends "UKMDesignBundle:Layout:_framework.html.twig"|UKMpath %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ UKMasset("js/UKMfullpage.min.js") }}?20181004-HelloWorld"></script>
+	<script type="text/javascript" src="{{ UKMasset("js/jquery-ui.min.js") }}?20181102-HelloWorld"></script>
+	<script>
+		jQuery(document).on('click touch', '#audioToggle, #audioToggle .icon', function(){
+			var video = jQuery('#fullVideo').get(0);
+			var icon = jQuery(this).find('.icon');
+			jQuery(document).trigger('playVideo');
+
+			if( icon.hasClass('icon-volume-high') ) {
+				jQuery('#fullVideo').prop('muted', true);
+				icon.removeClass('icon-volume-high').addClass('icon-volume-mute');
+			} else {
+				jQuery('#fullVideo').prop('muted', false);
+				icon.removeClass('icon-volume-mute').addClass('icon-volume-high');
+			}
+		});
+
+		$(window).on('load resize', function(){
+			$('#fullVideo').css({
+				'position' : 'absolute',
+				'top': $(window).height()/2 - $('video').height()/2,
+				'left': $(window).width()/2 - $('video').width()/2
+			});
+		});
+
+		jQuery(document).on('click', '#fullVideo', function(){
+			jQuery(document).trigger('playVideo');
+		});
+
+		jQuery(document).ready(function(){
+			// Bytt film hvis desktop
+			var video = $('#fullVideo').get(0);
+			video.muted = true;
+
+			if( $(window).width() > $(window).height() ) {
+				jQuery('#fullVideo').find('source').each(function() {
+					jQuery(this).attr('src', jQuery(this).attr('data-src-wide'));
+				});
+				try {
+					video.load()
+						.then( function(e) {
+							video.muted = true;
+							jQuery(document).trigger('playVideo');
+						});
+				} catch( err ) {
+				}
+			}
+		});
+
+		jQuery(document).on('click touch', '#fullVideo', function(){
+			jQuery('#fullVideo').prop('muted', false);
+		});
+		
+		jQuery(document).on('playVideo', function(e) {
+			try {
+				jQuery('#fullVideo').get(0).play();
+			} catch( err ) {
+			}
+		});
+
+		setTimeout( function(){
+			jQuery('#audioToggle').effect('pulsate', {times: 2, duration: 300});
+		}, 1800);
+	</script>
+{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+	<link href="{{ UKMasset("css/UKMfullpage.css") }}" rel="stylesheet" />
+	<style>
+		#menyKnapp {
+			position: relative;
+			z-index: 100;
+		}
+		#logo {
+			position: relative;
+			z-index: 20;
+		}
+		#audioToggle {
+			position: absolute;
+			right: 1em;
+			bottom: 1em;
+			font-size: 2em;
+			opacity: .8;
+			color: #fff;
+			z-index: 200;
+		}
+
+		@media (min-width: 768px) {
+			#audioToggle {
+				font-size: 3em;
+			}
+		}
+
+		#fullVideo {
+			width: 100vw;
+			position: relative;
+			top: 50%;
+			transition: top 100ms ease;
+		}
+	</style>
+{% endblock %}
+
+{% block framework_content %}
+	<div id="fullpage">
+		<section class="section fullpage white waypoint" data-photo-background-transition="#000000" style="background-color: #000000;" data-photo-background="false">
+			<div class="fullpage-content">
+				<div class="meny" id="menyKnapp">
+					<a href="/hovedmeny/" class="btn btn-sm my-2 btn-outline-primary"  style="z-index: 50">MENY</a>
+				</div>
+				<div class="logo" id="logo">
+					<img src="https://grafikk.ukm.no/profil/logoer/UKM_logo_hvit_0100.png" />
+				</div>
+				<video id="fullVideo" muted="true" loop="true" autoplay preload="none" playsinline="" webkit-playsinline="" >
+					<source src="https://video.ukm.no/ukmno/18_mgpjr/9x16_audio.mp4" data-src-wide="https://video.ukm.no/ukmno/18_mgpjr/16x9_audio.mp4" type="video/mp4">
+				</video>
+
+				<div id="audioToggle" class="click">
+					<div class="icon icon-volume-mute"></div>
+				</div>
+				
+				<header class="white" style="z-index: 100">
+					<h1 class="border autoshrink">
+						{% if pamelding_apen %}
+							<a href="//delta.{{ UKM_HOSTNAME }}">START PÅMELDING</a>
+						{% else %}
+							PÅMELDING STARTER
+							<br />
+							1. NOVEMBER
+						{% endif %}
+					</h1>
+					<div class="header-more" style="margin-top: 5vh;">
+						<p>
+							<a href="#om/2">Hva er UKM?</a>
+							| 
+							<a href="#finn/3">Finn nærmeste UKM</a>
+						</p>
+
+						<div class="readmoreIcon">
+							<a href="#om/2" style="text-decoration: none"><span class="icon icon-down-2"></span></a>
+						</div>
+					</div>
+				</header>
+			</div>
+		</section>
+		
+		
+		<section class="section fullpage white waypoint" data-photo-background-transition="#000000" style="background-color: #00508C;" data-photo-background="https://grafikk.ukm.no/forside/korslaget-bla.jpg">
+			<div class="fullpage-content" style="display: flex;">
+				<div class="hugetext center">
+					<p class="lead mt-3">
+					Noen deltar på UKM for å vise frem noe de brenner for, noen prøver noe helt nytt og andre er med sånn at alle får vist sin beste side.
+					</p>
+					<p class="lead">
+						Sammen skaper vi noe nytt, inspirerer og lærer av hverandre og har det gøy.
+					</p>
+					<p class="lead">
+						Musikal, slampoesi, lysteknikk, foto, hiphop, 
+						<a href="{{ pamelding_apen ? '//delta.'~ UKM_HOSTNAME ~'/' : '/hva-er/' }}" style="color: #fff;">eller?</a>
+						<br />
+						<a href="{{ pamelding_apen ? '//delta.'~ UKM_HOSTNAME ~'/' : '/hva-er/' }}" style="color: #fff;">Du bestemmer</a>
+					</p>
+					<p class="lead" style="margin-bottom: 16vh;">
+						<a href="/hva-er/" class="btn btn-outline-primary btn-xs" style="border-radius: 0px; border-color: #fff !important; color: #fff !important;">Les mer</a>
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="section fullpage white waypoint" data-photo-background-transition="#000000" style="background-color: #00508C;" data-photo-background="https://grafikk.ukm.no/forside/newdawn.jpg">
+			<div class="fullpage-content" style="display: flex;">
+				<div class="container sitemap mt-5">
+					<div class="row pageContainer">
+						{% for fylke in fylker %}
+							<div class="col-12 col-sm-6 col-lg-4">
+								<div class="page p-2 px-4 m-2 center white" style="background: rgba(0,0,0,.3);">
+									<a href="{{ fylke.getLink() }}" class="autoshrink">{{ fylke.getNavn() }}</a>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+				
+			</div>
+		</section>
+
+	</div>	
+{% endblock %}

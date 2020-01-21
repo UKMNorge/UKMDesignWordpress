@@ -1,0 +1,41 @@
+{% if skjul_skjema is not defined %}
+    <p class="bold">
+        Jeg, 
+        {% if er_foresatt %}
+            {{ samtykke.getForesatt().getNavn() }}, på vegne av {{ samtykke.getNavn() }}, 
+        {% else %}
+            {{ samtykke.getNavn() }} ({{ samtykke.getAlder() }} år) 
+        {% endif %}
+        forstår at UKM tar bilder og film, og bruker det slik det står nedover denne siden.
+    </p>
+    {% if krev_foresatt and not er_foresatt %}
+        <form method="POST" class="form">
+            <div class="form-group">
+                <label for="foresatt">
+                    Navn på en av dine foreldre/foresatte
+                </label>
+                <input type="text" class="form-control" name="foresatt_navn" required="required" placeholder="Skriv fornavn og etternavn.." />
+            </div>
+            
+            <div class="form-group">
+                <label for="foresatt_mobil">
+                    Mobilnummer til en av dine foreldre/foresatte
+                </label>
+                <input type="tel" class="form-control" name="foresatt_mobil" required="required" placeholder="Skriv mobilnummer her.." maxlength="8" />
+            </div>
+
+            <div class="form-group">
+                <button type="submit" name="feedback" value="go" class="btn btn-primary btn-sm btn-block">Det er greit</button>
+            </div>
+            <div class="form-group">
+                <button type="submit" name="feedback" value="nogo" class="btn btn-primary btn-sm btn-block">Jeg ønsker ikke at UKM tar bilder/film</button>
+            </div>
+        </form>
+    {% else %}
+        <p>
+            <a href="?id={{GET('id')}}&feedback=go{{ krev_foresatt is defined and krev_foresatt ? '&foresatt=true' }}" class="btn btn-primary btn-sm btn-block">Det er greit</a>
+            <a href="?id={{GET('id')}}&feedback=nogo{{ krev_foresatt is defined and krev_foresatt ? '&foresatt=true' }}" class="btn btn-primary btn-sm btn-block mt-3" id="nogo">Jeg ønsker ikke at UKM tar bilder/film</a>
+        </p>
+    {% endif %}
+    
+{% endif %}

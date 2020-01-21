@@ -1,0 +1,99 @@
+{% extends "Page/fullpage_with_menu.html.twig"|UKMpath %}
+
+{% block page_content %}
+    <h1>Mest covrede artister i {{ season }}</h1>
+    <p class="lead">
+        Da listen er auto-generert fra påmeldingssystemet, gir den (bl.a. på grunn av manuell inntasting)
+        kun en indikasjon på de mest populære artistene.
+    </p>
+    <p>
+        Se 
+        {% for goto in season_start..real_season %}
+            <a href="?season={{ goto }}" class="{{ goto == season ? 'bold' }}">{{ goto }}</a>{{ not loop.last ? ' | ' }}
+        {% endfor %}
+    </p>
+
+    <div class="row">
+        <div class="col-12" id="searchList">
+            <ul class="UKMliste expandable">
+                {% for artist in artister %}
+                    <li data-trigger="sanger" data-id="{{ artist.navn|escape('url') }}">
+                        <header>
+                            <div class="right is-breakable">
+                                {{ artist.antall }} ganger
+                            </div>
+                                
+                            <div class="title autoshrink">
+                                {{ artist.navn|capitalize }}
+                            </div>
+                            
+                            <div class="description">
+                                {% for sang in artist.sanger|slice(0,3) %}
+                                    <b>{{ sang.tittel|capitalize }}:</b>
+                                    {{ sang.antall }}{{ not loop.last ? ', ' }}
+                                {% endfor %}
+                            </div>
+                        </header>
+
+                        <section>
+                            <h3 class="mt-0 cancel click">
+                                {{ artist.navn|capitalize }}
+                            </h3>
+                            <p>
+                                Covret {{ artist.antall }} ganger i {{ season }}
+                            </p>
+                            
+                            <h5 class="mt-4">Tidligere år:</h5>
+                            <table class="table table-sm table-striped">
+                                <thead>
+                                    <tr>
+                                        <th width="20%">År</th>
+                                        <th>Antall cover</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for sesong, antall in artist.tidligere %}
+                                        <tr>
+                                            <td>{{ sesong }}</td>
+                                            <td>
+                                                <span class="{{ antall < artist.antall ? 'text-danger' : '' }}">{{ antall }}</span>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        
+                            <h5 class="mt-4">Covrede låter i {{ season }}</h5>
+                            <table class="table table-sm table-striped">
+                                <thead>
+                                    <tr>
+                                        <th width="20%">Ganger</th>
+                                        <th>Tittel</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for sang in artist.sanger %}
+                                        <tr>
+                                            <th>{{ sang.antall }}</th>
+                                            <td>{{ sang.tittel|capitalize }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </section>
+                        
+                        <footer>
+                            <div align="right">
+                                <button type="button" class="btn btn-outline-primary btn-sm cancel">Lukk</button>
+                            </div>
+                        </footer>
+                    </li>
+                {% else %}
+                    <li>
+                        Beklager, vi har ikke tilgjengelig informasjon for {{ season }}
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+{% endblock %}

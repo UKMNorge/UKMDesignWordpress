@@ -1,0 +1,51 @@
+google.charts.setOnLoadCallback(pameldte_per_dag_hele_perioden);
+
+function pameldte_per_dag_hele_perioden() {
+	var data = google.visualization.arrayToDataTable([
+		
+		['Sesong', {% for ar in stat_ar %}'{{ ar }}'{{ loop.last ? '' : ','}}{% endfor %}],
+		{% for mnd, dager in stat_mnd %}
+			{% for dag in 1..dager %}
+				['{{dag}}.{{mnd|maned}}', {% for ar in stat_ar %}{{ stat[ ar~'-'~mnd~'-'~(dag<10?'0'~dag:dag) ] is defined ? stat[ ar~'-'~mnd~'-'~(dag<10?'0'~dag:dag) ] : 0 }}{{ not loop.last ? ', ' : '' }}{% endfor %}]{{ not loop.last ? ', 
+' : ''}}{% endfor %}{{ not loop.last ? ', ' : ''}}
+		{% endfor %}
+	]);
+	
+	var options = {
+		chartArea: {width: '100%'},
+		title: 'Antall påmeldte per dag',
+		curveType: 'function',
+		legend: { position: 'bottom' }
+	};
+	
+	var chart = new google.visualization.LineChart(document.getElementById('per_dag_hele_perioden'));
+	
+	chart.draw(data, options);
+}
+
+
+
+
+
+google.charts.setOnLoadCallback(pameldte_akk_per_dag_hele_perioden);
+
+function pameldte_akk_per_dag_hele_perioden() {
+	var data = google.visualization.arrayToDataTable([
+		['Sesong', {% for ar in stat_ar %}'{{ ar }}'{{ loop.last ? '' : ','}}{% endfor %}],
+		{% for mnd, dager in stat_mnd %}
+			{% for dag in 1..dager %}
+				['{{dag}}.{{mnd|maned}}', {% for ar in stat_ar %}{{ akk_ar[ ar~'-'~mnd~'-'~(dag<10?'0'~dag:dag) ] is defined ? akk_ar[ ar~'-'~mnd~'-'~(dag<10?'0'~dag:dag) ] : 0 }}{{ not loop.last ? ', ' : '' }}{% endfor %}]{{ not loop.last ? ', 
+' : ''}}{% endfor %}{{ not loop.last ? ', ' : ''}}
+		{% endfor %}
+	]);
+	
+	var options = {
+		chartArea: {width: '100%'},
+		title: 'Akkumulert antall påmeldte per dag',
+		legend: { position: 'bottom' }
+	};
+	
+	var chart = new google.visualization.LineChart(document.getElementById('akk_per_dag_hele_perioden'));
+	
+	chart.draw(data, options);
+}

@@ -1,0 +1,8 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container-fluid">
+		{% embed "Category:the_list.html.twig"|UKMpath %}{% endembed %}
+		{% embed "Category:next_prev_links.html.twig"|UKMpath %}{% endembed %}
+	</div>
+{% endblock %}

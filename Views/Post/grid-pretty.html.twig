@@ -1,0 +1,19 @@
+<div class="post mb-3">
+	<a href="{{post.url}}">
+		<div class="post-grid-pretty mb-0" style="background-image: url('{{post.image.medium.src}}');">
+			{% if post.meta.video_on_top is defined and post.meta.video_on_top is not empty %}
+				<img src="{{ UKMasset('img/circle-play.png') }}" class="featured-image-play" />
+			{% endif %}
+			<header>
+				<h1>
+					{{ post.title|raw }}
+				</h1>
+			</header>
+		</div>
+		{% if showLead is defined and showLead %}
+			<p class="mt-1 mb-5">
+				{{ post.lead|raw }}
+			</p>
+		{% endif %}
+	</a>
+</div>

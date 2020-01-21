@@ -1,0 +1,248 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% set visNyhetsbrev = true %}
+
+{% block content %}
+	<script>
+		$(document).on('click', '.clickContainer', function(e){
+			e.preventDefault();
+			window.location.href = $(this).find('.momClickMeClickMe').attr('href');
+		});
+	</script>
+	<style>
+		h1, .h1,
+		h2, .h2,
+		h3,	.h3,
+		h4,	.h4,
+		h5,	.h5,
+		h6,	.h6,
+		p,	.p {
+			opacity: 1;
+		}
+		
+		.blackBG {
+			background-color: #000;
+			color: #fff;
+		}
+		
+		.UKMfestivalBox {
+			min-height: 20vh;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center center;
+		}
+		#UKMheader_separator {
+			border-bottom: 0.4em solid #000;
+		}
+		.white {
+			color: #fff;
+		}
+		footer.mt-4 {
+			margin-top: 0px !important;
+		}
+		
+		.clickContainer {
+			cursor: pointer;
+		}
+		
+		a,
+		a:hover,
+		a:active,
+		a:visited {
+			color: inherit;
+		}
+		
+		
+		#forste_linje {
+			margin-top: -1em;
+		}
+		@media (min-width: 992px) {
+			#forste_linje {
+			    margin-top: -1.4em;
+			}
+		}
+		
+		/** MOBIL **/
+		#boxProgram {
+			min-height: 30vh !important;
+			background-image: url('//grafikk.ukm.no/UKMresponsive/img/festival/program.jpg'); 
+		}
+		#boxProgram h2 {
+			margin-top: Calc( 35% - 1em);
+			margin-bottom: Calc( 35% - 1em );
+		}
+		#boxDeltaker {
+			background-color: #afd6b7;
+		}
+		#boxPublikum {
+			background-color: #151e3f;
+		}
+		#boxHvaEr {
+			background-color: #ddd;
+			background-image: url('//grafikk.ukm.no/UKMresponsive/img/festival/hvaer.jpg');
+			background-position: bottom right;
+		}
+		#boxDeltar {
+			background: #5c3b8a;
+		}
+		#boxDeltakerprogram {
+			background: #151e3f;
+		}
+		#boxWorkshops {
+			background: #afd6b7;
+		}
+
+		/** DESKTOP **/
+		@media (min-width: 992px) {
+			#boxDeltaker {
+				color: #fff;
+				background-image: url('//grafikk.ukm.no/UKMresponsive/img/festival/deltaker.jpg');
+			}
+
+			#boxPublikum {
+				background-color: #afd6b7; /* Mobil-fargen fra deltaker-boksen */
+			}
+		}
+		
+	</style>
+	<div class="container-fluid" id="forste_linje">
+		
+		{% if direktesending is defined %}
+			<div class="row" style="background-color: #f26d15;">
+				<div class="col-12" style="padding-top: 5px;">			
+					<h5><a href="{{ direktesending.link }}" style="color: white;">Se sendingen fra Olavshallen fra kl. 17:50</a></h5>
+				</div>
+			</div>
+			<div class="row" style="padding-bottom: 3px; background-color: black;">
+			</div>
+		{% endif %}
+		
+		{% if visNyhetsbrev %}	
+			<div class="row">
+				<div class="col-12 col-lg-4" style="background: #000;">
+						<h2 class="mb-2 mt-1 white">NYHETSBREV</h2>
+				</div>
+				<div class="col-6 col-lg-2 UKMfblock white autoshrink clickContainer" style="background: #464646">
+					<h2>
+						<a href="//festivalen.ukm.no/nyhetsbrev/mandag/" class="momClickMeClickMe"> 
+							Mandag
+						</a> 
+					</h2>
+				</div>
+				<div class="col-6 col-lg-2 UKMfblock white background-cover clickContainer autoshrink" style="background-color: #737373;{# background-image: url('https://liker.ukm.no/files/2018/04/27504051_2032469490362801_3315861543286661929_o-600x400.jpg')#}">
+					<h2>
+						<a href="//festivalen.ukm.no/tirsdag/" class="momClickMeClickMe">
+							Tirsdag
+						</a>
+					</h2>	
+				</div>
+				<div class="col-6 col-lg-2 UKMfblock white autoshrink clickContainer" style="background: #a8a8a8;">
+					<h2>
+						<a href="//festivalen.ukm.no/nyhetsbrev/onsdag/" class="momClickMeClickMe"> 
+							Onsdag
+						</a> 
+					</h2>
+				</div>
+				<div class="col-6 col-lg-2 UKMfblock white autoshrink" style="background: #464646">
+					<h2>
+			{#			<a href="//festivalen.ukm.no/nyhetsbrev/torsdag/" class="momClickMeClickMe"> #}
+							Torsdag
+			{#			</a> #}
+					</h2>
+				</div>
+				{# <div class="col-6 col-lg-2 UKMfblock white autoshrink" style="background: #464646">
+					<h2>
+						<a href="//festivalen.ukm.no/nyhetsbrev/torsdag/" class="momClickMeClickMe"> 
+							Fredag
+						</a>
+					</h2>
+				</div> #}
+			</div>
+
+		{% endif %}
+
+		<div class="row">
+			{% if visNyhetsbrev %}
+				<div class="col-12 blackBG">
+					<h2 class="my-2">INFORMASJON</h2>
+				</div>
+			{% endif %}
+
+			<div class="col-6 col-lg-3 UKMfestivalBox clickContainer" id="boxDeltaker">
+				<h2>
+					<a href="/gratulerer/" class="momClickMeClickMe">
+						Deltaker
+					</a>
+				</h2>	
+			</div>
+			
+			<div class="col-6 col-lg-3 UKMfestivalBox clickContainer white" id="boxPublikum">
+				<h2>
+					<a href="/publikum/" class="momClickMeClickMe">
+						Publikum
+					</a>
+				</h2>	
+			</div>
+		
+			<div class="col-12 col-lg-6 UKMfestivalBox clickContainer black center" id="boxProgram">
+				<h2>
+					<span class="white" style="background-color: rgba(0,0,0,0.85)">
+						<a href="/program/" class="momClickMeClickMe white">
+							PROGRAM
+						</a>
+					</span>
+				</h2>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-6 col-lg-3 UKMfestivalBox white clickContainer" id="boxDeltar">
+				<h2 class="mb-4">
+					<a href="/pameldte/" class="momClickMeClickMe">
+						Disse deltar
+					</a>
+				</h2>
+			</div>
+			
+			<div class="col-6 col-lg-3 UKMfestivalBox clickContainer" id="boxHvaEr">
+				<h2>
+					<span style="background-color: rgba(255,255,255,0.85)">
+						<a href="/hva-er/" class="momClickMeClickMe" style="line-height: 1.24em;">
+							&nbsp;Hva er&nbsp; 
+							<br />
+							&nbsp;festivalen?&nbsp;
+						</a>
+					</span>
+				</h2>	
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-6 col-lg-3 UKMfestivalBox clickContainer white" id="boxDeltakerprogram">
+				<h2>
+					<a href="/deltakerprogram/" class="momClickMeClickMe">
+						Deltakerprogram
+					</a>
+				</h2>	
+			</div>
+			
+			<div class="col-6 col-lg-3 UKMfestivalBox clickContainer" id="boxWorkshops">
+				<h2>
+					<a href="/category/workshop-foredrag/" class="momClickMeClickMe">
+						&nbsp;Workshops&nbsp; 
+						<br />
+						&nbsp;og foredrag&nbsp;
+					</a>
+				</h2>	
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-12" style="background: #000;">
+				<h2 class="my-2 white">SISTE NYHETER</h2>
+			</div>
+		</div>
+	</div>
+	<div class="container mt-3">
+		{% embed "Category:the_list.html.twig"|UKMpath with {'posts': posts.posts } %}{% endembed %}
+	</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+<div class="form-group">
+    <input type="text" name="finnkommune" class="form-control " placeholder="Søk etter kommune" id="filterKommune"/>
+</div>
+
+<div class="row" id="searchListKommune">
+    {% for kommune in fylke.getKommuner().getAll() %}
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-2 kommune filter" data-filter="{{ include("Kommune:filternavn.html.twig"|UKMpath)|oneline|lower }}">
+            <a href="{{ kommune.getLink() }}" class="btn btn-block btn-outline-primary" style="line-height: 1.25em;">
+                <div class="autoshrink">
+                    {{ kommune.getNavn() }}
+                </div>
+                {% if kommune.getTidligere()|length > 0 %}
+                    <div class="autoshrink">
+                        <small>Tidligere
+                            {% for tidligere in kommune.getTidligere() %}
+                                {{ tidligere.getNavn() }}{{ not loop.last ? ', ' }}
+                            {% endfor %}
+                        </small>
+                    </div>
+                {% endif %}
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
+
+<script>
+    $(document).on('keyup', '#filterKommune', function () {
+        var words = $(this).val().toLowerCase().split(' ');
+        $('#searchListKommune .kommune').hide();
+        $('#searchListKommune .kommune').filter(function () {
+            var searchIn = $(this).attr('data-filter').toLowerCase();
+            var found = false;
+
+            words.forEach(function (word) {
+                if (searchIn.indexOf(word) !== -1) {
+                    found = true;
+                    return;
+                }
+            });
+
+            return found;
+        }).show();
+
+        filteredCountHelperClasses( '#searchListKommune' );
+    });
+
+    function filteredCountHelperClasses( list_id ) {
+        var numShown = $(list_id +' .filter:visible').length;
+        $(list_id).removeClass('found-none found-few found-many');
+        if( numShown == 0 ) {
+            $(list_id).addClass('found-none');
+        } else if( numShown < 5 ) {
+            $(list_id).addClass('found-few');
+        } else {
+            $(list_id).addClass('found-many');
+        }
+    }
+</script>

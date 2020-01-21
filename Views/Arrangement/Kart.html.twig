@@ -1,0 +1,9 @@
+{% if arrangement.harKart() %}
+    <h3 class="d-none d-md-block">
+        <div class="icon icon-location-pin float-left mr-1" style="font-size: 1em;"></div>
+        {{ arrangement.getKart().getName() }}
+    </h3>
+    <a href="{{ arrangement.getKart().getLink() }}" target="_blank">
+        <img src="{{ arrangement.getKart().getMap() }}" style="width:100%;">
+    </a>
+{% endif %}

@@ -1,0 +1,30 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<div class="col-12">
+			<h1>Mønstringen du forsøkte å besøke har blitt flere!</h1>
+		
+			<p class="lead">Velg hvilken mønstring du ønsker å se</p>
+
+			{% for monstring in monstringer %}
+				<p>
+					<a href="{{ monstring.getLink() }}" class="btn btn-primary">
+						{{ monstring.getNavn() }}
+					</a>
+				</p>
+			{% else %}
+				<p>
+					<b>Oi, sorry!</b>
+					<br />Systemet klarer faktisk ikke å finne de nye mønstringene akkurat nå.
+					<br />
+					Men, hvis du sjekker 
+					<a href="//{{ UKM_HOSTNAME }}/{{ kommune.getFylke().getLink() }}/">
+						denne listen
+					</a>
+					så finner du nok mønstringen din (du er nemlig mye smartere enn en datamaskin)!
+				</p>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="row-flex mt-2 vertical-align-top">
+			<div class="col-12 col-md-4 float-right">
+				<div class="mb-3">
+					{% embed "UKMDesignBundle:Kommune:meny.html.twig"|UKMpath %}{% endembed %}
+				</div>
+			</div>
+			
+			<div class="col-12 col-md-8 float-left">
+
+                <div class="mb-5">
+                    <h3>Legg igjen mobilnummeret ditt?</h3>
+                    <p>
+                        Vi har ikke registrert noe info om UKM {{ kommune.getNavn() }} enda.
+                        Hvis du legger igjen mobilnummeret ditt, sender vi en gratis sms så fort
+                        vi vet mer.
+                    </p>
+                    <form action="//husk.{{ UKM_HOSTNAME }}/f-{{kommune.getFylke().getId()}}/k-{{kommune.getId()}}/" method="POST">
+                        <div class="form-group">
+                            <input class="form-control form-control-lg" name="mobil" maxlength="8" required type="tel" placeholder="Skriv inn mobilnummer..">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Send gratis sms</button>
+                    </form>
+                </div>
+
+                <div class="row mb-4">
+                    {% set singleMode = true %}
+                    {% embed "UKMDesignBundle:Category:list.html.twig"|UKMpath with {posts: posts.getAll(), hideNoneFound: true} %}
+                    {% endembed %}
+                </div>
+
+				<div class="mb-4">
+					<h3>Hva er UKM?</h3>
+					<p>{{ THEME_CONFIG.get('hvaerukm').kort|raw }} 
+						<br />
+						<a href="{{ THEME_CONFIG.get('hvaerukm').lesmer }}" >Les mer</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

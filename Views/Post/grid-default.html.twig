@@ -1,0 +1,30 @@
+<a href="{{post.url}}">
+	<div class="post-grid-default">
+		<div class="image" style="background-image: url('{{ post.image.medium.src }}');">
+			{% if post.meta.video_on_top is defined and post.meta.video_on_top is not empty %}
+				<img src="{{ UKMasset('img/circle-play.png') }}" class="featured-image-play" />
+			{% endif %}
+            {% if post.meta.repost is defined %}
+                <div class="repost">FRA {{ post.meta.repost }}</div>
+            {% endif %}
+		</div>	
+		<p class="mb-1 bold">
+			{{ post.title|raw }}
+		</p>
+		<p class="nocolor mt-0">
+			{{ post.lead|raw }}
+		</p>
+{#
+		{% if hidelead is not defined %}
+			{{ post.lead|raw }}
+		{% endif %}
+		{% if hideleadmobile is not defined and hidelead is not defined %}
+			{{ post.lead|raw }}
+		{% endif %}
+		
+		{% if hidelead or hideleadmobile is defined %}
+			<a href="{{ post.url }}">Les mer</a>
+		{% endif %}
+#}
+	</div>
+</a>

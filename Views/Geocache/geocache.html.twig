@@ -1,0 +1,43 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>Geocache-status {{ UKMMobil }}</h1>
+				
+				{% if geocache_success is defined %}
+					<div class="alert alert-success">
+						Gratulerer! Vi har registrert at du har vært innom {{ geocache_success }}.
+					</div>
+				{% endif %}
+				
+				{% if rescan is defined %}
+					<div class="alert alert-success">
+						Velkommen i gjengen! Nå kan du scanne spøkelset på nytt for å registrere det.
+					</div>
+				{% endif %}
+				
+				<table class="table table-striped">
+				{% for geocache in geocacher if geocache.type == 'vanlig' %}
+					<tr>
+						<td width="50"><img src="//ico.ukm.no/{{ geocache.status ? 'check' : 'circle-red' }}-48.png" width="20" /></td>
+						<td width="*%">{{ geocache.navn }}</td>
+					</tr>
+				{% endfor %}
+
+				{% for geocache in geocacher if geocache.type == 'mystery' %}
+					<tr>
+						<td width="50"><img src="//ico.ukm.no/{{ geocache.status ? 'check' : 'circle-red' }}-48.png" width="20" /></td>
+						<td width="*%" class="text-muted">{{ geocache.status ? geocache.navn : 'Mysterie-post' }}</td>
+					</tr>
+				{% endfor %}
+
+				</table>
+				
+				<h3>Hva er en mysterie-post?</h3>
+				<p>Mysterie-postene finner du bare ved å være nysgjerrig, se deg rundt, og snakke med andre.</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+
+<a href="{{ arrangement.getLink() }}" class="btn btn-block btn-outline-primary">
+    <h3 class="mt-0">
+        {{ arrangement.getNavn() }}
+
+    </h3>
+    {# HAR KART #}
+    {% if arrangement.harKart() and arrangement.getKart().getName() is not empty %}
+        {{ arrangement.getKart().getName()|trim }}{{ arrangement.getKart().getName() is not empty ? ', ' }}
+        {# ^LEGGER TIL KOMMA ETTER NAVNET PÅ ARRANMENETET #}
+        {# HAR IKKE KART (SKRIV STEDSNAVN) #}
+    {% else %}
+        {{ arrangement.getSted()|trim  }}{{ arrangement.getSted() is not empty ? ', ' }}
+        {# ^LEGGER TIL KOMMA ETTER NAVNET PÅ ARRANMENETET #}
+
+    {% endif %}
+
+    {# SAMME MÅNED #}
+    {% if arrangement.getStart()|dato('m') == arrangement.getStop()|dato('m') %}
+        {% if arrangement.getStart()|dato('j') == arrangement.getStop()|dato('j') %}
+            {{ arrangement.getStop()|dato('j. F') }}
+        {% else %}
+            {{ arrangement.getStart()|dato('j') }}
+            -
+            {{ arrangement.getStop()|dato('j. F') }}
+        {% endif %}
+        {# IKKE SAMME MÅNED #}
+    {% else %}
+        {{ arrangement.getStart()|dato('j. M') }}
+        -
+        {{ arrangement.getStop()|dato('j. M') }}
+    {% endif %}
+</a>

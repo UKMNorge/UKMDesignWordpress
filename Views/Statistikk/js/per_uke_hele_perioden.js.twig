@@ -1,0 +1,25 @@
+google.charts.setOnLoadCallback(pameldte_per_uke_hele_perioden);
+
+function pameldte_per_uke_hele_perioden() {
+	var data = google.visualization.arrayToDataTable([
+['Sesong', {% for ar in stat_ar %}'{{ ar }}'{{ loop.last ? '' : ','}}{% endfor %}],
+	{% for mnd, dager in stat_mnd %}
+		{% for uke_navn, uke_ar in uker[ mnd ] %}
+			['{{ uke_navn ~' '~ mnd|maned }}', {% for ar in stat_ar %}{{ uker[ mnd ][ uke_navn ][ ar ] is defined ? uker[ mnd ][ uke_navn ][ ar ] : 0 }}{{ loop.last ? '' : ', '}}{% endfor %}]{{ loop.last ? '' : ',
+'}}{% endfor %},
+	{% endfor %}
+	]);
+	
+	var options = {
+		chartArea: {width: '100%'},
+		title: 'Antall påmeldte per uke',
+		curveType: 'function',
+		legend: { position: 'bottom' }
+	};
+	
+	var chart = new google.visualization.LineChart(document.getElementById('per_uke_hele_perioden'));
+	
+	chart.draw(data, options);
+}
+
+

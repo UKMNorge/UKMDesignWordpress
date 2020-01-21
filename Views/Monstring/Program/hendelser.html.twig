@@ -1,0 +1,28 @@
+{% for hendelse in hendelser %}
+
+	<div class="card innslagCard UKMcard mb-2 p-0" {% if hendelse.getFarge() %} style="border-color: {{hendelse.getFarge()}}" {% endif %} {% if hendelse.erFremhevet() %} style="background: rgb(0, 0, 71); color: white;" {% endif %}>
+		<div class="card-body m-0 p-0">
+			<div class="hendelse">
+				<div class="time">
+					{% if hendelse.harSynligDetaljprogram() %}
+						<a href="{{ hendelse.getId() }}/" {% if hendelse.erFremhevet() %} style="color: rgb(0, 0, 71); color: white;" {% endif %}>{{ hendelse.getStart()|date('H:i') }}</a>
+					{% else %}
+						{{ hendelse.getStart()|date('H:i') }}
+					{% endif %}
+				</div>
+				<div class="data">
+					<div class="tittel">
+						{% if hendelse.harSynligDetaljprogram() %}
+							<a href="{{ hendelse.getId() }}/" {% if hendelse.erFremhevet() %} style="color: rgb(0, 0, 71); color: white;" {% endif %}>{{ hendelse.getNavn() }}</a>
+						{% else %}
+							{{ hendelse.getNavn() }}
+						{% endif %}
+					</div>
+					<div class="sted">
+						{{ hendelse.getSted() }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endfor %}

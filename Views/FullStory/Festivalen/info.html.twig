@@ -1,0 +1,35 @@
+<script>
+	$(document).on('click','a.animateOnExit', function() {
+		$('html').animate({'margin-left': '-300%'},500);
+	});
+</script>
+<style>
+	.navigate .icon {
+		font-size: 3em;
+	}
+	
+	.navigate {
+		margin-top: 3em;
+	}
+	
+	.navigate a, .navigate a:visited, .navigate a:focus {
+		color: #fff;
+	}
+	.navigate a:hover {
+		text-decoration: none;
+	}
+</style>
+<div class="center">
+	<h1>Er du videresendt?</h1>
+	<p class="lead">Vi har samlet den viktigste informasjonen til deg her.</p>
+	
+	<div class="center">
+		<div class="navigate">
+			<a href="gratulerer/" class="animateOnExit">
+				<span class="icon icon-info"></span>
+				<br />
+				Klikk for mer info
+			</a>
+		</div>
+	</div>
+</div>

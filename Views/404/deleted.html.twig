@@ -1,0 +1,25 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>Denne siden har blitt arkivert 😳</h1>
+
+                <p class="lead">
+                    Hvis du leter etter noe som (du tror) brukte å være her, 
+                    anbefaler vi at du sjekker <a href="/tidligere-ar/" class="bold">tidligere år-siden</a>
+                </p>
+
+                {% if links|length > 0 %}
+                    <h2>Kan dette være det du leter etter?</h2>
+                    {% for link in links %}
+                        <a href="{{ link.link }}" class="btn btn-outline-primary m-1">{{ link.navn }}{% if link.tidligere is not empty %}<br /><small>{{link.tidligere}}</small>{% endif %}</a>
+                    {% endfor %}
+                {% endif %}
+
+                <a href="/hovedmeny/" class="btn btn-outline-primary">Hovedmenyen</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

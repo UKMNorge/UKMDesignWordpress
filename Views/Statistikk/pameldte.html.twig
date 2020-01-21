@@ -1,0 +1,56 @@
+{% extends "Page/fullpage_with_menu.html.twig"|UKMpath %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script>
+		google.charts.load('current', {'packages':['corechart']});
+	</script>
+	<script>
+		{% if maned is defined %}
+			{% embed "Statistikk:js:per_dag_per_maned.js.twig"|UKMpath %}{% endembed %}
+			{% embed "Statistikk:js:per_uke_per_maned.js.twig"|UKMpath %}{% endembed %}
+		{% else %}
+			{% embed "Statistikk:js:per_dag_hele_perioden.js.twig"|UKMpath %}{% endembed %}
+			{% embed "Statistikk:js:per_uke_hele_perioden.js.twig"|UKMpath %}{% endembed %}
+		{% endif %}
+    </script>
+    
+{% endblock %}
+
+{% block page_content %}
+	<h1>Påmeldingsstatistikk siste {{ history+1 }} år</h1>	
+
+	<p class="lead">
+		Sammenlign påmeldingens utvikling dag for dag de siste {{ history+1 }} årene.
+	</p>
+
+	<p>
+		Tallene på denne siden er veiledende, og vil ikke stemme 100% med det reelle deltakelsestallet for året.
+		Dette fordi deltakere som etter-registreres etter mønstringen er gjennomført ikke tas med, da det ville gitt et skjevt sammenligningsgrunnlag.
+	</p>
+
+
+	<ul class="nav nav-tabs col-xs-12 mt-5">
+		<li class="nav-item active">
+			<a href="{{ page.getPage().url }}" class="nav-link {{ not active ? 'active' }}" data-toggle="tab">Hele perioden</a>
+		</li>
+		{% for mnd, dager in stat_mnd %}
+			<li class="nav-item">
+				<a href="{{ page.getPage().url }}{{ mnd == '01' ? '111' : mnd }}/" class="nav-link {{ mnd == active ? 'active' }}" data-toggle="tab">{{ mnd|maned }}</a>
+			</li>
+		{% endfor %}
+	</ul>
+	
+	{% if maned is defined %}
+		<div id="pameldte_akk_per_dag_per_maned_{{ maned_id }}" style="height:55vh; width: 100%;"></div>
+		<div id="pameldte_per_uke_per_maned_{{ maned_id }}" style="height:55vh; width: 100%;"></div>
+		<div id="pameldte_per_dag_per_maned_{{ maned_id }}" style="height:55vh; width: 100%;"></div>
+	{% else %}
+		<div id="akk_per_dag_hele_perioden" style="height:55vh; width: 100%;"></div>
+		<div id="per_uke_hele_perioden" style="height:55vh; width: 100%;"></div>
+		<div id="per_dag_hele_perioden" style="height:55vh; width: 100%;"></div>
+	{% endif %}
+	
+	<p>&nbsp;</p>
+{% endblock %}

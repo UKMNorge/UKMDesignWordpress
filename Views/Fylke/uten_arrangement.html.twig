@@ -1,0 +1,23 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+    {% if har_infoside %}
+        <div class="row-flex mt-2">
+            <div class="col-12 col-sm-12">
+                {{ infoside|raw }}
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    {% endif %}
+	<div class="container-fluid">
+		<div class="row-flex">
+			<div class="col-12">
+				<h1>
+					Kommer snart
+				</h1>
+			</div>
+		</div>
+		{% set singleMode = true %}
+		{% embed "UKMDesignBundle:Category:list.html.twig"|UKMpath with {posts: posts.getAll(), hideNoneFound: true} %}{% endembed %}
+	</div>
+{% endblock %}

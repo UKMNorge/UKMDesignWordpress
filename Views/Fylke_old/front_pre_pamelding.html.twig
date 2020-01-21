@@ -1,0 +1,80 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row-flex">
+            <div class="col-12 col-md-4 col-xl-3 float-right mb-4">
+                <p class="lead">
+                    Vil du ha en gratis sms når påmeldingen åpner
+                    {{ THEME_CONFIG.get('pamelding').startdato }}?
+                </p>
+                {% embed "UKMDesignBundle:Husk:form.html.twig"|UKMpath %}{% endembed %}
+            </div>
+
+            <div class="col-12 col-md-8 col-xl-9 float-left mb-4">
+                <h3 class="mt-0">
+                    UKM i din
+                    {{ fylke.erOslo() ? 'bydel' : 'kommune' }}
+                </h3>
+                {% embed "UKMDesignBundle:Fylke:lokalmonstringer_velg.html.twig"|UKMpath %}{% endembed %}
+            </div>
+
+            <div class="col-12 col-md-4 col-xl-3 float-right mb-4">
+                {% if monstring is not defined %}
+                    <h3>
+                        Fylkesfestival i
+                        {{ fylke.getNavn() }}
+                    </h3>
+                    <p>Vi har ikke registrert informasjon om fylkesfestivaler enda, men dette kommer snart.</p>
+                {% else %}
+                    <div class="fylkesfestival-banner-container">
+                        <div class="row align-items-center fylkesfestival-banner py-3 px-3">
+                            <div class="col-7 title">
+                                {{ monstring.getNavn() }}
+                            </div>
+                            <div class="col-5 date right small">
+                                {% if monstring.getStart()|dato('m') == monstring.getStop()|dato('m') %}
+                                    {% if monstring.getStart()|dato('j') == monstring.getStop()|dato('j') %}
+                                        {{ monstring.getStop()|dato('j. F') }}
+                                    {% else %}
+                                        {{ monstring.getStart()|dato('j') }}
+                                        -
+                                        {{ monstring.getStop()|dato('j. F') }}
+                                    {% endif %}
+                                {% else %}
+                                    {{ monstring.getStart()|dato('j.M') }}
+                                    -
+                                    {{ monstring.getStop()|dato('j.M') }}
+                                {% endif %}
+                                <br/>
+                                {{ monstring.getSted() }}
+                            </div>
+                        </div>
+
+                        <div class="row-flex fylkesfestival-banner-menu-container">
+                            <div class="mt-4 fylkesfestival-banner-menu">
+                                {% embed "UKMDesignBundle:Fylke:meny.html.twig"|UKMpath %}{% endembed %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% if posts.getAntall() > 0 or harInfoPage %}
+        <div class="container-fluid">
+            <div class="row-flex">
+                <div class="col-12 col-md-8 col-xl-3 float-lg-left float-xl-left mt-4">
+                    {% if posts.getAntall() == 0 and harInfoPage %}
+                        {{ infoPage.getPage().content|raw }}
+                    {% else %}
+                        <div class="row">
+                            {% embed "UKMDesignBundle:Category:list.html.twig"|UKMpath with {singleMode: true, posts: posts.getAll(), hideNoneFound: true} %}{% endembed %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

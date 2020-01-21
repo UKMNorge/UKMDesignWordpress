@@ -1,0 +1,32 @@
+{% extends "Layout/_base.html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<p class="lead">
+					Vi har registrert at du ikke ønsker å bli tatt bilde av eller filmet av UKM.
+				</p>
+				<p>
+					{% if er_foresatt %}
+						Vi kan ikke garantere at ingen tar bilder av {{ samtykke.getPerson().getFornavn() }} 
+						eller filmer {{ samtykke.getPerson().getFornavn() }}, 
+						men vi skal gjøre alt vi kan for å unngå at UKM gjør det.
+					{% else %}
+						Vi kan ikke garantere at ingen tar bilder av deg eller filmer deg, 
+						men vi skal gjøre alt vi kan for å unngå at UKM gjør det.
+					{% endif %}
+				</p>
+				
+				<p>
+					Velkommen til UKM!</a>
+				</p>
+				
+				<p>
+					Spørsmål? 
+					<a href="//org.ukm.no/kontakt/administrasjonen/">Kontakt UKM Norge</a>
+				</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}	

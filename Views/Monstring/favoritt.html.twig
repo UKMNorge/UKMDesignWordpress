@@ -1,0 +1,22 @@
+<div class="float-right fylke-pameldte">
+	<a href="#" id="saveAsMine" class="small" data-saved="{{ harFavoritt ? 'true' : 'false' }}" data-plid="{{ monstring.getId() }}">
+		<span class="icon icon-heart{{ not harFavoritt ? '-outlined' }} my-0 vertical-align-middle"></span>
+		<span class="text" data-save="LAGRE SOM MITT UKM" data-saved="MITT UKM">{{ not harFavoritt ? 'LAGRE SOM' }} MITT UKM</span>
+	</a>
+</div>
+<div class="row-flex">
+	<div class="col-12 right">
+	</div>
+	<div class="col-12 UKMtoggleContent" id="saveAsMineExplanation" style="display: none;">
+		<div class="">
+			<h4>{{ monstring.getNavn() }} er nå lagret som ditt UKM!</h4>
+			<p>
+				Neste gang du åpner UKM.no vil vi gi deg informasjon om
+				UKM {{ monstring.getNavn() }} på forsiden av UKM.no
+			</p>
+			<p>
+				<a href="#" data-target="saveAsMineExplanation" class="UKMtoggleHide">Ok, skjul denne</a>
+			</p>
+		</div>
+	</div>
+</div>

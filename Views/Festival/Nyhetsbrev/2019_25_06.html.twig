@@ -1,0 +1,1491 @@
+{% extends "Festival:Nyhetsbrev:2019_framework.html.twig"|UKMpath %}
+
+{% block content %}
+    <script>
+        $(document).on('click', '.clickContainer', function (e) {
+            e.preventDefault();
+            window.location.href = $(this).find('.momClickMeClickMe').attr('href');
+        });
+    </script>
+
+    <script type="text/javascript">
+    $(document).on('click', '.clickMomDiv', function(e) {
+        e.preventDefault();
+        $(this).parents('.momDiv').click();
+    });
+    $ ( document ).ready(function () {
+
+
+        var latestArticle = null;
+        $(".expandOnClick").click(function(event) {
+            // if (jQuery(event.target).is("a") ) {
+            //     return;
+            // }
+            console.log(event);
+            event.preventDefault();            
+            var link = jQuery(event.target).find(".articleLink");
+            console.log('link: ');
+            console.log(link);
+            var articleBox = jQuery('.articleBox#articleBox-'+jQuery(link).attr('data-articleBox-id'));
+            var articleContent = jQuery(articleBox).find(".articleContent");
+            var newArticle = jQuery(link).attr('id');
+            /*console.log(newArticle);*/
+            var url = link.attr("href");
+            
+            if (undefined == url) {
+                url = jQuery(event.target).attr("href");
+            }
+
+            if ( "{{ UKM_HOSTNAME }}" == "ukm.dev" ) {
+                url = "https://ukm.dev/blog/2014/06/06/av-med-og-for-ungdom/?singleMode=true";
+            }
+
+            // Lukk samme artikkel
+            if( articleBox.is(':visible') && latestArticle == newArticle ) {
+                articleBox.slideUp();
+                // Sleep 300ms??
+                articleContent.html("Laster inn...");
+            }
+            // Ny artikkel, men en annen vises
+            else if (latestArticle != null && latestArticle != newArticle) {
+                articleContent.html("Laster inn...");
+
+                jQuery.post(
+                    url+"?singleMode=true",
+                    {
+                        'singleMode': true,
+                    },
+                    function(data) {
+                        articleContent.html(data);
+                    },
+                );
+                latestArticle = newArticle;
+            }
+            // Første gang artikkelboks åpnes.
+            else {
+                articleBox.slideDown();
+
+                jQuery.post(
+                    url+"?singleMode=true",
+                    {
+                        'singleMode': true,
+                    },
+                    function(data) {
+                        jQuery(articleBox).find(".articleContent").html(data);
+                    },
+                );
+                latestArticle = newArticle;
+            }
+        });
+
+        $(".closeButton").click( function (event) {
+            jQuery(event.target).parent().parent().slideUp();
+            console.log(jQuery(event.target).parent().parent().attr("id"));
+            scrollTo(jQuery(event.target).parent().parent().attr("id"));
+        });
+    });
+    </script>
+
+
+    <style>:root
+    {
+        --ukm_blaa: rgba(0, 0, 71, 1);
+        --ukm_rosa: rgba(255, 18, 139, 1);
+        --ukm_gul: rgba(255, 240, 86, 1);
+        --ukm_gronn: rgba(0, 255, 137, 1);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    a,
+    p,
+    a:link,
+    marquee {
+        font-family: 'itcavantgardeprobold' !important;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .bg-blaa {
+        background: var(--ukm_blaa);
+    }
+    .bg-rosa {
+        background: var(--ukm_rosa);
+    }
+    .bg-gul {
+        background: var(--ukm_gul);
+    }
+    .bg-gronn {
+        background: var(--ukm_gronn);
+    }
+
+    .text-blaa {
+        color: var(--ukm_blaa) !important;
+        opacity: 1;
+    }
+    .text-rosa {
+        color: var(--ukm_rosa) !important;
+        opacity: 1;
+    }
+    .text-gul {
+        color: var(--ukm_gul) !important;
+        opacity: 1;
+    }
+    .text-gronn {
+        color: var(--ukm_gronn) !important;
+        opacity: 1;
+    }
+    .text-white {
+        color: white !important;
+        opacity: 1;
+    }
+    .text-black {
+        color: black !important;
+        opacity: 1;
+    }
+
+    .nav-link {
+        font-size: .5rem !important;
+        padding: .1rem;
+        
+    }
+
+    .nav-tabs .nav-item {
+        border-right: 1px solid var(--ukm_gul);
+        border-left: 1px solid var(--ukm_gul);
+        background: var(--ukm_blaa);
+    }
+
+    .nav-tabs .nav-item .active {
+        background: var(--ukm_gul);
+        color: var(--ukm_blaa);
+        border: none;
+        border-top-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+    }
+
+    .nav-tabs .nav-link {
+        border: none;
+        color: var(--ukm_gul)
+
+    }
+</style>
+
+
+<style>
+    #box2 {
+        font-size: 18vw;
+        padding-top: 5rem;
+        padding-bottom: 4rem;
+        width: 100%;
+        text-transform: uppercase;
+        text-justify: distribute;
+        text-align: center;
+        line-height: 22vw;
+        background: var(--ukm_gronn);
+        color: var(--ukm_rosa);
+        z-index: -10;
+    }
+
+    #box3 {
+        height: 46vw;
+        width: 50vw;
+        font-size: 10vw;
+        text-transform: uppercase;
+        text-justify: distribute;
+        text-align: center;
+        background: url('https://media.giphy.com/media/lvzdeWk12qjmM/source.gif');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        margin-right: -1rem;
+    }
+
+    
+
+    #box4 {
+        height: 46vw;
+        font-size: 10vw;
+        padding-top: 3.8rem;
+        text-transform: uppercase;
+        text-justify: distribute;
+        text-align: center;
+        line-height: 0;
+        margin-left: -1rem;
+    }
+
+    #box4fix {
+        margin: 0;
+        padding: 0;
+        height: 46vw;
+    }
+
+    #box4a {
+        font-size: 9vw;
+    }
+
+    #dagens_blinkskudd {
+        position: absolute;
+        top: 34vw;
+        left: 18vw;
+        width: 50%;
+        z-index: 10;
+
+    }
+
+    #box7 {
+        height: 100%;
+        width: 50vw;
+        font-size: 10vw;
+        text-transform: uppercase;
+        text-justify: distribute;
+        text-align: center;
+        background: url('http://ukm.no/festivalen/files/2019/06/Kunstaapning-Trym-Braathen-5565.jpg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        margin-left: -1rem;
+    }
+    #box71 {
+        height: 100%;
+        width: 50vw;
+        font-size: 6rem;
+        padding-top: 9rem;
+        padding-bottom: 8rem;
+        text-transform: uppercase;
+        text-justify: distribute;
+        text-align: center;
+        background: url('https://media.giphy.com/media/eSQKNSmg07dHq/giphy.gif');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        margin-left: 0;
+    }
+
+    
+
+    /* iPhone 5 */
+    @media only screen and (min-width: 320px) {
+        #box1 {
+            padding-top: 6rem;
+            padding-bottom: 4rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 2rem;
+        }
+
+        #box1a {
+            font-size: 2.8rem;
+            color: var(--ukm_blaa);
+        }
+
+        #box1b {
+            font-size: 1.5rem;
+            color: var(--ukm_blaa);
+        }
+
+        #marqee_top {
+            padding: 2.2rem 0 1.2 0;
+            font-size: 1rem;
+        }
+
+        marquee p {
+            margin-top: .6rem;
+            margin-bottom: .2rem;
+        }
+        
+
+        #fotosticker {
+            position: absolute;
+            top: 19rem;
+            right: 1rem;
+            width: 26%;
+            z-index: 10;
+        }
+
+        #box2 {
+            margin-top: -.2rem;
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 4rem;
+            background: var(--ukm_rosa);
+        }
+
+        #box2a {
+            font-size: 2.6rem;
+            color: var(--ukm_gul);
+        }
+        #box2b {
+            font-size: 5rem;
+            color: var(--ukm_gul);
+            margin-left: -1.2rem;
+        }
+
+        #advarsel {
+            position: relative;
+            top: 2rem;
+            width: 40%;
+            left: -.6rem;
+            z-index: 10;
+            margin-bottom: 2.4rem;
+        }
+
+        #box6 {
+            padding-top: -3rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 1.6rem;
+        }
+
+        #box6a {
+            font-size: 1.2rem;
+            margin-left: 1.2rem;
+            color: var(--ukm_gul);
+        }
+
+        #box6b {
+            margin-top: -5rem;
+            font-size: 10rem;
+            margin-left: 4rem;
+        }
+
+        #box61 {
+            padding-top: 2rem;
+            padding-bottom: 6rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 1.6rem;
+        }
+
+        #box6a1 {
+            position: absolute;
+            font-size: 1.2rem;
+            margin-left: -4rem;
+            margin-top: .2rem;
+            color: var(--ukm_rosa);
+        }
+
+        #box6b1 {
+            position: absolute;
+            margin-top: -8.6rem;
+            padding-top: 12rem;
+            font-size: 4.5em;
+            margin-left: -2.2rem;
+        }
+
+        #box7 {
+            padding-top: 3.2rem;
+        }
+
+        #box71 {
+            height: 100%;
+            width: 50vw;
+            font-size: 2.4rem;
+            padding-top: 4rem;
+            padding-bottom: .2rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('https://media.giphy.com/media/eSQKNSmg07dHq/giphy.gif');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-left: 0;
+        }
+
+        #box8 {
+            padding-top: 6rem;
+            padding-bottom: 4rem;
+            font-size: 2rem;
+            text-align: center;
+            background: url('http://ukm.no/festivalen/files/2019/06/2019_5508_48773.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+
+        #box5 {
+            /* height: 250px; */
+            z-index: -10;
+            padding-top: 8rem;
+            padding-bottom: 5rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 10vw;
+        }
+
+        #box5a {
+            font-size: 30vw;
+            color: var(--ukm_gronn);
+        }
+
+        #box5b {
+            font-size: 10vw;
+            color: var(--ukm_gronn);
+        }
+
+        #box9 {
+            font-family: 'itcavantgardeprobold';
+            background: var(--ukm_gul);
+            padding-top: 2rem;
+            padding-bottom: 4rem;
+            margin-top: -1rem;
+        }
+
+        #box9a {
+            margin-right: -1.2rem;
+            padding-top: 3.2rem;
+            padding-left: 3rem;
+        }
+
+        /* HVA HAR DU container */
+        #box9b {
+            text-align: right;
+            color: var(--ukm_blaa);
+        }
+        /* HVA */
+        #box9c {
+            font-size: 1.6rem;
+            letter-spacing: .05rem
+        }
+        /* HAR DU */
+        #box9d {
+            font-size: .84rem;
+            margin-top: -.4rem;
+            letter-spacing: .01rem
+        }
+
+        /* PAKKA container */
+        #box9e {
+            text-align: left;
+            padding-top: 4rem;
+            color: var(--ukm_rosa);
+        }
+
+        /* PAKKA */
+        #box9f {
+            font-size: 2.8rem;
+            letter-spacing: .1rem;
+        }
+
+        /* FORESTILLING 1 */
+        #box10 {
+            font-size: 1rem;
+            padding-top: 5rem;
+            padding-bottom: 3rem;
+            height: 100%;
+            padding-left: 1rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('http://ukm.no/festivalen/files/2019/06/2019_5508_48758.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+        }
+
+
+        /* Emoji øyne */
+        #box10a{
+            position: absolute;
+            left: 2.8rem;
+            top: 2.4rem;
+            padding-bottom: 8rem;
+            font-size: 5rem;
+        }
+
+        #sesimorgen {
+            font-size: 3rem;
+            padding-top: 6rem;
+            padding-bottom: 4rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('https://media.giphy.com/media/Ru9sjtZ09XOEg/giphy.gif');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+        }
+    }
+    /* iPhone X, 6/7 */
+    @media only screen and (min-width: 375px) {
+        #box1 {
+            padding-top: 8rem;
+            padding-bottom: 6rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 2rem;
+        }
+
+        #box1a {
+            font-size: 3.2rem;
+            color: var(--ukm_blaa);
+        }
+
+        #box1b {
+            font-size: 1.74rem;
+            color: var(--ukm_blaa);
+        }
+
+        #marqee_top {
+            padding: 2.2rem 0 1.2 0;
+            font-size: 1.8rem;
+        }
+
+        marquee p {
+            margin-top: .6rem;
+            margin-bottom: -.4rem;
+        }
+        
+
+        #fotosticker {
+            position: absolute;
+            top: 23rem;
+            right: 2rem;
+            width: 26%;
+            z-index: 10;
+        }
+
+
+        #box4b {
+            position: absolute;
+            font-size: 3.2rem;
+            bottom: 8rem;
+            left: 7.2rem;
+        }
+
+        #box2 {
+            margin-top: -.2rem;
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 5rem;
+            background: var(--ukm_rosa);
+        }
+
+        #box2a {
+            font-size: 3rem;
+            color: var(--ukm_gul);
+        }
+        #box2b {
+            font-size: 5.8rem;
+            color: var(--ukm_gul);
+            margin-left: -1.2rem;
+        }
+
+        #advarsel {
+            position: relative;
+            top: 2rem;
+            width: 40%;
+            left: -.2rem;
+            z-index: 10;
+            margin-bottom: 2.4rem;
+        }
+
+        #box6 {
+            padding-top: -3rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 1.6rem;
+        }
+
+        #box6a {
+            font-size: 1.6rem;
+            margin-left: 1.2rem;
+            color: var(--ukm_gul);
+        }
+
+        #box6b {
+            margin-top: -5rem;
+            font-size: 10rem;
+            margin-left: 4rem;
+        }
+
+        #box61 {
+            padding-top: 2rem;
+            padding-bottom: 6rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 1.6rem;
+        }
+
+        #box6a1 {
+            position: absolute;
+            font-size: 1.4rem;
+            margin-left: -5rem;
+            margin-top: 1rem;
+            color: var(--ukm_rosa);
+        }
+
+        #box6b1 {
+            position: absolute;
+            margin-top: -8.6rem;
+            padding-top: 13rem;
+            font-size: 6rem;
+            margin-left: -3.2rem;
+        }
+
+        #box71 {
+            height: 100%;
+            width: 50vw;
+            font-size: 3rem;
+            padding-top: 4rem;
+            padding-bottom: 2rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('https://media.giphy.com/media/eSQKNSmg07dHq/giphy.gif');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-left: 0;
+        }
+
+        #box8 {
+            padding-top: 6rem;
+            padding-bottom: 4rem;
+            font-size: 2.8rem;
+            text-align: center;
+            background: url('http://ukm.no/festivalen/files/2019/06/2019_5508_48773.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+
+        #box5 {
+            /* height: 250px; */
+            z-index: -10;
+            padding-top: 8rem;
+            padding-bottom: 5rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 10vw;
+        }
+
+        #box5a {
+            font-size: 30vw;
+            color: var(--ukm_gronn);
+        }
+
+        #box5b {
+            font-size: 10vw;
+            color: var(--ukm_gronn);
+        }
+
+        #box9 {
+            font-family: 'itcavantgardeprobold';
+            background: var(--ukm_gul);
+            padding-top: 2rem;
+            padding-bottom: 4rem;
+            margin-top: -1rem;
+        }
+
+        #box9a {
+            margin-right: -1.2rem;
+            padding-top: 3.2rem;
+            padding-left: 3rem;
+        }
+
+        /* HVA HAR DU container */
+        #box9b {
+            text-align: right;
+            color: var(--ukm_blaa);
+        }
+        /* HVA */
+        #box9c {
+            font-size: 1.8rem;
+            letter-spacing: .05rem
+        }
+        /* HAR DU */
+        #box9d {
+            font-size: 1rem;
+            margin-top: -.2rem;
+            letter-spacing: .01rem
+        }
+
+        /* PAKKA container */
+        #box9e {
+            text-align: left;
+            padding-top: 4.4rem;
+            color: var(--ukm_rosa);
+        }
+
+        /* PAKKA */
+        #box9f {
+            font-size: 3.6rem;
+            letter-spacing: .1rem;
+        }
+
+        /* FORESTILLING 1 */
+        #box10 {
+            font-size: 1.2rem;
+            padding-top: 5rem;
+            padding-bottom: 3rem;
+            height: 100%;
+            padding-left: 1rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('http://ukm.no/festivalen/files/2019/06/2019_5508_48758.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+        }
+
+
+        /* Emoji øyne */
+        #box10a{
+            position: absolute;
+            left: 3rem;
+            top: 2.4rem;
+            padding-bottom: 8rem;
+            font-size: 6rem;
+        }
+
+        #sesimorgen {
+            font-size: 4rem;
+            padding-top: 8rem;
+            padding-bottom: 6rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('https://media.giphy.com/media/Ru9sjtZ09XOEg/giphy.gif');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+        }
+    }
+    /* iPad */
+    @media only screen and (min-width: 768px) {
+        #box1 {
+            padding-top: 12rem;
+            padding-bottom: 10rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 3rem;
+        }
+
+        #box1a {
+            font-size: 6rem;
+            color: var(--ukm_blaa);
+        }
+
+        #box1b {
+            font-size: 3.2rem;
+            color: var(--ukm_blaa);
+        }
+
+        #marqee_top {
+            padding: 2.2rem 0 1.2 0;
+            font-size: 3rem;
+        }
+
+        marquee p {
+            margin-top: .6rem;
+            margin-bottom: -.8rem;
+        }
+        
+
+        #fotosticker {
+            position: absolute;
+            top: 32rem;
+            right: 2rem;
+            width: 26%;
+            z-index: 10;
+        }
+
+        #advarsel {
+            position: relative;
+            top: 1.4rem;
+            width: 40%;
+            left: .8rem;
+            z-index: 10;
+            margin-bottom: 3.8rem;
+        }
+
+        #box4b {
+            position: absolute;
+            font-size: 3.2rem;
+            bottom: 8rem;
+            left: 7.2rem;
+        }
+
+        #box2 {
+            margin-top: -.2rem;
+            padding-top: 8rem;
+            padding-bottom: 8rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 9rem;
+            background: var(--ukm_rosa);
+        }
+
+        #box2a {
+            font-size: 6rem;
+            color: var(--ukm_gul);
+        }
+        #box2b {
+            font-size: 11.4rem;
+            color: var(--ukm_gul);
+            margin-left: -3rem;
+        }
+        #box6 {
+            padding-top: 4rem;
+            padding-bottom: 6rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 1.6rem;
+        }
+
+        #box6a {
+            font-size: 3rem;
+            margin-left: 3rem;
+            color: var(--ukm_gul);
+        }
+
+        #box6b {
+            margin-top: -5rem;
+            font-size: 10rem;
+            margin-left: 4rem;
+        }
+
+        #box61 {
+            padding-top: 4rem;
+            padding-bottom: 14rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 1.6rem;
+        }
+
+        #box6a1 {
+            position: absolute;
+            font-size: 3rem;
+            margin-left: -10rem;
+            margin-top: 4rem;
+            color: var(--ukm_rosa);
+        }
+
+        #box6b1 {
+            position: absolute;
+            margin-top: 2;
+            padding-top: 13rem;
+            font-size: 10rem;
+            margin-left: -4.8rem;
+        }
+
+        #box8 {
+            padding-top: 16rem;
+            padding-bottom: 14rem;
+            font-size: 6rem;
+            text-align: center;
+            background: url('http://ukm.no/festivalen/files/2019/06/2019_5508_48773.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+
+        #box5 {
+            /* height: 250px; */
+            z-index: -10;
+            padding-top: 16rem;
+            padding-bottom: 5rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 10vw;
+        }
+
+        #box5a {
+            font-size: 30vw;
+            color: var(--ukm_gronn);
+        }
+
+        #box5b {
+            font-size: 10vw;
+            color: var(--ukm_gronn);
+        }
+
+        #box9 {
+            font-family: 'itcavantgardeprobold';
+            background: var(--ukm_gul);
+            padding-top: 20rem;
+            padding-bottom: 20rem;
+            margin-top: -1rem;
+        }
+        #box9a {
+            margin-right: -3rem;
+            padding-top: .8rem;
+            padding-left: 4rem;
+        }
+        #box9b {
+            text-align: right;
+            color: var(--ukm_blaa);
+        }
+        #box9c {
+            font-size: 3.8rem;
+            letter-spacing: .4rem
+        }
+        #box9d {
+            font-size: 2.35rem;
+            margin-top: -.6rem;
+        }
+        #box9e {
+            text-align: left;
+            padding-top: 4rem;
+            color: var(--ukm_rosa);
+        }
+        #box9f {
+            font-size: 7rem;
+            letter-spacing: .3rem;
+        }
+
+        #box10 {
+            font-size: 2.7rem;
+            padding-top: 10rem;
+            padding-bottom: 8rem;
+            height: 100%;
+            padding-left: 1rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('http://ukm.no/festivalen/files/2019/06/2019_5508_48758.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+        }
+
+        #box10a{
+            position: absolute;
+            left: 8rem;
+            top: 6rem;
+            padding-bottom: 8rem;
+            font-size: 10rem;
+        }
+
+        #sesimorgen {
+            font-size: 7rem;
+            padding-top: 12rem;
+            padding-bottom: 10rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('https://media.giphy.com/media/Ru9sjtZ09XOEg/giphy.gif');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+        }
+
+
+
+    }
+    /* iPad Pro */
+    @media only screen and (min-width: 1024px) {
+        #box1 {
+            padding-top: 18rem;
+            padding-bottom: 10rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 5rem;
+        }
+
+        #box1a {
+            font-size: 8rem;
+            color: var(--ukm_blaa);
+        }
+
+        #box1b {
+            font-size: 4.2rem;
+            color: var(--ukm_blaa);
+        }
+
+        #marqee_top {
+            padding: 2.6rem 0 1.6 0;
+            font-size: 4rem;
+        }
+
+        marquee p {
+            margin-top: .6rem;
+            margin-bottom: -.8rem;
+        }
+
+        #advarsel {
+            position: relative;
+            top: 1.4rem;
+            width: 40%;
+            left: .8rem;
+            z-index: 10;
+            margin-bottom: 3.8rem;
+        }
+
+        #box4b {
+            position: absolute;
+            font-size: 3.2rem;
+            bottom: 8rem;
+            left: 7.2rem;
+        }
+
+        #programsticker {
+            position: relative;
+            top: -6rem;
+            width: 40%;
+            left: 14rem;
+            z-index: 10;
+            margin-bottom: 3rem;
+        }
+        
+        #box2 {
+            margin-top: -.2rem;
+            padding-top: 10rem;
+            padding-bottom: 10rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 12rem;
+            background: var(--ukm_rosa);
+        }
+
+        #box2a {
+            font-size: 8rem;
+            color: var(--ukm_gul);
+        }
+        #box2b {
+            font-size: 15.4rem;
+            color: var(--ukm_gul);
+            margin-left: -3rem;
+        }
+        #box6 {
+            padding-top: 4rem;
+            padding-bottom: 6rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 1.6rem;
+        }
+
+        #box6a {
+            font-size: 4rem;
+            margin-left: 3rem;
+            color: var(--ukm_gul);
+        }
+
+        #box6b {
+            margin-top: -5rem;
+            font-size: 10rem;
+            margin-left: 4rem;
+        }
+
+        #box61 {
+            padding-top: 4rem;
+            padding-bottom: 14rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 1.6rem;
+        }
+
+        #box6a1 {
+            position: absolute;
+            font-size: 4rem;
+            margin-left: -13rem;
+            margin-top: 4rem;
+            color: var(--ukm_rosa);
+        }
+
+        #box6b1 {
+            position: absolute;
+            margin-top: 2;
+            padding-top: 13rem;
+            font-size: 10rem;
+            margin-left: -4.8rem;
+        }
+
+        #box5 {
+            /* height: 250px; */
+            z-index: -10;
+            padding-top: 16rem;
+            padding-bottom: 5rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            line-height: 10vw;
+        }
+
+        #box5a {
+            font-size: 30vw;
+            color: var(--ukm_gronn);
+        }
+
+        #box5b {
+            font-size: 10vw;
+            color: var(--ukm_gronn);
+        }
+
+        #sesimorgen {
+            font-size: 7rem;
+            padding-top: 16rem;
+            padding-bottom: 14rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('https://media.giphy.com/media/Ru9sjtZ09XOEg/giphy.gif');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+        }
+
+        #box8 {
+            padding-top: 20rem;
+            padding-bottom: 18rem;
+            font-size: 8rem;
+            text-align: center;
+            background: url('http://ukm.no/festivalen/files/2019/06/2019_5508_48773.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+
+
+        #box9 {
+            font-family: 'itcavantgardeprobold';
+            background: var(--ukm_gul);
+            padding-top: 20rem;
+            padding-bottom: 20rem;
+            margin-top: -1rem;
+        }
+        #box9a {
+            margin-right: -3rem;
+            padding-left: 6rem;
+        }
+        #box9b {
+            text-align: right;
+            color: var(--ukm_blaa);
+        }
+        #box9c {
+            font-size: 5rem;
+            letter-spacing: .4rem
+        }
+        #box9d {
+            font-size: 3rem;
+            margin-top: -.6rem;
+        }
+        #box9e {
+            text-align: left;
+            padding-top: 4.6em;
+            color: var(--ukm_rosa);
+        }
+        #box9f {
+            font-size: 10rem;
+            letter-spacing: .3rem;
+        }
+
+        #box10 {
+            font-size: 3.4rem;
+            padding-top: 13rem;
+            padding-bottom: 11rem;
+            height: 100%;
+            padding-left: 1rem;
+            text-transform: uppercase;
+            text-justify: distribute;
+            text-align: center;
+            background: url('http://ukm.no/festivalen/files/2019/06/2019_5508_48758.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+        }
+
+        #box10a{
+            position: absolute;
+            left: 8rem;
+            top: 6rem;
+            padding-bottom: 8rem;
+            font-size: 16rem;
+        }
+
+        #fotosticker {
+            position: absolute;
+            top: 40rem;
+            right: 4rem;
+            width: 26%;
+            z-index: 10;
+        }
+    }
+
+    #box6fix {
+        margin: 0;
+        padding: 0;
+        height: 46vw;
+    }
+    
+
+</style>
+<div class="row">
+    <div class="col-12">
+        <ul class="nav nav-tabs nav-fill">
+            <li class="nav-item">
+                <a class="nav-link" href="../mandag/">Mandag</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="../tirsdag/">Tirsdag</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../onsdag/">Onsdag</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../torsdag/">Torsdag</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../fredag/">Fredag</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{# FULLBREDDE-SAK - MUST HAVES NÅR DU ER PÅ FESTIVAL #}
+<div class="row">
+    <div class="col-12 bg-gul">
+        <p id="box1" class="clickContainer">
+            <a id="box1a" href="https://ukm-festivalen.no/2019/06/25/must-haves-pa-festival/" class="text-blaa">MUST HAVES</a>
+            <br>
+            <a id="box1b" href="https://ukm-festivalen.no/2019/06/25/must-haves-pa-festival/" class="text-blaa">NÅR DU ER PÅ FESTIVAL</a>
+
+            <a href="https://ukm-festivalen.no/2019/06/25/must-haves-pa-festival/" class="momClickMeClickMe"></a>
+        </p>
+    </div>
+</div>
+{# TICKER #}
+<div class="row ticker clickContainer bg-gronn text-blaa" id="marqee_top">
+    <marquee behavior="scroll" direction="left" loop="true" scrollamount="10"><p>{{currentText}} - {{currentText}} - {{currentText}} - {{currentText}} - {{currentText}} - {{currentText}} - {{currentText}} - {{currentText}}<p></marquee>
+    <a class="momClickMeClickMe hidden" href="https://tv.ukm.no/festivalen/2019/"></a>
+</div>
+
+{# Sticker #}
+<a href="https://www.flickr.com/photos/ukm/albums/72157709247707526">
+<svg id="fotosticker" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100">
+    <defs>
+        <style>
+            .fotosticker-cls-1 {
+                fill: none;
+            }
+
+            .fotosticker-cls-2 {
+                clip-path: url(#clip-path);
+            }
+
+            .fotosticker-cls-3 {
+                fill: #00004c;
+            }
+
+            .fotosticker-cls-4,
+            .fotosticker-cls-5 {
+                isolation: isolate;
+            }
+
+            .fotosticker-cls-5 {
+                font-size: 22.01px;
+                fill: #fff056;
+                font-family: 'itcavantgardeprobold';
+                font-weight: 700;
+            }
+
+            .fotosticker-cls-6 {
+                letter-spacing: -0.01em;
+            }
+
+            .fotosticker-cls-7 {
+                letter-spacing: 0em;
+            }
+        </style>
+        <clipPath id="clip-path">
+            <rect class="fotosticker-cls-1" width="100" height="100" />
+        </clipPath>
+    </defs>
+    <title>fotosticker</title>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="svg2">
+            <g id="Group_10" data-name="Group 10">
+                <g id="Group_4" data-name="Group 4">
+                    <g class="fotosticker-cls-2">
+                        <g id="Component_3_9" data-name="Component 3 9">
+                            <circle id="Ellipse_1" data-name="Ellipse 1" class="fotosticker-cls-3" cx="50" cy="50" r="50" />
+                        </g>
+                    </g>
+                    <g id="FOTO" class="fotosticker-cls-4"><text class="fotosticker-cls-5" transform="translate(21.7 54.91) rotate(6.02)">F
+                            <tspan class="fotosticker-cls-6" x="11.14" y="0">OT</tspan>
+                            <tspan class="fotosticker-cls-7" x="40.19" y="0">O</tspan>
+                        </text></g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
+</a>
+
+{# FULLBREDDE-SAK - PHOTOSHOP BATTLE #}
+<div class="row">
+    <div class="col-12 bg-rosa clickContainer">
+        <p id="box2">
+            <a id="box2a" href="https://ukm-festivalen.no/2019/06/25/photoshop-battle/" class="text-gul">PHOTOSHOP</a>
+            <br>
+            <a id="box2b" href="https://ukm-festivalen.no/2019/06/25/photoshop-battle/" class="text-gul">BATTLE</a>
+            <a href="https://ukm-festivalen.no/2019/06/25/photoshop-battle/" class="momClickMeClickMe"></a>
+        </p>
+    </div>
+</div>
+{# HALVSIDE-SAK ADVARSEL + BILDE #}
+<div class="row" style="margin-top: -1rem;">
+    <div class="col-6 bg-blaa">
+        <a href="http://ukm.no/festivalen/files/2019/06/Dagensadvarsel.png">
+            <p class="text-gul" id="box6">
+                <span id="box6b">
+                    <svg id="advarsel" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 867 797.16">
+                        <defs>
+                            <style>
+                                .advarsel-cls-1 {
+                                    fill: var(--ukm_gul);
+                                }
+
+                                .advarsel-cls-2,
+                                .advarsel-cls-3 {
+                                    isolation: isolate;
+                                }
+
+                                .advarsel-cls-3 {
+                                    font-size: 30rem;
+                                    fill: var(--ukm_blaa);
+                                    font-family: 'itcavantgardeprobold';
+                                    font-weight: 700;
+                                }
+                            </style>
+                        </defs>
+                        <title>advarsel</title>
+                        <a href="http://ukm.no/festivalen/files/2019/06/advarsel_mandag.png">
+                        <g id="Layer_2" data-name="Layer 2">
+                            <g id="Layer_1-2" data-name="Layer 1">
+                                <g id="Group_5" data-name="Group 5">
+                                    <path id="Polygon_1" data-name="Polygon 1" class="advarsel-cls-1" d="M433.5,0,867,746.58H0Z" />
+                                    <g id="_" data-name=" " class="advarsel-cls-2"><text class="advarsel-cls-3" transform="translate(353.3 662.29)">!</text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                        </a>
+                    </svg>
+                </span>
+                <br>
+                <span id="box6a">
+                    advarsel:
+                </span>
+            </p>
+        </a>
+
+    </div>
+    <div class="col-6 text-blaa clickContainer">
+        <p id="box7">
+            <a href="https://ukm-festivalen.no/2019/06/25/kjekt-a-bli-kjent-med-nye-mennesker-pa-kunstutstilling" class="text-blaa">KUNST</a>
+            <a href="https://ukm-festivalen.no/2019/06/25/kjekt-a-bli-kjent-med-nye-mennesker-pa-kunstutstilling/" class="momClickMeClickMe"></a>
+        </p>
+    </div>
+</div>
+{# HALVSIDE-SAK MAT? + ANBEFALING #}
+<div class="row">
+    <div class="col-6 text-blaa clickContainer">
+        <p id="box71">
+            <a href="http://ukm.no/festivalen/files/2019/06/meny.gif" class="text-blaa">MAT?</a>
+            <a href="http://ukm.no/festivalen/files/2019/06/meny.gif" class="momClickMeClickMe"></a>
+        </p>
+    </div>
+    <div class="col-6 bg-gronn">
+        <p class="text-rosa" id="box61">
+            <a href="https://ukm.no/festivalen/files/2019/06/Dagensanbefaling.png">
+                <span id="box6a1">
+                Anbefaling:
+                </span>
+                <br>
+                <span id="box6b1">
+                😍
+                </span>
+            </a>
+        </p>
+    </div>
+</div>
+{# FULLBREDDE BILDE #}
+<div class="row">
+    <div class="col-12 text-gul">
+        <p id="box8" class="clickContainer">
+            <a href="https://tv.ukm.no/festivalen/2019/14762-Brkebtter/" class="momClickMeClickMe" style="color: var(--ukm_gul);">BRÅKEBØTTE</a>
+        </p>
+    </div>
+</div>
+
+<div class="row clickContainer" id="box9">
+    
+
+    <div class="col-4" id="box9a">
+        <div class="overunder"  id="box9b">
+        <div class="over" id="box9c"><a href="https://ukm-festivalen.no/2019/06/25/kva-har-du-i-baggen/" class="text-blaa">HVA</a></div>
+        <div class="under" id="box9d"><a href="https://ukm-festivalen.no/2019/06/25/kva-har-du-i-baggen/" class="text-blaa">HAR DU</a></div>
+        </div>
+    </div>
+    <div class="col-8" id="box9e">
+        <span  id="box9f"><a href="https://ukm-festivalen.no/2019/06/25/kva-har-du-i-baggen/" class="text-rosa">PAKKA?</a></span>
+    </div>
+    <a href="https://ukm-festivalen.no/2019/06/25/kva-har-du-i-baggen/" class="momClickMeClickMe"></a>
+</div>
+
+<div class="row">
+    <div class="col-6 text-gronn clickContainer">
+        <p id="box10">
+            <a href="https://ukm-festivalen.no/2019/06/25/forste-forestilling-vel-overstatt/" class="text-gronn">FORESTILLING 1</a>
+            
+            <a href="https://ukm-festivalen.no/2019/06/25/forste-forestilling-vel-overstatt/" class="momClickMeClickMe"></a>
+
+        </p>
+    </div>
+    <div class="col-6 bg-rosa clickContainer">
+            <p id="box10a">
+                <a href="https://www.wikihow.com/Do-a-Cartwheel">👀</a>
+                <a href="https://www.wikihow.com/Do-a-Cartwheel" class="momClickMeClickMe"></a>
+            </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 text-rosa">
+        <p id="sesimorgen">
+            SNAKKES!
+        </p>
+    </div>
+</div>
+{% endblock %}

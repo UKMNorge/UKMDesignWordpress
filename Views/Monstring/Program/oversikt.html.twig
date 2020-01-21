@@ -1,0 +1,35 @@
+{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>{{ page.getPage().title|raw }}</h1>
+				{{ page.getPage().content|raw }}
+			</div>
+		</div>
+		
+		<div class="row vertical-align-center program">
+			{% for dag in program %}
+				<div class="col mt-4 dag">
+					<h4 class="linje">{{ dag.date|dato('l j.M')|capitalize }}</h4>
+					{% embed "Monstring:Program:hendelser.html.twig"|UKMpath with {'hendelser': dag.forestillinger} %}{% endembed %}
+				</div>
+			{% else %}
+				<div class="col-12">
+					<p>
+						Det er ikke satt opp noe program enda.
+					</p>
+					<p>
+						<a href="{{ section.url }}">Tilbake til {{ monstring.getNavn() }}</a>
+					</p>
+				</div>
+			{% endfor %}
+			<div class="col-12">
+				<p class="my-4">
+					<a href="{{ section.url }}">Tilbake til {{ monstring.getNavn() }}</a>
+				</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}

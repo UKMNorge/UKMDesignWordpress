@@ -1,0 +1,1719 @@
+{% extends "Festival:Nyhetsbrev:2019_framework.html.twig"|UKMpath %}
+
+{% block content %}
+    <script>
+        $(document).on('click', '.clickContainer', function (e) {
+            console.log(e);
+            
+            e.preventDefault();
+            window.location.href = $(this).find('.momClickMeClickMe').attr('href');
+        });
+    </script>
+
+    <script type="text/javascript">
+    $(document).on('click', '.clickMomDiv', function(e) {
+        e.preventDefault();
+        $(this).parents('.momDiv').click();
+    });
+    $ ( document ).ready(function () {
+
+
+        var latestArticle = null;
+        $(".expandOnClick").click(function(event) {
+            // if (jQuery(event.target).is("a") ) {
+            //     return;
+            // }
+            console.log(event);
+            event.preventDefault();            
+            var link = jQuery(event.target).find(".articleLink");
+            console.log('link: ');
+            console.log(link);
+            var articleBox = jQuery('.articleBox#articleBox-'+jQuery(link).attr('data-articleBox-id'));
+            var articleContent = jQuery(articleBox).find(".articleContent");
+            var newArticle = jQuery(link).attr('id');
+            /*console.log(newArticle);*/
+            var url = link.attr("href");
+            
+            if (undefined == url) {
+                url = jQuery(event.target).attr("href");
+            }
+
+            if ( "{{ UKM_HOSTNAME }}" == "ukm.dev" ) {
+                url = "https://ukm.dev/blog/2014/06/06/av-med-og-for-ungdom/?singleMode=true";
+            }
+
+            // Lukk samme artikkel
+            if( articleBox.is(':visible') && latestArticle == newArticle ) {
+                articleBox.slideUp();
+                // Sleep 300ms??
+                articleContent.html("Laster inn...");
+            }
+            // Ny artikkel, men en annen vises
+            else if (latestArticle != null && latestArticle != newArticle) {
+                articleContent.html("Laster inn...");
+
+                jQuery.post(
+                    url+"?singleMode=true",
+                    {
+                        'singleMode': true,
+                    },
+                    function(data) {
+                        articleContent.html(data);
+                    },
+                );
+                latestArticle = newArticle;
+            }
+            // Første gang artikkelboks åpnes.
+            else {
+                articleBox.slideDown();
+
+                jQuery.post(
+                    url+"?singleMode=true",
+                    {
+                        'singleMode': true,
+                    },
+                    function(data) {
+                        jQuery(articleBox).find(".articleContent").html(data);
+                    },
+                );
+                latestArticle = newArticle;
+            }
+        });
+
+        $(".closeButton").click( function (event) {
+            jQuery(event.target).parent().parent().slideUp();
+            console.log(jQuery(event.target).parent().parent().attr("id"));
+            scrollTo(jQuery(event.target).parent().parent().attr("id"));
+        });
+    });
+    </script>
+
+
+    <style>:root
+    {
+        --ukm_blaa: rgba(0, 0, 71, 1);
+        --ukm_rosa: rgba(255, 18, 139, 1);
+        --ukm_gul: rgba(255, 240, 86, 1);
+        --ukm_gronn: rgba(0, 255, 137, 1);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    a,
+    p,
+    a:link,
+    marquee {
+        font-family: 'itcavantgardeprobold' !important;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .bg-blaa {
+        background: var(--ukm_blaa);
+    }
+    .bg-rosa {
+        background: var(--ukm_rosa);
+    }
+    .bg-gul {
+        background: var(--ukm_gul);
+    }
+    .bg-gronn {
+        background: var(--ukm_gronn);
+    }
+
+    .text-blaa {
+        color: var(--ukm_blaa) !important;
+        opacity: 1;
+    }
+    .text-rosa {
+        color: var(--ukm_rosa) !important;
+        opacity: 1;
+    }
+    .text-gul {
+        color: var(--ukm_gul) !important;
+        opacity: 1;
+    }
+    .text-gronn {
+        color: var(--ukm_gronn) !important;
+        opacity: 1;
+    }
+    .text-white {
+        color: white !important;
+        opacity: 1;
+    }
+    .text-black {
+        color: black !important;
+        opacity: 1;
+    }
+
+    .nav-link {
+        font-size: .5rem !important;
+        padding: .1rem;
+        
+    }
+
+    .nav-tabs .nav-item {
+        border-right: 1px solid var(--ukm_gul);
+        border-left: 1px solid var(--ukm_gul);
+        background: var(--ukm_blaa);
+    }
+
+    .nav-tabs .nav-item .active {
+        background: var(--ukm_gul);
+        color: var(--ukm_blaa);
+        border: none;
+        border-top-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+    }
+
+    .nav-tabs .nav-link {
+        border: none;
+        color: var(--ukm_gul)
+
+    }
+</style>
+
+
+<style>
+    
+    /* 
+        iPhone 5
+        iPhone 5
+        iPhone 5
+        iPhone 5
+        iPhone 5
+        iPhone 5
+        iPhone 5
+    */
+    @media only screen and (min-width: 320px) {
+        #kommentarboks {
+            text-align: center;
+            line-height: 1.8rem;
+            padding-top: 3rem;
+            padding-bottom: 2rem;
+        }
+
+        #kommentarboks1a {
+            font-size: 1.6rem;
+        }
+
+        #kommentarboks1b {
+            font-size: 1.3rem;
+        }
+
+        #marqee_top {
+            font-size: 1rem;
+        }
+
+        marquee p {
+            margin-top: 0.2rem;
+            margin-bottom: -.1rem;
+        }
+
+        #bonneboks {
+            text-align: center;
+            line-height: .8rem;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        #bonneboks1a {
+            font-size: 1rem;
+            line-height: 2rem;
+        }
+
+        #bonneboks1b {
+            padding-top: 1rem;
+            font-size: 2.2rem;
+            line-height: 2.5rem;
+        }
+
+        #bonneboks1c {
+            font-size: 1.1rem;
+            line-height: 0rem;
+        }
+
+        #fotosticker {
+            position: absolute;
+            top: 23rem;
+            right: 1rem;
+            width: 21%;
+            z-index: 10;
+        }
+
+        #anbefaling {
+            padding-top: 1rem;
+            padding-bottom: 0rem;
+            padding-left: 1rem;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 4rem;
+        }
+
+        #anbefaling1a {
+            font-size: 1.2rem;
+            color: var(--ukm_gronn);
+        }
+
+        #anbefaling1b {
+            padding-top: 3rem;
+            font-size: 4rem;
+        }
+
+        #slampoesi {
+            padding-top: 4rem;
+            padding-bottom: 2.4rem;
+            text-align: center;
+            line-height: 2rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #slampoesi1a {
+            font-size: 2.4rem;
+        }
+
+        #slampoesi1b {
+            padding-top: 5rem;
+            font-size: 2.2rem;
+        }
+
+        #campukm {
+            font-size: 3rem;
+            padding-top: 5rem;
+            padding-bottom: 4rem;
+            text-transform: uppercase;
+            text-align: center;
+            background: url('https://ukm.no/festivalen/files/2019/06/Camp-UKM-Christian-Alsaker-Henriksen-6081-600x400.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+            margin-bottom: -1rem;
+        }
+
+        #kunstekspert {
+            padding-top: 4rem;
+            padding-bottom: 3rem;
+            text-align: center;
+            background: url('https://ukm.no/festivalen/files/2019/06/Kunstaapning-Trym-Braathen-5551-400x600.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            line-height: 2rem;
+            margin-top: 1rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #kunstekspert1a {
+            font-size: 2.3rem;
+        }
+
+        #kunstekspert1b {
+            font-size: 2rem;
+        }
+
+        #utviklerne {
+            padding-top: 4rem;
+            padding-bottom: 3.37rem;
+            text-align: center;
+            line-height: 2rem;
+            margin-top: 1rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #utviklerne1a {
+            font-size: 1.5rem;
+        }
+
+        #utviklerne1b {
+            font-size: 1.2rem;
+        }
+
+        #konferansierworkshop {
+            padding-top: 2rem;
+            padding-bottom: 3rem;
+            text-align: center;
+            line-height: 1.4rem;
+            margin-top: 1rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #konferansierworkshop1a {
+            font-size: .9rem;
+        }
+
+        #konferansierworkshop1b {
+            font-size: 1.23rem;
+        }
+
+        #advarselboks {
+            padding-top: 1.2rem;
+            padding-bottom: 1rem;
+        }
+
+        #advarselboks1a {
+            display: flex;
+            margin: 0px auto;
+        }
+
+        #advarsel {
+            width: 40%;
+            z-index: 10;
+            margin: 0 auto;
+        }
+
+        #advarselboks1b {
+            font-size: 1.3rem;
+            text-align: center;
+            display: block;
+            padding-top: 0rem;
+        }
+
+        #whatiseven {
+            padding-top: 6rem;
+            padding-bottom: 5rem;
+            text-align: center;
+            line-height: 2.2rem;
+            background: url('https://ukm.no/festivalen/files/2019/06/2019_5508_48903-600x441.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-top: -1rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #whatiseven1a {
+            font-size: 2.4rem;
+        }
+
+        #whatiseven1b {
+            font-size: 2.8rem;
+        }
+
+        #podcast {
+            padding-top: 4rem;
+            padding-bottom: 3rem;
+            text-align: center;
+            line-height: 2rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #podcast1a {
+            font-size: 2rem;
+        }
+
+        #podcast1b {
+            font-size: 1.6rem;
+        }
+
+        #arrangor {
+            padding-top: 5rem;
+            padding-bottom: 3rem;
+            text-align: center;
+            line-height: 1.4rem;
+            background: url('https://ukm.no/festivalen/files/2019/06/17-bli-kjent-med-en-ung-arrang%C3%B8r-Magnus-S%C3%B8rensen-4135-399x600.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #arrangor1a {
+            font-size: 3.4rem;
+        }
+
+        #arrangor1b {
+            font-size: 1.3rem;
+        }
+
+        #earlybird {
+            padding-top: 2.3rem;
+            padding-bottom: 1.8rem;
+            text-align: center;
+            line-height: 2.8rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #earlybird1a {
+            font-size: 2.4rem;
+        }
+
+        #earlybird1b {
+            font-size: 3.4rem;
+        }
+
+        #ompalompa {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+            text-align: center;
+            line-height: 2.2rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #ompalompa1a {
+            font-size: 2.2rem;
+        }
+
+        #ompalompa1b {
+            font-size: 2rem;
+        }
+
+        #sesimorgen {
+            font-size: 2.4rem;
+            padding-top: 4rem;
+            padding-bottom: 3rem;
+            text-transform: uppercase;
+            text-align: center;
+            background: url('https://media.giphy.com/media/2kPNhIczyPjrycQR8R/giphy.gif');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+            margin-top: -1rem;
+        }
+    }
+    /* 
+        iPhone X, 6/7
+        iPhone X, 6/7 
+        iPhone X, 6/7 
+        iPhone X, 6/7 
+        iPhone X, 6/7 
+        iPhone X, 6/7 
+        iPhone X, 6/7 
+     */
+    @media only screen and (min-width: 375px) {
+        #kommentarboks {
+            text-align: center;
+            line-height: 2.2rem;
+            padding-top: 4rem;
+            padding-bottom: 3rem;
+        }
+        #kommentarboks1a {
+            font-size: 2rem;
+        }
+        #kommentarboks1b {
+            font-size: 1.56rem;
+        }
+        #marqee_top {
+            font-size: 1.2rem;
+        }
+        marquee p {
+            margin-top: 0.4rem;
+            margin-bottom: -.2rem;
+        }
+
+        #bonneboks {
+            text-align: center;
+            line-height: 1rem;
+            padding-top: 5rem;
+            padding-bottom: 3rem;
+        }
+        #bonneboks1a {
+            font-size: 1.6rem;
+        }
+        #bonneboks1b {
+            padding-top: 1rem;
+            font-size: 2.7rem;
+            line-height: 3.5rem;
+        }
+        #bonneboks1c {
+            font-size: 1.35rem;
+            line-height: 0rem;
+        }
+
+        #fotosticker {
+            position: absolute;
+            top: 31rem;
+            right: 1rem;
+            width: 21%;
+            z-index: 10;
+        }
+
+        #anbefaling {
+            padding-top: 1rem;
+            padding-bottom: 0rem;
+            padding-left: 1rem;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 4rem;
+        }
+
+        #anbefaling1a {
+            font-size: 1.2rem;
+            color: var(--ukm_gronn);
+        }
+
+        #anbefaling1b {
+            padding-top: 3rem;
+            font-size: 4rem;
+        }
+
+        #slampoesi {
+            padding-top: 4rem;
+            padding-bottom: 2.4rem;
+            text-align: center;
+            line-height: 2rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #slampoesi1a {
+            font-size: 2.4rem;
+        }
+
+        #slampoesi1b {
+            padding-top: 5rem;
+            font-size: 2.2rem;
+        }
+
+        #campukm {
+            font-size: 3rem;
+            padding-top: 5rem;
+            padding-bottom: 4rem;
+            text-transform: uppercase;
+            text-align: center;
+            background: url('https://ukm.no/festivalen/files/2019/06/Camp-UKM-Christian-Alsaker-Henriksen-6081-600x400.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+            margin-bottom: -1rem;
+        }
+
+        #kunstekspert {
+            padding-top: 4rem;
+            padding-bottom: 3rem;
+            text-align: center;
+            background: url('https://ukm.no/festivalen/files/2019/06/Kunstaapning-Trym-Braathen-5551-400x600.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            line-height: 2rem;
+            margin-top: 1rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #kunstekspert1a {
+            font-size: 2.3rem;
+        }
+
+        #kunstekspert1b {
+            font-size: 2rem;
+        }
+        
+        #utviklerne {
+            padding-top: 4rem;
+            padding-bottom: 3.1rem;
+            text-align: center;
+            line-height: 2rem;
+            margin-top: 1rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #utviklerne1a {
+            font-size: 2rem;
+        }
+
+        #utviklerne1b {
+            font-size: 1.6rem;
+        }
+
+        #konferansierworkshop {
+            padding-top: 3rem;
+            padding-bottom: 4rem;
+            text-align: center;
+            line-height: 1.4rem;
+            margin-top: 1rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #konferansierworkshop1a {
+            font-size: 1.1rem;
+        }
+
+        #konferansierworkshop1b {
+            font-size: 1.46rem;
+        }
+
+        #advarselboks {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        #advarselboks1a {
+            display: flex;
+            margin: 0px auto;
+            margin-bottom: -1rem;
+        }
+
+        #advarsel {
+            width: 40%;
+            z-index: 10;
+            margin: 0 auto;
+        }
+
+        #advarselboks1b {
+            font-size: 1.6rem;
+            text-align: center;
+            display: block;
+            padding-top: 0rem;
+        }
+
+
+        #whatiseven {
+            padding-top: 6rem;
+            padding-bottom: 5rem;
+            text-align: center;
+            line-height: 2.2rem;
+            background: url('https://ukm.no/festivalen/files/2019/06/2019_5508_48903-600x441.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-top: -1rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #whatiseven1a {
+            font-size: 2.4rem;
+        }
+
+        #whatiseven1b {
+            font-size: 2.8rem;
+        }
+
+        #podcast {
+            padding-top: 4rem;
+            padding-bottom: 3rem;
+            text-align: center;
+            line-height: 2rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #podcast1a {
+            font-size: 2rem;
+        }
+
+        #podcast1b {
+            font-size: 1.6rem;
+        }
+
+        #arrangor {
+            padding-top: 5rem;
+            padding-bottom: 3rem;
+            text-align: center;
+            line-height: 1.4rem;
+            background: url('https://ukm.no/festivalen/files/2019/06/17-bli-kjent-med-en-ung-arrang%C3%B8r-Magnus-S%C3%B8rensen-4135-399x600.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #arrangor1a {
+            font-size: 3.4rem;
+        }
+
+        #arrangor1b {
+            font-size: 1.3rem;
+        }
+
+        #earlybird {
+            padding-top: 3.3rem;
+            padding-bottom: 2.5rem;
+            text-align: center;
+            line-height: 2.8rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #earlybird1a {
+            font-size: 2.4rem;
+        }
+
+        #earlybird1b {
+            font-size: 3.4rem;
+        }
+
+        #ompalompa {
+            padding-top: 4rem;
+            padding-bottom: 3.9rem;
+            text-align: center;
+            line-height: 2.2rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #ompalompa1a {
+            font-size: 2.8rem;
+        }
+
+        #ompalompa1b {
+            font-size: 2.5rem;
+        }
+
+
+        #sesimorgen {
+            font-size: 3rem;
+            padding-top: 5rem;
+            padding-bottom: 4rem;
+            text-transform: uppercase;
+            text-align: center;
+            background: url('https://media.giphy.com/media/2kPNhIczyPjrycQR8R/giphy.gif');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+            margin-top: -1rem;
+        }
+    }
+    /* 
+        iPad
+        iPad
+        iPad
+        iPad
+        iPad
+        iPad
+        iPad
+        iPad
+        iPad
+    */
+    @media only screen and (min-width: 768px) {
+        #kommentarboks {
+            text-align: center;
+            line-height: 3.6rem;
+            padding-top: 14rem;
+            padding-bottom: 12rem;
+        }
+        #kommentarboks1a {
+            font-size: 4rem;
+        }
+        #kommentarboks1b {
+            font-size: 3.2rem;
+        }
+        #marqee_top {
+            font-size: 3rem;
+        }
+        marquee p {
+            margin-top: 0.6rem;
+            margin-bottom: -.4rem;
+        }
+
+        #bonneboks {
+            text-align: center;
+            line-height: 0rem;
+            padding-top: 10rem;
+            padding-bottom: 8rem;
+        }
+        #bonneboks1a {
+            font-size: 2.6rem;
+        }
+        #bonneboks1b {
+            padding-top: 1rem;
+            font-size: 4.7rem;
+            line-height: 8.5rem;
+        }
+        #bonneboks1c {
+            font-size: 2.33rem;
+            line-height: 0rem;
+        }
+
+        #fotosticker {
+            position: absolute;
+            top: 65rem;
+            right: 1rem;
+            width: 26%;
+            z-index: 10;
+        }
+
+        #anbefaling {
+            padding-top: 1rem;
+            padding-bottom: 0rem;
+            padding-left: 1rem;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 9rem;
+        }
+
+        #anbefaling1a {
+            font-size: 2.5rem;
+            color: var(--ukm_gronn);
+        }
+
+        #anbefaling1b {
+            padding-top: 2rem;
+            font-size: 9rem;
+        }
+
+        #slampoesi {
+            padding-top: 8rem;
+            padding-bottom: 6rem;
+            text-align: center;
+            line-height: 4rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #slampoesi1a {
+            font-size: 4.4rem;
+        }
+
+        #slampoesi1b {
+            padding-top: 5rem;
+            font-size: 4.2rem;
+        }
+
+        #campukm {
+            font-size: 8rem;
+            padding-top: 8rem;
+            padding-bottom: 6rem;
+            text-transform: uppercase;
+            text-align: center;
+            background: url('https://ukm.no/festivalen/files/2019/06/Camp-UKM-Christian-Alsaker-Henriksen-6081-600x400.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+            margin-bottom: -1rem;
+        }
+
+        #kunstekspert {
+            padding-top: 8rem;
+            padding-bottom: 6rem;
+            text-align: center;
+            background: url('https://ukm.no/festivalen/files/2019/06/Kunstaapning-Trym-Braathen-5551-400x600.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            line-height: 4rem;
+            margin-top: 1rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #kunstekspert1a {
+            font-size: 4.2rem;
+        }
+
+        #kunstekspert1b {
+            font-size: 3.6rem;
+        }
+        
+        #utviklerne {
+            padding-top: 7rem;
+            padding-bottom: 5rem;
+            text-align: center;
+            line-height: 5rem;
+            margin-top: 1rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #utviklerne1a {
+            font-size: 4.3rem;
+        }
+
+        #utviklerne1b {
+            font-size: 3.4rem;
+        }
+
+        #konferansierworkshop {
+            padding-top: 6rem;
+            padding-bottom: 6rem;
+            text-align: center;
+            line-height: 3.4rem;
+            margin-top: 1rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #konferansierworkshop1a {
+            font-size: 2.4rem;
+        }
+
+        #konferansierworkshop1b {
+            font-size: 3.2rem;
+        }
+
+        #advarselboks {
+            padding-top: 3rem;
+            padding-bottom: 5rem;
+        }
+
+        #advarselboks1a {
+            display: flex;
+            margin: 0px auto;
+        }
+
+        #advarsel {
+            width: 40%;
+            z-index: 10;
+            margin: 0 auto;
+        }
+
+        #advarselboks1b {
+            font-size: 3.6rem;
+            text-align: center;
+            display: block;
+            padding-top: 2rem;
+        }
+
+
+        #whatiseven {
+            padding-top: 10rem;
+            padding-bottom: 8rem;
+            text-align: center;
+            line-height: 5.2rem;
+            background: url('https://ukm.no/festivalen/files/2019/06/2019_5508_48903-600x441.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-top: -1rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #whatiseven1a {
+            font-size: 5.4rem;
+        }
+
+        #whatiseven1b {
+            font-size: 6.4rem;
+        }
+
+        #podcast {
+            padding-top: 8rem;
+            padding-bottom: 7.5rem;
+            text-align: center;
+            line-height: 3.2rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #podcast1a {
+            font-size: 4.4rem;
+        }
+
+        #podcast1b {
+            font-size: 3.4rem;
+        }
+
+        #arrangor {
+            padding-top: 9rem;
+            padding-bottom: 5.9rem;
+            text-align: center;
+            line-height: 3.2rem;
+            background: url('https://ukm.no/festivalen/files/2019/06/17-bli-kjent-med-en-ung-arrang%C3%B8r-Magnus-S%C3%B8rensen-4135-399x600.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #arrangor1a {
+            font-size: 7.4rem;
+        }
+
+        #arrangor1b {
+            font-size: 2.8rem;
+        }
+
+        #earlybird {
+            padding-top: 7.5rem;
+            padding-bottom: 5.5rem;
+            text-align: center;
+            line-height: 4.2rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #earlybird1a {
+            font-size: 4.4rem;
+        }
+
+        #earlybird1b {
+            font-size: 6.2rem;
+        }
+
+        #ompalompa {
+            padding-top: 8.5rem;
+            padding-bottom: 6rem;
+            text-align: center;
+            line-height: 3.2rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #ompalompa1a {
+            font-size: 5.4rem;
+        }
+
+        #ompalompa1b {
+            font-size: 4.7rem;
+        }
+
+
+        #sesimorgen {
+            font-size: 6rem;
+            padding-top: 10rem;
+            padding-bottom: 8rem;
+            text-transform: uppercase;
+            text-align: center;
+            background: url('https://media.giphy.com/media/2kPNhIczyPjrycQR8R/giphy.gif');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+            margin-top: -1rem;
+        }
+    }
+
+    /* 
+        iPad Pro
+        iPad Pro
+        iPad Pro
+        iPad Pro
+        iPad Pro
+        iPad Pro
+        iPad Pro
+        iPad Pro
+        iPad Pro
+    */
+    @media only screen and (min-width: 1024px) {
+        #kommentarboks {
+            text-align: center;
+            line-height: 4.8rem;
+            padding-top: 14rem;
+            padding-bottom: 12rem;
+        }
+        #kommentarboks1a {
+            font-size: 6rem;
+        }
+        #kommentarboks1b {
+            font-size: 4.7rem;
+        }
+        #marqee_top {
+            font-size: 4rem;
+        }
+        marquee p {
+            margin-top: .6rem;
+            margin-bottom: -.8rem;
+        }
+
+        #bonneboks {
+            text-align: center;
+            line-height: 4.8rem;
+            padding-top: 12rem;
+            padding-bottom: 10rem;
+        }
+        #bonneboks1a {
+            font-size: 3rem;
+        }
+        #bonneboks1b {
+            padding-top: 1rem;
+            font-size: 6.7rem;
+            line-height: 8.5rem;
+        }
+        #bonneboks1c {
+            font-size: 3.33rem;
+            line-height: 0rem;
+        }
+
+        #fotosticker {
+            position: absolute;
+            top: 77rem;
+            right: 4rem;
+            width: 26%;
+            z-index: 10;
+        }
+
+        #anbefaling {
+            padding-top: 2rem;
+            padding-bottom: 0rem;
+            padding-left: 1rem;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 12rem;
+        }
+
+        #anbefaling1a {
+            font-size: 3.5rem;
+            color: var(--ukm_gronn);
+        }
+
+        #anbefaling1b {
+            padding-top: 5rem;
+            font-size: 12rem;
+        }
+
+        #slampoesi {
+            padding-top: 10rem;
+            padding-bottom: 8rem;
+            text-align: center;
+            line-height: 5rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #slampoesi1a {
+            font-size: 7.4rem;
+        }
+
+        #slampoesi1b {
+            padding-top: 5rem;
+            font-size: 7rem;
+        }
+
+        #campukm {
+            font-size: 8rem;
+            padding-top: 14rem;
+            padding-bottom: 12rem;
+            text-transform: uppercase;
+            text-align: center;
+            background: url('https://ukm.no/festivalen/files/2019/06/Camp-UKM-Christian-Alsaker-Henriksen-6081-600x400.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+            margin-bottom: -1rem;
+        }
+
+        #kunstekspert {
+            padding-top: 11rem;
+            padding-bottom: 9rem;
+            text-align: center;
+            background: url('https://ukm.no/festivalen/files/2019/06/Kunstaapning-Trym-Braathen-5551-400x600.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            line-height: 5rem;
+            margin-top: 1rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #kunstekspert1a {
+            font-size: 6.3rem;
+        }
+
+        #kunstekspert1b {
+            font-size: 5.3rem;
+        }
+        
+        #utviklerne {
+            padding-top: 11rem;
+            padding-bottom: 9.5rem;
+            text-align: center;
+            line-height: 5rem;
+            margin-top: 1rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #utviklerne1a {
+            font-size: 5.3rem;
+        }
+
+        #utviklerne1b {
+            font-size: 4.2rem;
+        }
+
+        #konferansierworkshop {
+            padding-top: 11rem;
+            padding-bottom: 9.5rem;
+            text-align: center;
+            line-height: 4.2rem;
+            margin-top: 1rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #konferansierworkshop1a {
+            font-size: 3.4rem;
+        }
+
+        #konferansierworkshop1b {
+            font-size: 4.5rem;
+        }
+
+        #advarselboks {
+            padding-top: 6rem;
+            padding-bottom: 6rem;
+        }
+
+        #advarselboks1a {
+            display: flex;
+            margin: 0px auto;
+        }
+
+        #advarsel {
+            width: 40%;
+            z-index: 10;
+            margin: 0 auto;
+        }
+
+        #advarselboks1b {
+            font-size: 5rem;
+            text-align: center;
+            display: block;
+            padding-top: 2rem;
+        }
+
+
+        #whatiseven {
+            padding-top: 14rem;
+            padding-bottom: 12rem;
+            text-align: center;
+            line-height: 6.2rem;
+            background: url('https://ukm.no/festivalen/files/2019/06/2019_5508_48903-600x441.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-top: -1rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #whatiseven1a {
+            font-size: 6.4rem;
+        }
+
+        #whatiseven1b {
+            font-size: 7.4rem;
+        }
+
+        #podcast {
+            padding-top: 11rem;
+            padding-bottom: 9.5rem;
+            text-align: center;
+            line-height: 4.2rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #podcast1a {
+            font-size: 5.4rem;
+        }
+
+        #podcast1b {
+            font-size: 4.2rem;
+        }
+
+        #arrangor {
+            padding-top: 11rem;
+            padding-bottom: 8rem;
+            text-align: center;
+            line-height: 4.2rem;
+            background: url('https://ukm.no/festivalen/files/2019/06/17-bli-kjent-med-en-ung-arrang%C3%B8r-Magnus-S%C3%B8rensen-4135-399x600.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #arrangor1a {
+            font-size: 11.4rem;
+        }
+
+        #arrangor1b {
+            font-size: 4.2rem;
+        }
+
+        #earlybird {
+            padding-top: 7.5rem;
+            padding-bottom: 6.5rem;
+            text-align: center;
+            line-height: 7.2rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #earlybird1a {
+            font-size: 6.4rem;
+        }
+
+        #earlybird1b {
+            font-size: 9rem;
+        }
+
+        #ompalompa {
+            padding-top: 10rem;
+            padding-bottom: 8.5rem;
+            text-align: center;
+            line-height: 5.2rem;
+            margin-left: -1rem;
+            margin-bottom: 0rem;
+            margin-right: -1rem;
+        }
+
+        #ompalompa1a {
+            font-size: 7.4rem;
+        }
+
+        #ompalompa1b {
+            font-size: 6.2rem;
+        }
+
+
+        #sesimorgen {
+            font-size: 7rem;
+            padding-top: 16rem;
+            padding-bottom: 14rem;
+            text-transform: uppercase;
+            text-align: center;
+            background: url('https://media.giphy.com/media/2kPNhIczyPjrycQR8R/giphy.gif');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            margin-right: -1rem;
+            margin-top: -1rem;
+        }
+    }
+
+</style>
+<div class="row">
+    <div class="col-12">
+        <ul class="nav nav-tabs nav-fill">
+            <li class="nav-item">
+                <a class="nav-link" href="../mandag/">Mandag</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../tirsdag/">Tirsdag</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../onsdag/">Onsdag</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="../torsdag/">Torsdag</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../fredag/">Fredag</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{# FULLBREDDE-SAK - MUST HAVES NÅR DU ER PÅ FESTIVAL #}
+<div class="row">
+    <div class="col-12 bg-blaa">
+        <p id="kommentarboks" class="clickContainer">
+            <a href="https://ukm-festivalen.no/2019/06/26/ukms-minste-kommentatorboks/" class="text-gul">
+                <span id="kommentarboks1a">VERDENS MINSTE</span>
+                <br>
+                <span id="kommentarboks1b">KOMMENTATORBOKS</span>
+            </a>
+            <a href="https://ukm-festivalen.no/2019/06/26/ukms-minste-kommentatorboks/" class="momClickMeClickMe"></a>
+        </p>
+    </div>
+</div>
+{# TICKER #}
+<div class="row ticker clickContainer bg-gronn text-rosa" id="marqee_top">
+    <marquee behavior="scroll" direction="left" loop="true" scrollamount="10"><p>{{currentText}} - {{currentText}} - {{currentText}} - {{currentText}} - {{currentText}} - {{currentText}} - {{currentText}} - {{currentText}}<p></marquee>
+    <a class="momClickMeClickMe hidden" href="https://tv.ukm.no/festivalen/2019/"></a>
+</div>
+
+<div class="row">
+    <div class="col-12 bg-gul">
+        <p id="bonneboks" class="clickContainer">
+            <a href="https://ukm-festivalen.no/2019/06/26/en-bonn-for-estetiske-studieretninger/">
+                <span class="text-blaa" id="bonneboks1a">KOMMENTAR:</span>
+                <br>
+                <span class="text-rosa" id="bonneboks1b">EN BØNN FOR</span>
+                <br>
+                <span class="text-rosa" id="bonneboks1c">ESTETISKE STUDIERETNINGER</span>
+            </a>
+            <a href="https://ukm-festivalen.no/2019/06/26/en-bonn-for-estetiske-studieretninger/" class="momClickMeClickMe"></a>
+        </p>
+    </div>
+</div>
+
+{# Sticker #}
+<a href="https://www.flickr.com/photos/ukm/albums">
+    <svg id="fotosticker" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100">
+        <defs>
+            <style>
+                .fotosticker-cls-1 {
+                    fill: none;
+                }
+
+                .fotosticker-cls-2 {
+                    clip-path: url(#clip-path);
+                }
+
+                .fotosticker-cls-3 {
+                    fill: var(--ukm_gronn);
+                }
+
+                .fotosticker-cls-4,
+                .fotosticker-cls-5 {
+                    isolation: isolate;
+                }
+
+                .fotosticker-cls-5 {
+                    font-size: 22.01px;
+                    fill: var(--ukm_rosa);
+                    font-family: 'itcavantgardeprobold';
+                    font-weight: 700;
+                }
+
+                .fotosticker-cls-6 {
+                    letter-spacing: -0.01em;
+                }
+
+                .fotosticker-cls-7 {
+                    letter-spacing: 0em;
+                }
+            </style>
+            <clipPath id="clip-path">
+                <rect class="fotosticker-cls-1" width="100" height="100" />
+            </clipPath>
+        </defs>
+        <title>fotosticker</title>
+        <g id="Layer_2" data-name="Layer 2">
+            <g id="svg2">
+                <g id="Group_10" data-name="Group 10">
+                    <g id="Group_4" data-name="Group 4">
+                        <g class="fotosticker-cls-2">
+                            <g id="Component_3_9" data-name="Component 3 9">
+                                <circle id="Ellipse_1" data-name="Ellipse 1" class="fotosticker-cls-3" cx="50" cy="50" r="50" />
+                            </g>
+                        </g>
+                        <g id="FOTO" class="fotosticker-cls-4"><text class="fotosticker-cls-5" transform="translate(21.7 54.91) rotate(6.02)">F
+                                <tspan class="fotosticker-cls-6" x="11.14" y="0">OT</tspan>
+                                <tspan class="fotosticker-cls-7" x="40.19" y="0">O</tspan>
+                            </text></g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </svg>
+</a>
+
+<div class="row">
+    <div class="col-6 bg-blaa">
+        <a href="https://ukm.no/festivalen/files/2019/06/04-Dagens-anbefaling-Sara-Wergeland-0349-768x511.png">
+            <p class="text-gronn" id="anbefaling">
+                <span id="anbefaling1a">
+                Anbefaling:
+                </span>
+                <br>
+                <span id="anbefaling1b">
+                😍
+                </span>
+            </p>
+        </a>
+    </div>
+    <div class="col-6">
+        <p id="slampoesi" class="bg-rosa clickContainer">
+            <a href="https://ukm-festivalen.no/2019/06/26/slampoesi-workshop/">
+                <span class="text-gul" id="slampoesi1a">SLAM</span>
+                <br>
+                <span class="text-gul" id="slampoesi1b">POESI</span>
+            <a>
+            <a href="https://ukm-festivalen.no/2019/06/26/slampoesi-workshop/" class="momClickMeClickMe"></a>
+        </p>
+    </div>
+</div>
+
+<div class="row clickContainer">
+    <div class="col-12">
+        <p id="campukm">
+            <a href="https://ukm-festivalen.no/2019/06/26/camp-ukm/" class="momClickMeClickMe text-gul">CAMP UKM</a>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <a href="https://ukm-festivalen.no/2019/06/27/kunstutstillingen/">
+            <p class="text-gronn" id="kunstekspert">
+                <span id="kunstekspert1a" class="text-gronn">KUNST-</span>
+                <br>
+                <span id="kunstekspert1b" class="text-gronn">EKSPERT</span>
+            </p>
+        </a>
+    </div>
+    <div class="col-6">
+        <a href="https://ukm-festivalen.no/2019/06/27/painu-vittuun/">
+            <p id="utviklerne" class="bg-gronn">
+                <span class="text-blaa" id="utviklerne1a">FESTIVAL-</span>
+                <br>
+                <span class="text-blaa" id="utviklerne1b">UTVIKLERNE</span>
+            </p>
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6 bg-gul">
+        <p id="konferansierworkshop" class="clickContainer">
+            <a href="https://ukm-festivalen.no/2019/06/26/fake-it-till-you-make-it/" class="momClickMeClickMe text-blaa"><span id="konferansierworkshop1a">KONFERANSIER-</span></a>
+            <br>
+            <a href="https://ukm-festivalen.no/2019/06/26/fake-it-till-you-make-it/" class="text-blaa"><span id="konferansierworkshop1b">WORKSHOP</span></a>
+        </p>
+    </div>
+    <div class="col-6 bg-blaa" id="advarselboks">
+    <a href="https://ukm.no/festivalen/files/2019/06/05-Dagens-advarsel-Magnus-S%C3%B8rensen-4177-399x600.png">
+            <p class="text-rosa">
+                <span id="advarselboks1a">
+                    <svg id="advarsel" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 867 797.16">
+                        <defs>
+                            <style>
+                                .advarsel-cls-1 {
+                                    fill: var(--ukm_rosa);
+                                }
+
+                                .advarsel-cls-2,
+                                .advarsel-cls-3 {
+                                    isolation: isolate;
+
+                                }
+
+                                .advarsel-cls-3 {
+                                    font-size: 30rem;
+                                    fill: var(--ukm_blaa);
+                                    font-family: 'itcavantgardeprobold';
+                                    font-weight: 700;
+                                }
+                            </style>
+                        </defs>
+                        <title>advarsel</title>
+                        <a href="https://ukm.no/festivalen/files/2019/06/05-Dagens-advarsel-Magnus-S%C3%B8rensen-4177-399x600.png">
+                        <g id="Layer_2" data-name="Layer 2">
+                            <g id="Layer_1-2" data-name="Layer 1">
+                                <g id="Group_5" data-name="Group 5">
+                                    <path id="Polygon_1" data-name="Polygon 1" class="advarsel-cls-1" d="M433.5,0,867,746.58H0Z" />
+                                    <g id="_" data-name=" " class="advarsel-cls-2">
+                                    <text class="advarsel-cls-3" transform="translate(353.3 662.29)">!</text>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                        </a>
+                    </svg>
+                </span>
+                <br>
+                <span id="advarselboks1b">ADVARSEL:</span>
+            </p>
+        </a>
+    </div>
+</div>
+
+<div class="row clickContainer">
+    <div class="col-12">
+        <p id="whatiseven">
+            <a href="https://ukm-festivalen.no/2019/06/26/what-is-even-our-name/" class="momClickMeClickMe text-rosa"><span id="whatiseven1a">WHAT IS EVEN</span></a>
+            <br>
+            <a href="https://ukm-festivalen.no/2019/06/26/what-is-even-our-name/" class="momClickMeClickMe text-rosa"><span id="whatiseven1b">OUR NAME?</span></a>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6 clickContainer">
+        <a href="https://ukm-festivalen.no/2019/06/27/korleis-lage-podkast/" class="momClickMeClickMe">
+            <p class="text-gronn bg-rosa" id="podcast">
+                <span id="podcast1a" class="text-gronn">Å LAGE</span>
+                <br>
+                <span id="podcast1b" class="text-gronn">PODCAST</span>
+            </p>
+        </a>
+    </div>
+    <div class="col-6 clickContainer">
+        <a href="https://ukm-festivalen.no/2019/06/27/bli-kjent-med-en-arrangor/" class="momClickMeClickMe">
+            <p id="arrangor">
+                <span class="text-rosa" id="arrangor1a">UNG</span>
+                <br>
+                <span class="text-rosa" id="arrangor1b">ARRANGØR</span>
+            </p>
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6 clickContainer">
+        <a href="https://ukm-festivalen.no/2019/06/27/morgenstund-er-tull-i-grunn/" class="momClickMeClickMe">
+            <p class="text-gronn bg-gul" id="earlybird">
+                <span id="earlybird1a" class="text-gronn">EARLY-</span>
+                <br>
+                <span id="earlybird1b" class="text-blaa">BIRD</span>
+            </p>
+        </a>
+
+    </div>
+    <div class="col-6 clickContainer">
+        <a href="https://ukm-festivalen.no/2019/06/26/ompalompaene-med-konkurranser/" class="momClickMeClickMe">
+            <p id="ompalompa" class="bg-gronn">
+                <span class="text-blaa" id="ompalompa1a">OMPA</span>
+                <br>
+                <span class="text-blaa" id="ompalompa1b">LOMPA</span>
+            </p>
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 text-gronn">
+        <p id="sesimorgen">
+            GOD KVELD!
+        </p>
+    </div>
+</div>
+{% endblock %}

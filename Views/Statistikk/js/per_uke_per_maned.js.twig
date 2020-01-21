@@ -1,0 +1,21 @@
+google.charts.setOnLoadCallback(pameldte_per_uke_per_maned_id_{{maned_id}});
+
+function pameldte_per_uke_per_maned_id_{{maned_id}}() {
+	var data = google.visualization.arrayToDataTable([
+['Sesong', {% for ar in stat_ar %}'{{ ar }}'{{ loop.last ? '' : ','}}{% endfor %}],
+		{% for uke_navn, uke_ar in uker[ maned_id ] %}
+			['{{ uke_navn ~' '~ maned_id|maned }}', {% for ar in stat_ar %}{{ uker[ maned_id ][ uke_navn ][ ar ] is defined ? uker[ maned_id ][ uke_navn ][ ar ] : 0 }}{{ loop.last ? '' : ', '}}{% endfor %}]{{ loop.last ? '' : ',
+'}}{% endfor %},
+	]);
+	
+	var options = {
+		chartArea: {width: '100%'},
+		title: 'Antall påmeldte per "uke" i {{maned_id|maned}}',
+		curveType: 'function',
+		legend: { position: 'bottom' }
+	};
+	
+	var chart = new google.visualization.LineChart(document.getElementById('pameldte_per_uke_per_maned_{{maned_id}}'));
+	
+	chart.draw(data, options);
+}

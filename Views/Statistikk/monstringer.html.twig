@@ -1,0 +1,27 @@
+{% extends "Page/fullpage_with_menu.html.twig"|UKMpath %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script>
+		google.charts.load('current', {'packages':['corechart']});
+	</script>	
+	<script>
+		{% embed "Statistikk:js:monstringer_hele_perioden.js.twig"|UKMpath %}{% endembed %}
+    </script>
+    
+{% endblock %}
+
+{% block page_content %}
+	<h1>{{ (statistikk == 'monstringer' ) ? 'Mønstringstidspunkt' : 'Påmeldingsfrister' }} siste {{ history }} år</h1>	
+
+	<div class="col-xs-12">
+    	<div id="per_dag_hele_perioden" style="height:45vh; width: 100%;">Vennligst vent, laster inn...</div>
+	</div>
+
+	<div class="col-xs-12">
+    	<div id="per_uke_hele_perioden" style="height:45vh; width: 100%;">Vennligst vent, laster inn...</div>
+	</div>
+
+	<p>&nbsp;</p>
+{% endblock %}
