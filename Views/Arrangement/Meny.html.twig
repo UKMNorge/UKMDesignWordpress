@@ -24,6 +24,14 @@
 				</a>
 			</div>
 		{% endif %}
+        {% if har_bilder %}
+			<div class="col menu-item">
+				<a href="{{ arrangement.getLink() }}bilder/">
+					<div class="icon icon-stack-picture"></div>
+					<div class="text">Bilder</div>
+				</a>
+			</div>
+		{% endif %}
 		{% if har_pameldte %}
 		<div class="col menu-item">
 			<a href="{{ arrangement.getLink() }}pameldte/">

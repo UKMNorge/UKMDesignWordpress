@@ -1,8 +1,20 @@
 <?php
 
-use UKMNorge\DesignBundle\Utils\Sitemap;
-use UKMNorge\DesignBundle\Utils\SEO;
-use UKMNorge\Geografi\Kommune;
+use UKMNorge\Design\UKMDesign;
+use UKMNorge\TemplateEngine\TemplateEngine;
+
+require_once('environment.php');
+require_once('header.php');
+
+TemplateEngine::setView('UKMDesign/Page/menu');
+
+require_once('render.php');
+
+
+
+die();
+
+
 
 require_once('header.php');
 require_once('UKMNorge/Wordpress/Utils/page.class.php');

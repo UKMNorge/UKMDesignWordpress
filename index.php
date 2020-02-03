@@ -1,16 +1,10 @@
 <?php
 
-use UKMNorge\DesignBundle\Utils\Sitemap;
-use UKMNorge\DesignBundle\Utils\SEO;
+use UKMNorge\TemplateEngine\TemplateEngine;
 
+require_once('environment.php');
 require_once('header.php');
 
-echo WP_TWIG::render( 'Page/meny', $WP_TWIG_DATA );
-wp_footer();
-if(is_user_logged_in() ) {
-	echo '<style>body {margin-top: 33px;} @media (max-width:782px) {body {margin-top: 48px;}}</style>';
-}
+TemplateEngine::setController('Page','Meny');
 
-if( WP_ENV == 'dev' ) {
-	echo '<script language="javascript">console.debug("'.basename(__FILE__).'");</script>';
-}
+require_once('render.php');

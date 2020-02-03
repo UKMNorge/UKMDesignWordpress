@@ -36,6 +36,9 @@ class arrangementController extends geoController {
     public static function harProgram() {
         return static::getArrangement()->getProgram()->getAntall() > 0;
     }
+    public static function harBilder() {
+        return static::getArrangement()->harBilder();
+    }
 }
 
 $arrangement = arrangementController::getArrangement();
@@ -55,6 +58,8 @@ $WP_TWIG_DATA['fylke'] = arrangementController::getArrangement()->getFylke();
 $WP_TWIG_DATA['pamelding'] = arrangementController::getPamelding();
 $WP_TWIG_DATA['har_pameldte'] = arrangementController::harPameldte();
 $WP_TWIG_DATA['har_program'] = arrangementController::harProgram();
+$WP_TWIG_DATA['har_bilder'] = arrangementController::harBilder();
+
 
 global $blog_id;
 if( Blog::harSide($blog_id,'info')) {

@@ -36,6 +36,21 @@ if( isset( $WP_TWIG_DATA['page']->getPage()->meta->UKMviseng ) ) {
 
 // SELECT CORRECT TEMPLATE, INCLUDE AND RUN CONTROLLER
 switch( $page_template ) {
+    ## INNLOGGING FRA DELTA
+    case 'delta_autologin':
+        // TODO: Find $wp_id og token from request.
+        $wp_id = $_GET['wp_id'];
+        $token_id = $_GET['token_id'];
+        $secret = $_GET['token'];
+        if( UKMusers::loginFromDelta($wp_id, $token_id, $secret) ) {
+            # Alt ok, ferdig innlogget. Die her.
+            die();
+        }
+        # Innlogging feilet. Send brukeren tilbake til Delta-innlogging med flashbag eller notis
+        die("Innlogging feilet.");
+        header( "Location: http://delta.".UKM_HOSTNAME."/ukmid/");
+        die("Gå til http://delta.".UKM_HOSTNAME."/ukmid/ for å logge inn.");
+        break;
 	## TILHØRENDE MØNSTRINGEN
 	# Påmeldte til mønstringen
 	case 'pameldte':

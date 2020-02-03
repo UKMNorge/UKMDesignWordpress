@@ -1,0 +1,28 @@
+{
+    "name": "ukmnorge/designwordpress",
+    "description": "Design for UKM sin wordpress-site. Benytter UKMDesign i bunn.",
+    "homepage": "http://github.com/UKMNorge/UKMDesignWordpress",
+    "authors": [{
+            "name": "Marius Mandal",
+            "email": "mariusmandal@ukm.no",
+            "role": "Lead Developer"
+        },
+        {
+            "name": "UKM Norge",
+            "email": "support@ukm.no",
+            "role": "Owner"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "UKMNorge\\DesignWordpress\\": "Class/"
+        }
+    },
+    "require": {
+        "twig/twig": "^3.0",
+        "symfony/yaml": ">=2.0"
+    },
+    "require-dev": {
+        "mariusmandal/wpoo": "dev-master"
+    }
+}
