@@ -22,19 +22,19 @@ if( !empty( strip_tags( Wordpress::getPage()->lead ) ) ) {
     );
 }
 
-
+/**
+ * PAGE TEMPLATES (UKMviseng-meta)
+ */
 Wordpress::requireTemplateController();
 
 require_once('render.php');
 
-die('buh');
+// TODO 👇🏼
 
+
+die();
 // SELECT CORRECT TEMPLATE, INCLUDE AND RUN CONTROLLER
-switch( Wordpress::getPage()->getTemplate() ) {
-    ## INNLOGGING FRA DELTA
-    case 'delta_autologin':
-        Wordpress::requirePageController('Delta','login');
-        
+switch( Wordpress::getPage()->getTemplate() ) {        
 	## TILHØRENDE MØNSTRINGEN
 	# Påmeldte til mønstringen
 	case 'pameldte':

@@ -1,9 +1,7 @@
 {# Selve innslagets info-side. Embeddes i /pameldte/ når noen trykker på et innslag, vises i standalone-mode når noen åpner /pameldte/id/ #}
-{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
 
 {% set col_right = 'col-12 ' ~ (innslag.getFilmer().getAntall() > 0 or innslag.getBilder().getAntall() > 0 ? 'float-right' : 'col-md-6 col-xl-4') ~' mt-3' %}
-
-
 {#% set col_left = innslag.getFilmer().getAntall() > 0 or innslag.getBilder().getAntall() > 0 ? 'col-md-7 col-xl-8 float-left'%#}
 
 {% block content %}
@@ -53,7 +51,7 @@
 					
 					{# FACEBOOK #}
 					<div class="center mt-3 mb-1">
-						<div class="center fb-like" data-href="{{ page.getPage().url }}{{ innslag.getId() }}/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+						<div class="center fb-like" data-href="{{ page.getUrl() }}{{ innslag.getId() }}/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
 					</div>
 				</div>{# /COL12 #}
 			</div> {# /ROW #}
@@ -264,10 +262,7 @@
 									{% endfor %}
 								</center>
 							</div>
-						{% endif %}
-
-
-						
+						{% endif %}						
 					</div>
 
 

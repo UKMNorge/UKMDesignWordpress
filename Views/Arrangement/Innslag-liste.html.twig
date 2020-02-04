@@ -8,7 +8,7 @@
 		{% endif %}
 		<div>
 			<div class="geografi is-breakable">
-				{% if monstring.getType() == 'land' %}
+				{% if arrangement.getType() == 'land' %}
 					{{ innslag.getFylke() }}
 				{% else %}
 					{{ innslag.getKommune() }}

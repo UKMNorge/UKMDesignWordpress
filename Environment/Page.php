@@ -148,21 +148,6 @@ class Page extends WPOO_Post
     }
 
     /**
-     * Henter den siste "pretty-parameteren" i en request. Burde muligens gjøres av en rewrite-rule?
-     * Bruker for innslagsID i påmeldte, for å pretty-printe.
-     * Eksempel: input: http://ukm.dev/akershus/pameldte/23/. Output: 23.
-     */
-    public function getLastParameter()
-    {
-        $parts = explode("/", explode('?', $_SERVER['REQUEST_URI'])[0]);
-        $last = sizeof($parts) - 1;
-        if ("" == $parts[$last] || null == $parts[$last]) {
-            return $parts[$last - 1];
-        }
-        return $parts[$last];
-    }
-
-    /**
      * _setup_blocks
      * 
      * Hvis gitt side har undersider som benytter sidemaler (Blocks)

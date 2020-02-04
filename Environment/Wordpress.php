@@ -26,6 +26,7 @@ class Wordpress extends TemplateEngine
         parent::init(get_template_directory() . '/');
         static::_initUKMDesign();
         static::_initTwig();
+        static::_initUrls();
     }
 
     /**
@@ -74,7 +75,7 @@ class Wordpress extends TemplateEngine
     private static function _initUrls()
     {
         // Set URLs
-        #UKMDesign::setCurrentUrl(get_bloginfo('url'));
+        UKMDesign::setSiteUrl(get_bloginfo('url'));
         UKMDesign::setAjaxUrl(admin_url('admin-ajax.php'));
     }
 
@@ -106,10 +107,12 @@ class Wordpress extends TemplateEngine
     private static function _initViewData()
     {
         static::addViewData(
-            'is_super_admin',
-            function_exists('is_super_admin') ? is_super_admin() : false
+            [
+                'is_super_admin' => function_exists('is_super_admin') ? is_super_admin() : false,
+                'UKMDesign' => new UKMDesign(),
+                'singleMode' => ((isset($_POST['singleMode']) && "true" == $_POST['singleMode']) || (isset($_GET['singleMode']) && "true" == $_GET['singleMode']))
+            ]
         );
-        static::addViewData('UKMDesign', new UKMDesign());
     }
 
     /**
@@ -225,5 +228,35 @@ class Wordpress extends TemplateEngine
             static::setPage();
         }
         return static::$page;
+    }
+
+    /**
+     * Hent siste "pretty-parameteren" i en request. 
+     * 
+     * Burde muligens gjøres av en rewrite-rule?
+     * Bruker for innslagsID i påmeldte, for å pretty-printe.
+     * Eksempel: input: http://ukm.dev/akershus/pameldte/23/. Output: 23.
+     * 
+     * @return String
+     */
+    public static function getLastParameter()
+    {
+        $parts = explode("/", explode('?', $_SERVER['REQUEST_URI'])[0]);
+        $last = sizeof($parts) - 1;
+        if ("" == $parts[$last] || null == $parts[$last]) {
+            return $parts[$last - 1];
+        }
+        return $parts[$last];
+    }
+
+    /**
+     * Legg til siste ting som skal på plass før vi kjører render
+     *
+     * @param String $template
+     * @return String html rendered template
+     */
+    public static function render(String $template) {
+        static::addViewData('page', static::getPage());
+        return parent::render($template);
     }
 }
