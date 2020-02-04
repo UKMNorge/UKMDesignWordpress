@@ -2,10 +2,13 @@
 
 namespace UKMNorge\DesignWordpress\Environment;
 
+use Symfony\Component\Yaml\Yaml;
 use UKMNorge\Design\Image;
 use UKMNorge\Design\UKMDesign;
 use UKMNorge\Design\TemplateEngine\Functions as UKMDesignTwigFunctions;
 use UKMNorge\Design\TemplateEngine\Filters as UKMDesignTwigFilters;
+use UKMNorge\DesignWordpress\Environment\Templates\Template;
+use UKMNorge\DesignWordpress\Environment\Templates\Templates;
 use UKMNorge\DesignWordpress\Environment\TwigFilters as WordpressTwigFilters;
 use UKMNorge\TemplateEngine\Proxy\Twig;
 use UKMNorge\TemplateEngine\TemplateEngine;
@@ -16,6 +19,7 @@ class Wordpress extends TemplateEngine
 {
 
     static $page;
+    static $templates;
 
     public static function init($dir = null)
     {
@@ -134,16 +138,77 @@ class Wordpress extends TemplateEngine
             ->setCanonical($page->getUrl());
     }
 
-    public static function updateSeoTitle($title)
+    /**
+     * Last inn alle templates (fra yaml-file)
+     *
+     * @return Templates
+     */
+    public static function getTemplates()
+    {
+        if (is_null(static::$templates)) {
+            static::$templates = Templates::loadFromYamlData(
+                Yaml::parse(
+                    file_get_contents(static::getPath() . 'Environment/templates.yml')
+                )['templates']
+            );
+        }
+        return static::$templates;
+    }
+
+    /**
+     * Hent en templatefil
+     *
+     * @param String $id
+     * @return Template
+     */
+    public static function getTemplate(String $id)
+    {
+        return static::getTemplates()->get($id);
+    }
+
+
+    /**
+     * Last inn og kjør controller for template
+     *
+     * @return void
+     */
+    public static function requireTemplateController()
+    {
+        $template_id = static::getPage()->getTemplateId();
+        if ($template_id) {
+            $template = static::getTemplate($template_id);
+            static::requireController($template->getFolder(), $template->getFilename());
+        }
+    }
+
+    /**
+     * Listener-handler: oppdaterer SEO hvis sidens navn endrer seg
+     *
+     * @param String $title
+     * @return void
+     */
+    public static function updateSeoTitle(String $title)
     {
         UKMDesign::getHeader()::getSEO()->setTitle($title);
     }
 
+    /**
+     * Listener-handler: oppdaterer SEO hvis sidens url endrer seg
+     *
+     * @param String $url
+     * @return void
+     */
     public static function updateSeoUrl($url)
     {
         UKMDesign::getHeader()::getSEO()->setUrl($url);
     }
 
+    /**
+     * Listener-handler: oppdaterer SEO hvis sidens beskrivelse endrer seg
+     *
+     * @param String $description
+     * @return void
+     */
     public static function updateSeoDescription($description)
     {
         UKMDesign::getHeader()::getSEO()->setDescription($description);

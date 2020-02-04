@@ -1,56 +1,40 @@
 <?php
 
-use UKMNorge\DesignBundle\Utils\Sitemap;
-use UKMNorge\DesignBundle\Utils\SEO;
-use Symfony\Component\BrowserKit\Request;
-use UKMNorge\Geografi\Fylker;
+use UKMNorge\Design\UKMDesign;
+use UKMNorge\DesignWordpress\Environment\Wordpress;
 
 require_once('header.php');
-require_once('UKM/Autoloader.php');
 
-require_once('UKMNorge/Wordpress/Utils/page.class.php');
-$WP_TWIG_DATA['page'] = new page();
+/**
+ * SEO INFOS
+ */
+# Author
+UKMDesign::getHeader()::getSEO()->setAuthor( Wordpress::getPage()->author->display_name );
 
-// SET OPENGRAPH AND SEARCH OPTIMIZATION INFOS
-SEO::setTitle( $WP_TWIG_DATA['page']->getPage()->title );
-SEO::setDescription(
-    'Noen deltar på UKM for å vise frem noe de brenner for, '.
-    'noen prøver noe helt nytt og andre er med sånn at alle får vist sin beste side.'
-);
-if( !empty( strip_tags( $WP_TWIG_DATA['page']->getPage()->lead )) ) {
-    #SEO::setDescription( addslashes( preg_replace( "/\r|\n/", "", strip_tags( $WP_TWIG_DATA['page']->getPage()->lead ) ) ) );
-    SEO::setDescription( strip_tags( $WP_TWIG_DATA['page']->getPage()->lead ) );
-}
-
-SEO::setAuthor( $WP_TWIG_DATA['page']->getPage()->author->display_name );
-
-// CHECK TO FIND CUSTOM PAGE CONTROLLER AND VIEW ISSET
-if( isset( $WP_TWIG_DATA['page']->getPage()->meta->UKMviseng ) ) {
-	$page_template = $WP_TWIG_DATA['page']->getPage()->meta->UKMviseng;
-	if( is_array( $page_template ) && isset( $page_template[0] ) ) {
-		$page_template = $page_template[0];
-	}
+# Lead or default-description
+if( !empty( strip_tags( Wordpress::getPage()->lead ) ) ) {
+    Wordpress::getPage()->setDescription(
+        strip_tags(Wordpress::getPage()->lead)
+    );
 } else {
-	$page_template = false;
+    Wordpress::getPage()->setDescription(
+        UKMDesign::getConfig('hvaerukm.slogan_alt')
+    );
 }
+
+
+Wordpress::requireTemplateController();
+
+require_once('render.php');
+
+die('buh');
 
 // SELECT CORRECT TEMPLATE, INCLUDE AND RUN CONTROLLER
-switch( $page_template ) {
+switch( Wordpress::getPage()->getTemplate() ) {
     ## INNLOGGING FRA DELTA
     case 'delta_autologin':
-        // TODO: Find $wp_id og token from request.
-        $wp_id = $_GET['wp_id'];
-        $token_id = $_GET['token_id'];
-        $secret = $_GET['token'];
-        if( UKMusers::loginFromDelta($wp_id, $token_id, $secret) ) {
-            # Alt ok, ferdig innlogget. Die her.
-            die();
-        }
-        # Innlogging feilet. Send brukeren tilbake til Delta-innlogging med flashbag eller notis
-        die("Innlogging feilet.");
-        header( "Location: http://delta.".UKM_HOSTNAME."/ukmid/");
-        die("Gå til http://delta.".UKM_HOSTNAME."/ukmid/ for å logge inn.");
-        break;
+        Wordpress::requirePageController('Delta','login');
+        
 	## TILHØRENDE MØNSTRINGEN
 	# Påmeldte til mønstringen
 	case 'pameldte':
@@ -65,12 +49,10 @@ switch( $page_template ) {
 		break;
 	# Kontaktpersoner på mønstringen
 	case 'kontaktpersoner':
-		$view_template = 'Monstring/kontaktpersoner';
 		require_once('UKMNorge/Wordpress/Controller/monstring/kontaktpersoner.controller.php');
 		break;
 	case 'bilder':
 		require_once('UKMNorge/Wordpress/Controller/monstring/bilder.controller.php');
-		$view_template = 'Monstring/bilder';
 		break;
 
 		
@@ -216,15 +198,4 @@ if( $page_template == 'meny' || isset( $WP_TWIG_DATA['page']->getPage()->meta->U
 if( isset( $_GET['exportContent'] ) ) {
 	echo WP_TWIG::render('Export/content', ['export' => $WP_TWIG_DATA['page']->page ] );
 	die();
-}
-
-echo WP_TWIG::render( $view_template, $WP_TWIG_DATA );
-
-wp_footer();
-if(is_user_logged_in() ) {
-	echo '<style>body {margin-top: 33px;} @media (max-width:782px) {body {margin-top: 48px;}}</style>';
-}
-
-if( WP_ENV == 'dev' ) {
-	echo '<script language="javascript">console.debug("'.basename(__FILE__).'");</script>';
 }

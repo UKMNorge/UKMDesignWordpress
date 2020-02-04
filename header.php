@@ -38,3 +38,5 @@ if( !$section ) {
     );
 }
 UKMDesign::setCurrentSection($section);
+
+Wordpress::setPage(null);

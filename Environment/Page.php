@@ -10,16 +10,51 @@ use WPOO_Post;
 class Page extends WPOO_Post
 {
     private $listener;
-
+    private $template;
+    
+    /**
+     * Last inn en side som vi vil ha 
+     * (og som wordpress ikke nødvendigvis mener vi skal se)
+     *
+     * @param mixed $post
+     * @return Page
+     */
     public static function loadByPost($post)
     {
         return new Page($post);
     }
 
+    /**
+     * Last inn side basert på hvilken side wordpress mener vi er på
+     *
+     * @return Page
+     */
     public static function loadByEnvironment()
     {
         global $post, $post_id;
         return new Page($post);
+    }
+
+    /**
+     * Hent hvilket template denne siden skal ha
+     *
+     * @return String|false
+     */
+    public function getTemplateId()
+    {
+        if (is_null($this->template)) {
+            if (isset($this->meta->UKMviseng)) {
+                $this->template = $this->meta->UKMviseng;
+
+                // Hvis viseng er satt flere ganger, bruk bare en av de
+                if (is_array($this->template) && isset($this->template[0])) {
+                    $this->template = $this->template[0];
+                }
+            } else {
+                $this->template = false;
+            }
+        }
+        return $this->template;
     }
 
     /**
@@ -53,7 +88,8 @@ class Page extends WPOO_Post
      * @param String beskrivelse
      * @return self
      */
-    public function setDescription(String $description) {
+    public function setDescription(String $description)
+    {
         $this->description = $description;
         $this->getEventManager()->trigger('setDescription', $description);
         return $this;
@@ -81,6 +117,17 @@ class Page extends WPOO_Post
         $this->getEventManager()->trigger('setUrl', $url);
         return $this;
     }
+
+
+
+
+
+
+
+
+
+
+
 
     public function getPageBlocks()
     {

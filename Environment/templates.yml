@@ -1,0 +1,118 @@
+#
+# OBS: Syntax-feil i denne fila vil kræsje HELE ukm.no
+# Test før du pusher til prod.
+#
+# Usikker på egen syntax? Her kan du sjekke filen:
+# http://www.yamllint.com/
+#
+templates:
+  system:
+    name: Systemfunksjoner
+    controllers:
+      autologin:
+        name: Auto-innlogging fra UKM Delta
+        file: Delta/autologin
+        description: >
+          Skal alltid være plassert på ukm.no/autologin/ og er den som logger inn
+          deltakere når de ønsker å logge inn til arrangørsystemet fra UKM Delta.
+  norge:
+    name: Den nasjonale siden for ungdom (UKM.no)
+    controllers:
+      dinmonstring:
+        name: Velg fylke
+        file: Norge/velg_fylke
+        description: Viser en liste med lenke til alle fylker
+      hovedmeny:
+        name: Hovedmeny
+        file: Norge/hovedmeny
+        description: >
+          Viser hovedmenyen som en egen side. 
+          Fallback for manglende JS-support, eller hvis brukeren trykker "meny"
+          før document.ready
+      kontakt:
+          name: Kontaktinformasjon til UKM-nettverket
+          file: Norge/kontakt
+          description: >
+            Lar brukeren velge om de vil snakke med lokalkontakt, fylkeskontakt,
+            UKM Norge eller styret.
+  arrangement:
+    name: Tilknyttet et arrangement
+    controllers:
+      pameldte:
+        name: Påmeldte
+        file: Arrangement/pameldte
+        description: Viser en (søkbar) liste over alle innslag påmeldt arrangementet.
+      program:
+        name: Program
+        file: Arrangement/program
+        description: >
+          Viser en liste over alle synlige hendelser på arrangementet.
+          Hendelser med synlig offentlig program er klikkbare, og viser mer informasjon
+          innenfor samme siden.
+      deltakerprogram:
+        name: Deltakerprogram
+        file: Arrangement/deltakerprogram
+        description: >
+          Samme som program, men inkluderer også alle hendelser som er merket som interne.
+      kontaktpersoner:
+        name: Kontaktpersoner
+        file: Arrangement/kontaktpersoner
+        description: Viser alle kontaktpersoner for arrangementet på en side.
+      bilder:
+        name: Bilder
+        file: Arrangement/bilder
+        description: Lister ut alle bilder fra arrangementet, gruppert per forestilling.
+  dummyen:
+    name: Tilknyttet et arrangement
+    controllers:
+      1pameldte:
+        name: Påmeldte
+        file: Arrangement/pameldte
+        description: Viser en (søkbar) liste over alle innslag påmeldt arrangementet.
+      1program:
+        name: Program
+        file: Arrangement/program
+        description: >
+          Viser en liste over alle synlige hendelser på arrangementet.
+          Hendelser med synlig offentlig program er klikkbare, og viser mer informasjon
+          innenfor samme siden.
+      1deltakerprogram:
+        name: Deltakerprogram
+        file: Arrangement/deltakerprogram
+        description: >
+          Samme som program, men inkluderer også alle hendelser som er merket som interne.
+      1kontaktpersoner:
+        name: Kontaktpersoner
+        file: Arrangement/kontaktpersoner
+        description: Viser alle kontaktpersoner for arrangementet på en side.
+      1bilder:
+        name: Bilder
+        file: Arrangement/bilder
+        description: Lister ut alle bilder fra arrangementet, gruppert per forestilling.
+  dummyto:
+    name: Tilknyttet et arrangement
+    controllers:
+      2pameldte:
+        name: Påmeldte
+        file: Arrangement/pameldte
+        description: Viser en (søkbar) liste over alle innslag påmeldt arrangementet.
+      2program:
+        name: Program
+        file: Arrangement/program
+        description: >
+          Viser en liste over alle synlige hendelser på arrangementet.
+          Hendelser med synlig offentlig program er klikkbare, og viser mer informasjon
+          innenfor samme siden.
+      2deltakerprogram:
+        name: Deltakerprogram
+        file: Arrangement/deltakerprogram
+        description: >
+          Samme som program, men inkluderer også alle hendelser som er merket som interne.
+      2kontaktpersoner:
+        name: Kontaktpersoner
+        file: Arrangement/kontaktpersoner
+        description: Viser alle kontaktpersoner for arrangementet på en side.
+      2bilder:
+        name: Bilder
+        file: Arrangement/bilder
+        description: Lister ut alle bilder fra arrangementet, gruppert per forestilling.
