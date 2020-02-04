@@ -2,10 +2,21 @@
 
 use UKMNorge\Design\Sitemap\Section;
 use UKMNorge\Design\UKMDesign;
+use UKMNorge\DesignWordpress\Environment\Wordpress;
 
 header('Content-Type: text/html; charset=utf-8');
 session_start();
 setlocale(LC_ALL, 'nb_NO', 'nb', 'no');
+
+/**
+ * TemplateEngine (i dette tilfellet Wordpress) bygger et array med viewData
+ * herunder også viewData['UKMDesign', new UKMDesign() ]
+ * 
+ * Alt som kan benyttes av andre Design (delta, pressemelding, UKM-TV osv),
+ * herunder Header, Banner, SEO osv legges til UKMDesign,
+ * mens alt som benyttes kun av wordpress legges til TemplateEngine
+ */
+Wordpress::init();
 
 // CHECK CACHE (OG DØ HVIS DEN ER FUNNET)
 require_once('cache.php');

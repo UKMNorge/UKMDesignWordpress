@@ -3,7 +3,6 @@
 use UKMNorge\Design\UKMDesign;
 use UKMNorge\TemplateEngine\TemplateEngine;
 
-require_once('environment.php');
 require_once('header.php');
 
 TemplateEngine::setView('UKMDesign/Page/menu');

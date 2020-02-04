@@ -8,11 +8,11 @@ use UKMNorge\TemplateEngine\Interfaces\TemplateRendererInterface;
 class TemplateEngine
 {
     
-    private static $flashbag = null;
-    private static $template_engine = null;
-    private static $view_data = [];
-    private static $view;
-    private static $path;
+    static $flashbag = null;
+    static $template_engine = null;
+    static $view_data = [];
+    static $view;
+    static $path;
 
     /**
      * Initier TemplateEngine
