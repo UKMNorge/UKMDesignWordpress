@@ -3,37 +3,13 @@
 namespace UKMNorge\DesignWordpress\Environment;
 
 use UKMNorge\Design\Listener;
-use WPOO_Post;
 
 #require_once(PATH_THEME . 'UKMNorge/Wordpress/Utils/blocks.class.php');
 
-class Page extends WPOO_Post
+class Page extends Post
 {
     private $listener;
     private $template;
-    
-    /**
-     * Last inn en side som vi vil ha 
-     * (og som wordpress ikke nødvendigvis mener vi skal se)
-     *
-     * @param mixed $post
-     * @return Page
-     */
-    public static function loadByPost($post)
-    {
-        return new Page($post);
-    }
-
-    /**
-     * Last inn side basert på hvilken side wordpress mener vi er på
-     *
-     * @return Page
-     */
-    public static function loadByEnvironment()
-    {
-        global $post, $post_id;
-        return new Page($post);
-    }
 
     /**
      * Hent hvilket template denne siden skal ha
@@ -43,8 +19,8 @@ class Page extends WPOO_Post
     public function getTemplateId()
     {
         if (is_null($this->template)) {
-            if (isset($this->meta->UKMviseng)) {
-                $this->template = $this->meta->UKMviseng;
+            if( $this->hasMeta('UKMviseng') ) {
+                $this->template = $this->getMeta('UKMviseng');
 
                 // Hvis viseng er satt flere ganger, bruk bare en av de
                 if (is_array($this->template) && isset($this->template[0])) {
@@ -55,16 +31,6 @@ class Page extends WPOO_Post
             }
         }
         return $this->template;
-    }
-
-    /**
-     * Hent sidens tittel
-     *
-     * @return String
-     */
-    public function getTitle()
-    {
-        return $this->title;
     }
 
     /**
@@ -96,16 +62,6 @@ class Page extends WPOO_Post
     }
 
     /**
-     * Hent sidens URL
-     *
-     * @return String
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
-
-    /**
      * Sett en ny URL for siden
      *
      * @param String $url
@@ -132,19 +88,6 @@ class Page extends WPOO_Post
     public function getPageBlocks()
     {
         return $this->blocks;
-    }
-
-    /**
-     * Get the listener
-     *
-     * @return void
-     */
-    public function getEventManager()
-    {
-        if (is_null($this->listener)) {
-            $this->listener = new Listener();
-        }
-        return $this->listener;
     }
 
     /**

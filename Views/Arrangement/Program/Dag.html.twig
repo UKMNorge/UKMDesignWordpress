@@ -1,0 +1,25 @@
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-10 col-lg-8">
+				<h1>{{ page.getTitle()|raw }}</h1>
+                {{ page.content|raw }}
+
+			</div>
+		</div>
+		
+		<div class="row vertical-align-center program">
+			<div class="col-12 dag">
+				{% embed "Arrangement/Program/Hendelser.html.twig"|UKMpath with {'hendelser': program} %}{% endembed %}
+			</div>
+			
+			<div class="col-12">
+				<p class="my-4">
+					<a href="{{ UKMDesign.getSiteUrl() }}">Tilbake til {{ arrangement.getNavn() }}</a>
+				</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -35,11 +35,6 @@ require_once('render.php');
 die();
 // SELECT CORRECT TEMPLATE, INCLUDE AND RUN CONTROLLER
 switch( Wordpress::getPage()->getTemplate() ) {        
-	## TILHØRENDE MØNSTRINGEN
-	# Påmeldte til mønstringen
-	case 'pameldte':
-		require_once("UKMNorge/Wordpress/Controller/monstring/pameldte.controller.php");
-		break;
 	# Mønstringens deltakerprogram
 	case 'deltakerprogram':
 		define('DELTAKERPROGRAM', true);

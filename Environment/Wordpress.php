@@ -110,7 +110,8 @@ class Wordpress extends TemplateEngine
             [
                 'is_super_admin' => function_exists('is_super_admin') ? is_super_admin() : false,
                 'UKMDesign' => new UKMDesign(),
-                'singleMode' => ((isset($_POST['singleMode']) && "true" == $_POST['singleMode']) || (isset($_GET['singleMode']) && "true" == $_GET['singleMode']))
+                'singleMode' => ((isset($_POST['singleMode']) && 'true' == $_POST['singleMode']) || (isset($_GET['singleMode']) && 'true' == $_GET['singleMode'])),
+                'hideTopImage' =>((isset($_POST['hideTopImage']) && 'true' == $_POST['hideTopImage']) || (isset($_GET['hideTopImage']) && 'true' == $_GET['hideTopImage']))
             ]
         );
     }

@@ -1,11 +1,7 @@
-{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
 
 {% block content %}
-	{% if featured_video is defined %}
-		{{ featured_video|raw }}
-	{% elseif post.image.large.src is defined and post.image.large.src is not empty and hideTopImage is not defined %}
-		<div id="the_post_image" style="background-image: url('{{ post.image.large.src }}');"></div>
-	{% endif %}
+	{% include "Post/TopImage.html.twig" %}
 
 	<div class="container">
 		<div class="row">
@@ -13,11 +9,11 @@
 				<article>
 					<div class="row postmeta">
 						<div class="col">
-							{% if post.meta.type == 'workshop' and post.meta.sted is defined %}
+							{% if post.getMeta('type') == 'workshop' and post.hasMeta('sted') is defined %}
 								<b>STED: </b>
-								{{ post.meta.sted }}
+								{{ post.getMeta('sted') }}
 							{% else %}
-								{{ post.date|dato }}
+								{{ post.date|dato('d.m.Y') }}{#~ ' kl. '~ post.date|dato('H:i') }}#}
 							{% endif %}
 						</div>
 						<div class="col right">
@@ -26,11 +22,11 @@
 							{% endfor %}
 						</div>
 					</div>
-					<h1>{{ post.title|raw }}</h1>
+					<h1>{{ post.getTitle()|raw }}</h1>
 					<p class="lead">{{ post.lead|raw }}</p>
 					
 					<div class="d-block d-md-none center" style="margin-bottom: 1em;">
-						<div class="center fb-like" data-href="{{ post.url }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+						{% include "Facebook/Count.html.twig" with {'url': post.url} %}
 					</div>
 	
 					<p>{{ post.content_wo_lead|raw }}</p>
@@ -50,7 +46,7 @@
 								<div class="clearfix"></div>
 							{% endfor %}
 							<div class="float-right right my-1" style="margin-left: 1em; margin-bottom: 1em;">
-								<div class="fb-like" data-href="{{ post.url }}" data-layout="box_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+								{% include "Facebook/Count.html.twig" with {'url': post.url} %}
 							</div>
 	
 						</div>

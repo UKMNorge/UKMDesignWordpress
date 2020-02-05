@@ -1,11 +1,6 @@
 <div class="post">
 	<div class="hidePost">
-		{% if featured_video is defined %}
-			{{ featured_video|raw }}
-			{% elseif post.image.large.src is defined and post.image.large.src is not empty and hideTopImage is not defined %}
-			<div id="the_post_image" style="background-image: url('{{ post.image.large.src }}'); max-width:100%"></div>
-		{% endif %}
-		
+		{% include "Post/TopImage.html.twig" %}
 		<div class="col-12">
 			<h1>{{ post.title|raw }}</h1>
 			<p class="lead">{{ post.lead|raw }}</p>
@@ -15,23 +10,17 @@
 	<div class="col-12">
 		<article>
 			<div class="d-block d-md-none center" style="margin-bottom: 1em;">
-				<div class="center fb-like" data-href="{{ post.url }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+				{% include "Facebook/Count.html.twig" with {'url': post.url} %}
 			</div>
-		
 			<p>{{ post.content_wo_lead|raw }}</p>
 		</article>
-		
 		<div class="madeby">
 			<div class="row">
 				<div class="col">
-					{% for author in authors %}
-						{% embed "Post:madeby.html.twig"|UKMpath %}{% endembed %}
-						<div class="clearfix"></div>
-					{% endfor %}
+					{% include "Post/Authors.html.twig" %}
 					<div class="float-right right my-1" style="margin-left: 1em; margin-bottom: 1em;">
-						<div class="fb-like" data-href="{{ post.url }}" data-layout="box_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+						{% include "Facebook/Count.html.twig" with {'url': post.url} %}
 					</div>
-		
 				</div>
 			</div>
 		</div>

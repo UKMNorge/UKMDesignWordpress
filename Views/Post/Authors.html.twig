@@ -1,0 +1,4 @@
+{% for author in post.getAuthors() %}
+	{% embed "Post/Author.html.twig"|UKMpath %}{% endembed %}
+	<div class="clearfix"></div>
+{% endfor %}

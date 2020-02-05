@@ -8,10 +8,6 @@ require_once('UKM/Autoloader.php');
 require_once('lib/autoload.php');
 require_once('vendor/autoload.php');
 
-add_theme_support( 'post-thumbnails' );
-add_theme_support( 'menus' );
-
-remove_shortcode('gallery');
 add_shortcode('gallery', 'UKMresponsive_gallery');
 
 add_action( "template_include", "UKMresponsive_pageExists", 10000 );

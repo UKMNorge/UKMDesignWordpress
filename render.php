@@ -1,9 +1,9 @@
 <?php
 
 use UKMNorge\Design\UKMDesign;
-use UKMNorge\TemplateEngine\TemplateEngine;
+use UKMNorge\DesignWordpress\Environment\Wordpress;
 
-echo TemplateEngine::renderCurrent();
+echo Wordpress::renderCurrent();
 
 wp_footer();
 
