@@ -122,12 +122,17 @@ class Post extends WPOO_Post
      * Hent sidens meta-verdi for denne nøkkelen
      *
      * @param String $key
+     * @param bool Treat array values as single string value
      * @return mixed|false (false hvis den ikke er satt)
      */
-    public function getMeta(String $key)
+    public function getMeta(String $key, $treatArrayAsOne=false)
     {
         if (!$this->hasMeta($key)) {
             return false;
+        }
+
+        if( $treatArrayAsOne && is_array( $this->meta->$key) && isset( $this->meta->$key[0])) {
+            return $this->meta->$key[0];
         }
 
         return $this->meta->$key;
@@ -141,7 +146,31 @@ class Post extends WPOO_Post
      */
     public function hasMeta(String $key)
     {
-        return isset($this->meta->$key) && !empty($this->meta->$key);
+        if( !isset($this->meta->$key) || empty($this->meta->$key) ) {
+            return false;
+        }
+        if( is_array( $this->meta->$key ) ) {
+            $empty = true;
+            foreach( $this->meta->$key as $value ) {
+                if( !empty($value)) {
+                    $empty = false;
+                    break;
+                }
+            }
+        }
+        return !$empty;
+    }
+
+    /**
+     * Sett en meta-verdi på objektet (lagres ikke)
+     *
+     * @param String $key
+     * @param mixed $value
+     * @return self
+     */
+    public function setMeta( String $key, $value ) {
+        $this->meta->$key = $value;
+        return $this;
     }
 
     /**
@@ -217,12 +246,13 @@ class Post extends WPOO_Post
      *
      * @return String
      */
-    public function getAuthorList() {
+    public function getAuthorList()
+    {
         $list = '';
-        foreach( $this->getAuthors() as $author ) {
+        foreach ($this->getAuthors() as $author) {
             $list .= ucfirst($author->display_name) . ', ';
         }
-        return rtrim($list, ', '); 
+        return rtrim($list, ', ');
     }
 
     /**
@@ -233,8 +263,9 @@ class Post extends WPOO_Post
      *
      * @return void
      */
-    private function _loadAuthors() {
-        if( !is_null($this->authors)) {
+    private function _loadAuthors()
+    {
+        if (!is_null($this->authors)) {
             return true;
         }
 
@@ -251,11 +282,21 @@ class Post extends WPOO_Post
                         $this->authors[$user_login]->role = $role;
                     }
                 }
-            } 
+            }
         }
-        if( is_null($this->authors)) {
+        if (is_null($this->authors)) {
             $this->authors = [$this->author];
         }
+    }
+
+    /**
+     * Get page/post ID
+     *
+     * @return Int
+     */
+    public function getId()
+    {
+        return intval($this->ID);
     }
 
     /**

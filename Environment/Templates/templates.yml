@@ -1,0 +1,133 @@
+#
+# OBS: Syntax-feil i denne fila vil kræsje HELE ukm.no
+# Test før du pusher til prod.
+#
+# Usikker på egen syntax? Her kan du sjekke filen:
+# http://www.yamllint.com/
+#
+templates:
+  system:
+    name: Systemfunksjoner
+    controllers:
+      autologin:
+        name: Auto-innlogging fra UKM Delta
+        file: Delta/autologin
+        description: >
+          Skal alltid være plassert på ukm.no/autologin/ og er den som logger inn
+          deltakere når de ønsker å logge inn til arrangørsystemet fra UKM Delta.
+      samtykke:
+        name: Samtykke, prosjekt
+        file: Personvern/prosjekt
+        description: >
+          Når vi sender ut forespørsel om samtykke til et prosjekt, gir denne
+          et samtykkeskjema de må fylle ut. Ligger alltid under personvern.ukm.no/[...]/
+      pamelding:
+        name: Samtykke, påmelding
+        file: Personvern/pamelding
+        description: >
+          Når deltakere tar stilling til dokumentasjon på UKM, avgir de svaret sitt her.
+          Ligger alltid under personvern.ukm.no/[...]/
+  norge:
+    name: Den nasjonale siden for ungdom (UKM.no)
+    controllers:
+      dinmonstring:
+        name: Velg fylke
+        file: Norge/velg_fylke
+        description: Viser en liste med lenke til alle fylker
+      hovedmeny:
+        name: Hovedmeny
+        file: Norge/hovedmeny
+        description: >
+          Viser hovedmenyen som en egen side. 
+          Fallback for manglende JS-support, eller hvis brukeren trykker "meny"
+          før document.ready
+      kontakt:
+          name: Kontaktinformasjon til UKM-nettverket
+          file: Norge/kontaktpersoner
+          description: >
+            Lister ut undersider som kontaktpersoner. Undersidene har da en hel bønsj
+            med site-meta som utgjør kontaktperson-objektet.
+  organisasjonen:
+    name: Om organisasjonen
+    controllers:
+      logoer:
+        name: Logoer
+        file: Organisasjonen/logoer
+        description: Lister ut de ulike logo-versjonene og lenke til nedlasting.
+      fylkeskontakter:
+        name: Liste med fylkeskontakter
+        file: Organisasjonen/fylkeskontakter
+        description: Lister ut den første fylkeskontakten for alle fylker
+  arrangement:
+    name: Tilknyttet et arrangement
+    controllers:
+      pameldte:
+        name: Påmeldte
+        file: Arrangement/pameldte
+        description: Viser en (søkbar) liste over alle innslag påmeldt arrangementet.
+      program:
+        name: Program
+        file: Arrangement/program
+        description: >
+          Viser en liste over alle synlige hendelser på arrangementet.
+          Hendelser med synlig offentlig program er klikkbare, og viser mer informasjon
+          innenfor samme siden.
+      deltakerprogram:
+        name: Deltakerprogram
+        file: Arrangement/deltakerprogram
+        description: >
+          Samme som program, men inkluderer også alle hendelser som er merket som interne.
+      kontaktpersoner:
+        name: Kontaktpersoner
+        file: Arrangement/kontaktpersoner
+        description: Viser alle kontaktpersoner for arrangementet på en side.
+      bilder:
+        name: Bilder
+        file: Arrangement/bilder
+        description: Lister ut alle bilder fra arrangementet, gruppert per forestilling.
+  statistikk:
+      name: Statistikk
+      controllers:
+        graf_pameldte:
+          name: "Graf: påmeldte deltakere"
+          file: Statistikk/pameldte
+          description: >
+            Grafene viser hvordan det påmeldingstallet har utviklet seg.
+        graf_arrangement_start:
+          name: "Graf: tidspunkt for arrangement"
+          file: Statistikk/arrangement_start
+          description: >
+            Grafene viser hvordan arrangementsdatoene har forflyttet seg.
+        graf_arrangement_frist:
+          name: "Graf: påmeldingsfrist for arrangement"
+          file: Statistikk/arrangement_frist
+          description: >
+            Grafene viser hvordan arrangementenes påmeldingsfrister har forflyttet seg.
+        sanger:
+          name: Hvilke låter har vært de mest populære
+          file: Statistikk/sanger
+          description: >
+            Utlisting av de mest populære låtene som er påmeldt.
+  oppsett:
+    name: Oppsett
+    controllers:
+      liste:
+        name: Liste av undersider
+        file: Page/liste
+        description: >
+          Lager ei fin liste av alle underlagte sider (som må ha template: listeelement)
+      list:
+        name: Liste-element
+        file: Page/liste_element
+        description: >
+          Må alltid være underlagt en side av typen "Liste av undersider"
+      fullpage_wide:
+        deaktivert: true
+        name: Fullbredde-side
+        file: Page/side_fullbredde
+        description: Kun i listen i tilfelle noen sider er satt opp til å bruke denne
+      menu:
+        name: Sidemeny
+        file: Page/Fullpage_with_menu
+        description: >
+          Lister ut spesifisert meny i tillegg til teksten på siden

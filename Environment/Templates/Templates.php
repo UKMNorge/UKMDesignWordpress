@@ -44,9 +44,17 @@ class Templates
     public function get(String $id)
     {
         if (!isset($this->templates[$id])) {
-            throw new Exception(
-                'Sorry, could not find template ' . $id
-            );
+            # Old IDs used a sort of grouping which now is gone
+            $requested = $id;
+            if( strpos($id, '/') !== false ) {
+                $old_id = explode('/', $id);
+                $id = end( $old_id );
+            }
+            if( !isset($this->templates[$id])) {
+                throw new Exception(
+                    'Sorry, could not find template ' . $requested
+                );
+            }
         }
         return $this->templates[$id];
     }

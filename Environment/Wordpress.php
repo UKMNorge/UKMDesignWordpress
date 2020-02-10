@@ -111,7 +111,7 @@ class Wordpress extends TemplateEngine
                 'is_super_admin' => function_exists('is_super_admin') ? is_super_admin() : false,
                 'UKMDesign' => new UKMDesign(),
                 'singleMode' => ((isset($_POST['singleMode']) && 'true' == $_POST['singleMode']) || (isset($_GET['singleMode']) && 'true' == $_GET['singleMode'])),
-                'hideTopImage' =>((isset($_POST['hideTopImage']) && 'true' == $_POST['hideTopImage']) || (isset($_GET['hideTopImage']) && 'true' == $_GET['hideTopImage']))
+                'hideTopImage' => ((isset($_POST['hideTopImage']) && 'true' == $_POST['hideTopImage']) || (isset($_GET['hideTopImage']) && 'true' == $_GET['hideTopImage']))
             ]
         );
     }
@@ -152,7 +152,7 @@ class Wordpress extends TemplateEngine
         if (is_null(static::$templates)) {
             static::$templates = Templates::loadFromYamlData(
                 Yaml::parse(
-                    file_get_contents(static::getPath() . 'Environment/templates.yml')
+                    file_get_contents(static::getPath() . 'Environment/Templates/templates.yml')
                 )['templates']
             );
         }
@@ -178,11 +178,28 @@ class Wordpress extends TemplateEngine
      */
     public static function requireTemplateController()
     {
-        $template_id = static::getPage()->getTemplateId();
+        $template_id = static::_correctTemplateId(
+            static::getPage()->getTemplateId()
+        );
         if ($template_id) {
             $template = static::getTemplate($template_id);
             static::requireController($template->getFolder(), $template->getFilename());
         }
+    }
+
+    /**
+     * Korriger template-ID i de tilfeller vi har endret struktur
+     *
+     * @param String $template_id
+     * @return String
+     */
+    private function _correctTemplateId(String $template_id ) {
+        // Sider med meny bruker fra 2020 UKM_block
+        if( $template_id == 'meny' ) {
+            $template_id = null;
+            static::getPage()->setMeta('UKM_block', 'sidemedmeny');
+        }
+        return $template_id;
     }
 
     /**
@@ -256,8 +273,27 @@ class Wordpress extends TemplateEngine
      * @param String $template
      * @return String html rendered template
      */
-    public static function render(String $template) {
+    public static function render(String $template)
+    {
         static::addViewData('page', static::getPage());
+        static::_addMenu();
         return parent::render($template);
+    }
+
+    /**
+     * Legg til en sidemeny hvis noe indikerer at siden skal ha en sånn
+     *
+     * @return void
+     */
+    private static function _addMenu()
+    {
+        if (static::getPage()->hasMenu()) {
+            static::addViewData(
+                'meny',
+                wp_get_nav_menu_items(
+                    static::getPage()->getMeta('UKM_nav_menu', true)
+                )
+            );
+        }
     }
 }

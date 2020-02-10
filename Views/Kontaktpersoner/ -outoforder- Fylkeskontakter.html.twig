@@ -5,20 +5,20 @@
 		<div class="row">
 			<div class="col-12 col-md-10 ml-md-auto mr-md-auto col-lg-8">
 				<article>
-					<h1>{{ page.getTitle()|raw }}</h1>
+					<h1>{{ page.title|raw }}</h1>
 					{{ page.content|raw }}
 				</article>
 			</div>
 		</div>
 		<div class="col-12 col-md-10 col-lg-8 ml-auto mr-auto">
 			<div class="row">
-				{% for kontakt in kontakter %}
-					<div class="col-12 col-sm-6 col-md-4 my-3">
-						{% embed "Kontaktpersoner/Grid.html.twig"|UKMpath %}{% endembed %}
-					</div>
-                {% else %}
-                    <div class="col-12 col-sm-12">Beklager, fant ingen kontaktpersoner</div>
-				{% endfor %}
+				<div class="row">
+					{% for kontakt in kontaktkart.kontaktObjekter %}
+						<div class="col-12 col-sm-6 col-md-4 ml-auto mr-auto my-3">
+							{% embed "Kontaktpersoner/Grid.html.twig"|UKMpath %}{% endembed %}
+						</div>
+					{% endfor %}
+				</div>
 			</div>
 		</div>
 	</div>

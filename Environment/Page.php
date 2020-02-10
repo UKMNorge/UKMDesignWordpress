@@ -4,12 +4,11 @@ namespace UKMNorge\DesignWordpress\Environment;
 
 use UKMNorge\Design\Listener;
 
-#require_once(PATH_THEME . 'UKMNorge/Wordpress/Utils/blocks.class.php');
-
 class Page extends Post
 {
     private $listener;
     private $template;
+    private $blocks;
 
     /**
      * Hent hvilket template denne siden skal ha
@@ -74,33 +73,36 @@ class Page extends Post
         return $this;
     }
 
+    /**
+     * Har siden pageBlocks (undersider som skal vises på denne siden?)
+     *
+     * @return bool
+     */
+    public function hasPageBlocks() {
+        return !is_null($this->getPageBlocks());
+    }
 
-
-
-
-
-
-
-
-
-
-
+    /**
+     * Hent pageBlocks
+     * 
+     * pageBlocks er undersider, som skal vises som en innholdsblokk på denne siden
+     *
+     * @return Blocks
+     */
     public function getPageBlocks()
     {
+        if(is_null($this->blocks)) {
+            $this->blocks = new Blocks($this->getId());
+        }
         return $this->blocks;
     }
 
     /**
-     * _setup_blocks
-     * 
-     * Hvis gitt side har undersider som benytter sidemaler (Blocks)
-     * skal disse listes ut i sidevisningen
+     * Skal siden ha en meny?
      *
-     * @return void
-     *
-     **/
-    private function _setup_blocks()
-    {
-        $this->blocks = new blocks($this->getPage()->ID);
+     * @return boolean
+     */
+    public function hasMenu() {
+        return $this->getTemplateId() == 'meny' || ($this->hasMeta('UKM_block') && $this->getMeta('UKM_block', true) == 'sidemedmeny');
     }
 }

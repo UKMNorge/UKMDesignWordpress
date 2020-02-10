@@ -1,51 +1,32 @@
-{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+{% extends "UKMDesign/Page/Page.html.twig"|UKMpath %}
 
-{% block content %}
-	{% embed "UKMDesignBundle:Page:topImage.html.twig"|UKMpath %}{% endembed %}	
-	
-	<div class="container">
-		<div class="row">
-			<div class="col-md-10 ml-md-auto mr-md-auto col-lg-8">
-				<article>
-					{% if not page.getPage().meta.hideTitle %}
-						<h1>{{ page.getPage().title|raw }}</h1>
-					{% endif %}
-					{{ page.getPage().content|raw }}
-				</article>
-			</div>
+{% block page_image %}
+	{% embed "Page/TopImage.html.twig"|UKMpath %}{% endembed %}
+{% endblock %}
+
+{% block page_content %}
+	<article>
+		{% include "Page/Title.html.twig" %} 
+		{{ page.content|raw }}
+	</article>
+{% endblock %}
+
+{% block page_menu %}
+	{% if page.hasMenu() %}
+		<div class="col-12 col-md-10 col-lg-3 ml-md-auto mr-md-auto mt-5">
+			{% for element in meny %}
+				<a href="{{ element.url }}" class="btn btn-{{ element.object_id == page.getPage().ID ? '' : 'outline-' }}primary btn-block btn-sm">
+					{{ element.title }}
+				</a>
+			{% endfor %}
 		</div>
-	</div>
+	{% endif %}
+{% endblock %}
 
-	{% if page.getPage().meta.UKMviseng is defined and page.getPage().meta.UKMviseng == 'liste' %}
-
-		<style>
-			.pageListItem.icon > .pageListItemContent {
-				margin-left: 4rem;
-			}
-			.pageListItem.icon .pageListItemIcon {
-				margin-left: -3.6rem;
-			    margin-top: 0.1rem;
-				font-size: 2rem;
-				float: left;
-			}
-			.pageListItem .pageListItemHeader {
-				font-weight: bold;
-			}
-			
-		</style>
-		<div class="container">
-			<div class="row">
-				<div class="col-12 col-md-10 ml-auto mr-auto col-lg-8">
-					<ol class="list-group pageList">
-	{% endif %}	
-	{% for section in page.getPageBlocks().getAll() %}
-		{% embed ("UKMDesignBundle:PageBlock:"~ section.template ~".html.twig")|UKMpath with{ block: section } %}{% endembed %}
-	{% endfor %}
-
-	{% if page.getPage().meta.UKMviseng is defined and page.getPage().meta.UKMviseng == 'liste' %}
-					</ol>
-				</div>
-			</div>
-		</div>
+{% block page_blocks %}
+	{% if page.hasPageBlocks() %}
+		{% for section in page.getPageBlocks().getAll() %}
+			{% embed ("UKMDesign/PageBlock/"~ section.getTemplate() ~".html.twig")|UKMpath with{ block: section } %}{% endembed %}
+		{% endfor %}
 	{% endif %}
 {% endblock %}

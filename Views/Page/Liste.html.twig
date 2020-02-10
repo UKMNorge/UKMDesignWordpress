@@ -1,0 +1,42 @@
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
+
+{% block content %}
+	{% embed "UKMDesignBundle:Post:TopImage.html.twig"|UKMpath %}{% endembed %}
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 ml-md-auto mr-md-auto col-lg-8">
+				<article>
+					{% include "Page/Title.html.twig" %}
+					{{ page.content|raw }}
+				</article>
+			</div>
+		</div>
+	</div>
+
+	<style>
+		.pageListItem.icon > .pageListItemContent {
+			margin-left: 4rem;
+		}
+		.pageListItem.icon .pageListItemIcon {
+			margin-left: -3.6rem;
+			margin-top: 0.1rem;
+			font-size: 2rem;
+			float: left;
+		}
+		.pageListItem .pageListItemHeader {
+			font-weight: bold;
+		}
+	</style>
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-10 ml-auto mr-auto col-lg-8">
+				<ol class="list-group pageList">
+					{% for section in page.getPageBlocks().getAll() %}
+						{% embed ("UKMDesignBundle:PageBlock:"~ section.getTemplateFile() ~".html.twig")|UKMpath with{ block: section } %}{% endembed %}
+					{% endfor %}
+				</ol>
+			</div>
+		</div>
+	</div>
+{% endblock %}

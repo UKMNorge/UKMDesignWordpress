@@ -1,0 +1,13 @@
+<li class="list-group-item pageListItem {{ block.hasIcon() ? 'icon'}}">
+	<div class="pageListItemContent">
+		{% if block.hasIcon() %}
+			<div class="UKMtoggle click pageListItemIcon" data-target="list-item-{{ block.getId() }}">{{ block.getIcon() }}</div>	
+		{% endif %}
+		<div class="UKMtoggle click pageListItemHeader mt-1 mb-2" data-target="list-item-{{ block.getId() }}">
+			{{ block.getTitle() }}
+		</div>
+		<div class="UKMtoggleContent" id="list-item-{{ block.getId() }}" style="display:none;">
+			{{ block.getContent()|raw }}
+		</div>
+	</div>
+</li>

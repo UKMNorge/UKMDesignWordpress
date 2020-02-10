@@ -1,15 +1,5 @@
 <?php
 
-use UKMNorge\DesignBundle\Utils\Sitemap;
-use UKMNorge\DesignBundle\Utils\SEO;
-use UKMNorge\DesignBundle\Utils\SEOImage;
-
-require_once('UKM/Autoloader.php');
-require_once('lib/autoload.php');
-require_once('vendor/autoload.php');
-
-add_shortcode('gallery', 'UKMresponsive_gallery');
-
 add_action( "template_include", "UKMresponsive_pageExists", 10000 );
 
 add_filter('ms_site_check', 'UKMresponsive_skip_site_check');
@@ -29,44 +19,6 @@ function UKMresponsive_imageSizes() {
 	update_option( 'large_size_h', 1200 );
 }
 
-
-add_shortcode('UKMgrafisk', 'UKMgrafisk_element');
-add_shortcode('UKMlogo', 'UKMgrafisk_logo');
-
-function UKMgrafisk_element( $attributes ) {
-	return UKMgrafisk('grafiske_elementer', $attributes);
-}
-function UKMgrafisk_logo( $attributes ) {
-	return UKMgrafisk('logoer', $attributes);
-}
-function UKMgrafisk( $container, $attributes ) {
-	$elementer = WP_CONFIG::get( $container );
-	if( is_array( $attributes ) && isset( $attributes['element'] ) && isset( $elementer[ $attributes['element'] ] ) ) {
-		$element = $elementer[ $attributes['element'] ];
-		
-		return WP_TWIG::render(
-			'GrafiskProfil/element', 
-			[
-				'element' => $element
-			]
-		);
-	}
-	return '';
-}
-
-function UKMresponsive_gallery( $gallery ) {
-	$ids = explode(',', $gallery['ids']);
-	$WP_TWIG_DATA['bilder'] = [];
-	foreach( $ids as $image_id ) {
-        $image = wp_get_attachment_metadata( $image_id );
-        if( is_array($image) && isset( $image['baseurl'] ) && isset($image['file'] ) ) {
-            $image['baseurl'] = wp_upload_dir()['baseurl'] .'/'. dirname( $image['file'] ).'/';
-            $WP_TWIG_DATA['bilder'][] = $image;
-        }
-	}
-	#echo '<pre>';	var_dump( $WP_TWIG_DATA['bilder'][0] ); echo '</pre>';	
-	return WP_TWIG::render( 'Bilder/galleri', $WP_TWIG_DATA );
-}
 
 define('PATH_THEME', TEMPLATEPATH . '/');
 define('PATH_DESIGNBUNDLE', PATH_THEME .'UKMNorge/DesignBundle/');

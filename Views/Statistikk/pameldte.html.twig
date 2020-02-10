@@ -1,4 +1,4 @@
-{% extends "Page/fullpage_with_menu.html.twig"|UKMpath %}
+{% extends "Page/Fullpage.html.twig"|UKMpath %}
 
 {% block javascripts %}
 	{{ parent() }}
@@ -33,11 +33,11 @@
 
 	<ul class="nav nav-tabs col-xs-12 mt-5">
 		<li class="nav-item active">
-			<a href="{{ page.getPage().url }}" class="nav-link {{ not active ? 'active' }}" data-toggle="tab">Hele perioden</a>
+			<a href="{{ page.url }}" class="nav-link {{ not active ? 'active' }}" data-toggle="tab">Hele perioden</a>
 		</li>
 		{% for mnd, dager in stat_mnd %}
 			<li class="nav-item">
-				<a href="{{ page.getPage().url }}{{ mnd == '01' ? '111' : mnd }}/" class="nav-link {{ mnd == active ? 'active' }}" data-toggle="tab">{{ mnd|maned }}</a>
+				<a href="{{ page.url }}?mnd={{ mnd }}" class="nav-link {{ mnd == active ? 'active' }}" data-toggle="tab">{{ mnd|maned }}</a>
 			</li>
 		{% endfor %}
 	</ul>

@@ -1,17 +1,17 @@
 <div class="container-fluid UKMblock UKMblockImage UKMblockImageLeft">
 	<div class="row row-eq-height">
-		{% if align == "right" %}
+		{% if block.getAlign() == "right" %}
 			<div class="col-12 col-sm-6 text px-5 py-4 UKMblockContent">
-				{{ block.content|raw }}
+				{{ block.getContent()|raw }}
 			</div>
 		{% endif %}
 
-		<div class="col-12 col-sm-6 px-0 image" style="background-image: url('{{ block.image.xs }}');" data-aos="fade-up" data-aos-duration="250" data-aos-easing="ease-in" data-aos-once="false" data-aos-anchor-placement="top-bottom" data-aos-offset="100" >
+		<div class="col-12 col-sm-6 px-0 image" style="background-image: url('{{ block.getImage().getUrl() }}');" data-aos="fade-up" data-aos-duration="250" data-aos-easing="ease-in" data-aos-once="false" data-aos-anchor-placement="top-bottom" data-aos-offset="100" >
 		</div>
 
-		{% if align == "left" %}
+		{% if block.getAlign() == "left" %}
 			<div class="col-12 col-sm-6 text px-5 py-4 UKMblockContent">
-				{{ block.content|raw }}
+				{{ block.getContent()|raw }}
 			</div>
 		{% endif %}
 	</div>

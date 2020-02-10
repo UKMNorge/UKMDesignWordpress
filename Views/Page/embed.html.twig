@@ -1,6 +1,6 @@
-{% extends "Layout/_singleMode.html.twig"|UKMpath %}
+{% extends "UKMDesign/Layout/singleMode.html.twig"|UKMpath %}
 
 {% block content %}
-	<h1>{{ page.getPage().title|raw }}</h1>
-	{{ page.getPage().content|raw }}
+	{% include "Page/Title.html.twig" %}
+	{{ page.content|raw }}
 {% endblock %}

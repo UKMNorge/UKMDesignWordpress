@@ -165,6 +165,5 @@ class TemplateEngine
      */
     public static function requireController( String $group, String $controller) {
         require( static::getPath() .'Controller/'. basename($group) .'/'. basename($controller) .'.php');
-        
     }
 }
