@@ -1,0 +1,19 @@
+{% extends "Page/Fullpage.html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="row-flex">
+			{# NYHETER #}
+			<div class="col-12 col-md-5 float-right">
+				<div class="row">
+					{% for post in posts.getAll() %}
+						<div class="col-6">
+							{% embed "Post:grid-default.html.twig"|UKMpath with { post: post } %}{% endembed %}
+						</div>
+					{% endfor %}
+				</div>
+				{% embed "Category:next_prev_links.html.twig"|UKMpath %}{% endembed %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

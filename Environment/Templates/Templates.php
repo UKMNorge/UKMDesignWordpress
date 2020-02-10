@@ -44,12 +44,18 @@ class Templates
     public function get(String $id)
     {
         if (!isset($this->templates[$id])) {
-            # Old IDs used a sort of grouping which now is gone
             $requested = $id;
+            
+            # Old IDs used - instead of _
+            $id = str_replace('-','_',$id);
+            
+            # Old IDs used a sort of grouping which now is gone
             if( strpos($id, '/') !== false ) {
                 $old_id = explode('/', $id);
                 $id = end( $old_id );
             }
+
+            # If we still not find it, its not meant to be.
             if( !isset($this->templates[$id])) {
                 throw new Exception(
                     'Sorry, could not find template ' . $requested

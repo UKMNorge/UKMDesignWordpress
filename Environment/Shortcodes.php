@@ -16,10 +16,10 @@ class Shortcodes
     public static function hook()
     {
         remove_shortcode('gallery');
-        add_shortcode('gallery', ['Shortcodes', 'gallery']);
+        add_shortcode('gallery', [static::class, 'gallery']);
 
-        add_shortcode('UKMgrafisk', [new static(), 'grafisk_element']);
-        add_shortcode('UKMlogo', [new static(), 'grafisk_logo']);
+        add_shortcode('UKMgrafisk', [static::class, 'grafisk_element']);
+        add_shortcode('UKMlogo', [static::class, 'grafisk_logo']);
     }
 
     /**

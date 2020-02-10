@@ -1,11 +1,26 @@
 <?php
 
-use UKMNorge\Design\UKMDesign;
-use UKMNorge\TemplateEngine\TemplateEngine;
+use UKMNorge\DesignWordpress\Environment\Front;
+use UKMNorge\DesignWordpress\Environment\Wordpress;
 
 require_once('header.php');
+#UKMDesign::getHeader()::getSEO()->setCanonical($WP_TWIG_DATA['blog_url']);
 
-TemplateEngine::setView('UKMDesign/Page/menu');
+# Dette er en forside - bruk støtteklasse
+Front::init();
+
+Wordpress::setView('Front/Info');
+
+# Find and use header image
+Wordpress::requireController('System', 'front-banner');
+
+# If this page uses a template, run its controller
+# The controller will then set the correct view
+$has_template_controller = Wordpress::requireTemplateController();
+
+if(!$has_template_controller) {
+    Wordpress::requireController('System','front-page');
+}
 
 require_once('render.php');
 
@@ -15,16 +30,6 @@ die();
 
 
 
-require_once('header.php');
-require_once('UKMNorge/Wordpress/Utils/page.class.php');
-require_once('UKMNorge/Wordpress/Utils/posts.class.php');
-require_once('UKM/Autoloader.php');
-
-SEO::setCanonical($WP_TWIG_DATA['blog_url']);
-SEO::setDescription(
-	'Noen deltar på UKM for å vise frem noe de brenner for, ' .
-		'noen prøver noe helt nytt og andre er med sånn at alle får vist sin beste side.'
-);
 $WP_TWIG_DATA['page'] = new page();
 $WP_TWIG_DATA['posts'] = new posts(12);
 if( $WP_TWIG_DATA['posts']->paged > 1 ) {
@@ -77,30 +82,7 @@ switch(get_option('site_type')) {
 				break;
 		}
 		break;
-	case 'ego':
-		$view_template = 'Ego/home';
-		$section = new stdClass();
-		$section->title = 'Redaksjonelt';
-		$section->link = Sitemap::getPage('egoego', 'forsiden');
-		$WP_TWIG_DATA['section'] = $section; //null; // Fjern section-header på forsiden
-		#		$WP_TWIG_DATA['HEADER']->logo->url = '//grafikk.ukm.no/profil/ego/EGO_logo.png';
-		#		$WP_TWIG_DATA['HEADER']->logo->link = Sitemap::getPage('egoego', 'forsiden');
-		break;
-	case 'organisasjonen':
-		$view_template = 'Page/home_organisasjonen';
-		$WP_TWIG_DATA['section'] = null; // Fjern section-header på forsiden
-		$WP_TWIG_DATA['HEADER']->background->url = '//grafikk.ukm.no/forside/newdawn.jpg';
-		$WP_TWIG_DATA['HEADER']->background->position = 'top';
-		$WP_TWIG_DATA['HEADER']->slogan = WP_CONFIG::get('organisasjonen')['slogan'];
-		$WP_TWIG_DATA['HEADER']->button->background = 'rgba(242, 109, 21, 0.44)';
-		break;
-	case 'media':
-		$view_template = 'Media/home';
-		require_once('UKMNorge/Wordpress/Controller/menu.controller.php');
-		$WP_TWIG_DATA['HEADER']->background->url = '//ukm.no/media/files/2018/05/2016-06-27-14.57.29-1800x1350.jpg';
-		$WP_TWIG_DATA['HEADER']->background->position = 'bottom';
-		$WP_TWIG_DATA['HEADER']->slogan = 'UKM sin medieavdeling - av og for ungdom';
-		$WP_TWIG_DATA['HEADER']->button->background = 'rgba(242, 109, 21, 0.44)';
+
 		break;
 	case 'norge':
 		$now = new DateTime();

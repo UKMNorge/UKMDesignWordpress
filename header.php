@@ -40,3 +40,20 @@ if( !$section ) {
 UKMDesign::setCurrentSection($section);
 
 Wordpress::setPage(null);
+
+/**
+ * SEO INFOS
+ */
+# Author
+UKMDesign::getHeader()::getSEO()->setAuthor( Wordpress::getPage()->author->display_name );
+
+# Lead or default-description
+if( !empty( strip_tags( Wordpress::getPage()->lead ) ) ) {
+    Wordpress::getPage()->setDescription(
+        strip_tags(Wordpress::getPage()->lead)
+    );
+} else {
+    Wordpress::getPage()->setDescription(
+        UKMDesign::getConfig('hvaerukm.slogan_alt')
+    );
+}

@@ -3,6 +3,8 @@
 namespace UKMNorge\DesignWordpress\Environment;
 
 use UKMNorge\Design\Listener;
+use UKMNorge\Design\Menu\Link;
+use UKMNorge\Design\Menu\Menu;
 
 class Page extends Post
 {
@@ -18,7 +20,7 @@ class Page extends Post
     public function getTemplateId()
     {
         if (is_null($this->template)) {
-            if( $this->hasMeta('UKMviseng') ) {
+            if ($this->hasMeta('UKMviseng')) {
                 $this->template = $this->getMeta('UKMviseng');
 
                 // Hvis viseng er satt flere ganger, bruk bare en av de
@@ -78,7 +80,8 @@ class Page extends Post
      *
      * @return bool
      */
-    public function hasPageBlocks() {
+    public function hasPageBlocks()
+    {
         return !is_null($this->getPageBlocks());
     }
 
@@ -91,7 +94,7 @@ class Page extends Post
      */
     public function getPageBlocks()
     {
-        if(is_null($this->blocks)) {
+        if (is_null($this->blocks)) {
             $this->blocks = new Blocks($this->getId());
         }
         return $this->blocks;
@@ -102,7 +105,35 @@ class Page extends Post
      *
      * @return boolean
      */
-    public function hasMenu() {
+    public function hasMenu()
+    {
         return $this->getTemplateId() == 'meny' || ($this->hasMeta('UKM_block') && $this->getMeta('UKM_block', true) == 'sidemedmeny');
+    }
+
+    /**
+     * Hent sidens meny
+     *
+     * @return Menu
+     */
+    public function getMenu()
+    {
+        $menu = new Menu();
+        if ($this->hasMenu()) {
+            $items = wp_get_nav_menu_items($this->getMeta('UKM_nav_menu', true));
+
+            if (is_array($items)) {
+                foreach ($items as $item) {
+                    $menu->add(
+                        new Link(
+                            $item->title,
+                            $item->url,
+                            (!is_null($item->target) && !empty($item->target)
+                                ? $item->target : null)
+                        )
+                    );
+                }
+            }
+        }
+        return $menu;
     }
 }

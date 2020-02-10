@@ -1,0 +1,16 @@
+	case 'ego':
+		$view_template = 'Ego/home';
+		$section = new stdClass();
+		$section->title = 'Redaksjonelt';
+		$section->link = Sitemap::getPage('egoego', 'forsiden');
+		$WP_TWIG_DATA['section'] = $section; //null; // Fjern section-header på forsiden
+		#		$WP_TWIG_DATA['HEADER']->logo->url = '//grafikk.ukm.no/profil/ego/EGO_logo.png';
+		#		$WP_TWIG_DATA['HEADER']->logo->link = Sitemap::getPage('egoego', 'forsiden');
+		break;
+	case 'media':
+		$view_template = 'Media/home';
+		require_once('UKMNorge/Wordpress/Controller/menu.controller.php');
+		$WP_TWIG_DATA['HEADER']->background->url = '//ukm.no/media/files/2018/05/2016-06-27-14.57.29-1800x1350.jpg';
+		$WP_TWIG_DATA['HEADER']->background->position = 'bottom';
+		$WP_TWIG_DATA['HEADER']->slogan = 'UKM sin medieavdeling - av og for ungdom';
+		$WP_TWIG_DATA['HEADER']->button->background = 'rgba(242, 109, 21, 0.44)';

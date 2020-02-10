@@ -27,6 +27,11 @@ templates:
         description: >
           Når deltakere tar stilling til dokumentasjon på UKM, avgir de svaret sitt her.
           Ligger alltid under personvern.ukm.no/[...]/
+      glemt_passord:
+        name: Glemt passord
+        file: System/glemtpassord
+        description: >
+          Forklarer deltakere og administratorer hvordan de kan fikse nytt passord.
   norge:
     name: Den nasjonale siden for ungdom (UKM.no)
     controllers:

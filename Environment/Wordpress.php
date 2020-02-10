@@ -18,7 +18,10 @@ use UKMNorge\TemplateEngine\TemplateEngine;
 class Wordpress extends TemplateEngine
 {
 
+    const POSTS_PER_PAGE = 12;
+
     static $page;
+    static $posts;
     static $templates;
 
     public static function init($dir = null)
@@ -143,6 +146,22 @@ class Wordpress extends TemplateEngine
     }
 
     /**
+     * Sett posts
+     *
+     * @param Posts $posts
+     * @return void
+     */
+    public static function setPosts(Posts $posts = null)
+    {
+        if (is_null($posts)) {
+            $posts = new Posts(static::POSTS_PER_PAGE);
+        }
+
+        static::$posts = $posts;
+    }
+
+
+    /**
      * Last inn alle templates (fra yaml-file)
      *
      * @return Templates
@@ -174,7 +193,9 @@ class Wordpress extends TemplateEngine
     /**
      * Last inn og kjør controller for template
      *
-     * @return void
+     * Returnerer bool hvorvidt kontroller er funnet eller ikke
+     * 
+     * @return bool
      */
     public static function requireTemplateController()
     {
@@ -184,7 +205,9 @@ class Wordpress extends TemplateEngine
         if ($template_id) {
             $template = static::getTemplate($template_id);
             static::requireController($template->getFolder(), $template->getFilename());
+            return true;
         }
+        return false;
     }
 
     /**
@@ -193,9 +216,10 @@ class Wordpress extends TemplateEngine
      * @param String $template_id
      * @return String
      */
-    private function _correctTemplateId(String $template_id ) {
+    private function _correctTemplateId(String $template_id)
+    {
         // Sider med meny bruker fra 2020 UKM_block
-        if( $template_id == 'meny' ) {
+        if ($template_id == 'meny') {
             $template_id = null;
             static::getPage()->setMeta('UKM_block', 'sidemedmeny');
         }
@@ -249,6 +273,29 @@ class Wordpress extends TemplateEngine
     }
 
     /**
+     * Hent posts som skal vises på denne siden
+     *
+     * @return void
+     */
+    public static function getPosts()
+    {
+        if (!static::hasPosts()) {
+            static::setPosts();
+        }
+        return static::$posts;
+    }
+
+    /**
+     * Har vi satt et posts-objekt?
+     *
+     * @return boolean
+     */
+    public static function hasPosts()
+    {
+        return !is_null(static::$posts);
+    }
+
+    /**
      * Hent siste "pretty-parameteren" i en request. 
      * 
      * Burde muligens gjøres av en rewrite-rule?
@@ -276,6 +323,9 @@ class Wordpress extends TemplateEngine
     public static function render(String $template)
     {
         static::addViewData('page', static::getPage());
+        if (static::hasPosts()) {
+            static::addViewData('posts', static::getPosts());
+        }
         static::_addMenu();
         return parent::render($template);
     }
@@ -289,10 +339,8 @@ class Wordpress extends TemplateEngine
     {
         if (static::getPage()->hasMenu()) {
             static::addViewData(
-                'meny',
-                wp_get_nav_menu_items(
-                    static::getPage()->getMeta('UKM_nav_menu', true)
-                )
+                'menu',
+                static::getPage()->getMenu()
             );
         }
     }

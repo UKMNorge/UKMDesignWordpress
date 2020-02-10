@@ -1,0 +1,57 @@
+{% extends "Page/Fullpage.html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div
+			class="row-flex">
+			{# FINN NÆRMESTE UKM ELLER "FAVORITT-UKM"-BOKS #}
+			<div class="col-12 col-md-5 col-lg-5 mb-3 pull-right">
+				<div class="right">
+					{% if shortcuts is defined %}
+						{% for link in shortcuts.getAll() %}
+							<a href="{{ link.getUrl() }}" class="mx-1 btn btn-outline-primary">
+								{{ link.getTitle() }}
+							</a>
+						{% endfor %}
+					{% endif %}
+				</div>
+			</div>
+
+			{# HVA ER UKM? #}
+			<div class="col-12 col-md-7 float-left mt-3 mb-2">
+				<p class="lead">
+					{{ page.getContentBeforeMore()|raw }}
+				</p>
+				<p class="d-block d-md-none">
+					<a href="#" class="UKMtoggleShow phoneReadMoreUKM" data-target="phoneReadMoreUKM">Les mer om UKM</a>
+				</p>
+
+				<div class="UKMtoggleContent" style="display:none" id="phoneReadMoreUKM">
+					{{ page.getContentAfterMore()|raw }}
+					<p>
+						<a href="#" class="UKMtoggleHide phoneReadMoreUKM" data-target="phoneReadMoreUKM">Lukk</a>
+					</p>
+				</div>
+				<div class="d-none d-md-block">
+					{{ page.getContentAfterMore|raw }}
+				</div>
+			</div>
+
+			{# NYHETER #}
+			{% if posts is defined and posts.getAntall() > 0 %}
+				<div class="col-12 col-md-5 float-right">
+					<div class="row">
+						{% for post in posts.getAll() %}
+							<div class="col-6">
+								{% embed "Post:grid-default.html.twig"|UKMpath with { post: post } %}{% endembed %}
+							</div>
+						{% endfor %}
+					</div>
+					<div class="col right">
+						<a href="{{ posts.getArchiveLink()|raw }}" class="btn btn-outline-primary">Se eldre saker &raquo;</a>
+					</div>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+<div class="row">
+	{% if posts.hasPagePrev() %}
+		<div class="col left">
+			<a href="{{ posts.getPagePrev()|raw }}" class="btn btn-outline-primary">&laquo; Se nyere saker</a>
+		</div>
+	{% endif %}
+	
+	{% if posts.hasPageNext() %}
+		<div class="col right">
+			<a href="{{ posts.getPageNext()|raw }}" class="btn btn-outline-primary">Se eldre saker &raquo;</a>
+		</div>
+	{% endif %}
+</div>
