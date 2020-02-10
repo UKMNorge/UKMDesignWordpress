@@ -1,0 +1,8 @@
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		{% embed "Kategori:Listen.html.twig"|UKMpath %}{% endembed %}
+		{% embed "Kategori:Pagination.html.twig"|UKMpath %}{% endembed %}
+	</div>
+{% endblock %}

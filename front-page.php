@@ -29,23 +29,6 @@ require_once('render.php');
 die();
 
 
-
-$WP_TWIG_DATA['page'] = new page();
-$WP_TWIG_DATA['posts'] = new posts(12);
-if( $WP_TWIG_DATA['posts']->paged > 1 ) {
-    $WP_TWIG_DATA['page_next'] = get_permalink(get_option('page_for_posts'));
-}
-
-// PAGE TEMPLATE - FOR OVERRIDES
-if (isset($WP_TWIG_DATA['page']->getPage()->meta->UKMviseng)) {
-	$page_template = $WP_TWIG_DATA['page']->getPage()->meta->UKMviseng;
-	if (is_array($page_template) && isset($page_template[0])) {
-		$page_template = $page_template[0];
-	}
-} else {
-	$page_template = false;
-}
-
 switch(get_option('site_type')) {
     case 'arrangement':
 		require_once(PATH_WORDPRESSBUNDLE . 'Controller/banner.controller.php');
@@ -107,23 +90,4 @@ switch(get_option('site_type')) {
 		}
 		require_once('UKMNorge/Wordpress/Controller/norge.controller.php');
 		break;
-	default:
-		$view_template = 'Page/fullpage';
-		require_once(PATH_WORDPRESSBUNDLE . 'Controller/banner.controller.php');
-
-		if ($page_template == 'meny' || isset($WP_TWIG_DATA['page']->getPage()->meta->UKM_block) && $WP_TWIG_DATA['page']->getPage()->meta->UKM_block == 'sidemedmeny') {
-			require_once('UKMNorge/Wordpress/Controller/menu.controller.php');
-			$view_template = 'Page/fullpage_with_menu';
-		}
-		break;
-}
-echo WP_TWIG::render($view_template, $WP_TWIG_DATA);
-
-wp_footer();
-if (is_user_logged_in()) {
-	echo '<style>body {margin-top: 33px;} @media (max-width:782px) {body {margin-top: 48px;}}</style>';
-}
-
-if (WP_ENV == 'dev') {
-	echo '<script language="javascript">console.debug("' . basename(__FILE__) . '");</script>';
-}
+    }

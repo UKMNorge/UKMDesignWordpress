@@ -45,7 +45,11 @@ Wordpress::setPage(null);
  * SEO INFOS
  */
 # Author
-UKMDesign::getHeader()::getSEO()->setAuthor( Wordpress::getPage()->author->display_name );
+$author = isset( Wordpress::getPage()->author ) && !empty(Wordpress::getPage()->author->display_name) ?
+    Wordpress::getPage()->author->display_name :
+    'UKMNorge'
+;
+UKMDesign::getHeader()::getSEO()->setAuthor( $author );
 
 # Lead or default-description
 if( !empty( strip_tags( Wordpress::getPage()->lead ) ) ) {
