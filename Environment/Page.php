@@ -35,6 +35,24 @@ class Page extends Post
     }
 
     /**
+     * Hent eventuelt bilde som skal vises på topp
+     * 
+     * Magi i WPOO_Post gjør at vi alltid finner et featured_image,
+     * men det skal jo ikke skje med en page.
+     * 
+     * @return Image
+     */
+    public function getFeaturedImage()
+    {
+        # Fordi featured image lagres som post_meta: _thumbnail_id
+        # sjekker vi for denne først
+        if( $this->hasMeta('_thumbnail_id') ) {
+            return parent::getFeaturedImage();
+        }
+        return $this->featured_image;
+    }
+
+    /**
      * Sett ny tittel for siden
      *
      * @param String $title

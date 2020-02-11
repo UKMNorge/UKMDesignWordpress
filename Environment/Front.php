@@ -2,14 +2,18 @@
 
 namespace UKMNorge\DesignWordpress\Environment;
 
+use DateTime;
 use UKMNorge\Design\Header\Banner;
 use UKMNorge\Design\Image;
 use UKMNorge\Design\Position\Vertical;
+use UKMNorge\Design\UKMDesign;
 
 class Front
 {
     const LENGTH_SLAGORD = 125;
     static $har_arrangement;
+    static $start_sesong;
+    static $apen_pamelding;
 
 
     public static function init()
@@ -17,6 +21,60 @@ class Front
         static::_harArrangement();
     }
 
+    /**
+     * Er vi i sesong for påmeldinger
+     *
+     * @return bool
+     */
+    public static function erNasjonalPameldingApen()
+    {
+        if (is_null(static::$apen_pamelding)) {
+            static::_loadSesong();
+        }
+        return static::$apen_pamelding;
+    }
+
+    /**
+     * Hent startdato for sesongen
+     *
+     * @return void
+     */
+    public static function getSesongStart()
+    {
+        if (is_null(static::$start_sesong)) {
+            static::_loadSesong();
+        }
+        return static::$start_sesong;
+    }
+
+    /**
+     * Last inn info om sesongen
+     *
+     * @return void
+     */
+    private static function _loadSesong()
+    {
+        $start_sesong = strtotime(
+            str_replace(
+                'YYYY',
+                get_site_option('season') - 1,
+                UKMDesign::getConfig('pamelding.starter')
+            )
+        );
+
+        # @UNIXTIME funker for å opprette direkte fra unix timestamp
+        static::$start_sesong = new DateTime('@'. $start_sesong);
+
+        if (date('m') > 4 && date('m') < date('m', $start_sesong)) {
+            static::$apen_pamelding = false;
+        } else {
+            static::$apen_pamelding = time() > $start_sesong;
+        }
+    }
+
+    /**
+     * Sjekk om denne siden har arrangement, og lagre på objektet
+     */
     private static function _harArrangement()
     {
         # (dobbel nekting er riktig)
@@ -33,23 +91,48 @@ class Front
         return static::$har_arrangement;
     }
 
-    public static function supportMeny() {
+    /**
+     * Kan forsiden ha en meny?
+     *
+     * @return bool
+     */
+    public static function supportMeny()
+    {
         return true;
     }
 
-    public static function hasMeny() {
+    /**
+     * Har forsiden en meny?
+     *
+     * @return boolean
+     */
+    public static function hasMeny()
+    {
         return !is_null(static::getMeny());
     }
 
-    public static function getMeny() {
+    /**
+     * Hent meny-ID
+     *
+     * @return Int
+     */
+    public static function getMeny()
+    {
         $val = get_option('UKM_front_menu');
-        if( $val !== false ) {
-            return intval( $val);
+        if ($val !== false) {
+            return intval($val);
         }
         return $val;
     }
 
-    public static function setMeny(Int $meny_id) {
+    /**
+     * Sett menyID
+     *
+     * @param Int $meny_id
+     * @return void
+     */
+    public static function setMeny(Int $meny_id)
+    {
         return update_option('UKM_front_menu', $meny_id);
     }
 
