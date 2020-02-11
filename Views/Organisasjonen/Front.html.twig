@@ -45,11 +45,11 @@
 				<div class="row">
 					{% for post in posts.getAll() %}
 						<div class="col-6">
-							{% embed "Post:grid-default.html.twig"|UKMpath with { post: post } %}{% endembed %}
+							{% embed "Post:Grid-default.html.twig"|UKMpath with { post: post } %}{% endembed %}
 						</div>
 					{% endfor %}
 				</div>
-				{% embed "Category:next_prev_links.html.twig"|UKMpath %}{% endembed %}
+				{% embed "Kategori/Pagination.html.twig"|UKMpath %}{% endembed %}
 			</div>
 		</div>
 	</div>

@@ -1,6 +1,6 @@
 <?php
 
-use UKMNorge\DesignWordpress\Environment\Front;
+use UKMNorge\DesignWordpress\Environment\Front\Front;
 use UKMNorge\DesignWordpress\Environment\Wordpress;
 use UKMNorge\Geografi\Fylker;
 

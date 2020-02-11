@@ -2,9 +2,7 @@
 
 {% block content %}
 	<div class="container-fluid">
-		<div
-			class="row-flex">
-			{# FINN NÆRMESTE UKM ELLER "FAVORITT-UKM"-BOKS #}
+		<div class="row-flex">
 			<div class="col-12 col-md-5 col-lg-5 mb-3 pull-right">
 				<div class="right">
 					{% if shortcuts is defined %}
@@ -23,7 +21,7 @@
 					{{ page.getContentBeforeMore()|raw }}
 				</p>
 				<p class="d-block d-md-none">
-					<a href="#" class="UKMtoggleShow phoneReadMoreUKM" data-target="phoneReadMoreUKM">Les mer om UKM</a>
+					<a href="#" class="UKMtoggleShow phoneReadMoreUKM" data-target="phoneReadMoreUKM">Les mer</a>
 				</p>
 
 				<div class="UKMtoggleContent" style="display:none" id="phoneReadMoreUKM">
@@ -43,7 +41,7 @@
 					<div class="row">
 						{% for post in posts.getAll() %}
 							<div class="col-6">
-								{% embed "Post:grid-default.html.twig"|UKMpath with { post: post } %}{% endembed %}
+								{% embed "Post:Grid-default.html.twig"|UKMpath with { post: post } %}{% endembed %}
 							</div>
 						{% endfor %}
 					</div>

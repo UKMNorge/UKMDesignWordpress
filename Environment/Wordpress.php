@@ -275,7 +275,7 @@ class Wordpress extends TemplateEngine
     /**
      * Hent posts som skal vises på denne siden
      *
-     * @return void
+     * @return Posts
      */
     public static function getPosts()
     {
@@ -323,6 +323,7 @@ class Wordpress extends TemplateEngine
     public static function render(String $template)
     {
         static::addViewData('page', static::getPage());
+        static::addViewData('season', get_site_option('season'));
         if (static::hasPosts()) {
             static::addViewData('posts', static::getPosts());
         }

@@ -1,8 +1,9 @@
 <?php
 
-namespace UKMNorge\DesignWordpress\Environment;
+namespace UKMNorge\DesignWordpress\Environment\Front;
 
 use DateTime;
+use UKMNorge\Arrangement\Arrangement;
 use UKMNorge\Design\Header\Banner;
 use UKMNorge\Design\Image;
 use UKMNorge\Design\Position\Vertical;
@@ -14,11 +15,36 @@ class Front
     static $har_arrangement;
     static $start_sesong;
     static $apen_pamelding;
+    static $blog_id;
 
 
     public static function init()
     {
         static::_harArrangement();
+
+        global $blog_id;
+        static::$blog_id = intval($blog_id);
+    }
+
+    /**
+     * Hent hvilken bloggID vi er på
+     *
+     * @return Int
+     */
+    public static function getBlogId()
+    {
+        return static::$blog_id;
+    }
+
+    /**
+     * Er vi på en arkiv-side? I tilfelle skal denne vises
+     *
+     * @param bool
+     * @return void
+     */
+    public static function isActiveArkiv()
+    {
+        return Wordpress::getPosts()->getPaged();
     }
 
     /**
@@ -35,6 +61,15 @@ class Front
     }
 
     /**
+     * Hent aktiv sesong
+     *
+     * @return Int
+     */
+    public static function getSesong()
+    {
+        return intval(get_site_option('season'));
+    }
+    /**
      * Hent startdato for sesongen
      *
      * @return void
@@ -47,6 +82,7 @@ class Front
         return static::$start_sesong;
     }
 
+
     /**
      * Last inn info om sesongen
      *
@@ -57,13 +93,13 @@ class Front
         $start_sesong = strtotime(
             str_replace(
                 'YYYY',
-                get_site_option('season') - 1,
+                static::getSesong() - 1,
                 UKMDesign::getConfig('pamelding.starter')
             )
         );
 
         # @UNIXTIME funker for å opprette direkte fra unix timestamp
-        static::$start_sesong = new DateTime('@'. $start_sesong);
+        static::$start_sesong = new DateTime('@' . $start_sesong);
 
         if (date('m') > 4 && date('m') < date('m', $start_sesong)) {
             static::$apen_pamelding = false;
@@ -89,6 +125,19 @@ class Front
     public static function harArrangement()
     {
         return static::$har_arrangement;
+    }
+
+    /**
+     * Hent sidens arrangement
+     *
+     * @return Arrangement
+     */
+    public static function getArrangement()
+    {
+        if (null == static::$arrangement) {
+            static::$arrangement = new Arrangement(intval(get_option('pl_id')));
+        }
+        return static::$arrangement;
     }
 
     /**

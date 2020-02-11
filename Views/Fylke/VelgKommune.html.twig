@@ -1,36 +1,64 @@
 <div id="finnKommune">
-    <div class="form-group">
-        <input type="text" name="search" class="form-control " placeholder="Søk etter kommune" id="filterKommune"/>
-    </div>
-
-    <div class="fade-collapsible">
-        <div class="content">
-            <div class="row">
-                {% for kommune in fylke.getKommuner().getAll() %}
-                    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-2 kommune" data-filter="{{ include("Kommune:filternavn.html.twig"|UKMpath)|oneline|lower }}">
-                        <a href="{{ kommune.getLink() }}" class="btn btn-block btn-outline-primary" style="line-height: 1.25em;">
-                            <div class="autoshrink">
-                                {{ kommune.getNavn() }}
-                            </div>
-                            {% if kommune.getTidligere()|length > 0 %}
-                                <div class="autoshrink">
-                                    <small>Tidligere
-                                        {% for tidligere in kommune.getTidligere() %}
-                                            {{ tidligere.getNavn() }}{{ not loop.last ? ', ' }}
-                                        {% endfor %}
-                                    </small>
-                                </div>
-                            {% endif %}
-                        </a>
-                    </div>
-                {% endfor %}
+	<div class="input-group">
+		<input type="text" name="search" class="form-control" placeholder="Søk etter kommune..." id="filterKommune">
+		{% if not omrade.getFylke().erOslo() %}
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary geolocation" type="button" id="list-locate"><i class="icon icon-target3"></i></button>
             </div>
-        </div>
-    </div>
+        {% endif %}
+	</div>
+    <div class="mt-2 text-muted small" id="couldnotfindlocation" style="display:none;">Beklager, vi fant ikke posisjonen din</div>
+    <div class="mt-2 text-muted small " id="found-none" style="display:none;">Beklager, finner ingen kommuner med det navnet.</div>
+    <div class="mb-3"></div> {# spacer #}
+
+	<div class="content">
+		<div class="row" style="max-height: 24vh; overflow-y:scroll;">
+			{% for kommune in omrade.getFylke().getKommuner().getAll() %}
+				<div class="col-12 col-sm-6 col-xl-4 mb-2 kommune" data-filter="{{ include("Kommune:filternavn.html.twig"|UKMpath)|oneline|lower }}">
+					<a href="{{ kommune.getLink() }}" data-kommune="{{kommune.getId()}}" class="btn btn-block btn-outline-primary" style="line-height: 1.25em;">
+						<div class="autoshrink">
+							{{ kommune.getNavn() }}
+						</div>
+						{% if kommune.getTidligere()|length > 0 %}
+							<div class="autoshrink">
+								<small>Tidligere
+									{% for tidligere in kommune.getTidligere() %}
+										{{ tidligere.getNavn() }}{{ not loop.last ? ', ' }}
+									{% endfor %}
+								</small>
+							</div>
+						{% endif %}
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
 </div>
 
 <script>
-    $(document).ready(function() {
-        UKMresponsive.kommuneliste('#finnKommune');
-    });
+var kommuneListe;
+	jQuery(document).ready(function () {
+        kommuneListe = UKMresponsive.kommuneliste('#finnKommune');
+        kommuneListe.on('change', function(){
+            if( kommuneListe.getMatchCount() == 0 ) {
+                jQuery('#found-none').slideDown(220);
+            } else {
+                jQuery('#found-none').slideUp(180);
+            }
+        });
+});
+jQuery(document).on('geolocated', function(e, location) {
+    jQuery('#filterKommune').val(location.kommunenavn).keyup();
+    
+    // Skal vi auto-gå til riktig sted? Prøver det først
+    if( kommuneListe.getMatchCount() == 1 ) {
+        kommuneListe.go();
+    }
+});
+jQuery(document).on('geolocate-fail', function(e,data){
+    jQuery('#couldnotfindlocation').slideDown(200);
+    setTimeout(function() {
+        jQuery('#couldnotfindlocation').slideUp();
+    }, 2200);
+});
 </script>

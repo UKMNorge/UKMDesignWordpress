@@ -2,7 +2,7 @@
 
 use UKMNorge\Design\Menu\Link;
 use UKMNorge\Design\Menu\Menu;
-use UKMNorge\DesignWordpress\Environment\Front;
+use UKMNorge\DesignWordpress\Environment\Front\Front;
 use UKMNorge\DesignWordpress\Environment\Posts;
 use UKMNorge\DesignWordpress\Environment\Wordpress;
 

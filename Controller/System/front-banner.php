@@ -1,7 +1,7 @@
 <?php
 
 use UKMNorge\Design\UKMDesign;
-use UKMNorge\DesignWordpress\Environment\Front;
+use UKMNorge\DesignWordpress\Environment\Front\Front;
 use UKMNorge\DesignWordpress\Environment\Wordpress;
 
 if( Front::supportBannerBilde() && Front::harBannerBilde() ) {

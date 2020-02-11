@@ -1,6 +1,6 @@
 <?php
 
-use UKMNorge\DesignWordpress\Environment\Front;
+use UKMNorge\DesignWordpress\Environment\Front\Front;
 use UKMNorge\DesignWordpress\Environment\Wordpress;
 
 require_once('header.php');
@@ -20,6 +20,9 @@ $has_template_controller = Wordpress::requireTemplateController();
 
 if (!$has_template_controller) {
     switch (get_option('site_type')) {
+        case 'fylke':
+            Wordpress::requireController('Fylke','front-page');
+        break;
         case 'norge':
             Wordpress::requireController('Norge','front-page');
             break;
@@ -30,7 +33,6 @@ if (!$has_template_controller) {
 }
 
 require_once('render.php');
-
 
 
 die();

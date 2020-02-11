@@ -1,0 +1,25 @@
+<div class="row-flex flex-row">
+	<div class="float-right">
+		<a href="{{ arrangement.getLink() }}" class="btn btn-xs btn-outline-primary">Mer info</a>
+	</div>
+	<div class="float-left overunder mr-3" style="margin-top: .25em;">
+		<div class="under mb-1" style="font-size: .7em;">
+			{{ arrangement.getStart()|dato('M')|upper }}
+		</div>
+		<div class="over" style="font-size:1.26em;margin-top: -.1em;">
+			{{ arrangement.getStart()|dato('d')}}
+		</div>
+	</div>
+	<div>
+		<div style="margin-bottom: -.4em;">
+            <a href="{{ arrangement.getLink() }}">{{ arrangement.getNavn()}}</a>
+        </div>
+		<small class="text-muted">
+			{% if arrangement.harKart() and arrangement.getKart().getName() %}
+				{{ arrangement.getKart().getName() }}
+			{% else %}
+				{{ arrangement.getSted() }}
+			{% endif %}
+		</small>
+	</div>
+</div>

@@ -229,6 +229,15 @@ class Post extends WPOO_Post
     }
 
     /**
+     * Hent innholdet på siden
+     *
+     * @return String HTML
+     */
+    public function getContent() {
+        return $this->content;
+    }
+
+    /**
      * Hent alle authors for posten
      *
      * Bruker UKM MultiAuthor, med fallback til WP:Author
