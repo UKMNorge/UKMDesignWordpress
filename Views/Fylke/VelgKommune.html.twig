@@ -1,6 +1,6 @@
 <div id="finnKommune">
 	<div class="input-group">
-		<input type="text" name="search" class="form-control" placeholder="Søk etter kommune..." id="filterKommune">
+		<input type="text" name="search" class="form-control" placeholder="Søk etter {{ omrade.getFylke().erOslo() ? 'bydel' : 'kommune'}}..." id="filterKommune">
 		{% if not omrade.getFylke().erOslo() %}
             <div class="input-group-append">
                 <button class="btn btn-outline-primary geolocation" type="button" id="list-locate"><i class="icon icon-target3"></i></button>
@@ -8,7 +8,7 @@
         {% endif %}
 	</div>
     <div class="mt-2 text-muted small" id="couldnotfindlocation" style="display:none;">Beklager, vi fant ikke posisjonen din</div>
-    <div class="mt-2 text-muted small " id="found-none" style="display:none;">Beklager, finner ingen kommuner med det navnet.</div>
+    <div class="mt-2 text-muted small " id="found-none" style="display:none;">Beklager, finner ingen {{ omrade.getFylke().erOslo() ? 'bydeler' : 'kommuner'}} med det navnet.</div>
     <div class="mb-3"></div> {# spacer #}
 
 	<div class="content">

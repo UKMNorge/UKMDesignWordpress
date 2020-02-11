@@ -1,0 +1,7 @@
+<div class="row">
+	{% for post in posts %}
+		<div class="{{col}}">
+			{% embed "Post/Grid-default.html.twig"|UKMpath with { post: post } %}{% endembed %}
+		</div>
+	{% endfor %}
+</div>

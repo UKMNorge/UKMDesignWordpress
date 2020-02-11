@@ -42,12 +42,15 @@ class OmradeFront extends Front
     private static function _loadInfoside()
     {
         if (Blog::harSide(static::getBlogId(), 'info')) {
-            static::$infoside = new Page(
+            $page = new Page(
                 Blog::hentSideByPath(
                     static::getBlogId(),
                     'info'
                 )
             );
+            if( !empty( $page->getContent() ) ) {
+                static::$infoside = $page;
+            }
         }
     }
 
