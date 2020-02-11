@@ -1,0 +1,161 @@
+{% extends "Norge/Front/Fullpage.html.twig"|UKMpath %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ UKMasset("js/UKMfullpage.min.js") }}?20181004-HelloWorld"></script>
+	<script type="text/javascript" src="{{ UKMasset("js/jquery-ui.min.js") }}?20181102-HelloWorld"></script>
+	<script>
+		jQuery(document).on('click touch', '#audioToggle, #audioToggle .icon', function () {
+            var video = jQuery('#fullVideo').get(0);
+            var icon = jQuery(this).find('.icon');
+            jQuery(document).trigger('playVideo');
+
+            if (icon.hasClass('icon-volume-high')) {
+                jQuery('#fullVideo').prop('muted', true);
+                icon.removeClass('icon-volume-high').addClass('icon-volume-mute');
+            } else {
+                jQuery('#fullVideo').prop('muted', false);
+                icon.removeClass('icon-volume-mute').addClass('icon-volume-high');
+            }
+        });
+
+    $(window).on('load resize', function () {
+        $('#fullVideo').css({
+            'position': 'absolute',
+            'top': $(window).height() / 2 - $('video').height() / 2,
+            'left': $(window).width() / 2 - $('video').width() / 2
+        });
+    });
+
+    jQuery(document).on('click', '#fullVideo', function () {
+        jQuery(document).trigger('playVideo');
+    });
+
+    jQuery(document).ready(function () { // Bytt film hvis desktop
+        var video = $('#fullVideo').get(0);
+        video.muted = true;
+
+        if ($(window).width() > $(window).height()) {
+            jQuery('#fullVideo').find('source').each(function () {
+                jQuery(this).attr('src', jQuery(this).attr('data-src-wide'));
+            });
+            try {
+                video.load().then(function (e) {
+                    video.muted = true;
+                    jQuery(document).trigger('playVideo');
+                });
+            } catch (err) {}
+        }
+    });
+
+    jQuery(document).on('click touch', '#fullVideo', function () {
+        jQuery('#fullVideo').prop('muted', false);
+    });
+
+    jQuery(document).on('playVideo', function (e) {
+    try {
+        jQuery('#fullVideo').get(0).play();
+        } catch (err) {}
+    });
+
+    setTimeout(function () {
+        jQuery('#audioToggle').effect('pulsate', {
+            times: 2,
+            duration: 300
+        });
+    }, 1800);
+    $(document).ready(() => {
+        UKMfullpage('#fullpage', ['pamelding', 'fylker', 'festivalen', 'hvaer']);
+    });
+	</script>
+{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+	<link href="{{ UKMasset("css/UKMfullpage.css") }}" rel="stylesheet"/>
+	<style>
+		#menyKnapp {
+			position: relative;
+			z-index: 100;
+		}
+		#logo {
+			position: relative;
+			z-index: 20;
+		}
+		#audioToggle {
+			position: absolute;
+			right: 1em;
+			bottom: 1em;
+			font-size: 2em;
+			opacity: .8;
+			color: #fff;
+			z-index: 200;
+		}
+
+		@media(min-width: 768px) {
+			#audioToggle {
+				font-size: 3em;
+			}
+		}
+
+		#fullVideo {
+			width: 100vw;
+			position: relative;
+			top: 50%;
+			transition: top 100ms ease;
+		}
+	</style>
+{% endblock %}
+
+{% block framework_content %}
+	<div id="fullpage">
+		<section class="section fullpage white waypoint" data-photo-background-transition="#000000" style="background-color: #000000;" data-photo-background="false">
+			<div class="fullpage-content">
+				<div class="meny" id="menyKnapp">
+					<a href="/hovedmeny/" class="btn btn-sm my-2 btn-outline-primary" style="z-index: 50">MENY</a>
+				</div>
+				<div class="logo" id="logo">
+					<img src="https://grafikk.ukm.no/profil/logoer/UKM_logo_hvit_0100.png"/>
+				</div>
+				<video id="fullVideo" muted="true" loop="true" autoplay preload="none" playsinline="" webkit-playsinline="">
+					<source src="https://video.ukm.no/ukmno/18_mgpjr/9x16_audio.mp4" data-src-wide="https://video.ukm.no/ukmno/18_mgpjr/16x9_audio.mp4" type="video/mp4">
+				</video>
+
+				<div id="audioToggle" class="click">
+					<div class="icon icon-volume-mute"></div>
+				</div>
+
+				<header class="white" style="z-index: 100">
+					<h1 class="border autoshrink">
+						{% if pamelding_apen %}
+							<a href="//delta.{{ UKM_HOSTNAME }}">START PÅMELDING</a>
+						{% else %}
+							PÅMELDING STARTER
+							<br/>
+							1. NOVEMBER
+						{% endif %}
+					</h1>
+					<div class="header-more" style="margin-top: 5vh;">
+						<p>
+							<a href="#festivalen/3">UKM-festivalen</a>
+							|
+							<a href="#hvaer/4">Hva er UKM?</a>
+							|
+							<a href="#fylker/2">Finn nærmeste UKM</a>
+						</p>
+
+						<div class="readmoreIcon">
+							<a href="#om/2" style="text-decoration: none">
+								<span class="icon icon-down-2"></span>
+							</a>
+						</div>
+					</div>
+				</header>
+			</div>
+		</section>
+
+		{% include "Norge/Front/Section/Fylker.html.twig" %}
+		{% include "Norge/Front/Section/Festivalen.html.twig" %}
+		{% include "Norge/Front/Section/Hvaer.html.twig" %}
+	</div>
+{% endblock %}

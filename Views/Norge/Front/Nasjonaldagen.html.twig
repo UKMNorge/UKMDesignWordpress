@@ -1,0 +1,43 @@
+{% extends "Norge/Front/Fullpage.html.twig"|UKMpath %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript">
+		$(document).ready(() => {
+UKMfullpage('#fullpage', ['festivalen', 'om', 'fylker']);
+});
+	</script>
+{% endblock %}
+
+{% block framework_content %}
+	<div id="fullpage">
+		<section class="section fullpage white waypoint" data-photo-background-transition="#000000" style="background-color: #00508C;" data-photo-background="https://grafikk.ukm.no/forside/nasjonaldagen.jpg">
+			<div class="fullpage-content">
+				<div class="meny">
+					<a href="/hovedmeny/" class="btn btn-sm my-2 btn-outline-primary">MENY</a>
+				</div>
+				<div class="logo">
+					<img src="https://grafikk.ukm.no/profil/logoer/UKM_logo_hvit_0100.png"/>
+				</div>
+				<header style="z-index: 100; margin-top:-25vh; width: 90vw;margin-left: -45vw;">
+					<h1 style="padding-top: 0vh; font-size: 3.4em;background:none;">
+						<span style="background: rgba(0,0,0,.8); padding: .1em .3em; line-height: 1.3em; -webkit-box-decoration-break: clone;">
+							GRATULERER MED DAGEN!
+						</span>
+					</h1>
+					<h2>
+						<span style="background: rgba(0,0,0,.8); padding: .1em .3em; line-height: 1.3em; -webkit-box-decoration-break: clone;">Spis is, og kos deg masse</span>
+					</h2>
+					<p class="lead" style="margin-top: 10vh; margin-bottom: 10vh;">
+						<span style="text-shadow: 0px 0px 15px #000;background: rgba(0,0,0,0.3);" class="border">
+							<a href="https://ukm-festivalen.no">Snart starter UKM-festivalen</a>
+						</span>
+					</p>
+				</header>
+			</div>
+		</section>
+
+		{% include "Norge/Front/Section/Hvaer.html.twig" %}
+		{% include "Norge/Front/Section/Fylker.html.twig" %}
+	</div>
+{% endblock %}

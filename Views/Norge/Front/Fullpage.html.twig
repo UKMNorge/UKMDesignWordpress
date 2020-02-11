@@ -1,0 +1,12 @@
+{% extends "UKMDesign/Layout/framework.html.twig"|UKMpath %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ UKMasset("js/scrolloverflow.min.js") }}?20190520-Oskar"></script>
+	<script type="text/javascript" src="{{ UKMasset("js/UKMfullpage.min.js") }}?20190520-Oskar"></script>
+{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+	<link href="{{ UKMasset("css/UKMfullpage.css") }}" rel="stylesheet" />
+{% endblock %}

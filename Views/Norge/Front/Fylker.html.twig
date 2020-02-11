@@ -1,0 +1,61 @@
+{% extends "Norge/Front/Fullpage.html.twig"|UKMpath %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript">
+		$(document).ready(()=>{
+			UKMfullpage( '#fullpage', ['start', 'nyheter', 'finn', 'om', 'festivalen']);
+		});
+	</script>
+{% endblock %}
+
+{% block framework_content %}
+	<div id="fullpage">
+		<section class="section fullpage white waypoint" data-photo-background-transition="#000000" style="background-color: #00508C;" data-photo-background="https://grafikk.ukm.no/forside/fylkesfestivaler-publikum.jpg">
+			<div class="fullpage-content">
+				<div class="meny">
+					<a href="/hovedmeny/" class="btn btn-sm my-2 btn-outline-primary">MENY</a>
+				</div>
+				<div class="logo">
+					<img src="https://grafikk.ukm.no/profil/logoer/UKM_logo_hvit_0100.png" />
+				</div>
+				<header class="white" style="z-index: 100">
+					<h1 class="border autoshrink">
+						<a href="#finn/3">FINN DIN FYLKESFESTIVAL</a>
+					</h1>
+					<div class="header-more" style="margin-top: 5vh;">
+						<p>
+							<a href="https://ukm-festivalen.no">UKM-festivalen</a>
+							|
+							<a href="#om/3">Hva er UKM?</a>
+						</p>
+
+						<div class="readmoreIcon">
+							<a href="#nyheter/2" style="text-decoration: none"><span class="icon icon-down-2"></span></a>
+						</div>
+					</div>
+				</header>
+			</div>
+		</section>
+		
+        {% if PtF_posts is defined and PtF_posts|length > 0 %}
+            <section class="section fullpage white waypoint" data-photo-background-transition="#000000" style="background-color: #00508C;" data-photo-background="https://grafikk.ukm.no/forside/hvit-pixel.jpg">
+                <div class="fullpage-content" style="display: flex;">
+                    <div class="container mt-3 mb-3">
+                        <div class="row">
+                            {% for post in PtF_posts %}
+                                <div class="col-12 col-lg-6">
+                                    {% embed "Post/grid-default.html.twig" with {'post': post} %}{% endembed %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+
+		{% include "Norge/Front/Section/Fylker.html.twig" %}
+		{% include "Norge/Front/Section/Hvaer.html.twig" %}
+        {% include "Norge/Front/Section/Festivalen.html.twig" %}
+	</div>	
+{% endblock %}

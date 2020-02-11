@@ -1,22 +1,13 @@
-{% extends "UKMDesign/Layout/framework.html.twig"|UKMpath %}
-
+{% extends "Norge/Front/Fullpage.html.twig"|UKMpath %}
 
 {% block javascripts %}
-	{{ parent() }}
-	<script type="text/javascript" src="{{ UKMasset("js/scrolloverflow.min.js") }}?20190520-Oskar"></script>
-	<script type="text/javascript" src="{{ UKMasset("js/UKMfullpage.min.js") }}?20190520-Oskar"></script>
-	<script type="text/javascript">
+    {{parent()}}
+    <script type="text/javascript">
 		$(document).ready(()=>{
 			UKMfullpage( '#fullpage', ['pamelding', 'om', 'fylker']);
 		});
 	</script>
 {% endblock %}
-
-{% block css %}
-	{{ parent() }}
-	<link href="{{ UKMasset("css/UKMfullpage.css") }}" rel="stylesheet" />
-{% endblock %}
-
 {% block framework_content %}
 	<div id="fullpage">
 		<section class="section fullpage white waypoint" data-photo-background-transition="#000000" style="background-color: #00508C;" data-photo-background="https://grafikk.ukm.no/forside/superstition-color.jpg">
@@ -51,45 +42,7 @@
 				</header>
 			</div>
 		</section>
-		
-		
-		<section class="section fullpage white waypoint" data-photo-background-transition="#000000" style="background-color: #00508C;" data-photo-background="https://grafikk.ukm.no/forside/korslaget-bla.jpg">
-			<div class="fullpage-content" style="display: flex;">
-				<div class="hugetext center">
-					<p class="lead mt-3">
-					Noen deltar på UKM for å vise frem noe de brenner for, noen prøver noe helt nytt og andre er med sånn at alle får vist sin beste side.
-					</p>
-					<p class="lead">
-						Sammen skaper vi noe nytt, inspirerer og lærer av hverandre og har det gøy.
-					</p>
-					<p class="lead">
-						Musikal, slampoesi, lysteknikk, foto, hiphop, 
-						<a href="{{ pamelding_apen ? '//delta.'~ UKM_HOSTNAME ~'/' : '/hva-er/' }}" style="color: #fff;">eller?</a>
-						<br />
-						<a href="{{ pamelding_apen ? '//delta.'~ UKM_HOSTNAME ~'/' : '/hva-er/' }}" style="color: #fff;">Du bestemmer</a>
-					</p>
-					<p class="lead" style="margin-bottom: 16vh;">
-						<a href="/hva-er/" class="btn btn-outline-primary btn-xs" style="border-radius: 0px; border-color: #fff !important; color: #fff !important;">Les mer</a>
-					</p>
-				</div>
-			</div>
-		</section>
-
-		<section class="section fullpage white waypoint" data-photo-background-transition="#000000" style="background-color: #00508C;" data-photo-background="https://grafikk.ukm.no/forside/newdawn.jpg">
-			<div class="fullpage-content" style="display: flex;">
-				<div class="container sitemap mt-5">
-					<div class="row pageContainer">
-						{% for fylke in fylker %}
-							<div class="col-12 col-sm-6 col-lg-4">
-								<div class="page p-2 px-4 m-2 center white" style="background: rgba(0,0,0,.3);">
-									<a href="{{ fylke.getLink() }}" class="autoshrink">{{ fylke.getNavn() }}</a>
-								</div>
-							</div>
-						{% endfor %}
-					</div>
-				</div>
-				
-			</div>
-		</section>
+		{% include "Norge/Front/Section/Hvaer.html.twig" %}
+		{% include "Norge/Front/Section/Fylker.html.twig" %}
 	</div>	
 {% endblock %}
