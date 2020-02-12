@@ -14,7 +14,7 @@
 	<div class="content">
 		<div class="row" style="max-height: 24vh; overflow-y:scroll;">
 			{% for kommune in omrade.getFylke().getKommuner().getAll() %}
-				<div class="col-12 col-sm-6 col-xl-4 mb-2 kommune" data-filter="{{ include("Kommune:filternavn.html.twig"|UKMpath)|oneline|lower }}">
+				<div class="col-12 col-sm-6 col-xl-4 mb-2 kommune" data-filter="{% include "UKMDesign/Kommune/Filternavn.html.twig"|UKMpath %}">
 					<a href="{{ kommune.getLink() }}" data-kommune="{{kommune.getId()}}" class="btn btn-block btn-outline-primary" style="line-height: 1.25em;">
 						<div class="autoshrink">
 							{{ kommune.getNavn() }}

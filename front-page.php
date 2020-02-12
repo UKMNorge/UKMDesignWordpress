@@ -21,7 +21,17 @@ $has_template_controller = Wordpress::requireTemplateController();
 if (!$has_template_controller) {
     switch (get_option('site_type')) {
         case 'fylke':
-            Wordpress::requireController('Fylke','front-page');
+            Wordpress::requireController('Fylke','front-page'); 
+        break;
+        case 'kommune':
+            if( get_option('pl_id') ) {
+                Wordpress::requireController('Arrangement','front-page');
+            } else {
+                Wordpress::requireController('Kommune','front-page');
+            }
+        break;
+        case 'arrangement':
+            Wordpress::requireController('Arrangement','front-page');
         break;
         case 'norge':
             Wordpress::requireController('Norge','front-page');
@@ -39,19 +49,6 @@ die();
 
 
 switch (get_option('site_type')) {
-    case 'arrangement':
-        require_once('UKMNorge/Wordpress/Controller/arrangement.controller.php');
-        break;
-    case 'fylke':
-        require_once('UKMNorge/Wordpress/Controller/fylke.controller.php');
-        break;
-    case 'kommune':
-        if (get_option('pl_id')) {
-            require_once('UKMNorge/Wordpress/Controller/arrangement.controller.php');
-        } else {
-            require_once('UKMNorge/Wordpress/Controller/kommune.controller.php');
-        }
-        break;
     case 'land':
         switch ($page_template) {
             case 'festival/plakat':

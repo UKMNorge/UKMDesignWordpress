@@ -1,6 +1,6 @@
 <ol class="list-unstyled">
-    {% for arrangement in omrade.getArrangementer(season).getAll() %}
-        <li>
+    {% for arrangement in omrade.getArrangementer(season).getAll()|filter(arrangement => arrangement.erRegistrert() and arrangement.erSynlig()) %}
+        <li class="clearfix mb-3">
             {% include "Arrangement/ListeElement.html.twig" %}
         </li>
     {% else %}

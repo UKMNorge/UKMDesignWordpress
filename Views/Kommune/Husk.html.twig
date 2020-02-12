@@ -1,0 +1,7 @@
+<h3 class="mt-0">Legg igjen mobilnummeret ditt?</h3>
+<p>
+	Vi har ikke registrert noe info om UKM {{ omrade.getNavn() }} enda.
+    Hvis du legger igjen mobilnummeret ditt, sender vi en gratis sms så fort vi vet mer.
+</p>
+
+{% include "UKMDesign/Husk/Form.html.twig" with { fylkeid: omrade.getFylke().getId(), kommuneid: omrade.getKommune().getId() } %}

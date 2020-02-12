@@ -1,4 +1,20 @@
+{% if expand is defined and expand %}
+    <h3 class="mt-0">Kontaktpersoner</h3>
+    <ol class="list-unstyled">
+    {% for kontakt in kontaktpersoner %}
+        <li>
+            {% include "Kontaktpersoner/ListeElement.html.twig" %}
+        </li>
+    {% else %}
+    <li>
+        Beklager, ingen kontaktpersoner er registrert. 
+        <a href="//org.{{ UKM_HOSTNAME }}/kontakt/">Kontakt UKM Norge</a>
+    </li>
+    {% endfor %}
+    </ol>
+{% else %}
 <a href="{{page.getUrl()}}kontaktpersoner/" class="btn btn-sm btn-outline-primary btn-block">
 	{#<span class="icon icon-info" style="font-size: 1.1em; margin-top: .2em;"></span>#}
 	Spørsmål?
 </a>
+{% endif %}

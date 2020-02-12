@@ -1,0 +1,64 @@
+<style>
+	.kontaktPlaceholder {
+		font-size: 2.4em;
+		color: #010260;
+		margin: 0 0.15em 0.15em;
+		background: #ccc;
+		width: 1.2em;
+		border-radius: 3px;
+		padding: 0.1em;
+	}
+</style>
+<div class="">
+	<div class="float-left mr-3" style="margin-top: .25em;">
+		{% if kontakt.getBilde() is not empty %}
+			<div class="center kontaktPlaceholder">
+				<div class="kontaktperson-bilde" style="background-image: url('{{ kontakt.getBilde() }}');">&nbsp;</div>
+			</div>
+		{% else %}
+			<div class="center">
+				<div class="icon icon-user kontaktPlaceholder"></div>
+			</div>
+		{% endif %}
+	</div>
+	<div>
+		<div style="margin-bottom: -.4em;">
+			<p class="{{ kontakt.getTittel() is empty ? 'pt-1' }} mt-0 mb-1">
+				{% if kontakt.getTelefon() is not empty and kontakt.getEpost() is not empty %}
+					<span class="d-none d-md-block">
+						<a href="mailto:{{ kontakt.getEpost() }}">{{ kontakt.getNavn() }}</a>
+					</span>
+					<span class="d-block d-md-none">
+						<a href="tel:{{ kontakt.getTelefon() }}">{{ kontakt.getNavn() }}</a>
+					</span>
+				{% else %}
+					{{ kontakt.getNavn() }}
+				{% endif %}
+			</p>
+			<small class="text-muted">
+				{% if kontakt.getTittel() is not empty %}
+					<p class="col card-text mt-0">{{ kontakt.getTittel() }}</p>
+				{% endif %}
+			</small>
+			<small>
+				{% if kontakt.getTelefon() is not empty %}
+					<div class="mr-3 float-left">
+						<span class="icon icon-mobile"></span>
+						<a href="tel:{{ kontakt.getTelefon() }}" class="telefon">
+							{{ kontakt.getTelefon()|telefon }}
+						</a>
+					</div>
+				{% endif %}
+				{% if kontakt.getEpost() is not empty %}
+					<div class="float-left">
+						<span class="icon icon-chat"></span>
+						<a href="mailto:{{ kontakt.getEpost() }}" class="epost">
+							Send epost
+						</a>
+					</div>
+				{% endif %}
+				<div class="clearfix"></div>
+			</small>
+		</div>
+	</div>
+</div>

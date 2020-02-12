@@ -19,7 +19,7 @@
 				{% endif %}
 
 				<div class="mt-4">
-					{% include "Front/Part/Kontakt.html.twig" with { kontakpersoner: omrade.getKontaktpersoner() } %}
+					{% include "Front/Part/Kontakt.html.twig" with { kontaktpersoner: omrade.getKontaktpersoner() } %}
 				</div>
 
 				<div class="mt-4 mb-5">
@@ -40,11 +40,11 @@
 
 					<h3 class="mb-3 mt-0">Nyheter fra UKM
 						{{ omrade.getNavn() }}</h3>
-					{% include "Fylke/Nyheter.html.twig" with { col: 'col-6 col-lg-6', posts: posts.getAll()|slice(0,4)} %}
+					{% include "Front/Part/Nyheter.html.twig" with { col: 'col-6 col-lg-6', posts: posts.getAll()|slice(0,4)} %}
 
 				</div>
 				<div class="col-12 order-md-3 mb-5">
-					{% include "Fylke/Nyheter.html.twig" with { col: 'col-6 col-md-3', posts: posts.getAll()|slice(4)} %}
+					{% include "Front/Part/Nyheter.html.twig" with { col: 'col-6 col-md-3', posts: posts.getAll()|slice(4)} %}
 					{% embed "Kategori/Pagination.html.twig"|UKMpath %}{% endembed %}
 				</div>
 			{% endif %}
