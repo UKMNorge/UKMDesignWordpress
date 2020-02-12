@@ -1,0 +1,103 @@
+<style>
+	#arrow-right {
+		font-size: 0.8em;
+		line-height: 1.32em;
+		margin-left: 0.4em;
+		margin-right: 0.4em;
+    }
+    
+    #kartet .row {
+        /*background: #ececec;*/
+        margin-top: -1em;
+        padding-top: 1em;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        padding-bottom: 1em;
+    }
+</style>
+<script>
+	jQuery(document).on('click', '#visKart', function (e) {
+if (jQuery('#kartet').is(':visible')) {
+jQuery('#kartet').slideUp(250);
+} else {
+jQuery('#kartet').slideDown(250);
+}
+});
+jQuery(document).on('click', '#skjulKart', function (e) {
+e.preventDefault();
+jQuery('#kartet').slideUp();
+});
+</script>
+<div class="fylkesfestival">
+	<div class="container mb-3 clearfix" style="margin-top:-1em;">
+		<div class="row py-3">
+			<div class="col-12 title">
+				{% if arrangement.harKart() %}
+					<div class="float-right mt-2 click" id="visKart">
+						<div class="overunder" style="font-size: 1.2em;">
+							<div class="over" style="font-size: 2em;">
+								<span class="icon icon-map-folded-outline"></span>
+							</div>
+							<div class="under" style="margin-top: .3em;">
+								vis kart
+							</div>
+						</div>
+					</div>
+				{% endif %}
+				<p
+					class="small mb-2">
+					{# FORENKLE KLOKKA HVIS MULIG #}
+					{% if arrangement.getStart()|dato('i') == '00' and arrangement.getStop()|dato('i') == '00' %}
+						{% set timeFormat = 'G' %}
+					{% else %}
+						{% set timeFormat = 'H:i' %}
+					{% endif %}
+
+					{# SAMME DAG #}
+					{% if arrangement.getStart()|dato('d.m') == arrangement.getStop()|dato('d.m') %}
+						{{ arrangement.getStart()|dato('D d. M')|capitalize }}
+						kl.
+						{{ arrangement.getStart()|dato( timeFormat ) }}
+						<span class="icon icon-arrow-right" id="arrow-right"></span>
+						{{ arrangement.getStop()|dato( timeFormat ) }}
+						{# FLERE DAGER #}
+					{% else %}
+						{{ arrangement.getStart()|dato('j.M') }}
+						kl.
+						{{ arrangement.getStart()|dato('H:i') }}
+						<span class="icon icon-arrow-right" id="arrow-right"></span>
+						{{ arrangement.getStop()|dato('j.M') }}
+						kl.
+						{{ arrangement.getStop()|dato('H:i') }}
+					{% endif %}
+				</p>
+
+
+				<h1 class="mt-1 mb-1" style="opacity: 1 !important; font-size: 1.9em;">{{ arrangement.getNavn() }}</h1>
+				<p class="small mt-2">
+					{% if arrangement.harKart() and arrangement.getKart().getName() is not empty %}
+						{{ arrangement.getKart().getName()|upper }}
+					{% elseif arrangement.getSted() is not empty %}
+						{{ arrangement.getSted()|upper }}
+					{% else %}
+						&nbsp;
+					{% endif %}
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="kartet" class="mb-4" style="display: none;">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+				<div class="mb-3">
+					<a href="{{ arrangement.getKart().getLink() }}" target="_blank">
+						<img src="{{ arrangement.getKart().getMap() }}" style="width:100%;">
+					</a>
+				</div>
+				<a href="#" id="skjulKart" class="btn btn-xs btn-outline-primary float-right">Skjul kart</a>
+			</div>
+		</div>
+	</div>
+</div>

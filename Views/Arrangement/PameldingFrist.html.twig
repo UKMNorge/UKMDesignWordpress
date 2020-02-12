@@ -1,0 +1,18 @@
+{% if arrangement.erPameldingApen( frist ) %}
+	<div class="kalender float-right ml-3">
+		<div class="overunder">
+			<div class="under mb-1" style="font-size: .7em;">
+				{{ arrangement.getFrist(frist)|dato('M')|upper}}
+			</div>
+			<div class="over" style="font-size:1.5em;margin-top: -.1em;">
+				{{ arrangement.getFrist(frist)|dato('j') }}
+			</div>
+		</div>
+	</div>
+	<p class="small m-0">{{ arrangement.getInnslagTyper()|filter(type => type.getFrist() == frist)|join(', ', ' og ')|lower|capitalize }}</p>
+{% else %}
+	<p class="small m-0">
+		Påmeldingen er stengt for
+		{{ arrangement.getInnslagTyper()|filter(type => type.getFrist() == frist)|join(', ', ' og ')|lower }}
+	</p>
+{% endif %}

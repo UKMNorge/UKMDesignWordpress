@@ -67,4 +67,5 @@ switch (get_option('site_type')) {
                 break;
         }
         break;
+    case 'ego';
 }

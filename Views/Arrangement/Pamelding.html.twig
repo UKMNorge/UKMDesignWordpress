@@ -1,93 +1,47 @@
-<h2>Påmeldingen er åpen</h2>
-<div class="mt-0 mb-1">
-    {% if arrangement.getFrist1() == arrangement.getFrist2() or not arrangement_tillater_tittellose or arrangement.erArrangement() %}
-        Fristen går ut
-        {{ arrangement.getFrist1()|dato('l j. F') }}
-        kl.
-        {{ arrangement.getFrist1()|dato('H:i') }}
-    {% else %}
-        <div class="frister mb">
-            <div class="frist mb-3">
-                <div class="header-line">
-                    {% if arrangement.erPameldingApen(1) %}
-                        <div class="float-left">
-                            Frist 1:
-                        </div>
-                        <div class="float-right">
-                            {{ arrangement.getFrist1()|dato('l j. F') }}
-                            kl.
-                            {{ arrangement.getFrist1()|dato('H:i')}}
-                        </div>
-                    {% else %}
-                        Fristen har gått ut for
-                    {% endif %}
-                    <div class="clearfix"></div>
-                </div>
-                {% if arrangement.erPameldingApen(1) %}
-                    Gjelder:
-                {% endif %}
-                {% for type in arrangement.getInnslagTyper()|filter(type => type.getFrist() == 1) %}
-                    {{ type }},
-                {% endfor %}
-            </div>
+{% if arrangement.harPamelding() and (arrangement.erPameldingApen(1) or arrangement.erPameldingApen(2)) %}
+	<div class="mb-4 center">
+		{% if arrangement.erFellesmonstring() %}
+			<a href="http://delta.{{ UKM_HOSTNAME }}/ukmid/pamelding/" class="btn btn-primary btn-block" id="showKommuner">Start påmelding</a>
+			<div id="kommuner" style="display:none">
+				<p class="bold">Hvilken
+					{{ kommune.getFylke().erOslo() ? 'bydel' : 'kommune'}}
+					er du fra?
+				</p>
+				{% for kommune in arrangement.getKommuner() %}
+					<a href="//delta.{{ UKM_HOSTNAME }}/ukmid/pamelding/{{ kommune.getId() }}-{{ arrangement.getId() }}/" target="_blank" class="btn btn-outline-primary btn-block">
+						{{ kommune.getNavn() }}
+					</a>
+				{% endfor %}
+			</div>
+		{% else %}
+			<a href="//delta.{{ UKM_HOSTNAME }}/ukmid/pamelding/{{ arrangement.getEierKommune().getId() }}-{{ arrangement.getId() }}" target="_blank" class="btn btn-block btn-primary">Start påmelding</a>
+		{% endif %}
+	</div>
+	<div class="clearfix"></div>
 
-            <div class="frist mb-3">
-                <div class="header-line">
-                    {% if arrangement.erPameldingApen(2) %}
-                        <div class="float-left">
-                            Frist 2:
-                        </div>
-                        <div class="float-right">
-                            {{ arrangement.getFrist2()|dato('l j. F') }}
-                            kl.
-                            {{ arrangement.getFrist2()|dato('H:i')}}
-                        </div>
-                    {% else %}
-                        Fristen har gått ut for
-                    {% endif %}
-                    <div class="clearfix"></div>
-                </div>
-                {% if arrangement.erPameldingApen(2) %}
-                    Gjelder:
-                {% endif %}
-                {% for type in arrangement.getInnslagTyper()|filter( type => type.getFrist() == 2) %}
-                    {{ type }},
-                {% endfor %}
-            </div>
+	<div class="mt-3 mb-1">
+		{% include "Arrangement/PameldingFrister.html.twig" %}
+	</div>
 
-        </div>
-    {% endif %}
-    <div class="clearfix"></div>
-</div>
-<p class="mt-0 small">
-    Har du allerede startet en påmelding, kan du
-    <a href="//delta.{{ UKM_HOSTNAME }}">logge inn og redigere den her</a>
-</p>
+	<p class="mt-2 mb-4 small">
+		Har du startet en påmelding, kan du
+		<a href="//delta.{{ UKM_HOSTNAME }}">logge inn og redigere den her</a>
+	</p>
 
-<p class="mt-5 mb-4 center">
-    {% if arrangement.erFellesmonstring() %}
-        <a href="http://delta.{{ UKM_HOSTNAME }}/ukmid/pamelding/" class="btn btn-primary btn-block" id="showKommuner">Start påmelding</a>
-        <div id="kommuner" style="display:none">
-            <h2>Start påmelding</h2>
-            <p>Hvilken {{ kommune.getFylke().erOslo() ? 'bydel' : 'kommune'}} er du fra?
-            </p>
-            {% for kommune in arrangement.getKommuner() %}
-                <a href="//delta.{{ UKM_HOSTNAME }}/ukmid/pamelding/{{ kommune.getId() }}-{{ arrangement.getId() }}/" target="_blank" class="btn btn-primary btn-block">
-                    {{ kommune.getNavn() }}
-                </a>
-            {% endfor %}
-        </div>
-    {% else %}
-        <a href="//delta.{{ UKM_HOSTNAME }}/ukmid/pamelding/{{ arrangement.getEierKommune().getId() }}-{{ arrangement.getId() }}" target="_blank" class="btn btn-block btn-primary">Start påmelding</a>
-    {% endif %}
-</p>
-
-<script type="text/javascript">
-$(document).ready(function() {
-    $("#showKommuner").click(function(clickEvent) {
-        clickEvent.preventDefault();
-        $(clickEvent.target).hide();
-        $('#kommuner').slideDown();
-    });
+	<script type="text/javascript">
+		$(document).ready(function () {
+$("#showKommuner").click(function (e) {
+e.preventDefault();
+$(e.target).slideUp(120);
+$('#kommuner').slideDown(200);
 });
-</script>
+});
+	</script>
+{% elseif arrangement.harPamelding() and not arrangement.harStartet() and not arrangement.erPameldingApen(1) and not arrangement.erPameldingApen(2) %}
+	<b>Nettpåmeldingen er stengt</b>.
+								    Hvis du vil melde deg på, eller endre din påmelding, kan du 
+								    snakke med
+	<a href="{{arrangement.getLink()}}kontaktpersoner/" class="bold">kontaktpersonene</a>.
+{% elseif not arrangement.harStartet() %}
+	{% include "UKMDesignBundle:Omrade:Husk.html.twig"|UKMpath with {fylkeid: omrade.getFylke().getId() } %}
+{% endif %}

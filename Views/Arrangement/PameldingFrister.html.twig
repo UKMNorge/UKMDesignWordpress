@@ -1,0 +1,42 @@
+<style>
+	.kalender {
+		background: #ececec;
+		margin-top: -0.8em;
+		margin-bottom: -0.8em;
+		padding: 1em 1.4em;
+		width: 4.3em;
+		margin-right: -20px;
+	}
+
+	.kalender .under {
+		color: #010260;
+	}
+
+	ol.list-group > li.list-group-item:first-of-type > .kalender {
+		border-top-right-radius: 4px;
+	}
+	ol.list-group > li.list-group-item:last-of-type > .kalender {
+		border-bottom-right-radius: 4px;
+	}
+</style>
+{% if arrangement.getFrist1() == arrangement.getFrist2() or not arrangement.getInnslagTyper().harJobbeMed() or arrangement.erArrangement() %}
+	<p class="mt-1">
+		Påmeldingen stenger
+		{{ arrangement.getFrist1()|dato('l j. F') }}
+		kl.
+		{{ arrangement.getFrist1()|dato('H:i')}}
+	</p>
+{% else %}
+	<div class="frister mb">
+		<p class="small bold mb-1">PÅMELDINGSFRISTER</p>
+		<ol class="list-group">
+			<li class="list-group-item">
+				{% include "Arrangement/PameldingFrist.html.twig" with { frist: 1 } %}
+			</li>
+			<li class="list-group-item">
+				{% include "Arrangement/PameldingFrist.html.twig" with { frist: 2 } %}
+			</li>
+		</ol>
+	</div>
+{% endif %}
+<div class="cleartfix"></div>

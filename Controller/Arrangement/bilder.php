@@ -3,7 +3,7 @@
 use UKMNorge\Arrangement\Arrangement;
 use UKMNorge\DesignWordpress\Environment\Wordpress;
 
-Wordpress::setView('Arrangement/Bilder');
+Wordpress::setView('Arrangement/Sider/Bilder');
 
 if (isset($_GET['hendelse'])) {
     Wordpress::addViewData('vis', $_GET['hendelse']);

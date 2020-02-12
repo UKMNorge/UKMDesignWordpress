@@ -26,6 +26,10 @@
 				<div class="mt-4">
 					{% include "Front/Part/Kontakt.html.twig" with { kontakpersoner: omrade.getKontaktpersoner() } %}
 				</div>
+
+                <div class="mt-4">
+					<a href="//{{UKM_HOSTNAME ~'/'~ omrade.getFylke().getLink() }}/" class="btn btn-outline-primary btn-sm btn-block">UKM {{omrade.getFylke().getNavn()}}</a>
+				</div>
 			</div>
 
             {% if posts.getAntall() > 0 %}

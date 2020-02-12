@@ -45,7 +45,7 @@ if( is_numeric( $id ) ) {
 ## Skal hente ut alle påmeldte innslag til påmeldte-oversikten.
 // /pameldte/ - vil altså laste inn oversikten.
 else {
-    Wordpress::setView('Arrangement/Pameldte');
+    Wordpress::setView('Arrangement/Sider/Pameldte');
     Wordpress::addViewData(
         [
             'arrangement' => $arrangement,

@@ -1,14 +1,6 @@
 <div class="page-menu">
 	<div class="row">
-		{% if visNettside is defined and visNettside != false %}
-			<div class="col menu-item">
-				<a href="{{ arrangement.getLink() }}">
-					<div class="icon icon-home"></div>
-					<div class="text">Gå til nettsiden</div>
-				</a>
-			</div>
-		{% endif %}
-		{% if har_program %}
+		{% if arrangement.harProgram() %}
 			<div class="col menu-item">
 				<a href="{{ arrangement.getLink() }}program/">
 					<div class="icon icon-calendar"></div>
@@ -16,15 +8,15 @@
 				</a>
 			</div>
 		{% endif %}
-		{% if harTV %}
+		{% if arrangement.harFilmer() %}
 			<div class="col menu-item">
-				<a href="//tv.ukm.no/fylke/{{ fylke.getPath() }}/{{ fylke.getSesong() }}/">
+				<a href="{{ arrangement.getUKMTVLink() }}">
 					<div class="icon icon-tv"></div>
 					<div class="text">UKM-TV</div>
 				</a>
 			</div>
 		{% endif %}
-        {% if har_bilder %}
+        {% if arrangement.harBilder() %}
 			<div class="col menu-item">
 				<a href="{{ arrangement.getLink() }}bilder/">
 					<div class="icon icon-stack-picture"></div>
@@ -32,35 +24,19 @@
 				</a>
 			</div>
 		{% endif %}
-		{% if har_pameldte %}
+		{% if arrangement.harPameldte() %}
 		<div class="col menu-item">
 			<a href="{{ arrangement.getLink() }}pameldte/">
-                {% if antall_pameldte is defined %}
+                {#% if antall_pameldte is defined %}
                     <div class="badge badge-pill badge-primary pameldte-badge">
                         {{ antall_pameldte }}
                     </div>
-                {% endif %}
+                {% endif %#}
 				<div class="icon icon-users"></div>
 				<div class="text">Påmeldte</div>
 			</a>
 		</div>
 		{% endif %}
-		{% if harInfoPage and posts.getAntall() > 0 %}
-			<div class="col menu-item">
-				<a href="{{ arrangement.getLink() }}info/">
-					<div class="icon icon-info-with-circle"></div>
-					<div class="text">Festival-info</div>
-				</a>
-			</div>
-		{% endif %}
-        {% if not skjulKontaktpersoner is defined %}
-            <div class="col menu-item">
-                <a href="{{ arrangement.getLink() }}kontaktpersoner/">
-                    <div class="icon icon-mobile"></div>
-                    <div class="text">Kontakt</div>
-                </a>
-            </div>
-        {% endif %}
 	</div>
 	<div class="row">
 		<div class="col-12">

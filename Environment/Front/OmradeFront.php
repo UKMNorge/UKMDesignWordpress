@@ -10,6 +10,7 @@ class OmradeFront extends Front
 {
     static $infoside;
     static $omrade;
+    static $arrangement;
 
     /**
      * Har bloggen en infoside?

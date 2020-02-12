@@ -1,0 +1,50 @@
+{% extends "Page/Fullpage.html.twig"|UKMpath %}
+
+{% block content %}
+	{% include "Arrangement/Front/Banner.html.twig" %}
+	<div class="container clearfix">
+		<div class="row">
+			<div class="col-12 col-md-6 order-md-2 col-lg-5 offset-lg-1 mb-5">
+				{% if infoside is defined %}
+					<div class="mb-5 d-md-none">
+						{% include "Front/Part/Infoside.html.twig" %}
+					</div>
+				{% endif %}
+				<div class="mb-4">
+					{% include "Arrangement/Pamelding.html.twig" %}
+				</div>
+				<div class="mb-4">
+					{% include "Arrangement/Meny.html.twig" %}
+				</div>
+				{% include "Front/Part/Kontakt.html.twig" with { kontaktpersoner: arrangement.getKontaktpersoner() } %}
+			</div>
+
+			<div class="col-12 col-md-6 order-md-1">
+				{% if infoside is defined %}
+					<div class="mb-5 d-none d-md-block">
+						{% include "Front/Part/Infoside.html.twig" with {expand:true} %}
+					</div>
+				{% endif %}
+
+				{% if posts.getAntall() > 0 and infoside.getContent()|length < 250 %}
+					{% include "Front/Part/Nyheter.html.twig" with { col: 'col-6', posts: posts.getAll()|slice(0,4) } %}
+				{% endif %}
+			</div>
+            
+			{% if posts.getAntall() > 0 %}
+				<div class="col-12 order-md-3">
+					{% if posts.getAntall() > 0 and infoside.getContent()|length < 250 %}
+						{% include "Front/Part/Nyheter.html.twig" with { col: 'col-6 col-md-3', posts: posts.getAll()|slice(4) } %}
+					{% else %}
+						{% include "Front/Part/Nyheter.html.twig" with { col: 'col-6 col-md-3', posts: posts.getAll() } %}
+					{% endif %}
+				</div>
+			{% endif %}
+		</div>
+		<div class="row">
+			<div class="col-12 col-md-12 mb-5">
+				{% include "Front/Part/HvaEr.html.twig" %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

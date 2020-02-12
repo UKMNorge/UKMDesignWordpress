@@ -5,7 +5,7 @@ use UKMNorge\DesignWordpress\Environment\Wordpress;
 
 $arrangement = new Arrangement( get_option('pl_id' ) );
 
-Wordpress::setView('Arrangement/Kontaktpersoner');
+Wordpress::setView('Arrangement/Sider/Kontaktpersoner');
 Wordpress::addViewData('arrangement', $arrangement);
 
 Wordpress::getPage()
