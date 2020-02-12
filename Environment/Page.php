@@ -135,23 +135,6 @@ class Page extends Post
      */
     public function getMenu()
     {
-        $menu = new Menu();
-        if ($this->hasMenu()) {
-            $items = wp_get_nav_menu_items($this->getMeta('UKM_nav_menu', true));
-
-            if (is_array($items)) {
-                foreach ($items as $item) {
-                    $menu->add(
-                        new Link(
-                            $item->title,
-                            $item->url,
-                            (!is_null($item->target) && !empty($item->target)
-                                ? $item->target : null)
-                        )
-                    );
-                }
-            }
-        }
-        return $menu;
+        return Wordpress::createMenuFromId(intval($this->getMeta('UKM_nav_menu', true)));
     }
 }

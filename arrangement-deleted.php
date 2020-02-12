@@ -6,11 +6,12 @@ use UKMNorge\Geografi\Fylker;
 use UKMNorge\Geografi\Kommune;
 use UKMNorge\Wordpress\Blog;
 use UKMNorge\Database\SQL\Query;
+use UKMNorge\DesignWordpress\Environment\Wordpress;
 
 require_once('header.php');
 require_once('UKM/Autoloader.php');
 
-$template = '404/deleted';
+Wordpress::setView('404/Deleted');
 
 $links = [];
 
@@ -81,7 +82,7 @@ switch ($site_type) {
 
         // Fant ingen kommuner
         if( sizeof( $kommuner ) == 0 ) {
-            $template = '404/404';
+            Wordpress::setView('404/404');
         }
         // Komuneside for én kommune - go there
         elseif (sizeof($kommuner) == 1 ) {
@@ -181,11 +182,6 @@ switch ($site_type) {
         break;
 }
 
+Wordpress::addViewData('links',$links);
 
-$WP_TWIG_DATA['links'] = $links;
-echo WP_TWIG::render($template, $WP_TWIG_DATA);
-
-wp_footer();
-if (is_user_logged_in()) {
-    echo '<style>body {margin-top: 33px;} @media (max-width:782px) {body {margin-top: 48px;}}</style>';
-}
+require_once('render.php');

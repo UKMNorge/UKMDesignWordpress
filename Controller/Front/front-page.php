@@ -1,6 +1,5 @@
 <?php
 
-use UKMNorge\Design\Menu\Menu;
 use UKMNorge\DesignWordpress\Environment\Front\Front;
 use UKMNorge\DesignWordpress\Environment\Wordpress;
 
@@ -8,7 +7,7 @@ use UKMNorge\DesignWordpress\Environment\Wordpress;
 if (Front::hasMeny()) {
     Wordpress::addViewData(
         'shortcuts',
-        Menu::createFromWpId( Front::getMeny() )
+        Wordpress::createMenuFromId( Front::getMeny() )
     );
 }
 

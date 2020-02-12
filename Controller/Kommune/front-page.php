@@ -1,10 +1,11 @@
 <?php
 
-use UKMNorge\Design\Menu\Menu;
 use UKMNorge\DesignWordpress\Environment\Front\OmradeFront;
 use UKMNorge\DesignWordpress\Environment\Posts;
 use UKMNorge\DesignWordpress\Environment\Wordpress;
 use UKMNorge\Nettverk\Omrade;
+
+Wordpress::requireController('Kommune','redirecter');
 
 $omrade = Omrade::getByKommune( get_option('kommune') );
 
@@ -28,7 +29,7 @@ if( OmradeFront::harInfoside() ) {
 if (OmradeFront::hasMeny()) {
     Wordpress::addViewData(
         'menu',
-        Menu::createFromWpId( OmradeFront::getMeny() )
+        Wordpress::createMenuFromId( OmradeFront::getMeny() )
     );
 }
 

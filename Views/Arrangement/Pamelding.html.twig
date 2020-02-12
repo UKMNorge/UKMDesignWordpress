@@ -43,5 +43,5 @@ $('#kommuner').slideDown(200);
 								    snakke med
 	<a href="{{arrangement.getLink()}}kontaktpersoner/" class="bold">kontaktpersonene</a>.
 {% elseif not arrangement.harStartet() %}
-	{% include "UKMDesignBundle:Omrade:Husk.html.twig"|UKMpath with {fylkeid: omrade.getFylke().getId() } %}
+	{% include "Husk/Pamelding.html.twig"|UKMpath with {fylkeid: omrade.getFylke().getId() } %}
 {% endif %}

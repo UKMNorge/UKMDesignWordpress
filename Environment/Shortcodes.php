@@ -1,6 +1,6 @@
 <?php
 
-namespace UKMNorge\Design\Environment;
+namespace UKMNorge\DesignWordpress\Environment;
 
 use UKMNorge\Design\UKMDesign;
 use UKMNorge\DesignWordpress\Environment\Wordpress;

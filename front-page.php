@@ -36,6 +36,9 @@ if (!$has_template_controller) {
         case 'norge':
             Wordpress::requireController('Norge','front-page');
             break;
+        case 'land':
+            Wordpress::requireController('Land', 'front-page');
+        break;
         default:
             Wordpress::requireController('Front', 'front-page');
             break;
@@ -44,28 +47,8 @@ if (!$has_template_controller) {
 
 require_once('render.php');
 
-
-die();
-
-
+/*
 switch (get_option('site_type')) {
-    case 'land':
-        switch ($page_template) {
-            case 'festival/plakat':
-                $view_template = 'Festival/plakat';
-                break;
-            case 'festival/juni':
-                $view_template = 'Festival/juni';
-                require_once('UKMNorge/Wordpress/Controller/festival/juni.controller.php');
-                break;
-            case 'festival/underveis':
-                $view_template = 'Festival/underveis';
-                require_once('UKMNorge/Wordpress/Controller/festival/underveis.controller.php');
-                break;
-            default:
-                $view_template = 'Page/fullpage';
-                break;
-        }
-        break;
     case 'ego';
 }
+*/

@@ -1,6 +1,7 @@
 <?php
 
 use UKMNorge\Arrangement\Load;
+use UKMNorge\DesignWordpress\Environment\Wordpress;
 use UKMNorge\Geografi\Kommune;
 
 require_once('header.php');
@@ -25,10 +26,10 @@ if( !isset($_GET['retry'] ) ) {
     }
 }
 
-$template = 'Monstring/'.get_option('status_monstring');
+Wordpress::setView('Arrangement/Flyttet/'.get_option('status_monstring'));
 
 // Prøv å finn nye mønstringer for kommunen
-$monstringer = [];
+$arrangementer = [];
 
 /**
  * Hent kommuner fra bloggen
@@ -45,8 +46,8 @@ if( is_array( $kommuner ) ) {
             continue;
         }
 		try {
-			$monstring = Load::forKommune( (Int) get_site_option('season'), new Kommune( $kommune_id ) );
-			$monstringer[ $monstring->getId() ] = $monstring;
+			$arrangement = Load::forKommune( (Int) get_site_option('season'), new Kommune( $kommune_id ) );
+			$arrangementer[ $arrangement->getId() ] = $arrangement;
 		} catch( Exception $e ) {
 			// Ignorer mønstringer vi ikke finner
 		}
@@ -60,32 +61,26 @@ if( is_array( $kommuner ) ) {
  * Burde kanskje ikke gjelde når mønstringen er splittet, da det kan
  * være at deltakeren søker kommunen som er tatt ut. Videresender likevel inntil videre
 **/
-if( sizeof( $monstringer ) == 1 ) {
-	$monstring = array_shift( $monstringer );
-	wp_redirect( $monstring->getLink() );
+if( sizeof( $arrangementer ) == 1 ) {
+	$arrangement = array_shift( $arrangementer );
+	wp_redirect( $arrangement->getLink() );
 	exit;
 }
 
-switch( str_replace('Monstring/', '', $template) ) {
+switch( get_option('status_monstring') ) {
 	case 'avlyst':
 		try {
-			$WP_TWIG_DATA['kommune'] = new Kommune( $kommuner[0] );
+            $kommune = new Kommune( $kommuner[0] );
+            if( $kommune->getId() ) {
+                Wordpress::addViewData('kommune', $kommune);
+            }
 		} catch( Exception $e ) {
 			// Ignorer hvis vi ikke finner gitt kommune - view håndterer det
 		}
 		break;
 	default:
-		$WP_TWIG_DATA['monstringer'] = $monstringer;
+		Wordpress::addViewData('arrangementer', $arrangementer);
 		break;
 }
 
-echo WP_TWIG::render( $template, $WP_TWIG_DATA );
-
-wp_footer();
-if(is_user_logged_in() ) {
-	echo '<style>body {margin-top: 33px;} @media (max-width:782px) {body {margin-top: 48px;}}</style>';
-}
-
-if( WP_ENV == 'dev' ) {
-	echo '<script language="javascript">console.debug("'.basename(__FILE__).'");</script>';
-}
+require_once('render.php');

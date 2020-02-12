@@ -1,16 +1,16 @@
-{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
 
 {% block content %}
 	<div class="container">
 		<div class="col-12">
-			<h1>Mønstringen du forsøkte å besøke har blitt flere!</h1>
+			<h1>Arrangementet du forsøkte å besøke har blitt flere!</h1>
 		
-			<p class="lead">Velg hvilken mønstring du ønsker å se</p>
+			<p class="lead">Velg hvilket arrangement du ønsker å se</p>
 
-			{% for monstring in monstringer %}
+			{% for arrangement in arrangementer %}
 				<p>
-					<a href="{{ monstring.getLink() }}" class="btn btn-primary">
-						{{ monstring.getNavn() }}
+					<a href="{{ arrangement.getLink() }}" class="btn btn-primary">
+						{{ arrangement.getNavn() }}
 					</a>
 				</p>
 			{% else %}

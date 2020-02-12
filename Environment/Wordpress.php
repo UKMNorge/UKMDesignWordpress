@@ -4,6 +4,8 @@ namespace UKMNorge\DesignWordpress\Environment;
 
 use Symfony\Component\Yaml\Yaml;
 use UKMNorge\Design\Image;
+use UKMNorge\Design\Menu\Link;
+use UKMNorge\Design\Menu\Menu;
 use UKMNorge\Design\UKMDesign;
 use UKMNorge\Design\TemplateEngine\Functions as UKMDesignTwigFunctions;
 use UKMNorge\Design\TemplateEngine\Filters as UKMDesignTwigFilters;
@@ -344,5 +346,30 @@ class Wordpress extends TemplateEngine
                 static::getPage()->getMenu()
             );
         }
+    }
+
+    /**
+     * Bygg en wordpress-meny
+     *
+     * @param Int $id
+     * @return Menu
+     */
+    public static function createMenuFromId(Int $id)
+    {
+        $menu = new Menu();
+        $items = wp_get_nav_menu_items($id);
+        if (is_array($items)) {
+            foreach ($items as $item) {
+                $menu->add(
+                    new Link(
+                        $item->title,
+                        $item->url,
+                        (!is_null($item->target) && !empty($item->target)
+                            ? $item->target : null)
+                    )
+                );
+            }
+        }
+        return $menu;
     }
 }
