@@ -1,7 +1,7 @@
 {% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
 
 {% block content %}
-	{% embed "UKMDesignBundle:Post:TopImage.html.twig"|UKMpath %}{% endembed %}
+	{% embed "UKMDesignBundle:Page:TopImage.html.twig"|UKMpath %}{% endembed %}
 
 	<div class="container">
 		<div class="row">
@@ -33,7 +33,7 @@
 			<div class="col-12 col-md-10 ml-auto mr-auto col-lg-8">
 				<ol class="list-group pageList">
 					{% for section in page.getPageBlocks().getAll() %}
-						{% embed ("UKMDesignBundle:PageBlock:"~ section.getTemplateFile() ~".html.twig")|UKMpath with{ block: section } %}{% endembed %}
+						{% embed ("UKMDesign/PageBlock/"~ section.getTemplate() ~".html.twig")|UKMpath with{ block: section } %}{% endembed %}
 					{% endfor %}
 				</ol>
 			</div>

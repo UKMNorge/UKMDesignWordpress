@@ -136,3 +136,16 @@ templates:
         file: Page/Fullpage_with_menu
         description: >
           Lister ut spesifisert meny i tillegg til teksten på siden
+  festivalen:
+    name: Festivalen
+    controllers:
+      festival_underveis:
+        name: Forsiden underveis i festivalen
+        file: Festivalen/underveis
+        description: >
+          Siden som er aktiv underveis i festivalen
+      festival_nyhetsbrev:
+        name: Nyhetsbrev fra festivalen
+        file: Festivalen/nyhetsbrev
+        description: >
+          Husk også å sette meta-feltet `dato` med `dd_mm`-format

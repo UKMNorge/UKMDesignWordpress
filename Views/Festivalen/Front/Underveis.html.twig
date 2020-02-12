@@ -1,4 +1,4 @@
-{% extends "Layout/_"~ (singleMode is defined and singleMode ? 'singleMode' : 'base' ) ~".html.twig"|UKMpath %}
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
 
 {% block css %}
 	<style>
@@ -79,7 +79,7 @@
     </div>
 </div>
     <div class="container mt-4">
-        {% embed "Category:the_list.html.twig"|UKMpath with {'posts': posts.posts } %}{% endembed %}
+        {% embed "Kategori/Listen.html.twig"|UKMpath %}{% endembed %}
     </div>
 </div>
 {% endblock %}

@@ -2,9 +2,11 @@
 
 namespace UKMNorge\DesignWordpress\Environment;
 
+use Exception;
 use UKMNorge\Design\Blocks\Blocks as DesignBlocks;
 use UKMNorge\Design\Blocks\ImageLeft;
 use UKMNorge\Design\Blocks\ImageRight;
+use UKMNorge\Design\Blocks\ListElement;
 use UKMNorge\Design\Blocks\Text;
 use UKMNorge\Design\Blocks\TextCenter;
 use UKMNorge\Design\Image;
@@ -33,7 +35,11 @@ class Blocks extends DesignBlocks
             if (!$block_type) {
                 continue;
             }
-            $this->blocks[] = $this->pageToBlock($block_type, $page);
+            $block = $this->pageToBlock($block_type, $page);
+
+            if (!is_null($block)) {
+                $this->blocks[] = $block;
+            }
         }
     }
 
@@ -56,6 +62,7 @@ class Blocks extends DesignBlocks
                     $this->page->content
                 );
                 $block->setTitle($page->getTitle());
+                $block->setContent($page->getContent());
                 break;
             case 'jumbo_image':
             case 'image_left':
@@ -75,7 +82,22 @@ class Blocks extends DesignBlocks
                         $page->getMeta('image_xs')
                     )
                 );
-            break;
+                break;
+            case 'list':
+                $block = new ListElement(
+                    $page->ID,
+                    $page->getTitle(),
+                    $page->getContent()
+                );
+                if ($page->hasMeta('ikon')) {
+                    $block->setIcon($page->getMeta('ikon', true));
+                } elseif ($page->hasMeta('icon')) {
+                    $block->setIcon($page->getMeta('icon', true));
+                }
+                break;
+            default:
+                # Silently skip
+                break;
         }
         return $block;
     }
