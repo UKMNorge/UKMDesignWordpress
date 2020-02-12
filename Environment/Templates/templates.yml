@@ -139,13 +139,8 @@ templates:
   festivalen:
     name: Festivalen
     controllers:
-      festival_underveis:
-        name: Forsiden underveis i festivalen
-        file: Festivalen/underveis
-        description: >
-          Siden som er aktiv underveis i festivalen
-      festival_nyhetsbrev:
+      nyhetsbrev:
         name: Nyhetsbrev fra festivalen
         file: Festivalen/nyhetsbrev
         description: >
-          Husk også å sette meta-feltet `dato` med `dd_mm`-format
+          Husk også å sette meta-feltet `dato` med `dd_mm`-formatøage
