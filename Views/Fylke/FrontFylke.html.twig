@@ -22,6 +22,12 @@
 					{% include "Front/Part/Kontakt.html.twig" with { kontaktpersoner: omrade.getKontaktpersoner() } %}
 				</div>
 
+                {% if menu is defined %}
+                    <div class="mt-4">
+                        {% include "Front/Part/Meny.html.twig" %}
+                    </div>
+                {% endif %}
+
 				<div class="mt-4 mb-5">
 					<h3 class="mb-3 mt-0">UKM i din
 						{{ omrade.getFylke().erOslo() ? 'bydel' : 'kommune'}}</h3>

@@ -17,6 +17,12 @@
 					{% include "Arrangement/Meny.html.twig" %}
 				</div>
 				{% include "Front/Part/Kontakt.html.twig" with { kontaktpersoner: arrangement.getKontaktpersoner() } %}
+
+                {% if menu is defined %}
+                    <div class="mt-4">
+                        {% include "Front/Part/Meny.html.twig" %}
+                    </div>
+                {% endif %}
 			</div>
 
 			<div class="col-12 col-md-6 order-md-1">

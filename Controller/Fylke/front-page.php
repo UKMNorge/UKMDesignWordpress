@@ -1,5 +1,6 @@
 <?php
 
+use UKMNorge\Design\Menu\Menu;
 use UKMNorge\DesignWordpress\Environment\Front\OmradeFront;
 use UKMNorge\DesignWordpress\Environment\Posts;
 use UKMNorge\DesignWordpress\Environment\Wordpress;
@@ -12,6 +13,14 @@ Wordpress::setPosts(new Posts(8));
 
 if( OmradeFront::harInfoside() ) {
     Wordpress::addViewData('infoside', OmradeFront::getInfoside());
+}
+
+# Ekstra-meny
+if (OmradeFront::hasMeny()) {
+    Wordpress::addViewData(
+        'menu',
+        Menu::createFromWpId( OmradeFront::getMeny() )
+    );
 }
 
 #Wordpress::setView('Fylke/FrontFylke');

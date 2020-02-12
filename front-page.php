@@ -12,7 +12,7 @@ Front::init();
 Wordpress::setView('Front/Info');
 
 # Find and use header image
-Wordpress::requireController('System', 'front-banner');
+Wordpress::requireController('Front', 'banner');
 
 # If this page uses a template, run its controller
 # The controller will then set the correct view
@@ -37,7 +37,7 @@ if (!$has_template_controller) {
             Wordpress::requireController('Norge','front-page');
             break;
         default:
-            Wordpress::requireController('System', 'front-page');
+            Wordpress::requireController('Front', 'front-page');
             break;
     }
 }

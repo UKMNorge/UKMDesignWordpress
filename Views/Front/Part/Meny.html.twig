@@ -1,0 +1,7 @@
+{% if menu is defined %}
+	{% for link in menu.getAll() %}
+		<a href="{{ link.getUrl() }}" class="btn btn-sm btn-outline-primary btn-block">
+			{{ link.getTitle() }}
+		</a>
+	{% endfor %}
+{% endif %}

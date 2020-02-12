@@ -19,6 +19,12 @@
                 <div>
                     {% include "Front/Part/Kontakt.html.twig" with { kontaktpersoner: omrade.getKontaktpersoner(), expand: true } %}
                 </div>
+
+                {% if menu is defined %}
+                    <div class="mt-4">
+                        {% include "Front/Part/Meny.html.twig" %}
+                    </div>
+                {% endif %}
             </div>
         </div>    
 

@@ -25,6 +25,12 @@
 				<div class="mt-4">
 					{% include "Front/Part/Kontakt.html.twig" with { kontaktpersoner: omrade.getKontaktpersoner() } %}
 				</div>
+
+                {% if menu is defined %}
+                    <div class="mt-4">
+                        {% include "Front/Part/Meny.html.twig" %}
+                    </div>
+                {% endif %}
 			</div>
 
 			{% if posts.getAntall() > 0 %}

@@ -1,5 +1,6 @@
 <?php
 
+use UKMNorge\Design\Menu\Menu;
 use UKMNorge\Design\UKMDesign;
 use UKMNorge\DesignWordpress\Environment\Front\OmradeFront;
 use UKMNorge\DesignWordpress\Environment\Posts;
@@ -10,6 +11,13 @@ Wordpress::setPosts($posts);
 
 if( OmradeFront::harInfoside() ) {
     Wordpress::addViewData('infoside', OmradeFront::getInfoside());
+}
+# Ekstra-meny
+if (OmradeFront::hasMeny()) {
+    Wordpress::addViewData(
+        'menu',
+        Menu::createFromWpId( OmradeFront::getMeny() )
+    );
 }
 
 if( $posts->getAntall() > 0 ) {
