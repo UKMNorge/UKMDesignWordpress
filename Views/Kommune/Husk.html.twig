@@ -4,4 +4,10 @@
     Hvis du legger igjen mobilnummeret ditt, sender vi en gratis sms så fort vi vet mer.
 </p>
 
-{% include "UKMDesign/Husk/Form.html.twig" with { fylkeid: omrade.getFylke().getId(), kommuneid: omrade.getKommune().getId() } %}
+{% if omrade.getType() == 'kommune' %}
+    {% include "UKMDesign/Husk/Form.html.twig" with { fylkeid: omrade.getKommune().getFylke().getId(), kommuneid: omrade.getKommune().getId() } %}
+{% elseif omrade.getEierType() == 'fylke' %}
+    {% include "UKMDesign/Husk/Form.html.twig" with { fylkeid: omrade.getFylke().getId() } %}
+{% else %}
+    {% include "UKMDesign/Husk/Form.html.twig" with { fylkeid: omrade.getFylke().getId() } %}
+{% endif %}

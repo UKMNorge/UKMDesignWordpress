@@ -3,7 +3,7 @@
 		<input type="text" name="search" class="form-control" placeholder="Søk etter {{ omrade.getFylke().erOslo() ? 'bydel' : 'kommune'}}..." id="filterKommune">
 		{% if not omrade.getFylke().erOslo() %}
             <div class="input-group-append">
-                <button class="btn btn-outline-primary geolocation" type="button" id="list-locate"><i class="icon icon-target3"></i></button>
+                <button class="btn btn-outline-primary geolocation" type="button" id="list-locate"><i class="icon icon-target2"></i></button>
             </div>
         {% endif %}
 	</div>
