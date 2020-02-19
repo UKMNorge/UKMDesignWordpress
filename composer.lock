@@ -4,20 +4,109 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cdfde89b80baf7851689ca7b0ef85433",
+    "content-hash": "8cf37b83d2253329bde78baea0ea5922",
     "packages": [
         {
-            "name": "symfony/polyfill-ctype",
-            "version": "v1.13.1",
+            "name": "mariusmandal/wpoo",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "f8f0b461be3385e56d6de3dbb5a0df24c0c275e3"
+                "url": "https://github.com/mariusmandal/WPOO.git",
+                "reference": "ca2c7b70aae0d45466add2be039f3bffd4674317"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/f8f0b461be3385e56d6de3dbb5a0df24c0c275e3",
-                "reference": "f8f0b461be3385e56d6de3dbb5a0df24c0c275e3",
+                "url": "https://api.github.com/repos/mariusmandal/WPOO/zipball/ca2c7b70aae0d45466add2be039f3bffd4674317",
+                "reference": "ca2c7b70aae0d45466add2be039f3bffd4674317",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "WPOO_": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marius Mandal",
+                    "email": "mariusmandal@gmail.com",
+                    "homepage": "http://mariusmandal.no",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Helper classes for object-oriented wordpress themes",
+            "homepage": "https://github.com/mariusmandal/WPOO",
+            "keywords": [
+                "themes",
+                "wordpress"
+            ],
+            "time": "2019-09-09T12:43:29+00:00"
+        },
+        {
+            "name": "symfony/deprecation-contracts",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/deprecation-contracts.git",
+                "reference": "ede224dcbc36138943a296107db2b8b2a690ac1c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/ede224dcbc36138943a296107db2b8b2a690ac1c",
+                "reference": "ede224dcbc36138943a296107db2b8b2a690ac1c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "function.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "A generic function and convention to trigger deprecation notices",
+            "homepage": "https://symfony.com",
+            "time": "2020-02-14T07:31:56+00:00"
+        },
+        {
+            "name": "symfony/polyfill-ctype",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-ctype.git",
+                "reference": "fbdeaec0df06cf3d51c93de80c7eb76e271f5a38"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/fbdeaec0df06cf3d51c93de80c7eb76e271f5a38",
+                "reference": "fbdeaec0df06cf3d51c93de80c7eb76e271f5a38",
                 "shasum": ""
             },
             "require": {
@@ -29,7 +118,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.13-dev"
+                    "dev-master": "1.14-dev"
                 }
             },
             "autoload": {
@@ -62,20 +151,20 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2019-11-27T13:56:44+00:00"
+            "time": "2020-01-13T11:15:53+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.13.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f"
+                "reference": "34094cfa9abe1f0f14f48f490772db7a775559f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/7b4aab9743c30be783b73de055d24a39cf4b954f",
-                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/34094cfa9abe1f0f14f48f490772db7a775559f2",
+                "reference": "34094cfa9abe1f0f14f48f490772db7a775559f2",
                 "shasum": ""
             },
             "require": {
@@ -87,7 +176,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.13-dev"
+                    "dev-master": "1.14-dev"
                 }
             },
             "autoload": {
@@ -121,24 +210,25 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-11-27T14:18:11+00:00"
+            "time": "2020-01-13T11:15:53+00:00"
         },
         {
             "name": "symfony/yaml",
-            "version": "v5.0.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "847661e77afa48d99ecfa508e8b60f0b029a19c0"
+                "reference": "0c7023a90e80d7819bb03483c027f3dee963b42a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/847661e77afa48d99ecfa508e8b60f0b029a19c0",
-                "reference": "847661e77afa48d99ecfa508e8b60f0b029a19c0",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/0c7023a90e80d7819bb03483c027f3dee963b42a",
+                "reference": "0c7023a90e80d7819bb03483c027f3dee963b42a",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2.5",
+                "symfony/deprecation-contracts": "^2.1",
                 "symfony/polyfill-ctype": "~1.8"
             },
             "conflict": {
@@ -150,10 +240,13 @@
             "suggest": {
                 "symfony/console": "For validating YAML files using the lint command"
             },
+            "bin": [
+                "Resources/bin/yaml-lint"
+            ],
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.0-dev"
+                    "dev-master": "5.1-dev"
                 }
             },
             "autoload": {
@@ -180,20 +273,20 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2019-12-10T11:06:55+00:00"
+            "time": "2020-02-08T14:04:50+00:00"
         },
         {
             "name": "twig/twig",
-            "version": "v3.0.1",
+            "version": "3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "28f856a4c57eeb24485916e8a68403f41a133616"
+                "reference": "73f5ef259026a6b28f4a203ec096f491c8a94787"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/28f856a4c57eeb24485916e8a68403f41a133616",
-                "reference": "28f856a4c57eeb24485916e8a68403f41a133616",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/73f5ef259026a6b28f4a203ec096f491c8a94787",
+                "reference": "73f5ef259026a6b28f4a203ec096f491c8a94787",
                 "shasum": ""
             },
             "require": {
@@ -242,58 +335,98 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2019-12-28T07:17:28+00:00"
-        }
-    ],
-    "packages-dev": [
+            "time": "2020-02-14T15:18:25+00:00"
+        },
         {
-            "name": "mariusmandal/wpoo",
+            "name": "ukmnorge/design",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mariusmandal/WPOO.git",
-                "reference": "ca2c7b70aae0d45466add2be039f3bffd4674317"
+                "url": "https://github.com/UKMNorge/UKMDesign.git",
+                "reference": "fe039f4061e248a84d32589829728ae5daf402db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mariusmandal/WPOO/zipball/ca2c7b70aae0d45466add2be039f3bffd4674317",
-                "reference": "ca2c7b70aae0d45466add2be039f3bffd4674317",
+                "url": "https://api.github.com/repos/UKMNorge/UKMDesign/zipball/fe039f4061e248a84d32589829728ae5daf402db",
+                "reference": "fe039f4061e248a84d32589829728ae5daf402db",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "symfony/yaml": ">=2.0",
+                "twig/twig": "~1.0 || ~2.0 || ^3.0"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "WPOO_": ""
+                "psr-4": {
+                    "UKMNorge\\Design\\": "Class/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
             "authors": [
                 {
-                    "name": "Marius Mandal",
-                    "email": "mariusmandal@gmail.com",
-                    "homepage": "http://mariusmandal.no",
+                    "name": "Asgeir Stavik Hustad",
+                    "email": "asgeirsh@ukmmedia.no",
                     "role": "Developer"
+                },
+                {
+                    "name": "Marius Mandal",
+                    "email": "mariusmandal@ukm.no",
+                    "role": "Lead Developer"
                 }
             ],
-            "description": "Helper classes for object-oriented wordpress themes",
-            "homepage": "https://github.com/mariusmandal/WPOO",
-            "keywords": [
-                "themes",
-                "wordpress"
+            "description": "Felles design for UKM.no og undersider",
+            "homepage": "https://github.com/UKMNorge/UKMDesign",
+            "time": "2020-02-19T16:41:24+00:00"
+        },
+        {
+            "name": "ukmnorge/designvanilla",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/UKMNorge/UKMDesignVanilla.git",
+                "reference": "32e6dcf2b1f7a946676db272270ee4b09ce77661"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/UKMNorge/UKMDesignVanilla/zipball/32e6dcf2b1f7a946676db272270ee4b09ce77661",
+                "reference": "32e6dcf2b1f7a946676db272270ee4b09ce77661",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/yaml": ">=2.0",
+                "twig/twig": "^3.0",
+                "ukmnorge/design": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "UKMNorge\\TemplateEngine\\": "TemplateEngine/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Asgeir Stavik Hustad",
+                    "email": "asgeirsh@ukmmedia.no",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Marius Mandal",
+                    "email": "mariusmandal@ukm.no",
+                    "role": "Lead Developer"
+                }
             ],
-            "time": "2019-09-09T12:43:29+00:00"
+            "description": "Wrapper for UKM Design, brukt uten rammeverk",
+            "homepage": "https://github.com/UKMNorge/UKMDesignVanilla",
+            "time": "2020-02-19T16:27:55+00:00"
         }
     ],
+    "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
-        "mariusmandal/wpoo": 20
+        "mariusmandal/wpoo": 20,
+        "ukmnorge/designvanilla": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

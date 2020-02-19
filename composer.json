@@ -2,6 +2,7 @@
     "name": "ukmnorge/designwordpress",
     "description": "Design for UKM sin wordpress-site. Benytter UKMDesign i bunn.",
     "homepage": "http://github.com/UKMNorge/UKMDesignWordpress",
+    "minimum-stability": "dev",
     "authors": [{
             "name": "Marius Mandal",
             "email": "mariusmandal@ukm.no",
@@ -14,17 +15,12 @@
         }
     ],
     "repositories": [{
-            "url": "https://github.com/UKMNorge/UKMDesignVanilla.git",
-            "type": "git"
-        },
-        {
-            "url": "https://github.com/mariusmandal/WPOO.git",
-            "type": "git"
-        }
-    ],
+        "url": "https://github.com/mariusmandal/WPOO.git",
+        "type": "git"
+    }],
     "autoload": {
         "psr-4": {
-            "UKMNorge\\DesignWordpress\\": "Class/"
+            "UKMNorge\\DesignWordpress\\": ""
         }
     },
     "require": {
