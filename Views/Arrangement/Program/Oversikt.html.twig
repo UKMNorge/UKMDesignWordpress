@@ -13,7 +13,7 @@
 			{% for dag in program %}
 				<div class="col mt-4 dag">
 					<h4 class="linje">{{ dag.date|dato('l j.M')|capitalize }}</h4>
-					{% embed "Arrangement/Program/hendelser.html.twig"|UKMpath with {'hendelser': dag.forestillinger} %}{% endembed %}
+					{% embed "Arrangement/Program/Hendelser.html.twig"|UKMpath with {'hendelser': dag.forestillinger} %}{% endembed %}
 				</div>
 			{% else %}
 				<div class="col-12">
