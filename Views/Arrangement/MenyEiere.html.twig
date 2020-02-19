@@ -1,0 +1,11 @@
+<div class="mt-2">
+	{% if arrangement.erFellesmonstring() %}
+		{% for kommune in arrangement.getKommuner().getAll() %}
+			<a href="{{ kommune.getLink() }}" class="btn btn-outline-primary btn-sm btn-block">UKM
+				{{kommune.getNavn()}}</a>
+		{% endfor %}
+	{% else %}
+		<a href="{{ arrangement.getEierType() == 'fylke' ? '//'~ UKM_HOSTNAME ~'/' }}{{ arrangement.getEier().getLink() }}" class="btn btn-outline-primary btn-sm btn-block">UKM
+			{{arrangement.getEier().getNavn()}}</a>
+	{% endif %}
+</div>
