@@ -31,10 +31,11 @@ class Blocks extends DesignBlocks
         );
         foreach ($subpages as $page) {
             $page = Page::loadByPostObject($page);
-            $block_type = $page->getMeta('UKM_block');
+            $block_type = $page->getMeta('UKM_block',true);
             if (!$block_type) {
                 continue;
             }
+
             $block = $this->pageToBlock($block_type, $page);
 
             if (!is_null($block)) {

@@ -3,16 +3,16 @@
 {% else %}
 	<script>
 		jQuery(document).on('click', '#infoside-les-mer', function (e) {
-e.preventDefault();
-jQuery('.infoside > .utdrag').hide(110);
-jQuery('.infoside > .full').slideDown();
-});
+            e.preventDefault();
+                jQuery('.infoside > .utdrag').hide(110);
+                jQuery('.infoside > .full').slideDown();
+            });
 
-jQuery(document).on('click', '#infoside-les-mindre', function (e) {
-e.preventDefault();
-jQuery('.infoside > .full').slideUp(250);
-jQuery('.infoside > .utdrag').show();
-});
+            jQuery(document).on('click', '#infoside-les-mindre', function (e) {
+            e.preventDefault();
+            jQuery('.infoside > .full').slideUp(250);
+            jQuery('.infoside > .utdrag').show();
+        });
 	</script>
 	<div class="infoside">
 		<div class="utdrag">{{ infoside.list_excerpt|raw }}

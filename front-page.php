@@ -40,6 +40,9 @@ if (!$has_template_controller) {
         case 'land':
             Wordpress::requireController('Festivalen', 'front-page');
         break;
+        case 'personvern':
+            Wordpress::setView('Page/Fullpage');
+        break;
         default:
             Wordpress::requireController('Front', 'front-page');
             break;

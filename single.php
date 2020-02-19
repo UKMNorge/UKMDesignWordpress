@@ -20,9 +20,13 @@ if( isset($_POST['contentMode']) && $_POST['contentMode'] == 'true' ) {
 }
 
 UKMDesign::getHeader()::getSEO()
-    ->setImage( $post->getFeaturedImage() )
     ->setAuthor( $post->getAuthorList() )
     ->setPublished( new DateTime($post->raw->post_date_gmt) );
+
+if( !is_null($post->getFeaturedImage())) {
+    UKMDesign::getHeader()::getSEO()
+        ->setImage( $post->getFeaturedImage() );
+}
 
 Wordpress::getPage()
     ->setDescription( addslashes( preg_replace( "/\r|\n/", "", strip_tags( $post->lead ) ) ) );

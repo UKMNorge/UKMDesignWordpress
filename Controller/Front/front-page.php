@@ -13,3 +13,6 @@ if (Front::hasMeny()) {
 
 # Posts
 Wordpress::setPosts();
+if(Wordpress::getPosts()->getAntall() == 0 ) {
+    Wordpress::setView('Page/Fullpage');
+}
