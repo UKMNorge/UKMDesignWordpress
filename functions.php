@@ -5,11 +5,18 @@ use UKMNorge\DesignWordpress\Environment\Admin;
 use UKMNorge\DesignWordpress\Environment\Ajax;
 use UKMNorge\DesignWordpress\Environment\Redirects;
 use UKMNorge\DesignWordpress\Environment\Setup;
+use UKMNorge\DesignWordpress\Environment\Wordpress;
 
 require_once('vendor/autoload.php');
 
 add_theme_support( 'post-thumbnails' );
 add_theme_support( 'menus' );
+
+if( function_exists('is_admin') && is_admin() ) {
+    Wordpress::initWithoutTwig();
+} else {
+    Wordpress::init();
+}
 
 Ajax::hook();
 Admin::hook();

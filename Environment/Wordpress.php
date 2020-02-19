@@ -29,6 +29,11 @@ class Wordpress extends TemplateEngine
 
     public static function init($dir = null)
     {
+        static::initWithoutTwig($dir);
+        static::_initTwig();
+    }
+
+    public static function initWithoutTwig($dir=null) {
         parent::init(get_template_directory() . '/');
 
         $yamlLoader = new YamlLoader(
@@ -37,7 +42,6 @@ class Wordpress extends TemplateEngine
         );
 
         static::_initUKMDesign( $yamlLoader );
-        static::_initTwig();
         static::_initUrls();
     }
 

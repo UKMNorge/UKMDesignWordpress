@@ -16,7 +16,6 @@ setlocale(LC_ALL, 'nb_NO', 'nb', 'no');
  * herunder Header, Banner, SEO osv legges til UKMDesign,
  * mens alt som benyttes kun av wordpress legges til TemplateEngine
  */
-Wordpress::init();
 
 // CHECK CACHE (OG DØ HVIS DEN ER FUNNET)
 require_once('cache.php');
