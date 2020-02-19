@@ -19,7 +19,8 @@ class Admin
                     'edit.php',
                     'Forsiden',
                     'Forsiden',
-                    'edit_posts',
+                    'superadmin',
+                    #'edit_posts',
                     'UKMdesign_nettside',
                     ['UKMnettside', 'renderForside']
                 ),
