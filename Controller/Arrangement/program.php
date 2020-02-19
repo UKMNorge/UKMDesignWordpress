@@ -85,7 +85,7 @@ else {
         $program = Hendelser::sorterPerDag( $hendelser );
         Wordpress::setView('Arrangement/Program/Oversikt');
         Wordpress::getPage()
-            ->setTitle( 'Program for '.( $arrangement->getEierType() == 'kommune' ? 'UKM' : ''). $arrangement->getNavn() )
+            ->setTitle( 'Program for '.( $arrangement->getEierType() == 'kommune' ? 'UKM ' : ''). $arrangement->getNavn() )
             ->setDescription( 'Vi starter '. $arrangement->getStart()->format('j. M \k\l. H:i') );
     }
     
