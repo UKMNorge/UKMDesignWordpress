@@ -42,6 +42,6 @@ $('#kommuner').slideDown(200);
 								    Hvis du vil melde deg på, eller endre din påmelding, kan du 
 								    snakke med
 	<a href="{{arrangement.getLink()}}kontaktpersoner/" class="bold">kontaktpersonene</a>.
-{% elseif not arrangement.harStartet() %}
+{% elseif arrangement.harPamelding() and not arrangement.harStartet() %}
 	{% include "Husk/Pamelding.html.twig"|UKMpath with {fylkeid: omrade.getFylke().getId() } %}
 {% endif %}
