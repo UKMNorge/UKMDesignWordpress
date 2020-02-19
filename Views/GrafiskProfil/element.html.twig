@@ -1,5 +1,5 @@
 {% for logo in element.utgaver %}
-	<div class="header-line mt-4 mb-2">{{ logo.navn }}</div>
+    <div class="header-line mt-4 mb-2">{{ logo.navn }}</div>
 	<img class="float-right ml-2 mb-2 p-2 {{ logo.class }}" width="120" src="{{ logo.url }}" />
 
 	{% for utgave in logo.filer %}
@@ -9,3 +9,4 @@
 	{% endfor %}
 	<div class="clearfix"></div>
 {% endfor %}
+<div class="clearfix"></div>
