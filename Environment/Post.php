@@ -106,12 +106,18 @@ class Post extends WPOO_Post
             $selected = $this->getMeta('video_on_top');
             if ($selected == 'egendefinert') {
                 $url = $this->getMeta('video_on_top_URL');
-                // Find ID from URL
-                $url = rtrim($url, '/') . '/';
-                $url = explode('/', $url);
-                $url = $url[count($url) - 2];
-                $url = explode('-', $url);
-                $selected = $url[0];
+                
+                if( strpos($url,'tv.ukm') !== false) {
+                    // Find ID from URL
+                    $url = rtrim($url, '/') . '/';
+                    $url = explode('/', $url);
+                    $url = $url[count($url) - 2];
+                    $url = explode('-', $url);
+                    $selected = $url[0];
+                } else {
+                    $this->featured_film = null;
+                    return;
+                }
             }
             // Finn tv-objektet.
             $this->featured_film = Filmer::getById($selected);
