@@ -9,6 +9,7 @@ use UKMNorge\Design\Menu\Menu;
 use UKMNorge\Design\UKMDesign;
 use UKMNorge\Design\TemplateEngine\Functions as UKMDesignTwigFunctions;
 use UKMNorge\Design\TemplateEngine\Filters as UKMDesignTwigFilters;
+use UKMNorge\Design\YamlLoader;
 use UKMNorge\DesignWordpress\Environment\Templates\Template;
 use UKMNorge\DesignWordpress\Environment\Templates\Templates;
 use UKMNorge\DesignWordpress\Environment\TwigFilters as WordpressTwigFilters;
@@ -29,7 +30,13 @@ class Wordpress extends TemplateEngine
     public static function init($dir = null)
     {
         parent::init(get_template_directory() . '/');
-        static::_initUKMDesign();
+
+        $yamlLoader = new YamlLoader(
+            '',
+            dirname(__DIR__) .'/vendor/ukmnorge/design/Resources/config/'
+        );
+
+        static::_initUKMDesign( $yamlLoader );
         static::_initTwig();
         static::_initUrls();
     }
@@ -41,10 +48,10 @@ class Wordpress extends TemplateEngine
      *
      * @return void
      */
-    private static function _initUKMDesign()
+    private static function _initUKMDesign( YamlLoader $yamlLoader)
     {
         static::_initConfig();
-        UKMDesign::init();
+        UKMDesign::init( $yamlLoader );
 
         UKMDesign::getHeader()::getSeo()
             ->setImage(

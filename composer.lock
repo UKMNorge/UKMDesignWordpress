@@ -343,12 +343,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/UKMNorge/UKMDesign.git",
-                "reference": "fe039f4061e248a84d32589829728ae5daf402db"
+                "reference": "29df597acc969bc7f05fa0162cd52e489120b9f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UKMNorge/UKMDesign/zipball/fe039f4061e248a84d32589829728ae5daf402db",
-                "reference": "fe039f4061e248a84d32589829728ae5daf402db",
+                "url": "https://api.github.com/repos/UKMNorge/UKMDesign/zipball/29df597acc969bc7f05fa0162cd52e489120b9f7",
+                "reference": "29df597acc969bc7f05fa0162cd52e489120b9f7",
                 "shasum": ""
             },
             "require": {
@@ -376,7 +376,7 @@
             ],
             "description": "Felles design for UKM.no og undersider",
             "homepage": "https://github.com/UKMNorge/UKMDesign",
-            "time": "2020-02-19T16:41:24+00:00"
+            "time": "2020-02-19T18:31:17+00:00"
         },
         {
             "name": "ukmnorge/designvanilla",
@@ -384,12 +384,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/UKMNorge/UKMDesignVanilla.git",
-                "reference": "32e6dcf2b1f7a946676db272270ee4b09ce77661"
+                "reference": "aea12cc105bf140d96c673cc1b7e63b15a505000"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UKMNorge/UKMDesignVanilla/zipball/32e6dcf2b1f7a946676db272270ee4b09ce77661",
-                "reference": "32e6dcf2b1f7a946676db272270ee4b09ce77661",
+                "url": "https://api.github.com/repos/UKMNorge/UKMDesignVanilla/zipball/aea12cc105bf140d96c673cc1b7e63b15a505000",
+                "reference": "aea12cc105bf140d96c673cc1b7e63b15a505000",
                 "shasum": ""
             },
             "require": {
@@ -418,7 +418,7 @@
             ],
             "description": "Wrapper for UKM Design, brukt uten rammeverk",
             "homepage": "https://github.com/UKMNorge/UKMDesignVanilla",
-            "time": "2020-02-19T16:27:55+00:00"
+            "time": "2020-02-19T18:47:16+00:00"
         }
     ],
     "packages-dev": [],
