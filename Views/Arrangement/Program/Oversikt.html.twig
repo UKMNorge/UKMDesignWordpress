@@ -21,13 +21,13 @@
 						Det er ikke satt opp noe program enda.
 					</p>
 					<p>
-						<a href="{{ section.url }}">Tilbake til {{ arrangement.getNavn() }}</a>
+						<a href="{{ arrangement.getLink() }}">Tilbake til {{ arrangement.getNavn() }}</a>
 					</p>
 				</div>
 			{% endfor %}
 			<div class="col-12">
 				<p class="my-4">
-					<a href="{{ section.url }}">Tilbake til {{ arrangement.getNavn() }}</a>
+					<a href="{{ arrangement.getLink() }}">Tilbake til {{ arrangement.getNavn() }}</a>
 				</p>
 			</div>
 		</div>
