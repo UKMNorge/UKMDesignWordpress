@@ -5,6 +5,8 @@ use UKMNorge\DesignWordpress\Environment\Front\OmradeFront;
 use UKMNorge\DesignWordpress\Environment\Posts;
 use UKMNorge\DesignWordpress\Environment\Wordpress;
 
+$arrangement = OmradeFront::getArrangement();
+
 $posts = new Posts(8);
 Wordpress::setPosts($posts);
 
@@ -33,6 +35,6 @@ UKMDesign::getHeader()->hideSectionTitle();
 Wordpress::addViewData(
     [
         'omrade' => OmradeFront::getOmrade(),
-        'arrangement' => OmradeFront::getArrangement()
+        'arrangement' => $arrangement
     ]
 );

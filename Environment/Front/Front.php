@@ -16,6 +16,7 @@ class Front
     static $start_sesong;
     static $apen_pamelding;
     static $blog_id;
+    static $arrangement;
 
 
     public static function init()
@@ -24,6 +25,7 @@ class Front
 
         global $blog_id;
         static::$blog_id = intval($blog_id);
+        static::setSEODefaults();
     }
 
     /**
@@ -320,5 +322,30 @@ class Front
             );
         }
         return $banner;
+    }
+
+    /**
+     * Sett SEO-defaults
+     *
+     * @return void
+     */
+    public static function setSEODefaults() {
+        if( static::harArrangement() ) {
+            $arrangement = static::getArrangement();
+            UKMDesign::getHeader()::getSEO()
+                ->setTitle('UKM '. $arrangement->getNavn())
+                ->setDescription( 
+                    ($arrangement->harKart() 
+                        ? $arrangement->getKart()->getName() 
+                        : $arrangement->getSted()
+                    ) .', '.
+                    $arrangement->getStart()->format('j. M Y \k\l. H:i'))
+                ->setUrl( get_home_url() );
+        } else {
+            UKMDesign::getHeader()::getSEO()
+                ->setTitle( get_bloginfo('name') )
+                ->setDescription( get_bloginfo('description') )
+                ->setUrl( get_home_url() );
+        }
     }
 }
