@@ -6,12 +6,12 @@ use UKMNorge\DesignWordpress\Environment\Wordpress;
 
 
 $category = get_queried_object();
-if (is_category()) {
+#if (is_category()) {
     Wordpress::setPosts(
         Posts::getByCategory(get_queried_object_id())
     );
     Wordpress::addViewData('category', $category);
-}
+#}
 
 Wordpress::setView('Kategori/Liste');
 UKMDesign::getHeader()::getSEO()
