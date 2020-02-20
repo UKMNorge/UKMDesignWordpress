@@ -71,6 +71,7 @@ class Blocks extends DesignBlocks
                         $page->getMeta('image_xs')
                     )
                 );
+                $block->setContent($page->getContent());
                 break;
             case 'image_right':
             case 'ImageRight':
@@ -80,6 +81,7 @@ class Blocks extends DesignBlocks
                         $page->getMeta('image_xs')
                     )
                 );
+                $block->setContent($page->getContent());
                 break;
             case 'list':
                 $block = new ListElement(
