@@ -2,6 +2,8 @@
 
 use UKMNorge\Design\UKMDesign;
 use UKMNorge\DesignWordpress\Environment\Posts;
+use UKMNorge\DesignWordpress\Environment\Wordpress;
+
 
 $category = get_queried_object();
 if (is_category()) {
