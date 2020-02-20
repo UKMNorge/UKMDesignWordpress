@@ -52,16 +52,13 @@ class Blocks extends DesignBlocks
             case 'Text':
                 $block = new Text(
                     intval($page->ID),
-                    $this->page->content
+                    $page->getContent()
                 );
                 $block->setTitle($page->getTitle());
                 break;
             case 'lead_center':
             case 'TextCenter':
-                $block = new TextCenter(
-                    intval($page->ID),
-                    $this->page->content
-                );
+                $block = new TextCenter(intval($page->ID));
                 $block->setTitle($page->getTitle());
                 $block->setContent($page->getContent());
                 break;
