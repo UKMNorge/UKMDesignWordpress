@@ -5,12 +5,16 @@ use UKMNorge\DesignWordpress\Environment\Wordpress;
 
 require_once('header.php');
 
-# Set default-view
-Wordpress::setView('Page/Fullpage');
-
-# If this page uses a template, run its controller
-# The controller will then set the correct view
-Wordpress::requireTemplateController();
+if( get_option( 'page_for_posts' ) == get_the_ID() ) {
+    Wordpress::requireController('Kategori','page');
+} else {
+    # Set default-view
+    Wordpress::setView('Page/Fullpage');
+    
+    # If this page uses a template, run its controller
+    # The controller will then set the correct view
+    Wordpress::requireTemplateController();
+}
 
 /**
  * EXPORT MODE
