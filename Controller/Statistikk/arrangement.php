@@ -97,6 +97,7 @@ Wordpress::addViewData(
         'stat_mnd' => $dager_per_maned,
         'dato' => $per_dag,
         'uke' => $per_uke,
+        'type' => $COMPARE_FUNCTION == 'getStart' ? 'start' : 'frist'
         #        'akk_mnd' => $akkumulert_per_maned,
         #        'akk_ar' => $akkumulert_per_ar,
     ]
