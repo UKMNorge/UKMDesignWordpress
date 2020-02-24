@@ -343,12 +343,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/UKMNorge/UKMDesign.git",
-                "reference": "29df597acc969bc7f05fa0162cd52e489120b9f7"
+                "reference": "3923b43839a55dd0d102f743733e22673931429a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UKMNorge/UKMDesign/zipball/29df597acc969bc7f05fa0162cd52e489120b9f7",
-                "reference": "29df597acc969bc7f05fa0162cd52e489120b9f7",
+                "url": "https://api.github.com/repos/UKMNorge/UKMDesign/zipball/3923b43839a55dd0d102f743733e22673931429a",
+                "reference": "3923b43839a55dd0d102f743733e22673931429a",
                 "shasum": ""
             },
             "require": {
@@ -376,7 +376,7 @@
             ],
             "description": "Felles design for UKM.no og undersider",
             "homepage": "https://github.com/UKMNorge/UKMDesign",
-            "time": "2020-02-19T18:31:17+00:00"
+            "time": "2020-02-24T10:24:33+00:00"
         },
         {
             "name": "ukmnorge/designvanilla",
