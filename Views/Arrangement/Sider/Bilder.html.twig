@@ -13,7 +13,7 @@
 							{% for bilde in innslag.getBilder().getAll()|filter(bilde => bilde.getPlid() == arrangement.getId()) %}
 								{% set count = count + 1 %}
 								{% apply spaceless %}
-								<a href="{{ bilde.getSize('large').getUrl() }}" class="swipebox image-wrapper" data-width="{{ bilde.getSize('lite','medium').getWidth() }}" data-height="{{ bilde.getSize('lite','medium').getHeight() }}" title="{{ innslag.getNavn() }} av {{ bilde.getAuthor().getNiceName() }}">
+								<a href="{{ bilde.getSize('large').getUrl() }}" class="swipebox image-wrapper" data-width="{{ bilde.getSize('lite','medium').getWidth() }}" data-height="{{ bilde.getSize('lite','medium').getHeight() }}" title="{{ innslag.getNavn() }} &nbsp; &nbsp; 📸 {{ bilde.getAuthor().getName() }}">
 									<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ bilde.getSize('lite', 'medium').getUrl() }}" alt="" class="image-thumb lazyLoad"/>
 								</a>
 								{% endapply %}
