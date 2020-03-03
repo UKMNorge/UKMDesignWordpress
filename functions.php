@@ -12,11 +12,24 @@ require_once('vendor/autoload.php');
 add_theme_support( 'post-thumbnails' );
 add_theme_support( 'menus' );
 
+/**
+ * Disable colors
+ */
+add_theme_support( 'editor-color-palette' );
+add_theme_support( 'disable-custom-colors' );
+
+/**
+ * Disable font sizes.
+ */
+add_theme_support( 'editor-font-sizes', [] );
+add_theme_support( 'disable-custom-font-sizes' );
+
 if( function_exists('is_admin') && is_admin() ) {
     Wordpress::initWithoutTwig();
 } else {
     Wordpress::init();
 }
+
 
 Ajax::hook();
 Admin::hook();
