@@ -62,6 +62,10 @@ class Post extends WPOO_Post
                     return false;
                 }
 
+                if( is_null( $image->src) ) {
+                    return false;
+                }
+                
                 $this->featured_image = new Image(
                     $image->src,
                     intval($image->width),
