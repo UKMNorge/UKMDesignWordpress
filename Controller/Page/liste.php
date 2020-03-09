@@ -2,4 +2,4 @@
 
 use UKMNorge\DesignWordpress\Environment\Wordpress;
 
-Wordpress::setView('Page/liste');
+Wordpress::setView('Page/Liste');

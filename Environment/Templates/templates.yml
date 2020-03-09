@@ -120,7 +120,7 @@ templates:
         name: Liste av undersider
         file: Page/liste
         description: >
-          Lager ei fin liste av alle underlagte sider (som må ha template: listeelement)
+          Lager ei fin liste av alle underlagte sider (som må ha template: Liste-element)
       list:
         name: Liste-element
         file: Page/liste_element
