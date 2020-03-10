@@ -101,3 +101,6 @@ jQuery('#kartet').slideUp();
 		</div>
 	</div>
 </div>
+{% if arrangement.getMetaValue('avlys') %}
+    {% include "Arrangement/Front/Avlyst.html.twig" %}
+{% endif %}

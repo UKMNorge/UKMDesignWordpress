@@ -1,0 +1,81 @@
+<script>
+	jQuery(document).on('click', '#visAvlysInfo', function (e) {
+if (jQuery('#avlysInfo').is(':visible')) {
+jQuery('#avlysInfo').slideUp(250);
+} else {
+jQuery('#avlysInfo').slideDown(250);
+}
+});
+jQuery(document).on('click', '#skjulAvlysInfo', function (e) {
+e.preventDefault();
+jQuery('#avlysInfo').slideUp();
+});
+</script>
+<style>
+	#avlyst_banner {
+		background: #ff128b;
+		color: #fff;
+	}
+</style>
+<div id="avlyst_banner">
+	<div class="container mb-3 clearfix" style="margin-top:-1em;">
+		<div class="row py-3">
+			<div class="col-12 title">
+				<div class="float-right mt-2 click" id="visAvlysInfo">
+					<div class="overunder" style="font-size: 1.2em;">
+						<div class="over" style="font-size: 2em;">
+							<span class="icon icon-info-circle-outline"></span>
+						</div>
+						<div class="under" style="margin-top: .3em;">
+							les mer
+						</div>
+					</div>
+				</div>
+
+				<h1 class="mt-1 mb-1" style="opacity: 1 !important; text-transform: uppercase; font-size: 1.9em;">
+					{% if arrangement.getMetaValue('avlys') == 'videresending_kanskje' %}
+						Videresendingen kan bli avlyst!
+					{% elseif arrangement.getMetaValue('avlys') == 'videresending_sikkert' %}
+						Ingen blir videresendt
+					{% elseif arrangement.getMetaValue('avlys') == 'avlys' %}
+						Avlyst!
+					{% elseif arrangement.getMetaValue('avlys') == 'gjennomforer_med_info' %}
+						Viktig info!
+					{% endif %}
+				</h1>
+				<p class="small mt-2">
+					{{ arrangement.getMetaValue('avlys_status_kort') }}
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="avlysInfo" class="mb-4" style="display: none;">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-sm-12">
+				<p>
+					{{ arrangement.getMetaValue('avlys_status_lang')|raw|nl2br }}
+				</p>
+                {% if arrangement.getMetaValue('avlys') != 'avlys' %}
+                    {% if arrangement.getVideresending().getMottakere()|length == 1 %}
+                        {% set mottaker = arrangement.getVideresending().getMottakere()|first %}
+                        <p>
+                            Les mer på nettsiden til
+                            <a href="{{ mottaker.getArrangement().getLink(false) }}">{{ mottaker.getNavn() }}</a>
+                        </p>
+                    {% elseif arrangement.getVideresending().getMottakere()|length > 0 %}
+                        <p>
+                            Les mer på:
+                            <br/>
+                            {% for mottaker in arrangement.getVideresending().getMottakere() %}
+                                <a href="{{ mottaker.getArrangement().getLink(false) }}" class="btn btn-outline-primary mb-2">{{ mottaker.getNavn() }}</a>
+                            {% endfor %}
+                        </p>
+                    {% endif %}
+                {% endif %}
+			</div>
+		</div>
+	</div>
+</div>
