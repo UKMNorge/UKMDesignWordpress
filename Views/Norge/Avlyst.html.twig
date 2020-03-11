@@ -64,13 +64,13 @@
 							<li class="list-group-item">
 								Alle arrangement går som planlagt.
 							</li>
-						{% elseif count_fylke > 0 %}
-							<li class="list-group-item">
-								Alle lokalarrangement går som planlagt.
-							</li>
-						{% elseif count_kommune > 0 %}
+						{% elseif count_fylke == 0 %}
 							<li class="list-group-item">
 								Alle fylkets arrangementer går som planlagt.
+							</li>
+						{% elseif count_kommune == 0 %}
+								Alle lokalarrangement går som planlagt.
+							<li class="list-group-item">
 							</li>
 						{% endif %}
 					</ol>
