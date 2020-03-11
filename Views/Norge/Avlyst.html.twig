@@ -30,9 +30,9 @@
 							{% set count_fylke = count_fylke + 1 %}
 							<li class="list-group-item">
 								<div class="float-right">
-									<a href="{{ arrangement.getLink() }}" class="btn btn-outline-primary">Mer info</a>
+									<a href="{{ arrangement.getLink() }}?expandinfo" class="btn btn-outline-primary">Mer info</a>
 								</div>
-								{{ arrangement.getNavn() }}
+								{{ arrangement.getNavn() }}:
 								{% include "Arrangement/Avlyst-status.html.twig" %}
 								<p class="small mt-0 mb-0">
 									{{ arrangement.getMetaValue('avlys_status_kort') }}
@@ -41,15 +41,23 @@
 							</li>
 						{% endfor %}
 						{% set count_kommune = 0 %}
+                        {% set printed = [] %}
 						{% for kommune in fylke.getKommuner().getAll() %}
-							{% for arrangement in kommune.getNettverkOmrade().getArrangementer(season).getAll()|filter( arrangement => arrangement.getMetaValue('avlys') ) %}
+							{% for arrangement in kommune.getNettverkOmrade().getArrangementer(season).getAll()|filter( arrangement => arrangement.getMetaValue('avlys') and arrangement.getId() not in printed ) %}
 								{% set count_kommune = count_kommune + 1 %}
+                                {% set printed = printed|merge([arrangement.getId()]) %}
 								<li class="list-group-item">
 									<div class="float-right">
-                                        <a href="{{ arrangement.getLink() }}" class="btn btn-outline-primary">Mer info</a>
+                                        <a href="{{ arrangement.getLink() }}?expandinfo" class="btn btn-outline-primary">Mer info</a>
                                     </div>
-                                    <b>{{ kommune.getNavn() }}:</b>
-									{{ arrangement.getNavn() }}
+                                    <small class="bold text-muted" style="text-transform: uppercase">
+                                        {% if arrangement.erFellesmonstring() %}
+                                            {{ arrangement.getKommuner().getAll()|join(', ') }}
+                                        {% else %}
+                                            {{ kommune.getNavn() }}
+                                        {% endif %}
+                                    </small><br />
+									{{ arrangement.getNavn() }}:
 									{% include "Arrangement/Avlyst-status.html.twig" %}
 								    <p class="small mt-0 mb-0">
 										{{ arrangement.getMetaValue('avlys_status_kort') }}
