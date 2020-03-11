@@ -1,0 +1,9 @@
+{% if arrangement.getMetaValue('avlys') == 'videresending_kanskje' %}
+	Videresendingen kan bli avlyst!
+{% elseif arrangement.getMetaValue('avlys') == 'videresending_sikkert' %}
+	Ingen blir videresendt
+{% elseif arrangement.getMetaValue('avlys') == 'avlys' %}
+	Avlyst!
+{% elseif arrangement.getMetaValue('avlys') == 'gjennomforer_med_info' %}
+	Viktig info!
+{% endif %}

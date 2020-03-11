@@ -33,15 +33,7 @@ jQuery('#avlysInfo').slideUp();
 				</div>
 
 				<h1 class="mt-1 mb-1" style="opacity: 1 !important; text-transform: uppercase; font-size: 1.9em;">
-					{% if arrangement.getMetaValue('avlys') == 'videresending_kanskje' %}
-						Videresendingen kan bli avlyst!
-					{% elseif arrangement.getMetaValue('avlys') == 'videresending_sikkert' %}
-						Ingen blir videresendt
-					{% elseif arrangement.getMetaValue('avlys') == 'avlys' %}
-						Avlyst!
-					{% elseif arrangement.getMetaValue('avlys') == 'gjennomforer_med_info' %}
-						Viktig info!
-					{% endif %}
+					{% include "Arrangement/Avlyst-status.html.twig" %}
 				</h1>
 				<p class="small mt-2">
 					{{ arrangement.getMetaValue('avlys_status_kort') }}
@@ -51,7 +43,7 @@ jQuery('#avlysInfo').slideUp();
 	</div>
 </div>
 
-<div id="avlysInfo" class="mb-4" style="display: none;">
+<div id="avlysInfo" class="mb-4" style="{{ not expandinfo ? 'display: none;' }}">
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-sm-12">

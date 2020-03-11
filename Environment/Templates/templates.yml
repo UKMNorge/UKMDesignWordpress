@@ -52,6 +52,11 @@ templates:
           description: >
             Lister ut undersider som kontaktpersoner. Undersidene har da en hel bønsj
             med site-meta som utgjør kontaktperson-objektet.
+      avlyst:
+          name: Avlyste arrangement
+          file: Norge/avlyst
+          description: >
+            Lister ut alle arrangement som har blitt avlyst.
   organisasjonen:
     name: Om organisasjonen
     controllers:

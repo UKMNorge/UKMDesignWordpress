@@ -35,6 +35,7 @@ UKMDesign::getHeader()->hideSectionTitle();
 Wordpress::addViewData(
     [
         'omrade' => OmradeFront::getOmrade(),
-        'arrangement' => $arrangement
+        'arrangement' => $arrangement,
+        'expandinfo' => isset($_GET['expandinfo'])
     ]
 );
