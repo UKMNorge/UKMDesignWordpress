@@ -40,6 +40,7 @@
 								<div class="clearfix"></div>
 							</li>
 						{% endfor %}
+                        {% set count_kommune = 0 %}
                         {% for arrangement in arrangementLoader.iFylke(season, fylke).getAll()|filter( arrangement => arrangement.getMetaValue('avlys') ) %}
                             {% set count_kommune = count_kommune + 1 %}
                             <li class="list-group-item">
@@ -50,7 +51,7 @@
                                     {% if arrangement.erFellesmonstring() %}
                                         {{ arrangement.getKommuner().getAll()|join(', ') }}
                                     {% else %}
-                                        {{ kommune.getNavn() }}
+                                        {{ arrangement.getKommune().getNavn() }}
                                     {% endif %}
                                 </small><br />
                                 {{ arrangement.getNavn() }}:
@@ -71,8 +72,8 @@
 								Alle fylkets arrangementer går som planlagt.
 							</li>
 						{% elseif count_kommune == 0 %}
-								Alle lokalarrangement går som planlagt.
 							<li class="list-group-item">
+								Alle lokalarrangement går som planlagt.
 							</li>
 						{% endif %}
 					</ol>
