@@ -30,7 +30,7 @@
 							{% set count_fylke = count_fylke + 1 %}
 							<li class="list-group-item">
 								<div class="float-right">
-									<a href="{{ arrangement.getLink() }}?expandinfo" class="btn btn-outline-primary">Mer info</a>
+									<a href="{{ arrangement.getLink() }}?expandinfo" class="btn btn-sm btn-outline-primary">Mer info</a>
 								</div>
 								{{ arrangement.getNavn() }}:
 								{% include "Arrangement/Avlyst-status.html.twig" %}
@@ -45,7 +45,7 @@
                             {% set count_kommune = count_kommune + 1 %}
                             <li class="list-group-item">
                                 <div class="float-right">
-                                    <a href="{{ arrangement.getLink() }}?expandinfo" class="btn btn-outline-primary">Mer info</a>
+                                    <a href="{{ arrangement.getLink() }}?expandinfo" class="btn btn-sm btn-outline-primary">Mer info</a>
                                 </div>
                                 <small class="bold text-muted" style="text-transform: uppercase">
                                     {% if arrangement.erFellesmonstring() %}
