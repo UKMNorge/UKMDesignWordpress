@@ -11,6 +11,7 @@ class OmradeFront extends Front
     static $infoside;
     static $omrade;
     static $arrangement;
+    static $supportInfoside = true;
 
     /**
      * Har bloggen en infoside?
@@ -55,7 +56,7 @@ class OmradeFront extends Front
         }
     }
 
-       /**
+    /**
      * Sett aktivt område
      *
      * @param Omrade $omrade

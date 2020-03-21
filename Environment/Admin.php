@@ -7,27 +7,11 @@ class Admin
 
     public static function hook()
     {
-        add_action('admin_menu', [static::class, 'menu'], -100);
+    #    add_action('admin_menu', [static::class, 'menu'], -100);
     }
 
     public static function menu()
-    {
-        if (class_exists('UKMnettside')) {
-            // Forside-innstillinger
-            add_action(
-                'admin_print_styles-' . add_submenu_page(
-                    'edit.php',
-                    'Forsiden',
-                    'Forsiden',
-                    'superadmin',
-                    #'edit_posts',
-                    'UKMdesign_nettside',
-                    ['UKMnettside', 'renderForside']
-                ),
-                ['UKMnettside', 'scripts_and_styles']
-            );
-        }
-    }
+    {}
 
     /*
      * Håndterer nettside-innstillinger fra UKMnettside-plugin

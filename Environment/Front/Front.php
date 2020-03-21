@@ -17,6 +17,7 @@ class Front
     static $apen_pamelding;
     static $blog_id;
     static $arrangement;
+    static $supportInfoside = true;
 
 
     public static function init()
@@ -194,8 +195,9 @@ class Front
      */
     public static function supportBannerSlagord()
     {
-        return !static::harArrangement() && get_current_blog_id() != 1;
+        return !static::erKommuneSide() && !static::erFylkeSide() && !static::harArrangement() && get_current_blog_id() != 1;
     }
+
 
     /**
      * Har siden definert et slagord?
@@ -324,28 +326,59 @@ class Front
         return $banner;
     }
 
+
+    /**
+     * Støtter denne forsiden banner-bilder
+     *
+     * @return bool
+     */
+    public static function supportInfoside()
+    {
+        return static::$supportInfoside;
+    }
+
     /**
      * Sett SEO-defaults
      *
      * @return void
      */
-    public static function setSEODefaults() {
-        if( static::harArrangement() ) {
+    public static function setSEODefaults()
+    {
+        if (static::harArrangement()) {
             $arrangement = static::getArrangement();
             UKMDesign::getHeader()::getSEO()
-                ->setTitle('UKM '. $arrangement->getNavn())
-                ->setDescription( 
-                    ($arrangement->harKart() 
-                        ? $arrangement->getKart()->getName() 
-                        : $arrangement->getSted()
-                    ) .', '.
-                    $arrangement->getStart()->format('j. M Y \k\l. H:i'))
-                ->setUrl( get_home_url() );
+                ->setTitle('UKM ' . $arrangement->getNavn())
+                ->setDescription(
+                    ($arrangement->harKart()
+                        ? $arrangement->getKart()->getName()
+                        : $arrangement->getSted()) . ', ' .
+                        $arrangement->getStart()->format('j. M Y \k\l. H:i')
+                )
+                ->setUrl(get_home_url());
         } else {
             UKMDesign::getHeader()::getSEO()
-                ->setTitle( get_bloginfo('name') )
-                ->setDescription( get_bloginfo('description') )
-                ->setUrl( get_home_url() );
+                ->setTitle(get_bloginfo('name'))
+                ->setDescription(get_bloginfo('description'))
+                ->setUrl(get_home_url());
         }
+    }
+    /**
+     * Er dette en kommuneside? (med eller uten arrangement)
+     *
+     * @return Bool
+     */
+    public static function erKommuneSide()
+    {
+        return get_option('site_type') == 'kommune';
+    }
+
+    /**
+     * Er dette en fylkesside?
+     *
+     * @return Bool
+     */
+    public static function erFylkeSide()
+    {
+        return get_option('site_type') == 'fylke';
     }
 }
