@@ -1,8 +1,7 @@
 <?php
 
 if( isset( $_COOKIE['UKMfavoritt'] ) && is_numeric( $_COOKIE['UKMfavoritt'] ) ) {
-	require_once('UKM/monstringer.class.php');
-	$monstring = new monstring_v2( $_COOKIE['UKMfavoritt'] );
+	$monstring = new Arrangement( $_COOKIE['UKMfavoritt'] );
 	
 	if( $monstring->erFerdig() ) {
 		$WP_TWIG_DATA['lokalmonstring'] = $monstring;
