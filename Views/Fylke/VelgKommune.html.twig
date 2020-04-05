@@ -63,6 +63,11 @@ jQuery(document).on('geolocate-fail', function(e,data){
 });
 
 jQuery(document).on('geolocated', function(e, location) {
-    jQuery.get('https://delta.'+ window.location.hostname +'/lastlocation/'+location.kommunenummer);
+    jQuery.ajax({
+        url: 'https://delta.'+ window.location.hostname +'/lastlocation/'+location.kommunenummer+'/',
+        xhrFields: { 
+            withCredentials: true 
+        }
+    });
 });
 </script>
