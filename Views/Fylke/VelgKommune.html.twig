@@ -61,4 +61,13 @@ jQuery(document).on('geolocate-fail', function(e,data){
         jQuery('#couldnotfindlocation').slideUp();
     }, 2200);
 });
+
+jQuery(document).on('geolocated', function(e, location) {
+    jQuery.ajax({
+        url: 'https://delta.'+ window.location.hostname +'/lastlocation/'+location.kommunenummer+'/',
+        xhrFields: { 
+            withCredentials: true 
+        }
+    });
+});
 </script>
