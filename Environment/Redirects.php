@@ -33,6 +33,10 @@ class Redirects
         if (get_option('status_monstring') != false) {
             return locate_template(array('arrangement-not-here.php'));
         }
+        // Arrangør-siden
+        if( get_option('site_type') == 'arrangor' ) {
+            return wp_redirect('https://'. UKM_HOSTNAME .'/wp-admin/user/');
+        }
         // Business as ususal
         return $template;
     }
