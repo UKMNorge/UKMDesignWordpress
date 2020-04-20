@@ -19,12 +19,23 @@ class OmradeFront extends Front
      * Kun kommunesider underlagt falske fylker får mulighet
      * til å skjule denne knappen (via UKMnettside-modulen)
      * 
-     * @return void
+     * @return Bool
      */
     public static function skjulFylkeKnapp() {
         return Blog::getOption(get_current_blog_id(),'skjulFylkeKnapp');
     }
-
+    
+    /**
+     * Skal teksten "hva er UKM" skjules?
+     * 
+     * Kun kommunesider underlagt falske fylker får mulighet
+     * til å skjule denne knappen (via UKMnettside-modulen)
+     * 
+     * @return Bool
+     */
+    public static function skjulHvaErUKM() {
+        return Blog::getOption(get_current_blog_id(),'skjulHvaErUKM');
+    }
     /**
      * Har bloggen en infoside?
      *

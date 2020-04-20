@@ -37,6 +37,7 @@ if (OmradeFront::hasMeny()) {
 Wordpress::addViewData(
     [
         'omrade' => OmradeFront::getOmrade(),
-        'skjulFylkeKnapp' => Blog::getOption(get_current_blog_id(),'skjulFylkeKnapp')
+        'skjulFylkeKnapp' => OmradeFront::skjulFylkeKnapp(),
+        'skjulHvaErUKM' => OmradeFront::skjulHvaErUKM()
     ]
 );

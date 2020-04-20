@@ -36,6 +36,7 @@ Wordpress::addViewData(
     [
         'omrade' => OmradeFront::getOmrade(),
         'arrangement' => $arrangement,
-        'expandinfo' => isset($_GET['expandinfo'])
+        'expandinfo' => isset($_GET['expandinfo']),
+        'skjulHvaErUKM' => OmradeFront::skjulHvaErUKM()
     ]
 );

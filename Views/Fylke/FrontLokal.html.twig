@@ -47,10 +47,12 @@
 			{% endif %}
 		</div>
 		<div class="clearfix"></div>
-		<div class="row">
-			<div class="col-12 col-md-12 mb-5">
-				{% include "Front/Part/HvaEr.html.twig" %}
-			</div>
-		</div>
+		{% if not skjulHvaErUKM %}
+            <div class="row">
+                <div class="col-12 col-md-12 mb-5">
+                    {% include "Front/Part/HvaEr.html.twig" %}
+                </div>
+            </div>
+        {% endif %}
 	</div>
 {% endblock %}

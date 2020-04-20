@@ -27,6 +27,7 @@ if (OmradeFront::hasMeny()) {
 
 Wordpress::addViewData(
     [
-        'omrade' => OmradeFront::getOmrade()
+        'omrade' => OmradeFront::getOmrade(),
+        'skjulHvaErUKM' => OmradeFront::skjulHvaErUKM()
     ]
 );
