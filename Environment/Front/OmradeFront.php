@@ -14,6 +14,18 @@ class OmradeFront extends Front
     static $supportInfoside = true;
 
     /**
+     * Skal knapp med lenke til fylkessiden skjules?
+     * 
+     * Kun kommunesider underlagt falske fylker får mulighet
+     * til å skjule denne knappen (via UKMnettside-modulen)
+     * 
+     * @return void
+     */
+    public static function skjulFylkeKnapp() {
+        return Blog::getOption(get_current_blog_id(),'skjulFylkeKnapp');
+    }
+
+    /**
      * Har bloggen en infoside?
      *
      * @return bool

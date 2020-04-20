@@ -3,11 +3,14 @@
 namespace UKMNorge\DesignWordpress\Environment\Front;
 
 use DateTime;
+use Exception;
 use UKMNorge\Arrangement\Arrangement;
 use UKMNorge\Design\Header\Banner;
 use UKMNorge\Design\Image;
 use UKMNorge\Design\Position\Vertical;
 use UKMNorge\Design\UKMDesign;
+use UKMNorge\Geografi\Fylker;
+use UKMNorge\Geografi\Kommune;
 
 class Front
 {
@@ -18,7 +21,8 @@ class Front
     static $blog_id;
     static $arrangement;
     static $supportInfoside = true;
-
+    static $fylke;
+    static $kommune;
 
     public static function init()
     {
@@ -380,5 +384,64 @@ class Front
     public static function erFylkeSide()
     {
         return get_option('site_type') == 'fylke';
+    }
+
+    /**
+     * Hent fylket for denne siden
+     *
+     * @return Fylke
+     * @throws Exception
+     */
+    public static function getFylke() {
+        if( is_null(static::$fylke)) {
+            if( static::erFylkeSide()) {
+                static::$fylke = Fylker::getById(get_option('fylke'));
+            }
+            elseif( static::erKommuneSide() ) {
+                static::$fylke = static::getKommune()->getFylke();
+            }
+            else {
+                throw new Exception(
+                    'Kan ikke bruke getFylke() på sider som ikke er fylke- eller kommunesider'
+                );
+            }
+        }
+        return static::$fylke;
+    }
+
+    /**
+     * Hent kommunen for denne siden
+     *
+     * @return Kommune
+     */
+    public static function getKommune() {
+        if( !static::erKommuneSide()) {
+            throw new Exception(
+                'Kan ikke bruke getKommune() på sider som ikke er kommunesider'
+            );
+        }
+        if( is_null(static::$kommune) ) {
+            static::$kommune = new Kommune(get_option('kommune'));
+        }
+        return static::$kommune;
+    }
+
+    /**
+     * Støtter denne siden en custom section?
+     * 
+     * Ordinære fylkes- og kommune-sider støtter ikke dette,
+     * da kun falske kommuner og fylker kan benytte denne funksjonen.
+     *
+     * @return Bool
+     */
+    public static function supportSection() {
+        if( static::erFylkeSide() && static::getFylke()->erFalskt() ) {
+            return true;
+        }
+        if( static::erKommuneSide() && static::getFylke()->erFalskt() ) {
+            return true;
+        }
+        
+        return false;
     }
 }

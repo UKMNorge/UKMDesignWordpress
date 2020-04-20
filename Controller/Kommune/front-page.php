@@ -4,6 +4,7 @@ use UKMNorge\DesignWordpress\Environment\Front\OmradeFront;
 use UKMNorge\DesignWordpress\Environment\Posts;
 use UKMNorge\DesignWordpress\Environment\Wordpress;
 use UKMNorge\Nettverk\Omrade;
+use UKMNorge\Wordpress\Blog;
 
 Wordpress::requireController('Kommune','redirecter');
 
@@ -35,6 +36,7 @@ if (OmradeFront::hasMeny()) {
 
 Wordpress::addViewData(
     [
-        'omrade' => OmradeFront::getOmrade()
+        'omrade' => OmradeFront::getOmrade(),
+        'skjulFylkeKnapp' => Blog::getOption(get_current_blog_id(),'skjulFylkeKnapp')
     ]
 );

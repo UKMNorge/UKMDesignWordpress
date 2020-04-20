@@ -33,9 +33,11 @@
                     </div>
                 {% endif %}
 
-                <div class="mt-4">
-					<a href="//{{UKM_HOSTNAME ~'/'~ omrade.getFylke().getLink() }}/" class="btn btn-outline-primary btn-sm btn-block">UKM {{omrade.getFylke().getNavn()}}</a>
-				</div>
+                {% if not skjulFylkeKnapp %}
+                    <div class="mt-4">
+                        <a href="//{{UKM_HOSTNAME ~'/'~ omrade.getFylke().getLink() }}/" class="btn btn-outline-primary btn-sm btn-block">UKM {{omrade.getFylke().getNavn()}}</a>
+                    </div>
+                {% endif %}
 			</div>
 
             {% if posts.getAntall() > 0 %}
