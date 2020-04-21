@@ -44,7 +44,7 @@ if( $start_nasjonaldag < $now && $stop_nasjonaldag > $now || isset($_GET['nasjon
 
 if( isset($_GET['dev'])) {
     Wordpress::includeTwigJs();
-    Wordpress::setView('Norge/Front/Dark');
+    Wordpress::setView('Norge/Front/2020');
 
     if( isset($_COOKIE['lastlocation'])) {
         $kommune = new Kommune($_COOKIE['lastlocation']);
