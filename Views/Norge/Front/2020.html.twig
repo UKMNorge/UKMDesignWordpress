@@ -73,7 +73,7 @@
                 }
             ).done(function(response) {
                 jQuery('#derdubor').html(twigJS_GeolocationFront.render(response));
-                if( response.kommune.arrangementer.length > 0 ) {
+                if( response.kommune && response.kommune.arrangementer.length > 0 ) {
                     jQuery('#kommune_arrangementer').html(
                         twigJS_GeolocationFrontArrangement.render(
                             {
@@ -83,7 +83,7 @@
                         )
                     );
                 }
-                if( response.fylke.arrangementer.length > 0 ) {
+                if( response.fylke && response.fylke.arrangementer.length > 0 ) {
                     jQuery('#fylke_arrangementer').html(
                         twigJS_GeolocationFrontArrangement.render(
                             {
