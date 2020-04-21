@@ -40,3 +40,7 @@ if( $start_nasjonaldag < $now && $stop_nasjonaldag > $now || isset($_GET['nasjon
 } else {
     Wordpress::setView('Norge/Front/Standard');
 }
+
+if( isset($_GET['dark'])) {
+    Wordpress::setView('Norge/Front/Dark');
+}

@@ -1,0 +1,97 @@
+{% extends "Norge/Front/Base-redo.html.twig"|UKMpath %}
+
+{% block css %}
+    {{parent()}}
+	<style>
+		.social {
+			font-size: 2em;
+		}
+		.social .icon:before {
+			color: #00004c;
+        }
+
+        html .icon-location-pin-dot:before {
+            color: #00004c;
+        }
+        
+        #UKMderdubor {
+            background: #6bbdf9;
+
+            border-color: #00004c;
+            border-top: 2px solid;
+            border-bottom: 2px solid;
+        }
+	</style>
+{% endblock %}
+
+{% block content %}
+	<div class="container" style="min-height: 80vh;">
+		<div class="row" style="margin-top: -3vh;">
+			<div class="offset-1 col-10">
+				<p class="center" style="line-height: 1.4em; color: #00004c; opacity: 1; ">
+					Vis frem noe du brenner for, prøv noe helt nytt eller bli med så andre får vist sin beste side.
+                    Sammen skaper vi noe nytt, inspirerer, lærer av hverandre og har det gøy.
+				</p>
+			</div>
+		</div>
+
+		<div class="row mt-4 social">
+			<div class="col"></div>
+			<div class="col">
+				<a href="https://instagram.com/ukmnorge" target="_blank">
+					<span class="icon icon-logo-instagram"></span>
+				</a>
+			</div>
+			<div class="col">
+				<a href="https://facebook.com/ukmnorge" target="_blank">
+					<span class="icon icon-logo-facebook"></span>
+				</a>
+			</div>
+			<div class="col">
+				<a href="https://tiktok.com/@ukmnorge" target="_blank">
+					<span class="icon icon-logo-tiktok"></span>
+				</a>
+			</div>
+			<div class="col"></div>
+		</div>
+
+
+        <div class="row mt-5 py-3" id="UKMderdubor">
+            <div class="col-2">
+                <div class="icon icon-location-pin-dot" style="font-size: 2.4em;"></div>
+            </div>
+            <div class="col">
+                UKM DER DU BOR
+                <br />
+                <a href="#" class="btn btn-xs btn-outline-primary">Sjekk status nær deg</a>
+            </div>
+        </div>
+
+    
+        <div class="row mt-3">
+            <div class="col">
+                <p style="line-height: 1.4em">
+                    <p>
+                        <b>KORONA-UKM:</b>
+                        <br />
+                        Vi har startet flere nettbaserte prosjekter, da også UKM måtte avlyse mye på grunn av korona. 
+                        Over 40 lokalmønstringer, alle 19 fylkesfestivalene og den nasjonale UKM-festivalen er avlyst.
+                    </p>
+
+                    <p>
+                        Vi har allerede gjennomført 
+                        <a href="koronapaske.no" class="semibold" target="_blank">koronapåske.no</a>, lansert <a href="kunstikarantene.no" class="semibold" target="_blank">kunstikarantene.no</a>,
+                        og har flere utstillinger og live-konsepter like rundt hjørnet.
+                    </p>
+                    <p>
+                        Når samfunnet åpner opp igjen vil vi også lage fysiske møteplasser og starte forberedelsene til et heidundrende UKM-år i 2021.     
+                    </p>
+
+                    <p>
+                        Takk for at du er med oss!
+                    </p>
+				</p>
+            </div>
+        </div>
+	</div>
+{% endblock %}
