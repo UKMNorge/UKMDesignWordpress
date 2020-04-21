@@ -9,19 +9,40 @@
         body {
             font-size: 14px;
         }
-        p{
-            opacity: .85;
-        }
-		.semibold {
-			font-weight: 500;
-        }
         
         #UKMheader {
             background-image: url('https://{{UKM_HOSTNAME}}/wp-content/themes/UKMDesignWordpress/Public/topp.png');
             background-repeat: no-repeat;
             background-size: cover;
             background-position-y: bottom;
-            min-height: 20vh;
+            min-height: 22vh;
+        }
+
+        @media (min-width: 768px) {
+            #UKMheader {
+                min-height: 30vh;
+            }
+        }
+        @media (min-width: 992px) { 
+            #UKMheader {
+                min-height: 37vh;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            body {
+                font-size: 16px;
+            }
+
+            #UKMheader {
+                min-height: 41vh;
+            }
+        }
+        p{
+            opacity: .85;
+        }
+		.semibold {
+			font-weight: 500;
         }
 
         #UKMlogo {
@@ -64,7 +85,7 @@
 				<a href="//delta.{{ UKM_HOSTNAME }}/ukmid/">
 					<span class="main_menu_button icon icon-user" id="user_menu_button"></span>
 				</a>
-				<a href="//{{ UKM_HOSTNAME }}/hovedmeny/" id="main_menu_button" data-status="hidden">
+				<a href="//{{ UKM_HOSTNAME }}/hovedmeny/" class="float-right" id="main_menu_button" data-status="hidden">
                     <span class="main_menu_button icon icon-menu-light"></span>
 				</a>
 			</div>
