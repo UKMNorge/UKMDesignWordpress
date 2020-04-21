@@ -28,6 +28,25 @@
             width: 5.5em;
         }
         
+
+        #main_menu_button {
+            margin-right: -.4em !important;
+        }
+
+        .main_menu_button {
+            color: #00004c;
+            padding: .3em;
+            font-size: 1.6em;
+            margin-right: .3em !important;
+            border: 2px solid #00004c;
+            font-weight: normal;
+        }
+
+        .main_menu_button.icon-user {
+            padding-top: .2em;
+            padding-bottom: .4em;
+            margin-top: -.2em;
+        }
 	</style>
 {% endblock %}
 
@@ -41,9 +60,12 @@
                 </a>
 			</div>
 
-			<div class="float-right">
-				<a href="//{{ UKM_HOSTNAME }}/hovedmeny/">
-					<button type="button" class="btn btn-sm my-2 btn-outline-light" id="main_menu_button" data-status="hidden">MENY</button>
+			<div class="float-right" style="padding-top: .5em;">
+				<a href="//delta.{{ UKM_HOSTNAME }}/ukmid/">
+					<span class="main_menu_button icon icon-user" id="user_menu_button"></span>
+				</a>
+				<a href="//{{ UKM_HOSTNAME }}/hovedmeny/" id="main_menu_button" data-status="hidden">
+                    <span class="main_menu_button icon icon-menu-light"></span>
 				</a>
 			</div>
 			<div class="clearfix"></div>
@@ -60,8 +82,7 @@
 
 	{# CONTENT #}
 	<div id="UKMDesign_content">
-		{% block content %}Designfil mangler content-block.
-		{% endblock %}
+		{% block content %}Designfil mangler content-block.{% endblock %}
 	</div>
 
 	{# FOOTER #}

@@ -3,6 +3,7 @@
 use UKMNorge\DesignWordpress\Environment\Front\Front;
 use UKMNorge\DesignWordpress\Environment\Wordpress;
 use UKMNorge\Geografi\Fylker;
+use UKMNorge\Geografi\Kommune;
 
 $now = new DateTime();
 
@@ -41,6 +42,17 @@ if( $start_nasjonaldag < $now && $stop_nasjonaldag > $now || isset($_GET['nasjon
     Wordpress::setView('Norge/Front/Standard');
 }
 
-if( isset($_GET['dark'])) {
+if( isset($_GET['dev'])) {
+    Wordpress::includeTwigJs();
     Wordpress::setView('Norge/Front/Dark');
+
+    if( isset($_COOKIE['lastlocation'])) {
+        $kommune = new Kommune($_COOKIE['lastlocation']);
+        $mitt_ukm = new stdClass();
+        $mitt_ukm->kommunenummer = $kommune->getId();
+        $mitt_ukm->fylkesnummer = $kommune->getFylke()->getId();
+        $mitt_ukm->kommunenavn = $kommune->getNavn();
+
+        Wordpress::addViewData('last_location', $mitt_ukm);
+    }
 }

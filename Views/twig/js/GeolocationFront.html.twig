@@ -1,0 +1,22 @@
+{% if kommune is defined %}
+    <p class="bold uppercase small mb-0">
+        <a href="{{kommune.url}}">{{kommune.navn}}</a>
+    </p>
+    {% if kommune.arrangementer|length > 0 %}
+        <ol class="list-group mt-1" id="kommune_arrangementer"></ol>
+    {% else %}
+        <a href="{{fylke.url}}" class="btn btn-xs btn-outline-primary">Se kommune for mer info</a>
+    {% endif %}
+{% endif %}
+
+{% if fylke is defined %}
+    <p class="bold uppercase small mb-0 mt-2">
+        <a href="{{fylke.url}}">{{fylke.navn}}</a>
+    </p>
+    {% if fylke.arrangementer|length > 0 %}
+        <ol class="list-group mt-1" id="fylke_arrangementer"></ol>
+    {% else %}
+        <a href="{{fylke.url}}" class="btn btn-xs btn-outline-primary">Se fylkessiden for mer info</a>
+    {% endif %}
+
+{% endif %}

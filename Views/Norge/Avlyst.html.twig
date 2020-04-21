@@ -18,6 +18,11 @@
 				<h1>{{ page.getTitle() }}</h1>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-12">
+				<h1>{{ page.getContent()|raw }}</h1>
+			</div>
+		</div>
 
 		{% for fylke in fylker %}
 			<div class="row">

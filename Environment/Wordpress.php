@@ -26,6 +26,7 @@ class Wordpress extends TemplateEngine
     static $page;
     static $posts;
     static $templates;
+    static $includeTwigJs = false;
 
     public static function init($dir = null)
     {
@@ -43,6 +44,24 @@ class Wordpress extends TemplateEngine
 
         static::_initUKMDesign( $yamlLoader );
         static::_initUrls();
+    }
+
+    /**
+     * Be om at twigJS-mappen printes ut
+     *
+     * @return void
+     */
+    public static function includeTwigJs() {
+        static::$includeTwigJs = true;
+    }
+    
+    /**
+     * Skal twigJS-mappen printes ut?
+     * 
+     * @return Bool
+     */
+    public static function getIncludeTwigJs() {
+        return static::$includeTwigJs;
     }
 
     /**
@@ -124,6 +143,7 @@ class Wordpress extends TemplateEngine
     {
         static::addViewData(
             [
+                'ajax_url' => UKMDesign::getAjaxUrl(),
                 'is_super_admin' => function_exists('is_super_admin') ? is_super_admin() : false,
                 'UKMDesign' => new UKMDesign(),
                 'singleMode' => ((isset($_POST['singleMode']) && 'true' == $_POST['singleMode']) || (isset($_GET['singleMode']) && 'true' == $_GET['singleMode'])),

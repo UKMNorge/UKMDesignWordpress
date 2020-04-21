@@ -15,13 +15,81 @@
         }
         
         #UKMderdubor {
-            background: #6bbdf9;
-
+            background: rgba(0, 0, 76, 0.06);
             border-color: #00004c;
             border-top: 2px solid;
             border-bottom: 2px solid;
+            box-shadow: 5px 4px 19px -15px #00004c;
         }
 	</style>
+{% endblock %}
+
+{% block javascripts %}
+    {{parent()}}
+
+    <script src="/wp-content/plugins/UKMresources/js/twig.js"></script>
+    <script>
+        jQuery(document).on('click', '.geolocation', function() {
+            jQuery('#derdubor').html( twigJS_GeolocationFrontLoading.render());
+        });
+        jQuery(document).on('geolocate-fail', function(e){
+            jQuery('#derdubor').html(twigJS_GeolocationFrontFail.render(e));
+        });
+        jQuery(document).on('geolocated', function(e, locationdata){
+            jQuery(document).trigger('fetchLocalizedInfo', [locationdata.kommunenummer, locationdata.fylkesnummer, locationdata.kommunenavn]);
+        });
+    
+        jQuery(document).on('fetchLocalizedInfo', function(e, kommunenummer, fylkesnummer, kommunenavn){
+            jQuery('#derdubor').html(twigJS_GeolocationFrontLoading.render({kommunenavn: kommunenavn}));
+            jQuery.get(
+                ajaxurl,
+                {
+                    action: 'UKMDesignWordpress',
+                    ajaxaction: 'home',
+                    fylke: fylkesnummer,
+                    kommune: kommunenummer
+                }
+            ).done(function(response) {
+                jQuery('#derdubor').html(twigJS_GeolocationFront.render(response));
+                if( response.kommune.arrangementer.length > 0 ) {
+                    jQuery('#kommune_arrangementer').html(
+                        twigJS_GeolocationFrontArrangement.render(
+                            {
+                                arrangementer: response.kommune.arrangementer,
+                                nettsted_url: response.kommune.url
+                            }
+                        )
+                    );
+                }
+                if( response.fylke.arrangementer.length > 0 ) {
+                    jQuery('#fylke_arrangementer').html(
+                        twigJS_GeolocationFrontArrangement.render(
+                            {
+                                arrangementer: response.fylke.arrangementer,
+                                nettsted_url: response.fylke.url
+                            }
+                        )
+                    );
+                }
+            }
+            ).fail(function() {
+                jQuery('#derdubor').html(twigJS_GeolocationFrontFailInternal.render());
+            });
+        });
+
+        {% if last_location is defined %}
+            jQuery(document).ready(function(){
+                jQuery(document).trigger(
+                    'fetchLocalizedInfo',
+                    [
+                        {{last_location.kommunenummer}},
+                        {{last_location.fylkesnummer}},
+                        '{{last_location.kommunenavn}}'
+                    ]
+                )
+            });
+        {% endif %}
+    </script>
 {% endblock %}
 
 {% block content %}
@@ -58,12 +126,10 @@
 
         <div class="row mt-5 py-3" id="UKMderdubor">
             <div class="col-2">
-                <div class="icon icon-location-pin-dot" style="font-size: 2.4em;"></div>
+                <div class="icon icon-location-pin-dot geolocation" style="font-size: 2.4em;"></div>
             </div>
-            <div class="col">
-                UKM DER DU BOR
-                <br />
-                <a href="#" class="btn btn-xs btn-outline-primary">Sjekk status nær deg</a>
+            <div class="col pb-0" id="derdubor">
+                <a href="#" class="geolocation semibold" style="opacity: .8">Trykk her for å finne info om UKM der du bor</a>
             </div>
         </div>
 
@@ -76,6 +142,7 @@
                         <br />
                         Vi har startet flere nettbaserte prosjekter, da også UKM måtte avlyse mye på grunn av korona. 
                         Over 40 lokalmønstringer, alle 19 fylkesfestivalene og den nasjonale UKM-festivalen er avlyst.
+                        <a href="/korona/">Les mer</a>
                     </p>
 
                     <p>

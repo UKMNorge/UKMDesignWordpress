@@ -7,6 +7,11 @@ echo Wordpress::renderCurrent();
 
 wp_footer();
 
+if( Wordpress::getIncludeTwigJs() ) {
+    require_once('UKM/inc/twig-js.inc.php');
+    echo TWIGjs_simple(Wordpress::getPath().'Views/');
+}
+
 if(is_user_logged_in() ) {
 	echo '<style>body {margin-top: 33px;} @media (max-width:782px) {body {margin-top: 48px;}}</style>';
 }

@@ -1,0 +1,31 @@
+{% for arrangement in arrangementer|slice(0,3) %}
+    <li class="list-group-item py-2 px-1 small">
+        <a href="{{ arrangement.url }}">
+            {% if arrangement.status.obs %}
+                <div class="pull-right icon icon-warning mr-1 mt-1" style="font-size: 1.5em;"></div>
+            {% endif %}
+            <div class="center uppercase float-left mr-3 mt-1">
+                <span class="icon icon-calendar"></span>
+                <br/>
+                <small>{{ arrangement.startNice|lower }}</small>
+            </div>
+            <p class="mt-0 mb-0 semibold">
+                {{ arrangement.navn }}
+            </p>
+            <p class="mt-0 mb-0">
+                {% if arrangement.status.avlyst %}
+                    Avlyst!
+                {% else %}
+                    {{arrangement.sted}}
+                {% endif %}
+            </p>
+        </a>
+    </li>
+{% endfor %}
+{% if arrangementer|length > 3 %}
+    <li class="list-group-item small">
+        <a href="{{nettsted_url}}">
+            Vis alle arrangement
+        </a>
+    </li>
+{% endif %}
