@@ -75,9 +75,9 @@ class Data {
         $data->erFerdig = $arrangement->erFerdig();
         
         $data->start = $arrangement->getStart();
-        $data->startNice = str_replace(['may','oct','dec'],['mai','okt','des'],$arrangement->getStart()->format('j. M'));
+        $data->startNice = str_replace(['may','oct','dec'],['mai','okt','des'], strtolower($arrangement->getStart()->format('j. M')));
         $data->stop = $arrangement->getStop();
-        $data->stopNice = str_replace(['may','oct','dec'],['mai','okt','des'],$arrangement->getStop()->format('j. M'));
+        $data->stopNice = str_replace(['may','oct','dec'],['mai','okt','des'],strtolower($arrangement->getStop()->format('j. M')));
         
         $data->sted = $arrangement->getSted();
         $data->kart = $arrangement->getKart();
