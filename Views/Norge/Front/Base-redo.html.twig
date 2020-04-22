@@ -8,34 +8,25 @@
         }
         body {
             font-size: 14px;
+            background: #00004c;
+            color: #fff;
+        }
+
+        #main_menu_button, .main_menu_button {
+            color: #fff !important;
+        }
+
+        #UKMDesign_content {
+            min-height: 80vh;
         }
         
         #UKMheader {
-            background-image: url('https://{{UKM_HOSTNAME}}/wp-content/themes/UKMDesignWordpress/Public/topp.png');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position-y: bottom;
-            min-height: 22vh;
-        }
-
-        @media (min-width: 768px) {
-            #UKMheader {
-                min-height: 30vh;
-            }
-        }
-        @media (min-width: 992px) { 
-            #UKMheader {
-                min-height: 37vh;
-            }
+            background: #00004c;
         }
 
         @media (min-width: 1200px) {
             body {
                 font-size: 16px;
-            }
-
-            #UKMheader {
-                min-height: 41vh;
             }
         }
         p{
@@ -46,7 +37,7 @@
         }
 
         #UKMlogo {
-            width: 5.5em;
+            width: 7.5em;
         }
         
 
@@ -77,7 +68,7 @@
 		<header>
             <div class="navbar-header float-left">
                 <a href="{{ UKMDesign.getSitemap().getPage('UKM', 'forsiden') }}">
-                    <img src="https://grafikk.ukm.no/profil/bobla/UKM-bobla_bla_0300.png" id="UKMlogo" />
+                    <img src="https://grafikk.ukm.no/profil/bobla/UKM-bobla_hvit_0300.png" id="UKMlogo" />
                 </a>
 			</div>
 

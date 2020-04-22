@@ -5,9 +5,25 @@
 	<style>
 		.social {
 			font-size: 2em;
+            margin-top: 0vh;
+            margin-bottom: 8vh;
 		}
 		.social .icon:before {
-			color: #00004c;
+			color: #fff;
+        }
+
+        .icon.icon-location-pin-dot:before {
+            color: #fff;
+        }
+
+        html a,
+        html a:active, 
+        html a:hover, 
+        html a:visited,
+        html a:focus {
+            color: #fff;
+            font-weight: bold !important;
+            text-decoration: none;
         }
 
         html .icon-location-pin-dot:before {
@@ -22,26 +38,42 @@
             box-shadow: 5px 4px 19px -15px #00004c;
         }
 
+        html li.list-group-item a {
+            color: #00004c;
+        }
+
         #slogan {
             text-align: center;
             line-height: 1.4em; 
-            color: #00004c;
+            color: #fff;
             opacity: 1;
             margin-top: 0vh;
             margin-bottom: 3vh;
+            padding-top: 6vh;
+            padding-bottom: 6vh;
+        }
+        @media (min-width: 768px) {
+            #slogan {
+                font-size: 1.2em;
+                margin-top: 2vh;
+            }
         }
         @media (min-width: 992px) {
             #slogan {
                 font-size: 1.4em;
-                margin-top: -6vh;
+                margin-top: 4vh;
             }
         }
         @media (min-width: 1200px) {
             #slogan {
                 font-size: 2em;
-                margin-top: -10vh;
-                margin-bottom: 2vh;
+                margin-top: 4vh;
+                margin-bottom: 4vh;
             }
+        }
+
+        #UKMderdubor {
+            background: #ff128b;
         }
 	</style>
 {% endblock %}
@@ -119,7 +151,7 @@
         <div class="row">
             <div class="row">
                 <div class="offset-1 col-10">
-                    <p id="slogan">
+                    <p class="semibold" id="slogan">
                         Vis frem noe du brenner for, prøv noe helt nytt eller bli med så andre får vist sin beste side.
                         Sammen skaper vi noe nytt, inspirerer, lærer av hverandre og har det gøy.
                     </p>
@@ -130,7 +162,7 @@
 
         <div class="row">
             <div class="col-12 col-lg-6">
-                <div class="row mt-4 social">
+                <div class="row social">
                     <div class="col"></div>
                     <div class="col">
                         <a href="https://instagram.com/ukmnorge" target="_blank">
@@ -179,11 +211,11 @@
                                 og har flere utstillinger og live-konsepter like rundt hjørnet.
                             </p>
                             <p>
-                                Når samfunnet åpner opp igjen vil vi også lage fysiske møteplasser og starte forberedelsene til et heidundrende UKM-år i 2021.     
+                                Etter hvert som samfunnet åpner opp igjen, gleder vi oss til å lage fysiske møteplasser som før, og å fortsette utviklingen av de digitale prosjektene vi starter nå.
                             </p>
 
                             <p>
-                                Takk for at du er med oss!
+                                Takk for at du er med oss, og ta vare på hverandre!
                             </p>
                         </p>
                     </div>

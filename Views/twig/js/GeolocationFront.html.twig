@@ -5,7 +5,7 @@
     {% if kommune.arrangementer|length > 0 %}
         <ol class="list-group mt-1" id="kommune_arrangementer"></ol>
     {% else %}
-        <a href="{{fylke.url}}" class="btn btn-xs btn-outline-primary">Se kommune for mer info</a>
+        <a href="{{fylke.url}}" class="btn btn-xs btn-outline-light">Se kommune for mer info</a>
     {% endif %}
 {% endif %}
 
@@ -16,7 +16,7 @@
     {% if fylke.arrangementer|length > 0 %}
         <ol class="list-group mt-1" id="fylke_arrangementer"></ol>
     {% else %}
-        <a href="{{fylke.url}}" class="btn btn-xs btn-outline-primary">Se fylkessiden for mer info</a>
+        <a href="{{fylke.url}}" class="btn btn-xs btn-outline-light">Se fylkessiden for mer info</a>
     {% endif %}
 
 {% endif %}
