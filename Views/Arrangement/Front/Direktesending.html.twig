@@ -1,0 +1,49 @@
+<style>
+	#direktesend_banner {
+		background: #ff128b;
+		color: #fff;
+		font-weight: 500;
+		text-transform: uppercase;
+		font-size: 0.8em;
+		color: rgba(255, 255, 255, 0.9);
+		text-align: center;
+	}
+	a:hover {
+		text-decoration: none !important;
+	}
+</style>
+<script>
+	jQuery(document).on('click', '#direktesend_banner', function (e) {
+if (jQuery('#direktesend_embed').is(':visible')) {
+jQuery('#direktesend_embed').slideUp(250);
+} else {
+jQuery('#direktesend_embed').slideDown(250);
+}
+});
+</script>
+
+{% if arrangement.getMetaValue('live_embed') is empty %}
+	<a href="{{arrangement.getMetaValue('live_link')}}" target="_blank">
+	{% endif %}
+	<div id="direktesend_banner" class="click">
+		<div class="container mb-3 clearfix" style="margin-top:-1em;">
+			<div class="row py-1">
+				<div class="col-12 title">
+					<p class="my-0">
+						Direktesending starte{{ sending.erAktiv() ? 't' : 'r' }} 
+                        {% if not sending.erIDag() %}
+                        {{ sending.getStart()|dato('l j.') }}
+                        {% endif %}
+                        kl. {{ sending.getStart()|dato('H:i') }}
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% if not arrangement.getMetaValue('live_embed') is empty %}
+	</a>
+{% endif %}
+
+<div id="direktesend_embed" class="mb-4 center" style="{{ not sending.erAktiv() ? 'display: none;' }}">
+	{{ arrangement.getMetaValue('live_embed')|raw }}
+</div>

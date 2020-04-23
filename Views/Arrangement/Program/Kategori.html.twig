@@ -16,7 +16,10 @@
 				<h1>{{ hendelse.getNavn() }}</h1>
 				<p class="lead">{{ hendelse.getStart()|dato('l j.M H:i')|capitalize }},
 					{{ hendelse.getSted() }}</p>
+                {% include "Arrangement/Program/Direktesending.html.twig" %}
+
 				<p>{{ kategori.description|raw }}</p>
+
 				{% if hendelse.getBeskrivelse() is not empty %}
 					<p>{{ hendelse.getBeskrivelse()|nl2br }}</p>
 				{% endif %}

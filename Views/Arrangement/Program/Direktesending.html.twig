@@ -1,0 +1,48 @@
+<style>
+.direktevindu {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-bottom: 2em !important;
+    background: #00004c;
+    margin-left: -.5em;
+}
+.sendeinfo {
+    text-align: left;
+    padding-left: 1em;
+    color: #fff;
+    margin-bottom: 1em;
+}
+div.icon-video {
+    color: #cf202e;
+    font-size: 2.4em;
+    margin-top: -.17em;
+    margin-right: 0.3em;
+}
+.direktevindu p {
+    color: rgba(255,255,255,.9);
+    margin-bottom: 0;
+}
+</style>
+{% if hendelse.harSending() and not hendelse.getSending().erStartet() %}
+    <div class="center mt-2 mb-2 direktevindu">
+		<p class="bold uppercase">
+            <span class="icon icon-video" style="margin-right: .5em;"></span> 
+            DIREKTESENDING STARTER 
+            {{ hendelse.getSending().getStart()|dato('l j. M') }}
+            kl. {{ hendelse.getSending().getStart()|dato('H:i') }}
+        </p>
+	</div>
+{% elseif not hendelse.getSending().erFerdig() %}
+    <div class="center mt-2 mb-2 direktevindu">
+        <div class="bold sendeinfo">
+            <div class="icon icon-video pull-left"></div> 
+            <div class="pull-left">
+                DIREKTE KL. 
+                {{ hendelse.getSending().getStart()|dato('H:i') }} - 
+                {{ hendelse.getSending().getStop()|dato('H:i') }} 
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        {{ hendelse.getSending().getEmbed()|raw }}
+    </div>
+{% endif %}

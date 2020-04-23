@@ -6,6 +6,7 @@ use UKMNorge\Design\UKMDesign;
 use UKMNorge\DesignWordpress\Environment\Post;
 use UKMNorge\DesignWordpress\Environment\Posts;
 use UKMNorge\DesignWordpress\Environment\Wordpress;
+use UKMNorge\Filmer\UKMTV\Direkte\Sendinger;
 
 $arrangement = new Arrangement( get_option('pl_id') );
 
@@ -61,7 +62,7 @@ if( is_numeric( $id ) ) {
 		default:
 			Wordpress::setView('Arrangement/Program/Hendelse');
 		break;
-	}
+    }
 }
 else {
     $visInterne = defined('DELTAKERPROGRAM') && DELTAKERPROGRAM;

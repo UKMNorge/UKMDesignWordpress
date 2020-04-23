@@ -104,3 +104,7 @@ jQuery('#kartet').slideUp();
 {% if arrangement.getMetaValue('avlys') %}
     {% include "Arrangement/Front/Avlyst.html.twig" %}
 {% endif %}
+
+{% if arrangement.erIDag() and arrangement.getDirektesending().harNeste() %}
+    {% include "Arrangement/Front/Direktesending.html.twig" with {sending: arrangement.getDirektesending().getNeste() } %}
+{% endif %}

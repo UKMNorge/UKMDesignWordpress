@@ -1,8 +1,12 @@
 {% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
 
-{% block content %}
-    {% if hendelse.erFremhevet() %}
+{% block css %}
     <style>
+        .card.UKMcard {
+            border-radius: 0 !important;
+        }
+
+    {% if hendelse.erFremhevet() %}
         :root {
             --ukm_blaa: rgba(0, 0, 71, 1);
             --ukm_rosa: rgba(255, 18, 139, 1);
@@ -37,7 +41,7 @@
         .innslagCard {
             background: var(--ukm_blaa) !important;
             color: var(--ukm_gul);
-            border: 2px solid var(--ukm_gul);
+            /*border: 2px solid var(--ukm_gul);*/
             box-shadow: none;
         }
 
@@ -54,17 +58,23 @@
             background: var(--ukm_gul) !important;
             border-top: 1px solid var(--ukm_gul) !important;
         }
-    </style>
     {% endif %}
+</style>
+{% endblock %}
+
+{% block content %}
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
 				<h3>{{ hendelse.getNavn() }}</h3>
 				<p>{{ hendelse.getStart()|dato('l j.M H:i')|capitalize }}, {{ hendelse.getSted() }}</p>
-				{% if hendelse.getBeskrivelse() is not empty %}
+                
+                {% include "Arrangement/Program/Direktesending.html.twig" %}
+				
+                {% if hendelse.getBeskrivelse() is not empty %}
 					<p>{{ hendelse.getBeskrivelse()|nl2br }}</p>
 				{% endif %}
-				
+
 				{% for innslag in hendelse.getInnslag().getAll() %}
 					<div class="card innslagCard UKMcard mb-2 p-0" data-visning="skjult" data-id="{{ innslag.getId() }}">
 				 		{% embed 'Arrangement/Innslag-liste.html.twig' with {'innslag': innslag, 'hendelse': hendelse } %}{% endembed %}

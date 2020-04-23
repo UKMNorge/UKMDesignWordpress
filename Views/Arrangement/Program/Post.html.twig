@@ -10,6 +10,9 @@
 			<div class="col-md-10 ml-md-auto mr-md-auto col-lg-8">
 				<article>
 					<h1>{{ post.getTitle()|raw }}</h1>
+
+                    {% include "Arrangement/Program/Direktesending.html.twig" %}
+
 					{{ post.content|raw }}
 				</article>
 				
