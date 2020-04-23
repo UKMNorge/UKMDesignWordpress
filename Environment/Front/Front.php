@@ -21,6 +21,7 @@ class Front
     static $blog_id;
     static $arrangement;
     static $supportInfoside = true;
+    static $infoside;
     static $fylke;
     static $kommune;
 

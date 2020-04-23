@@ -8,10 +8,8 @@ use UKMNorge\Wordpress\Blog;
 
 class OmradeFront extends Front
 {
-    static $infoside;
     static $omrade;
     static $arrangement;
-    static $supportInfoside = true;
 
     /**
      * Skal knapp med lenke til fylkessiden skjules?
