@@ -2,7 +2,6 @@
 
 namespace UKMNorge\DesignWordpress\Environment\Front;
 
-use UKMNorge\DesignWordpress\Environment\Page;
 use UKMNorge\Nettverk\Omrade;
 use UKMNorge\Wordpress\Blog;
 

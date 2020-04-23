@@ -11,6 +11,8 @@ use UKMNorge\Design\Position\Vertical;
 use UKMNorge\Design\UKMDesign;
 use UKMNorge\Geografi\Fylker;
 use UKMNorge\Geografi\Kommune;
+use UKMNorge\Wordpress\Blog;
+use UKMNorge\DesignWordpress\Environment\Page;
 
 class Front
 {
