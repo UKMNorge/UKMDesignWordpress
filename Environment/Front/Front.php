@@ -444,4 +444,48 @@ class Front
         
         return false;
     }
+
+    /**
+     * Har bloggen en infoside?
+     *
+     * @return bool
+     */
+    public static function harInfoside()
+    {
+        return !is_null(static::getInfoside());
+    }
+
+    /**
+     * Hent infosiden
+     *
+     * @return Page
+     */
+    public static function getInfoside()
+    {
+        if (is_null(static::$infoside)) {
+            static::_loadInfoside();
+        }
+        return static::$infoside;
+    }
+
+    /**
+     * Last inn infosiden og cache på objektet
+     *
+     * @return void
+     */
+    private static function _loadInfoside()
+    {
+        if (Blog::harSide(static::getBlogId(), 'info')) {
+            $page = new Page(
+                Blog::hentSideByPath(
+                    static::getBlogId(),
+                    'info'
+                )
+            );
+            if( !empty( $page->getContent() ) ) {
+                static::$infoside = $page;
+            }
+        }
+    }
+
 }
