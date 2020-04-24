@@ -78,6 +78,10 @@
                 margin-bottom: 4vh;
             }
         }
+
+        #derduborcontainer.notlocated {
+            text-align: center;
+        }
 	</style>
 {% endblock %}
 
@@ -90,7 +94,7 @@
         jQuery(document).on('click touchend', '#derduborcontainer', function(){
             if( jQuery(this).hasClass('click') ) {
                 jQuery('.geolocation').trigger('click');
-                jQuery(this).removeClass('click');
+                jQuery(this).removeClass('click notlocated');
             }
         });
         jQuery(document).on('click touchend', '.geolocation', function() {
@@ -188,7 +192,7 @@
         </div>
 
         <div class="row pt-lg-3">
-            <div class="col-12 mt-3 mt-lg-0 mb-5 offset-lg-1 col-lg-5 offset-xl-2 col-xl-4 center p-0 p-sm-2 p-lg-3 click" id="derduborcontainer">
+            <div class="col-12 mt-3 mt-lg-0 mb-5 offset-lg-1 col-lg-5 offset-xl-2 col-xl-4 p-0 p-sm-2 p-lg-3 notlocated click" id="derduborcontainer">
                 <div class="p-3 mt-lg-1" id="derdubor">
                     <a href="#" class="geolocation semibold" style="opacity: .8">
                         Vis arrangementer nær deg
