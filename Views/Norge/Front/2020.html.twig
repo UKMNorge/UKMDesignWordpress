@@ -94,7 +94,6 @@
         jQuery(document).on('click touchend', '#derduborcontainer', function(){
             if( jQuery(this).hasClass('click') ) {
                 jQuery('.geolocation').trigger('click');
-                jQuery(this).removeClass('click notlocated');
             }
         });
         jQuery(document).on('click touchend', '.geolocation', function() {
@@ -105,6 +104,7 @@
         });
         jQuery(document).on('geolocated', function(e, locationdata){
             jQuery(document).trigger('fetchLocalizedInfo', [locationdata.kommunenummer, locationdata.fylkesnummer, locationdata.kommunenavn]);
+            jQuery('#derduborcontainer').removeClass('click notlocated');
         });
     
         jQuery(document).on('fetchLocalizedInfo', function(e, kommunenummer, fylkesnummer, kommunenavn){
