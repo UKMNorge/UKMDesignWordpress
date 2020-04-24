@@ -104,10 +104,10 @@
         });
         jQuery(document).on('geolocated', function(e, locationdata){
             jQuery(document).trigger('fetchLocalizedInfo', [locationdata.kommunenummer, locationdata.fylkesnummer, locationdata.kommunenavn]);
-            jQuery('#derduborcontainer').removeClass('click notlocated');
         });
     
         jQuery(document).on('fetchLocalizedInfo', function(e, kommunenummer, fylkesnummer, kommunenavn){
+            jQuery('#derduborcontainer').removeClass('click notlocated');
             jQuery('#derdubor').html(twigJS_GeolocationFrontLoading.render({kommunenavn: kommunenavn}));
             jQuery.get(
                 ajaxurl,
