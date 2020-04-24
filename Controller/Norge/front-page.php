@@ -17,6 +17,7 @@ Wordpress::addViewData(
     ]
 );
 
+/*
 $start_festivalperiode = DateTime::createFromFormat('m-d H:i', '05-18 00:00');
 $stop_festivalperiode = DateTime::createFromFormat('m-d H:i', '08-01 00:00');
 
@@ -41,18 +42,17 @@ if( $start_nasjonaldag < $now && $stop_nasjonaldag > $now || isset($_GET['nasjon
 } else {
     Wordpress::setView('Norge/Front/Standard');
 }
+*/
 
-if( isset($_GET['dev'])) {
-    Wordpress::includeTwigJs();
-    Wordpress::setView('Norge/Front/2020');
+Wordpress::includeTwigJs();
+Wordpress::setView('Norge/Front/2020');
 
-    if( isset($_COOKIE['lastlocation'])) {
-        $kommune = new Kommune($_COOKIE['lastlocation']);
-        $mitt_ukm = new stdClass();
-        $mitt_ukm->kommunenummer = $kommune->getId();
-        $mitt_ukm->fylkesnummer = $kommune->getFylke()->getId();
-        $mitt_ukm->kommunenavn = $kommune->getNavn();
+if( isset($_COOKIE['lastlocation'])) {
+    $kommune = new Kommune($_COOKIE['lastlocation']);
+    $mitt_ukm = new stdClass();
+    $mitt_ukm->kommunenummer = $kommune->getId();
+    $mitt_ukm->fylkesnummer = $kommune->getFylke()->getId();
+    $mitt_ukm->kommunenavn = $kommune->getNavn();
 
-        Wordpress::addViewData('last_location', $mitt_ukm);
-    }
+    Wordpress::addViewData('last_location', $mitt_ukm);
 }

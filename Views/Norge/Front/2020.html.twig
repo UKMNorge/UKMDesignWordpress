@@ -6,7 +6,7 @@
 		.social {
 			font-size: 2em;
             margin-top: 0vh;
-            margin-bottom: 8vh;
+            margin-bottom: 5.5vh;
 		}
 		.social .icon:before {
 			color: #fff;
@@ -30,8 +30,8 @@
             color: #00004c;
         }
         
-        #UKMderdubor {
-            background: rgba(0, 0, 76, 0.06);
+        #derdubor {
+            background: #ff128b;
             border-color: #00004c;
             border-top: 2px solid;
             border-bottom: 2px solid;
@@ -47,15 +47,22 @@
             line-height: 1.4em; 
             color: #fff;
             opacity: 1;
-            margin-top: 0vh;
+            margin-top: 2vh;
             margin-bottom: 3vh;
             padding-top: 6vh;
             padding-bottom: 6vh;
         }
+
+        @media (min-width: 576px) {
+            #derdubor {
+                 border: 2px solid;
+            }
+        }
+
         @media (min-width: 768px) {
             #slogan {
-                font-size: 1.2em;
-                margin-top: 2vh;
+                font-size: 1.3em;
+                margin-top: 3vh;
             }
         }
         @media (min-width: 992px) {
@@ -71,10 +78,6 @@
                 margin-bottom: 4vh;
             }
         }
-
-        #UKMderdubor {
-            background: #ff128b;
-        }
 	</style>
 {% endblock %}
 
@@ -83,7 +86,14 @@
 
     <script src="/wp-content/plugins/UKMresources/js/twig.js"></script>
     <script>
-        jQuery(document).on('click', '.geolocation', function() {
+        // Inntil derdubor er lastet inn, la hele boksen være klikkbar
+        jQuery(document).on('click touchend', '#derduborcontainer', function(){
+            if( jQuery(this).hasClass('click') ) {
+                jQuery('.geolocation').trigger('click');
+                jQuery(this).removeClass('click');
+            }
+        });
+        jQuery(document).on('click touchend', '.geolocation', function() {
             jQuery('#derdubor').html( twigJS_GeolocationFrontLoading.render());
         });
         jQuery(document).on('geolocate-fail', function(e){
@@ -149,77 +159,59 @@
 {% block content %}
 	<div class="container" style="min-height: 50vh;">
         <div class="row">
-            <div class="row">
-                <div class="offset-1 col-10">
-                    <p class="semibold" id="slogan">
-                        Vis frem noe du brenner for, prøv noe helt nytt eller bli med så andre får vist sin beste side.
-                        Sammen skaper vi noe nytt, inspirerer, lærer av hverandre og har det gøy.
-                    </p>
-                    <div class="clearfix"></div>
-                </div>
+            <div class="offset-1 col-10">
+                <p class="semibold" id="slogan">
+                    Vis frem noe du brenner for, prøv noe helt nytt eller bli med så andre får vist sin beste side.
+                    Sammen skaper vi noe nytt, inspirerer, lærer av hverandre og har det gøy.
+                </p>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-12 col-lg-6">
-                <div class="row social">
-                    <div class="col"></div>
-                    <div class="col">
-                        <a href="https://instagram.com/ukmnorge" target="_blank">
-                            <span class="icon icon-logo-instagram"></span>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="https://facebook.com/ukmnorge" target="_blank">
-                            <span class="icon icon-logo-facebook"></span>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="https://tiktok.com/@ukmnorge" target="_blank">
-                            <span class="icon icon-logo-tiktok"></span>
-                        </a>
-                    </div>
-                    <div class="col"></div>
-                </div>
+        <div class="row social">
+            <div class="col"></div>
+            <div class="col center">
+                <a href="https://instagram.com/ukmnorge" target="_blank">
+                    <span class="icon icon-logo-instagram"></span>
+                </a>
+            </div>
+            <div class="col center">
+                <a href="https://facebook.com/ukmnorge" target="_blank">
+                    <span class="icon icon-logo-facebook"></span>
+                </a>
+            </div>
+            <div class="col center">
+                <a href="https://tiktok.com/@ukmnorge" target="_blank">
+                    <span class="icon icon-logo-tiktok"></span>
+                </a>
+            </div>
+            <div class="col"></div>
+        </div>
 
-
-                <div class="row mt-5 py-3" id="UKMderdubor">
-                    <div class="col-2">
-                        <div class="icon icon-location-pin-dot geolocation" style="font-size: 2.4em;"></div>
-                    </div>
-                    <div class="col pb-0" id="derdubor">
-                        <a href="#" class="geolocation semibold" style="opacity: .8">Trykk her for å finne info om UKM der du bor</a>
-                    </div>
+        <div class="row pt-lg-3 mt-4">
+            <div class="col-12 mb-5 offset-lg-1 col-lg-5 offset-xl-2 col-xl-4 center p-0 p-sm-2 p-lg-3 click" id="derduborcontainer">
+                <div class="p-3 mt-lg-1" id="derdubor">
+                    <a href="#" class="geolocation semibold" style="opacity: .8">
+                        Vis arrangementer nær deg
+                    </a>
                 </div>
             </div>
 
-            <div class="col-12 offset-lg-1 col-lg-5">
-                <div class="row mt-3">
-                    <div class="col">
-                        <p style="line-height: 1.4em">
-                            <p>
-                                <b>KORONA-UKM:</b>
-                                <br />
-                                Vi har startet flere nettbaserte prosjekter, da også UKM måtte avlyse mye på grunn av korona. 
-                                Over 40 lokalmønstringer, alle 19 fylkesfestivalene og den nasjonale UKM-festivalen er avlyst.
-                                <a href="/korona/">Les mer</a>
-                            </p>
+            <div class="col-12 col-lg-5 col-xl-4px-5 p-sm-2 p-lg-3">
+                <p class="mt-0" style="line-height: 1.4em">
+                    <b>UKM OG KORONA</b>
+                    <br />
+                    40 lokalmønstringer, alle fylkesfestivalene og den nasjonale UKM-festivalen er avlyst.
+                    Når samfunnet åpner opp igjen, gleder vi oss til å lage fysiske møteplasser, 
+                    og fortsette utviklingen av digitale prosjekter.
+                </p>
 
-                            <p>
-                                Vi har allerede gjennomført 
-                                <a href="koronapaske.no" class="semibold" target="_blank">koronapåske.no</a>, lansert <a href="kunstikarantene.no" class="semibold" target="_blank">kunstikarantene.no</a>,
-                                og har flere utstillinger og live-konsepter like rundt hjørnet.
-                            </p>
-                            <p>
-                                Etter hvert som samfunnet åpner opp igjen, gleder vi oss til å lage fysiske møteplasser som før, og å fortsette utviklingen av de digitale prosjektene vi starter nå.
-                            </p>
+                <p>
+                    Takk for at du er med oss, og ta vare på hverandre!
+                </p>
 
-                            <p>
-                                Takk for at du er med oss, og ta vare på hverandre!
-                            </p>
-                        </p>
-                    </div>
-                </div>
+                <p>
+                    <a href="/korona/">Les mer</a>
+                </p>
             </div>
         </div>
 	</div>
