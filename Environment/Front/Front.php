@@ -327,7 +327,7 @@ class Front
         $large_image = get_option('UKM_banner_image_large');
         if (is_string($large_image) && !empty($large_image)) {
             $banner->setLarge(
-                new Image($large_image)
+                new Image(str_replace('http:', 'https:', $large_image))
             );
         }
         return $banner;
