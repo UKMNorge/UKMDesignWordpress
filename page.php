@@ -1,6 +1,7 @@
 <?php
 
 use UKMNorge\Design\UKMDesign;
+use UKMNorge\DesignWordpress\Environment\Setup;
 use UKMNorge\DesignWordpress\Environment\Wordpress;
 
 require_once('header.php');
