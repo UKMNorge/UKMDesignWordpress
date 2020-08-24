@@ -159,7 +159,7 @@ class Post extends WPOO_Post
         if( !isset($this->meta->$key) || empty($this->meta->$key) ) {
             return false;
         }
-        $empty = true;
+        $empty = empty($this->meta->$key);
         if( is_array( $this->meta->$key ) ) {
             foreach( $this->meta->$key as $value ) {
                 if( !empty($value)) {
