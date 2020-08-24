@@ -41,6 +41,11 @@ class Setup {
             'index.php?pagename=program&id=$matches[1]',
             'top'
         );
+        add_rewrite_rule(
+            'pameldte/([0-9]+)/?$',
+            'index.php?pagename=pameldte&id=$matches[1]',
+            'top'
+        );
 
         global $wp_rewrite; 
         $wp_rewrite->flush_rules();
