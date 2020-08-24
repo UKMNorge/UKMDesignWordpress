@@ -24,6 +24,8 @@ add_theme_support( 'disable-custom-colors' );
 add_theme_support( 'editor-font-sizes', [] );
 add_theme_support( 'disable-custom-font-sizes' );
 
+add_action('init', [Setup::class, 'addRewriteRules']);
+
 if( function_exists('is_admin') && is_admin() ) {
     Wordpress::initWithoutTwig();
 } else {
