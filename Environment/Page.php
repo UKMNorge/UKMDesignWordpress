@@ -11,6 +11,7 @@ class Page extends Post
     private $listener;
     private $template;
     private $blocks;
+    private $featured_image;
 
     /**
      * Hent hvilket template denne siden skal ha

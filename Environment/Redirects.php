@@ -23,7 +23,7 @@ class Redirects
      * @param String $template
      * @return String
      */
-    function pageExists($template)
+    public static function pageExists($template)
     {
         // Bloggen er slettet
         if (get_site()->deleted) {
@@ -47,7 +47,7 @@ class Redirects
      *
      * @return void
      */
-    function skip_site_check()
+    public static function skip_site_check()
     {
         return true;
     }

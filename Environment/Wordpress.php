@@ -249,7 +249,7 @@ class Wordpress extends TemplateEngine
      * @param String $template_id
      * @return String
      */
-    private function _correctTemplateId(String $template_id)
+    private static function _correctTemplateId(String $template_id)
     {
         // Sider med meny bruker fra 2020 UKM_block
         if ($template_id == 'meny') {

@@ -159,8 +159,8 @@ class Post extends WPOO_Post
         if( !isset($this->meta->$key) || empty($this->meta->$key) ) {
             return false;
         }
+        $empty = true;
         if( is_array( $this->meta->$key ) ) {
-            $empty = true;
             foreach( $this->meta->$key as $value ) {
                 if( !empty($value)) {
                     $empty = false;
@@ -175,7 +175,7 @@ class Post extends WPOO_Post
      * Sett en meta-verdi på objektet (lagres ikke)
      *
      * @param String $key
-     * @param mixed $value
+     * @param mixed $value 
      * @return self
      */
     public function setMeta( String $key, $value ) {
