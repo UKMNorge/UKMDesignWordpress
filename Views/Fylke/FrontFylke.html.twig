@@ -11,12 +11,7 @@
 			{% endif %}
 
 			<div class="col-12 {{ infoside is defined or posts.getAntall() > 0 ? 'col-md-6 offset-lg-1 order-md-2 col-lg-5' : 'col-md-8'}}">
-				{% if omrade.getArrangementer(season).getAntall() > 0 %}
-					<h3 class="mb-3 mt-0">Ting som skjer</h3>
-					{% include "Front/Part/ArrangementListe.html.twig" %}
-					<div class="clearfix"></div>
-					<div class="mb-5"></div>
-				{% endif %}
+                {% include "Fylke/Part/Arrangementer.html.twig" %}
 
 				<div class="mt-4">
 					{% include "Front/Part/Kontakt.html.twig" with { kontaktpersoner: omrade.getKontaktpersoner() } %}

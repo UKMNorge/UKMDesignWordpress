@@ -6,9 +6,14 @@
 		<div class="under mb-1" style="font-size: .7em;">
 			{{ arrangement.getStart()|dato('M')|upper }}
 		</div>
-		<div class="over" style="font-size:1.26em;margin-top: -.1em;">
+		<div class="over" style="font-size:1.26em;margin-top: -.1em; {{ arrangement.erFerdig() ? 'margin-bottom: -.3em'}}">
 			{{ arrangement.getStart()|dato('d')}}
 		</div>
+        {% if arrangement.erFerdig() %}
+            <div class="under mb-1 badge badge-warning" style="font-size: .7em; background: rgba(255, 18, 139, 65%); color: #fff;">
+                {{ arrangement.getStart()|dato('Y')|upper }}
+            </div>
+        {% endif %}
 	</div>
 	<div>
 		<div style="margin-bottom: -.4em;">

@@ -1,7 +1,6 @@
 <?php
 
 use UKMNorge\Arrangement\Arrangement;
-use UKMNorge\Arrangement\Load;
 use UKMNorge\Geografi\Fylker;
 use UKMNorge\Geografi\Kommune;
 use UKMNorge\Wordpress\Blog;
