@@ -1,5 +1,5 @@
 <ol class="list-unstyled">
-    {% for arrangement in arrangementer|filter(arrangement => arrangement.erRegistrert() and arrangement.erSynlig()) %}
+    {% for arrangement in arrangementer|filter(arrangement => arrangement.erRegistrert() and arrangement.erSynlig() and arrangement.getSesong() > 2019 ) %}
         <li class="clearfix mb-3" style="{{ arrangement.erFerdig() ? 'opacity: .65' }}">
             {% include "Arrangement/ListeElement.html.twig" %}
         </li>
