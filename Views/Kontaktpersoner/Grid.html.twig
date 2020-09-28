@@ -1,5 +1,5 @@
 <div class="card">
-	{% if kontakt.getBilde() is not empty %}
+	{% if kontakt.getBilde() is not empty and kontakt.getBilde() != 0 %}
 		<div class="card-img-top center">
 			<div class="card-img-top kontaktperson-bilde" style="background-image: url('{{ kontakt.getBilde() }}');">&nbsp;</div>
 		</div>

@@ -42,8 +42,11 @@ if( !$kommune_id ) {
 // for da skal vi videresende til arrangementssiden.
 $omrade = Omrade::getByKommune( intval($kommune_id) );
 
-if( $omrade->getArrangementer( OmradeFront::getSesong() )->getAntall() == 1 ) {
-    $arrangement = $omrade->getArrangementer( OmradeFront::getSesong() )->getFirst();
+// Hvis kommunen har ett kommende arrangement, send direkte til det
+// Kunne strengt tatt sendt vedkommende til kommune-siden, men 
+// inntil videre forsøker vi denne strategien.
+if( $omrade->getKommendeArrangementer()->getAntall() == 1 ) {
+    $arrangement = $omrade->getKommendeArrangementer( )->getFirst();
     if( $arrangement->erFellesmonstring() ) {
         header("Location: ". $arrangement->getLink());
         echo '<script type="text/javascript">window.location.href = "'. $arrangement->getLink() .'";</script>';

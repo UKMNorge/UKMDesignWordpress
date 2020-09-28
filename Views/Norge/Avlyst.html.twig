@@ -14,7 +14,7 @@
 {% block content %}
 	<div class="container sitemap">
 		<div class="row">
-			<div class="col-12">
+			<div class="col-12"> 
 				<h1>{{ page.getTitle() }}</h1>
 			</div>
 		</div>
@@ -31,7 +31,7 @@
 
 					<ol class="list-group">
 						{% set count_fylke = 0 %}
-						{% for arrangement in fylke.getNettverkOmrade().getArrangementer(season).getAll()|filter( arrangement => arrangement.getMetaValue('avlys') ) %}
+						{% for arrangement in fylke.getNettverkOmrade().getAktuelleArrangementer().getAll()|filter( arrangement => arrangement.getMetaValue('avlys') ) %}
 							{% set count_fylke = count_fylke + 1 %}
 							<li class="list-group-item">
 								<div class="float-right">
@@ -46,7 +46,7 @@
 							</li>
 						{% endfor %}
                         {% set count_kommune = 0 %}
-                        {% for arrangement in arrangementLoader.iFylke(season, fylke).getAll()|filter( arrangement => arrangement.getMetaValue('avlys') ) %}
+                        {% for arrangement in arrangementLoader.iFylke(fylke).getAll()|filter( arrangement => arrangement.getMetaValue('avlys') ) %}
                             {% set count_kommune = count_kommune + 1 %}
                             <li class="list-group-item">
                                 <div class="float-right">

@@ -92,24 +92,24 @@
     <script>
         // Inntil derdubor er lastet inn, la hele boksen være klikkbar
         jQuery(document).on('click touchend', '#derduborcontainer', function(){
-            if( jQuery(this).hasClass('click') ) {
-                jQuery('.geolocation').trigger('click');
+            if( $(this).hasClass('click') ) {
+                $('.geolocation').trigger('click');
             }
         });
         jQuery(document).on('click touchend', '.geolocation', function() {
-            jQuery('#derdubor').html( twigJS_GeolocationFrontLoading.render());
+            $('#derdubor').html( twigJS_GeolocationFrontLoading.render());
         });
         jQuery(document).on('geolocate-fail', function(e){
-            jQuery('#derdubor').html(twigJS_GeolocationFrontFail.render(e));
+            $('#derdubor').html(twigJS_GeolocationFrontFail.render(e));
         });
         jQuery(document).on('geolocated', function(e, locationdata){
-            jQuery(document).trigger('fetchLocalizedInfo', [locationdata.kommunenummer, locationdata.fylkesnummer, locationdata.kommunenavn]);
+            $(document).trigger('fetchLocalizedInfo', [locationdata.kommunenummer, locationdata.fylkesnummer, locationdata.kommunenavn]);
         });
     
         jQuery(document).on('fetchLocalizedInfo', function(e, kommunenummer, fylkesnummer, kommunenavn){
-            jQuery('#derduborcontainer').removeClass('click notlocated');
-            jQuery('#derdubor').html(twigJS_GeolocationFrontLoading.render({kommunenavn: kommunenavn}));
-            jQuery.get(
+            $('#derduborcontainer').removeClass('click notlocated');
+            $('#derdubor').html(twigJS_GeolocationFrontLoading.render({kommunenavn: kommunenavn}));
+            $.get(
                 ajaxurl,
                 {
                     action: 'UKMDesignWordpress',
@@ -118,9 +118,9 @@
                     kommune: kommunenummer
                 }
             ).done(function(response) {
-                jQuery('#derdubor').html(twigJS_GeolocationFront.render(response));
+                $('#derdubor').html(twigJS_GeolocationFront.render(response));
                 if( response.kommune && response.kommune.arrangementer.length > 0 ) {
-                    jQuery('#kommune_arrangementer').html(
+                    $('#kommune_arrangementer').html(
                         twigJS_GeolocationFrontArrangement.render(
                             {
                                 arrangementer: response.kommune.arrangementer,
@@ -130,7 +130,7 @@
                     );
                 }
                 if( response.fylke && response.fylke.arrangementer.length > 0 ) {
-                    jQuery('#fylke_arrangementer').html(
+                    $('#fylke_arrangementer').html(
                         twigJS_GeolocationFrontArrangement.render(
                             {
                                 arrangementer: response.fylke.arrangementer,
@@ -141,13 +141,13 @@
                 }
             }
             ).fail(function() {
-                jQuery('#derdubor').html(twigJS_GeolocationFrontFailInternal.render());
+                $('#derdubor').html(twigJS_GeolocationFrontFailInternal.render());
             });
         });
 
         {% if last_location is defined %}
-            jQuery(document).ready(function(){
-                jQuery(document).trigger(
+            $(document).ready(function(){
+                $(document).trigger(
                     'fetchLocalizedInfo',
                     [
                         {{last_location.kommunenummer}},

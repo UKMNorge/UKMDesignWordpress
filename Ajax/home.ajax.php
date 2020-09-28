@@ -13,7 +13,7 @@ $kommune_id = intval($_REQUEST['kommune']);
 $fylke_id = intval($_REQUEST['fylke']);
 
 #$kommune_id = 5403;// Alta
-#$kommune_id = 5441;// Tana
+$kommune_id = 5441;// Tana
 #$fylke_id = 54; // Troms og Finnmark
 
 $fylke = Fylker::getById($fylke_id);
@@ -22,7 +22,7 @@ $fylke = Fylker::getById($fylke_id);
 if( !$fylke->erOslo()) {
     $kommune = new Kommune($kommune_id);
     $kommune_omrade = Omrade::getByKommune($kommune_id);
-    $arrangementer_kommune = $kommune_omrade->getArrangementer(intval(get_site_option('season')));
+    $arrangementer_kommune = $kommune_omrade->getKommendeArrangementer();
 
     Ajax::addResponseData(
         'kommune',
@@ -32,7 +32,7 @@ if( !$fylke->erOslo()) {
 
 // Fylkets arrangement
 $fylke_omrade = Omrade::getByFylke($fylke_id);
-$arrangementer_fylke = $fylke_omrade->getArrangementer(intval(get_site_option('season')));
+$arrangementer_fylke = $fylke_omrade->getKommendeArrangementer();
 
 Ajax::addResponseData(
     'fylke',
