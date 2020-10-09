@@ -13,7 +13,7 @@ $kommune_id = intval($_REQUEST['kommune']);
 $fylke_id = intval($_REQUEST['fylke']);
 
 #$kommune_id = 5403;// Alta
-$kommune_id = 5441;// Tana
+#$kommune_id = 5441;// Tana
 #$fylke_id = 54; // Troms og Finnmark
 
 $fylke = Fylker::getById($fylke_id);
