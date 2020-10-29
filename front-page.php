@@ -34,7 +34,8 @@ if (!$has_template_controller) {
             Wordpress::requireController('Arrangement','front-page');
         break;
         case 'norge':
-            Wordpress::requireController('Norge','front-page');
+            #Wordpress::requireController('Norge','front-page');
+            Wordpress::requireController('Norge','hovedmeny');
             break;
         case 'festivalen':
         case 'land':
