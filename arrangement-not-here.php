@@ -53,22 +53,22 @@ if (is_array($kommuner)) {
 
             // Årets sesong
             $filter->sesong($sesong);
-            $arrangementer = Load::forKommune(new Kommune($kommune_id), $filter);
-            foreach ($arrangementer->getAll() as $arrangement) {
+            $alle_arrangementer = Load::forKommune(new Kommune($kommune_id), $filter);
+            foreach ($alle_arrangementer->getAll() as $arrangement) {
                 $arrangementer[$arrangement->getId()] = $arrangement;
             }
 
             // Neste sesong
             $filter->sesong($sesong+1);
-            $arrangement = Load::forKommune(new Kommune($kommune_id), $filter);
-            foreach ($arrangementer->getAll() as $arrangement) {
+            $alle_arrangementer = Load::forKommune(new Kommune($kommune_id), $filter);
+            foreach ($alle_arrangementer->getAll() as $arrangement) {
                 $arrangementer[$arrangement->getId()] = $arrangement;
             }
             
             // Forrige sesong
             $filter->sesong($sesong-1);
-            $arrangement = Load::forKommune(new Kommune($kommune_id), $filter);
-            foreach ($arrangementer->getAll() as $arrangement) {
+            $alle_arrangementer = Load::forKommune(new Kommune($kommune_id), $filter);
+            foreach ($alle_arrangementer->getAll() as $arrangement) {
                 $arrangementer[$arrangement->getId()] = $arrangement;
             }
 
