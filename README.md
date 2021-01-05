@@ -15,7 +15,7 @@ Wordpress-siden bruker mange ulike templates, som alle er definert i dette temae
 2. Legg til "tilpasset felt" på siden <br />
 Du finner dette under innstillinger for dokumentet (tannhjul oppe til høyre), og "tilpassede felter" <br />
 I feltet `navn` skriver du `UKMviseng`.<br />
-I feltet `verdi` skriver du navnet på templaten du vil lage.
+I feltet `verdi` skriver du navnet på templaten du vil lage. Dette navnet må være det samme som nøkkel-verdien i punkt 7 (i eksempelet er dette `mitt_nye_template`)
 3. Nå har du en testside du kan bruke.
 
 #### Opprett template-filer
