@@ -368,6 +368,23 @@ class Front
                 ->setDescription(get_bloginfo('description'))
                 ->setUrl(get_home_url());
         }
+        if (static::harBannerBilde()) {
+            UKMDesign::getHeader()::getSEO()
+                ->setImage(static::getBannerBilde());
+        }
+
+        // Fylkesider
+        if (static::erFylkeSide()) {
+            $fylke = static::getFylke();
+            UKMDesign::getHeader()::getSEO()
+                ->setDescription('Alt om UKM i' . $fylke . ', påmelding og informasjon');
+        }
+
+        // Kommunesider
+        if (static::erKommuneSide()) {
+            UKMDesign::getHeader()::getSEO()
+                ->setDescription('Informasjon og påmelding for våre arrangement');
+        }
     }
     /**
      * Er dette en kommuneside? (med eller uten arrangement)
