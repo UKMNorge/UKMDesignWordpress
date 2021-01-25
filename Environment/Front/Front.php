@@ -377,7 +377,7 @@ class Front
         if (static::erFylkeSide()) {
             $fylke = static::getFylke();
             UKMDesign::getHeader()::getSEO()
-                ->setDescription('Alt om UKM i' . $fylke . ', påmelding og informasjon');
+                ->setDescription('Alt om UKM i ' . $fylke . ', påmelding og informasjon');
         }
 
         // Kommunesider
