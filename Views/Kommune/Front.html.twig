@@ -32,7 +32,7 @@
 						{% include "Front/Part/ArrangementListe.html.twig" with {arrangementer: omrade.getTidligereArrangementer().getAll()} %}
 						<div class="clearfix"></div>
 						{% if omrade.getTidligereArrangementer().getAntall() > 3 %}
-							<a id="collapse" style="text-decoration:none;">Vis flere</a>
+							<a id="collapse">Vis flere</a>
 						{% endif %}
 						<div class="mb-5"></div>
 				{% endif %}
@@ -84,10 +84,9 @@
 {% block javascripts %}
 	<script type="text/javascript">
 		$(document).ready(function () {
-			$('ol li:gt(3)').hide();
+			$('ol.list-unstyled li:gt(3)').hide();
 			$("#collapse").click(function () {
-				$("#collapse").text(($("#collapse").text() == 'Vis færre') ? 'Vis flere' : 'Vis færre', $('ol li:gt(3)').show());
-				$("#collapse").hide();
+				$("#collapse").text(($("#collapse").text() == 'Vis færre') ? 'Vis flere' : 'Vis færre', $('ol.list-unstyled li:gt(3)').slideToggle( "slow" ));
 			})
 		});
 	</script>
