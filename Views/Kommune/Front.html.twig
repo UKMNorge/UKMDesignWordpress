@@ -62,14 +62,3 @@
 		{% endif %}
 	</div>
 {% endblock %}
-
-{% block javascripts %}
-	<script type="text/javascript">
-		$(document).ready(function () {
-			$('ol.list-unstyled li:gt(3)').hide();
-			$("#collapse").click(function () {
-				$("#collapse").text(($("#collapse").text() == 'Vis færre') ? 'Vis flere' : 'Vis færre', $('ol.list-unstyled li:gt(3)').slideToggle( "slow" ));
-			})
-		});
-	</script>
-{% endblock %}
