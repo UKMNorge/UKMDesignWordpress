@@ -10,5 +10,19 @@
 	<h3 class="mb-3 mt-0">Tidligere arrangement</h3>
 	{% include "Front/Part/ArrangementListe.html.twig" with {arrangementer: omrade.getTidligereArrangementer().getAll() } %}
 	<div class="clearfix"></div>
+	{% if omrade.getTidligereArrangementer().getAntall() > 3 %}
+		<a id="collapse">Vis flere</a>
+	{% endif %}
 	<div class="mb-5"></div>
 {% endif %}
+
+{% block javascripts %}
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('ol.list-unstyled li:gt(3)').hide();
+			$("#collapse").click(function () {
+				$("#collapse").text(($("#collapse").text() == 'Vis færre') ? 'Vis flere' : 'Vis færre', $('ol.list-unstyled li:gt(3)').slideToggle( "slow" ));
+			})
+		});
+	</script>
+{% endblock %}
