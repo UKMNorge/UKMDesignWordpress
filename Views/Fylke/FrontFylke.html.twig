@@ -11,7 +11,7 @@
 			{% endif %}
 
 			<div class="col-12 {{ infoside is defined or posts.getAntall() > 0 ? 'col-md-6 offset-lg-1 order-md-2 col-lg-5' : 'col-md-8'}}">
-                {% include "Fylke/Part/Arrangementer.html.twig" %}
+                {% include "Front/Part/Arrangementer.html.twig" %}
 
 				<div class="mt-4">
 					{% include "Front/Part/Kontakt.html.twig" with { kontaktpersoner: omrade.getKontaktpersoner() } %}
