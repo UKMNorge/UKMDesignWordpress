@@ -1,4 +1,4 @@
-{% set kommendeArrangement = omrade.getKommendeArrangementer().getAll() %}
+{% set kommendeArrangement = omrade.getKommendeArrangementer().getAll()|filter(arrangement => arrangement.erRegistrert() and arrangement.erSynlig()) %}
 {% set tidligereArrangement = omrade.getTidligereArrangementer().getAll()|filter(arrangement => arrangement.erRegistrert() and arrangement.erSynlig() and arrangement.getSesong() > 2019 ) %}
 
 <h3 class="mb-3 mt-0">Ting som skjer</h3>
