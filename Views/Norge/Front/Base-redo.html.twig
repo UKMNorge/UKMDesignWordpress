@@ -2,95 +2,12 @@
 
 {% block css %}
 	{{parent()}}
-	<style>
-		html {
-			background: #f9f9f9;
-        }
-        body {
-            font-size: 14px;
-            background: #00004c;
-            color: #fff;
-        }
-
-        #main_menu_button, .main_menu_button {
-            color: #fff !important;
-        }
-
-        #UKMDesign_content,
-        #UKMDesign_sitemap  {
-            min-height: 80vh;
-        }
-        #UKMDesign_sitemap  {
-            padding-top: 6vh;
-        }
-        
-        #UKMheader {
-            background: #00004c;
-        }
-
-        @media (min-width: 1200px) {
-            body {
-                font-size: 16px;
-            }
-        }
-        p{
-            opacity: .85;
-        }
-		.semibold {
-			font-weight: 500;
-        }
-
-        #UKMlogo {
-            width: 4em;
-        }
-
-        #main_menu_button {
-            margin-right: -.4em !important;
-        }
-
-        .main_menu_button {
-            padding: .3em;
-            font-size: 1.6em;
-            margin-right: .3em !important;
-            font-weight: normal;
-        }
-
-        .main_menu_button.icon-user {
-            padding-top: .2em;
-            padding-bottom: .4em;
-            margin-top: -.2em;
-        }
-
-.sitemap .pageContainer .page {
-    border: 5px solid #fff;
-    padding-top: 1em!important;
-    padding-bottom: 1em!important;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: #fff;
-}
-#UKMDesign_sitemap .sitemap a,
-#UKMDesign_sitemap .sitemap a:focus,
-#UKMDesign_sitemap .sitemap a:visited,
-#UKMDesign_sitemap .sitemap a:active,
-#UKMDesign_sitemap .sitemap a:hover {
-    color: #fff;
-}
-
-.sitemap .section .pages a,
-.sitemap .section .pages a:focus,
-.sitemap .section .pages a:visited,
-.sitemap .section .pages a:active,
-.sitemap .section .pages a:hover {
-    font-weight: normal !important;
-    color: #fff;
-}
-	</style>
 {% endblock %}
 
 {% block framework_content %}
+	{# KOMMENTERER DENNE DELEN BARE FOR TESTING @KIM #}
 	{# NAVBAR MINI #}
-	<div class="container-fluid" id="UKMheader">
+	{# <div class="container-fluid" id="UKMheader">
 		<header>
             <div class="navbar-header float-left">
                 <a href="{{ UKMDesign.getSitemap().getPage('UKM', 'forsiden') }}">
@@ -108,7 +25,7 @@
 			</div>
 			<div class="clearfix"></div>
 		</header>
-	</div>
+	</div> #}
 
 	{# SITEMAP #}
 	<div
@@ -122,7 +39,8 @@
 	<div id="UKMDesign_content">
 		{% block content %}Designfil mangler content-block.{% endblock %}
 	</div>
-
+	
+	{# KOMMENTERER DENNE DELEN BARE FOR TESTING @KIM #}
 	{# FOOTER #}
-	{% embed "UKMDesign/Layout/footer.html.twig"|UKMpath %}{% endembed %}
+	{# {% embed "UKMDesign/Layout/footer.html.twig"|UKMpath %}{% endembed %} #}
 {% endblock %}
