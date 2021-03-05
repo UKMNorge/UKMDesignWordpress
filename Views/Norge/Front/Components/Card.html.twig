@@ -1,0 +1,64 @@
+<link href="//assets.{{ UKM_HOSTNAME }}/scss/components/card.scss" rel="stylesheet">
+
+<div class="container">
+    <div class="ukm-card ukm-card-front col-xs-12">
+        <div class="row card-element pt-4">
+            <div class="col-xs-1 d-flex flex-wrap align-items-center">
+                <img class="" style="height: 3.5rem; width: 3.5rem; border-radius: 50%;" src="//assets.{{ UKM_HOSTNAME }}/img/bilde.png" />
+            </div>
+            <div class="col pr-1">
+                <h5 class="message-title">Er UKM for meg?</h5>
+                <span class="message-content">Hør Rolf, Maria og Endre fortelle om sine opplevelser fra UKM</span>
+            </div>
+            <div class="col-xs-1 d-flex">
+                <a href="#1" class="stretched-link align-self-center">
+                    <svg class="icon icon-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(218, 81%, 94%)">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="row card-element">
+            <div class="col-xs-1 d-flex flex-wrap align-items-center">
+                <img class="" style="height: 3.5rem; width: 3.5rem; border-radius: 50%;" src="//assets.{{ UKM_HOSTNAME }}/img/bilde.png" />
+            </div>
+            <div class="col pr-1">
+                <h5 class="message-title">Hva skjer på UKM?</h5>
+                <span class="message-content">UKM tilbyr mye sosialt og moro uansett om du deltar eller ser på</span>
+            </div>
+            <div class="col-xs-1 d-flex">
+            <a href="#2" class="stretched-link align-self-center">
+                <svg class="icon icon-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(218, 81%, 94%)">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+            </a>
+            </div>
+        </div>
+        <div class="row card-element pb-4">
+            <div class="col-xs-1 d-flex flex-wrap align-items-center">
+                <img class="" style="height: 3.5rem; width: 3.5rem; border-radius: 50%;" src="//assets.{{ UKM_HOSTNAME }}/img/bilde.png" />
+            </div>
+            <div class="col pr-1">
+                <h5 class="message-title">Arrangementer nær meg</h5>
+                <span class="message-content">Hvordan du melder deg på UKM eller finner venners bidrag</span>
+            </div>
+            <div class="col-xs-1 d-flex">
+                <a href="#3" class="stretched-link align-self-center">
+                    <svg class="icon icon-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(218, 81%, 94%)">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        {# Section med sosiale medier #}
+        <div class="row some-title">
+            <div class="col">
+                <span class="message-content">Vi er aktive på sosiale media</span>
+            </div>
+        </div>
+
+        {# Some-carousel #}
+        {% include "Norge/Front/Components/Some-carousel.html.twig" %}
+    </div>
+</div>
