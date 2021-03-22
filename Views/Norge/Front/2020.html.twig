@@ -1,17 +1,102 @@
 {% extends "Norge/Front/Layout.html.twig"|UKMpath %}
 
 {% block content %}
-
+    <div class="hamburger-overlay show"></div>
     {# Geolocation #}
     {% include "Norge/Front/Components/Geolocation.html.twig" %}
 
     {# Hero-section #}
     {% include "Norge/Front/Components/Hero.html.twig" %}
 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark burger-text">
+    <a class="navbar-brand" href="#"><img class="ukm-logo" src="//assets.{{ UKM_HOSTNAME }}/img/ukm.png" /></a>
+    {# <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button> #}
+    {# <div class="collapse navbar-collapse" id="navbarNavDropdown"> #}
+        <ul class="nav nav-pills burger-text" style="align-items: center;">
+        <li class="nav-item active">
+            {# TBA 'Din side' etter innlogging/verifisering av bruker #}
+            <a class="nav-link" href="#">logg inn<span class="sr-only">(current)</span></a> 
+        </li>
+        {# <li class="nav-item">
+            <a class="nav-link" href="#">UKM-festivalen</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Nyheter</a>
+        </li> #}
+        <li class="hamburger nav-item dropdown">
+            <a class="nav-icon4 btn btn-link navbar-toggle" id="nav-icon4" href="#" role="button" id="navbardropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span></span>
+                <span></span>
+                {# <span>
+                    <svg width="1.75rem" height="1rem" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsla(223, 54%, 97%)">
+                        <path fill-rule="evenodd" d="M3 7a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 13a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+                    </svg>
+                </span> #}
+            </a>
+            {# <div class="hamburger-overlay show"> #}
+                <div class="hamburger-menu dropdown-menu dropdown-menu-right" aria-labelledby="DropdownMenuLink" style="border-radius: 15px; width: 256px;">
+                    <div class="mainpage">
+                        <a class="dropdown-item drop-item">
+                        <span class="title">Nyheter</span></a>
+                        <a class="dropdown-item drop-item">
+                        <span class="title">UKM-festivalen</span></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item drop-item" id="subpage-ukm">
+                        <span class="title">Dette er UKM</span></a>        
+                        <a class="dropdown-item drop-item" id="subpage-ukmtv">
+                        <span class="title">UKM-TV</span></a>
+                        <a class="dropdown-item drop-item" id="subpage-vibakukm">
+                        <span class="title">Vi bak UKM</span></a>
+                    </div>
+
+                    <div class="subpage-ukm" id="subpage-ukm">
+                        <a class="backToMain dropdown-header" id="backToMain">Dette er UKM</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Hva er UKM</a>
+                        <a class="dropdown-item" href="#">Finn oss på SoMe</a>
+                        <a class="dropdown-item" href="#">Hvorfor delta?</a>
+                        <a class="dropdown-item" href="#">Kontakt oss</a>
+                    </div>             
+                    <div class="subpage-ukmtv" id="subpage-ukmtv">
+                        <a class="backToMain dropdown-header" id="backToMain">UKM-TV</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Fylkesfestivaler</a>
+                        <a class="dropdown-item" href="#">I kommunen</a>
+                        <a class="dropdown-item" href="#">Infofilmer</a>
+                        <a class="dropdown-item" href="#">Søk</a>
+                    </div>   
+                    <div class="subpage-vibakukm" id="subpage-vibakukm">
+                        <a class="backToMain dropdown-header" id="backToMain">Vi bak UKM</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Hvorfor har vi UKM?</a>
+                        <a class="dropdown-item" href="#">I samarbeid med andre</a>
+                        <a class="dropdown-item" href="#">Digitale satsninger</a>
+                        <a class="dropdown-item" href="#">Medvirkning</a>
+                        <a class="dropdown-item" href="#">Organisasjon og historikk</a>
+                        <a class="dropdown-item" href="#">Over hele landet</a>
+                    </div>  
+
+                    {# Fast footer i nedtrykksbar #}
+                    <div class="dropdown-divider"></div>
+                        <button type="button" class="dropdown-item ukm-button ukm-button-front text ukm-button-primary" style="width: 208px; height: 48px; padding: 0.875rem 1rem 0.875rem 2.4rem; margin: auto;">
+                            <span style="text-align: center;">Start påmelding</span>
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(216, 33%, 97%)">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <a class="dropdown-header" href="#">Logg inn som lokalkontakt</a>
+                </div>
+            {# </div> #}
+        </li>
+        </ul>
+    </nav>
+
     {# Section 1 - Card info #}
     {% include "Norge/Front/Components/Card.html.twig" %}
 
-    <div class="container" style="height: 8rem;"></div>
+    <div class="container whitespaace"></div>
 
     {# Section 2 - Testimonials #}
     {% include "Norge/Front/Components/Testimonial.html.twig" %}
@@ -38,5 +123,6 @@
 
     {# Section 7 - Footer #}
     {% include "Norge/Front/Components/Footer.html.twig" %}
+    {# </div> #}
 
 {% endblock %}
