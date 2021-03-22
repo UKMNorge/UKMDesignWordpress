@@ -126,3 +126,22 @@
     {# </div> #}
 
 {% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('.hamburger').on('hide.bs.dropdown', function(e) { if (e.clickEvent) { e.preventDefault();} });
+            
+            $('.nav-icon4').click(function(){
+                 $(this).toggleClass('open'); 
+                 $('.hamburger-overlay').toggleClass('open'); 
+                 $('.hamburger').toggleClass('open'); 
+
+            });
+        });
+         
+	</script>
+{% endblock %}
