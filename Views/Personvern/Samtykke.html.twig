@@ -22,7 +22,7 @@
 					{% for element in request.getLenker() %}
 						{% if element.type == 'bilde' %}
 							<a href="{{ element.url }}" target="_blank">
-								<img src="{{ element.url }}" style="max-height: 50vh; max-width: 50vw;" />
+								<img src="{{ element.url }}" style="max-height: 50vh; max-width: 50vw;" alt="Trykk for å vise bildet" title="Trykk for å vise bildet" />
 							</a>
 						{% endif %}
 					{% endfor %}
@@ -34,32 +34,38 @@
 				</p>
 				
 				
-				<form method="POST">
-					<input type="hidden" name="prosjekt" value="{{ GET('prosjekt') }}" />
-					<input type="hidden" name="samtykke" value="{{ GET('samtykke') }}" />
-
-					{% if foresatt %}
-						<input type="hidden" name="save" value="approval-foresatt" />
-					{% else %}
-						<input type="hidden" name="save" value="approval" />
-						<div class="form-group">
-							<label for="tittel">Hvor gammel er du?</label>
-							<select class="form-control" name="alder" required>
-								<option value="false" selected disabled>Velg alder</option>
-								<option value="under10">Under 10 år</option>
-								{% for alder in 10..20 %}
-									<option value="{{ alder }}">{{ alder }} år</option>
-								{% endfor %}
-								<option value="over20">Over 20 år</option>
-							</select>
-						</div>
-					{% endif %}
-
-					
-					<div class="form-group">
-						<button type="submit" class="btn btn-xs btn-primary btn-outline-primary">Ja, dette er OK</button>
+				{% if request.harSvart() %}
+					<div class="alert alert-success">
+						Du har allerede svart på denne forespørselen, så alt er i orden.
 					</div>
-				</form>
+				{% else %}
+					<form method="POST">
+						<input type="hidden" name="prosjekt" value="{{ GET('prosjekt') }}" />
+						<input type="hidden" name="samtykke" value="{{ GET('samtykke') }}" />
+
+						{% if foresatt %}
+							<input type="hidden" name="save" value="approval-foresatt" />
+						{% else %}
+							<input type="hidden" name="save" value="approval" />
+							<div class="form-group">
+								<label for="tittel">Hvor gammel er du?</label>
+								<select class="form-control" name="alder" required>
+									<option value="false" selected disabled>Velg alder</option>
+									<option value="under10">Under 10 år</option>
+									{% for alder in 10..20 %}
+										<option value="{{ alder }}">{{ alder }} år</option>
+									{% endfor %}
+									<option value="over20">Over 20 år</option>
+								</select>
+							</div>
+						{% endif %}
+
+						
+						<div class="form-group">
+							<button type="submit" class="btn btn-xs btn-primary btn-outline-primary">Ja, dette er OK</button>
+						</div>
+					</form>
+				{% endif %}
 				
 				<h2>Datalagring</h2>
 				<p>
