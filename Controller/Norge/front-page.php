@@ -1,6 +1,7 @@
 <?php
 
 use UKMNorge\DesignWordpress\Environment\Front\Front;
+use UKMNorge\DesignWordpress\Environment\Posts;
 use UKMNorge\DesignWordpress\Environment\Wordpress;
 use UKMNorge\Geografi\Fylker;
 use UKMNorge\Geografi\Kommune;
@@ -42,7 +43,12 @@ if( $start_nasjonaldag < $now && $stop_nasjonaldag > $now || isset($_GET['nasjon
 } else {
     Wordpress::setView('Norge/Front/Standard');
 }
-*/
+*/ 
+switch_to_blog(BLOG_ID_REDAKSJONELT);
+$posts = new Posts(3);
+restore_current_blog();
+
+Wordpress::addViewData('posts', $posts);
 
 Wordpress::includeTwigJs();
 Wordpress::setView('Norge/Front/2020');
