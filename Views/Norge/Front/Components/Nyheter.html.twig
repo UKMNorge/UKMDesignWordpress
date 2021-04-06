@@ -8,6 +8,11 @@
     <a href="{{post.url}}">
         <div class="ukm-card ukm-card-front col-xs-12">
             <div class="row card-element card-element-end mt-3">
+                {% if post.image.medium.src is not defined %}
+				    <img class="card-image" src="//assets.{{ UKM_HOSTNAME }}/img/bilde.png" />
+                {% else %}
+                    <div class="card-image" style="background: url('{{ post.image.medium.src }}') no-repeat center/cover;"></div>
+			    {% endif %}
             </div>
             <div class="row card-element" style="padding: 0 1rem .2rem 1rem;">
                 <span class="message-category" style="padding-right: 3rem; padding-bottom: .3rem;">Sosialt</span>
