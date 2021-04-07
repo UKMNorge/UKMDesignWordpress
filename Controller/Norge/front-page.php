@@ -44,11 +44,21 @@ if( $start_nasjonaldag < $now && $stop_nasjonaldag > $now || isset($_GET['nasjon
     Wordpress::setView('Norge/Front/Standard');
 }
 */ 
+
+// NYHETER
 switch_to_blog(BLOG_ID_REDAKSJONELT);
 $posts = new Posts(3);
 restore_current_blog();
 
 Wordpress::addViewData('posts', $posts);
+
+// TESTIMONIALS
+$kategori = get_category_by_slug( 'fornoyde-deltakere' );
+$kategori_id = $kategori->term_id;
+
+$testiomonial = Posts::getByCategory($kategori_id);
+Wordpress::addViewData('testiomonial', $testiomonial);
+//var_dump($testiomonial);
 
 Wordpress::includeTwigJs();
 Wordpress::setView('Norge/Front/2020');
