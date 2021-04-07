@@ -17,36 +17,13 @@
     {# Bildegalleri #}
     <div class="people-carousel">
         <ul class="list-group list-group-horizontal">
+            {% for post in testiomonial.getAll() %}
             <li class="some-item list-group-item">
                 <a href="" aria-label="">
-                    <img class="img-carousel img-carousel-people img-carousel-square" src="//assets.{{ UKM_HOSTNAME }}/img/bolde.png" />
+                    <div class="img-carousel img-carousel-people img-carousel-square" style="background: url('{{ post.image.medium.src }}') no-repeat center/cover;" </div>
                 </a>
             </li>
-            <li class="some-item list-group-item">
-                <a href="" aria-label="">
-                    <img class="img-carousel img-carousel-people img-carousel-square" src="//assets.{{ UKM_HOSTNAME }}/img/bolde.png" />
-                </a>
-            </li>
-            <li class="some-item list-group-item">
-                <a href="" aria-label="">
-                    <img class="img-carousel img-carousel-people img-carousel-square" src="//assets.{{ UKM_HOSTNAME }}/img/bolde.png" />
-                </a>
-            </li>
-            <li class="some-item list-group-item">
-                <a href="" aria-label="">
-                    <img class="img-carousel img-carousel-people img-carousel-square" src="//assets.{{ UKM_HOSTNAME }}/img/bolde.png" />
-                </a>
-            </li>
-            <li class="some-item list-group-item">
-                <a href="" aria-label="">
-                    <img class="img-carousel img-carousel-people img-carousel-square" src="//assets.{{ UKM_HOSTNAME }}/img/bolde.png" />
-                </a>
-            </li>
-            <li class="some-item list-group-item">
-                <a href="" aria-label="">
-                    <img class="img-carousel img-carousel-people img-carousel-square" src="//assets.{{ UKM_HOSTNAME }}/img/bolde.png" />
-                </a>
-            </li>
+            {% endfor %}
             <li class="some-item list-group-item">
                 <a href="" aria-label="">
                     <svg class="svg-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(228, 96%, 67%)">
