@@ -31,7 +31,7 @@
     {# Section 5 - Siste nytt #}
     {# {% include "Norge/Front/Components/Siste_nytt.html.twig" %} #}
 
-    <div class="container" style="height: 8rem;"></div>
+    {# <div class="container" style="height: 8rem;"></div> #}
 
     {# Section 6 - Contact-info #}
     {% include "Norge/Front/Components/Contact.html.twig" %}
@@ -40,4 +40,23 @@
     {% include "Norge/Front/Components/Footer.html.twig" %}
     {# </div> #}
 
+{% endblock %}
+
+{% block javascripts %}
+    {{parent()}}
+
+    <script>
+        if (last_location != '') {
+            $(document).ready(function(){
+                $(document).trigger(
+                    'fetchLocalizedInfo',
+                    [
+                        {{last_location.kommunenummer}},
+                        {{last_location.fylkesnummer}},
+                        '{{last_location.kommunenavn}}'
+                    ]
+                )
+            });
+        }
+    </script>
 {% endblock %}
