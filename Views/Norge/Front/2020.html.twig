@@ -11,40 +11,27 @@
     {# Section 1 - Card info #}
     {% include "Norge/Front/Components/Card.html.twig" %}
 
-    <div class="container whitespaace"></div>
-
     {# Section 2 - Testimonials #}
     {% include "Norge/Front/Components/Testimonial.html.twig" %}
-
-    <div class="container" style="height: 3.5rem;"></div>
 
     {# Section 3 - Tidligere arrangementer #}
     {% include "Norge/Front/Components/Tidligere_arrangementer.html.twig" %}
 
-    <div class="container" style="height: 8rem;"></div>
-
     {# Section 4 - Nyheter #}
     {% include "Norge/Front/Components/Nyheter.html.twig" %}
 
-    {# <div class="container" style="height: 3rem;"></div> #}
-
     {# Section 5 - Siste nytt #}
     {# {% include "Norge/Front/Components/Siste_nytt.html.twig" %} #}
-
-    {# <div class="container" style="height: 8rem;"></div> #}
 
     {# Section 6 - Contact-info #}
     {% include "Norge/Front/Components/Contact.html.twig" %}
 
     {# Section 7 - Footer #}
     {% include "Norge/Front/Components/Footer.html.twig" %}
-    {# </div> #}
-
 {% endblock %}
 
 {% block javascripts %}
     {{parent()}}
-
     <script>
         if (last_location != '') {
             $(document).ready(function(){
