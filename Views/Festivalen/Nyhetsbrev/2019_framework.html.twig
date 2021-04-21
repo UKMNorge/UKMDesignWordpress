@@ -1,16 +1,41 @@
 {% extends "UKMDesign/Layout:framework.html.twig"|UKMpath %}
 
 {% block framework_content %}
-  {% block content %}
-  {% endblock %}
+	{% block content %}{% endblock %}
 {% endblock %}
 
 {% block javascripts %}
-    {{ parent() }}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-        <script type="text/javascript">
-        jQuery(document).ready(function () {
-            $('.ticker-text').animate( { scrollLeft: '-=1000' }, 1000);
+	{{ parent() }}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function () {
+            $('.ticker-text').animate({
+                scrollLeft: '-=1000'
+            }, 1000);
         });
-    </script>
+	</script>
+{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+	<style>
+		/* latin-ext */
+		@font-face {
+			font-family: 'impact';
+			font-style: normal;
+			font-weight: 300;
+			src: local('Impact'), url('//fonts.gstatic.com/s/opensans/v15/DXI1ORHCpsQm3Vp6mXoaTRampu5_7CjHW5spxoeN3Vs.woff2') format('ttf');
+			unicode-range: U + 0000-00FF, U + 0131, U + 0152-0153, U + 02C6, U + 02DA, U + 02DC, U + 2000-206F, U + 2074, U + 20AC, U + 2212, U + 2215;
+		}
+
+		/*
+ * Nyhetsbrev avant-garde
+ */
+		@font-face {
+			font-family: 'itcavantgardeprobold';
+			font-style: bold;
+			font-weight: 300;
+			src: url("//grafikk.ukm.no/UKMresponsive/fonts/ITCAvantGardePro-Bold.otf") format('opentype');
+		}
+	</style>
 {% endblock %}

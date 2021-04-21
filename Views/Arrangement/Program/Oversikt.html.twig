@@ -1,13 +1,5 @@
 {% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
 
-{% block css %}
-    {{ parent() }}
-    <style>
-        .card {
-            border-radius: 0 !important;
-        }
-    </style>
-{% endblock %}
 
 {% block javascripts %}
     {{parent()}}
@@ -42,7 +34,7 @@
 		<div class="row vertical-align-center program">
 			{% for dag in program %}
 				<div class="col mt-4 dag">
-					<h4 class="linje">{{ dag.date|dato('l j.M')|capitalize }}</h4>
+					<h3 class="mb-3">{{ dag.date|dato('l j.M')|capitalize }}</h3>
 					{% embed "Arrangement/Program/Hendelser.html.twig"|UKMpath with {'hendelser': dag.forestillinger} %}{% endembed %}
 				</div>
 			{% else %}

@@ -11,7 +11,7 @@
         <div class="row pageContainer">
             {% for fylke in fylker %}
                 <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="page p-2 px-4 m-2 center white">
+                    <div class="page p-2 px-4 m-2">
                         <a href="//{{UKM_HOSTNAME}}/{{ fylke.getLink() }}/" class="autoshrink">{{ fylke.getNavn() }}</a>
                     </div>
                 </div>
