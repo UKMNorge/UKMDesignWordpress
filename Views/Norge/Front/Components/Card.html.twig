@@ -1,21 +1,19 @@
 {# Mobile devices #}
-<div class="container d-block d-sm-none d-lg-none">
+<div class="container card-info-section d-block d-sm-none d-lg-none">
     <div class="ukm-card ukm-card-front col-xs-12">
-
-        {% include "Norge/Front/Components/Card-element.html.twig" with { title: 'Er UKM for meg?', content: 'Hør Rolf, Maria og Endre fortelle om sine opplevelser fra UKM' } %}
-        {% include "Norge/Front/Components/Card-element.html.twig" with { title: 'Hva skjer på UKM?', content: 'UKM tilbyr mye sosialt og moro uansett om du deltar eller ser på.'} %}
-        {% include "Norge/Front/Components/Card-element.html.twig" with { title: 'Arrangementer nær meg?', content: 'Hvordan du melder deg på UKM eller finner venners bidrag.'} %}
-
+        {% include "Norge/Front/Components/Card-element.html.twig" with { img: 'mennesker.svg" alt="mennesker"', title: 'Er UKM for meg?', content: 'Hør Rolf, Maria og Endre fortelle om sine opplevelser fra UKM' } %}
+        {% include "Norge/Front/Components/Card-element.html.twig" with { img: 'rakett.svg" alt="rakett"', title: 'Hva skjer på UKM?', content: 'UKM tilbyr mye sosialt og moro uansett om du deltar eller ser på.'} %}
+        {% include "Norge/Front/Components/Card-element.html.twig" with { img: 'kalender.svg" alt="kalender"', title: 'Arrangementer nær meg?', content: 'Hvordan du melder deg på UKM eller finner venners bidrag.'} %}
         {% include "Norge/Front/Components/Some-icon-section.html.twig" %}
     </div>
 </div>
 
 {# Desktop #}
 <div class="container card-info-section d-none d-sm-block">
-    <div class="row" style="height: 408px;">
-        {% include "Norge/Front/Components/Card-element-desktop.html.twig" with { title: 'Er UKM for meg?', content: 'Hør Rolf, Maria og Endre fortelle om sine opplevelser fra UKM' } %}
-        {% include "Norge/Front/Components/Card-element-desktop.html.twig" with { title: 'Hva skjer på UKM?', content: 'UKM tilbyr mye sosialt og moro uansett om du deltar eller ser på.'} %}
-        {% include "Norge/Front/Components/Card-element-desktop.html.twig" with { title: 'Arrangementer nær meg?', content: 'Hvordan du melder deg på UKM eller finner venners bidrag.'} %}
+    <div class="row" style="height: 25.5rem;">
+        {% include "Norge/Front/Components/Card-element-desktop.html.twig" with { img: 'mennesker.svg" alt="mennesker"', title: 'Er UKM for meg?', content: 'Hør Rolf, Maria og Endre fortelle om sine opplevelser fra UKM' } %}
+        {% include "Norge/Front/Components/Card-element-desktop.html.twig" with { img: 'rakett.svg" alt="rakett"', title: 'Hva skjer på UKM?', content: 'UKM tilbyr mye sosialt og moro uansett om du deltar eller ser på.'} %}
+        {% include "Norge/Front/Components/Card-element-desktop.html.twig" with { img: 'kalender.svg" alt="kalender"', title: 'Arrangementer nær meg?', content: 'Hvordan du melder deg på UKM eller finner venners bidrag.'} %}
     </div>
     
     {# Section med sosiale medier #}
@@ -24,7 +22,6 @@
             <span class="message-content" style="font-size: 24px !important; line-height: 28px !important; padding: 3rem;">Vi er aktive på sosiale media</span>
         </div>
     </div>
-
     {# Some-carousel #}
     {% include "Norge/Front/Components/Some-carousel.html.twig" %}
 </div>
