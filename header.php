@@ -90,7 +90,50 @@ if (!empty(strip_tags(Wordpress::getPage()->lead))) {
  */
 # Arrangement
 if (get_option('pl_id')) {
-    Breadcrumbs::addArrangement(Arrangement::getById((int) get_option('pl_id')));
+    $arrangement = Arrangement::getById((int) get_option('pl_id'));
+    if ($arrangement->erFellesmonstring()) {
+        # Opprett section
+        $section_kommune = new Section(
+            'kommuner',
+            '#',
+            'Velg kommune'
+        );
+        $section_fylke = new Section(
+            'fylker',
+            '#',
+            'Velg fylke'
+        );
+
+        # Finn felles navn, og legg til pages
+        $kommuner = [];
+        $fylker = [];
+        foreach ($arrangement->getKommuner() as $kommune) {
+            $kommuner[$kommune->getNavn()] = $kommune;
+            $fylke = $kommune->getFylke();
+            if (!isset($fylker[$fylke->getNavn()])) {
+                $fylker[$fylke->getNavn()] = $fylke;
+            }
+        }
+        ksort($kommuner);
+        ksort($fylker);
+
+        foreach ($kommuner as $kommune) {
+            $section_kommune->getPages()->add(
+                Page::create($kommune->getLink(), $kommune->getNavn(), 'kommune_' . $kommune->getId())
+            );
+        }
+
+        foreach ($fylker as $fylke) {
+            $section_fylke->getPages()->add(
+                Page::create($fylke->getLink(), $fylke->getNavn(), 'fylke_' . $fylke->getId())
+            );
+        }
+
+        Breadcrumbs::addSection($section_fylke);
+        Breadcrumbs::addSection($section_kommune);
+    } else {
+        Breadcrumbs::addArrangement($arrangement);
+    }
 } else {
     # Fylke, kommune, land
     switch (get_option('site_type')) {
