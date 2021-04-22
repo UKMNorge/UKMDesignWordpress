@@ -1,6 +1,6 @@
 <div class="row card-element pt-4">
     <div class="col-xs-1 d-flex flex-wrap align-items-center">
-        <svg style="height: 3.5rem; width: 3.5rem; border-radius: 50%;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 334.17 370.97"><defs><style>.cls-1{fill:none;}.cls-2{clip-path:url(#clip-path);}.cls-3{fill:#e0ecfd;}.cls-4{fill:#00ff89;}.cls-5{fill:#0c6;}.cls-6{fill:#00004d;}</style><clipPath id="clip-path" transform="translate(-3.91 -0.52)"><rect class="cls-1" width="336" height="372"/></clipPath></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><g class="cls-2"><path class="cls-3" d="M271.45,35.75C197.69,37.12,146.31-.14,110.77.53S.94,23,4,186.55,107.94,372.2,147,371.47C330.11,368.05,402.09,33.31,271.45,35.75Z" transform="translate(-3.91 -0.52)"/></g><path class="cls-4" d="M263.67,164.67a13.34,13.34,0,1,1-13.34-13.34,13.34,13.34,0,0,1,13.34,13.34Z" transform="translate(-3.91 -0.52)"/><path class="cls-4" d="M93,164.67a13.34,13.34,0,1,1-13.33-13.34A13.33,13.33,0,0,1,93,164.67Z" transform="translate(-3.91 -0.52)"/><path class="cls-4" d="M189,159.33a24,24,0,1,1-24-24,24,24,0,0,1,24,24Z" transform="translate(-3.91 -0.52)"/><path class="cls-4" d="M114.33,252.67v-16a21.33,21.33,0,0,1,21.34-21.34h58.66a21.33,21.33,0,0,1,21.34,21.34v16Z" transform="translate(-3.91 -0.52)"/><path class="cls-5" d="M157,215.33H135.67a21.33,21.33,0,0,0-21.34,21.34v16h21.34v-16A21.33,21.33,0,0,1,157,215.33Z" transform="translate(-3.91 -0.52)"/><path class="cls-5" d="M162.33,159.33a23.9,23.9,0,0,1,13.34-21.39A23.69,23.69,0,0,0,165,135.33a24,24,0,1,0,10.67,45.4,23.93,23.93,0,0,1-13.34-21.4Z" transform="translate(-3.91 -0.52)"/><path class="cls-6" d="M250.33,186a21.34,21.34,0,1,1,21.34-21.33A21.36,21.36,0,0,1,250.33,186Zm0-26.67a5.34,5.34,0,1,0,5.34,5.34,5.34,5.34,0,0,0-5.34-5.34Z" transform="translate(-3.91 -0.52)"/><path class="cls-6" d="M293,231.33H277V226a13.35,13.35,0,0,0-13.33-13.33H237v-16h26.67A29.35,29.35,0,0,1,293,226Z" transform="translate(-3.91 -0.52)"/><path class="cls-6" d="M79.67,186A21.34,21.34,0,1,1,101,164.67,21.36,21.36,0,0,1,79.67,186Zm0-26.67A5.34,5.34,0,1,0,85,164.67a5.35,5.35,0,0,0-5.33-5.34Z" transform="translate(-3.91 -0.52)"/><path class="cls-6" d="M53,231.33H37V226a29.35,29.35,0,0,1,29.33-29.33H93v16H66.33A13.35,13.35,0,0,0,53,226Z" transform="translate(-3.91 -0.52)"/><path class="cls-6" d="M165,191.33a32,32,0,1,1,32-32,32,32,0,0,1-32,32Zm0-48a16,16,0,1,0,16,16,16,16,0,0,0-16-16Z" transform="translate(-3.91 -0.52)"/><path class="cls-6" d="M223.67,252.67h-16v-16a13.36,13.36,0,0,0-13.34-13.34H135.67a13.36,13.36,0,0,0-13.34,13.34v16h-16v-16a29.36,29.36,0,0,1,29.34-29.34h58.66a29.36,29.36,0,0,1,29.34,29.34Z" transform="translate(-3.91 -0.52)"/></g></g></svg>
+        <img style="height: 3.5rem; width:3.5rem; border-radius: 50%;" src="//assets.{{ UKM_HOSTNAME }}/img/{{ img|raw }}" />
     </div>
     <div class="col pr-1">
         <h5 class="message-title">{{ title }}</h5>
@@ -8,9 +8,7 @@
     </div>
     <div class="col-xs-1 d-flex">
         <a href="#1" class="stretched-link align-self-center">
-            <svg class="icon icon-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(218, 81%, 94%)">
-                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-            </svg>
+            {% include "Global/svg/chevron.html.twig"%}
         </a>
     </div>
 </div>
