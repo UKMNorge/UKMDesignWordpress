@@ -1,5 +1,5 @@
 {# Embedded element - brukes for kjapp innlasting av oversikts-siden. Se innslag.html.twig for hovedsiden som lastes inn når man trykker på en deltaker. #}
-<div class="card-body m-0 p-0 innslag" attr-id="{{ innslag.id }}">
+<div class="card-body m-0 p-0">
 	<div class="header click m-2">
 		{% if hendelse is defined and hendelse is not empty %}
 			<div class="order">
@@ -35,8 +35,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="innslagData" style="display:none; margin-left: -.5rem !important; margin-top: 1rem;">
-		<div class="center">Vennligst vent, laster inn..</div>
+	<div class="innslagData" style="display:none;">
+		<div class="loading">Vennligst vent, laster inn..</div>
 	</div>
 	<div class="innslagCancel m-2" style="text-align:right; display:none;">
 		<button type="button" class="btn btn-outline-primary btn-sm hideInnslag">Lukk</button>

@@ -478,11 +478,12 @@ class Front
     /**
      * Hent infosiden
      *
+     * @param Bool $force_load hvis den skal reloades
      * @return Page
      */
-    public static function getInfoside()
+    public static function getInfoside(Bool $force_load=false)
     {
-        if (is_null(static::$infoside)) {
+        if (is_null(static::$infoside) || $force_load) {
             static::_loadInfoside();
         }
         return static::$infoside;

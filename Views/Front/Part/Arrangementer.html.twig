@@ -1,0 +1,33 @@
+{% set kommendeArrangement = omrade.getKommendeArrangementer().getAll()|filter(arrangement => arrangement.erRegistrert() and arrangement.erSynlig()) %}
+{% set tidligereArrangement = omrade.getTidligereArrangementer().getAll()|filter(arrangement => arrangement.erRegistrert() and arrangement.erSynlig() and arrangement.getSesong() > 2019 ) %}
+
+<h3 class="mb-3 mt-0">Ting som skjer</h3>
+{% if kommendeArrangement|length > 0 %}
+    {% if omrade.getType() == 'fylke' %}
+		<small>(etter UKM lokalt)</small>
+    {% endif %}
+	{% include "Front/Part/ArrangementListe.html.twig" with {arrangementer: kommendeArrangement, id: 'kommende'} %}
+	<div class="clearfix"></div>
+	<div class="mb-5"></div>
+{% else %}
+	<p>Ingen planlagte arrangementer akkurat nå.</p>
+{% endif %}
+
+{% if tidligereArrangement|length > 0 %}
+	<h3 class="mb-3 mt-0">Tidligere arrangement</h3>
+	{% include "Front/Part/ArrangementListe.html.twig" with {arrangementer: tidligereArrangement|reverse, id: 'tidligere'} %}
+	<div class="clearfix"></div>
+	{% if tidligereArrangement|length > 3 %}
+		<a id="collapse">Vis flere</a>
+	{% endif %}
+	<div class="mb-5"></div>
+{% endif %}
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('#arrangementListeTidligere > li:gt(3)').hide();
+		$("#collapse").click(function () {
+			$("#collapse").text(($("#collapse").text() == 'Vis færre') ? 'Vis flere' : 'Vis færre', $('#arrangementListeTidligere > li:gt(3)').slideToggle( "slow" ));
+		})
+	});
+</script>

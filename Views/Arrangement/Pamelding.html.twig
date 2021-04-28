@@ -14,7 +14,7 @@
 				{% endfor %}
 			</div>
 		{% else %}
-			<a href="//delta.{{ UKM_HOSTNAME }}/ukmid/pamelding/{{ arrangement.getEierKommune().getId() }}-{{ arrangement.getId() }}" target="_blank" class="btn btn-block btn-primary">Start påmelding</a>
+			<a href="//delta.{{ UKM_HOSTNAME }}/ukmid/pamelding/{{ arrangement.getType() == 'fylke' ? 'fylke' : arrangement.getEierKommune().getId() }}-{{ arrangement.getId() }}/" target="_blank" class="btn btn-block btn-primary">Start påmelding</a>
 		{% endif %}
 	</div>
 	<div class="clearfix"></div>

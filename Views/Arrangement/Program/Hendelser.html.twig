@@ -1,5 +1,5 @@
 {% for hendelse in hendelser %}
-	<div class="card {{ hendelse.harSynligDetaljprogram() ? 'click clickLinkWithin' }} innslagCard UKMcard mb-2 p-0" {% if hendelse.getFarge() %} style="border-color: {{hendelse.getFarge()}}" {% endif %} {% if hendelse.erFremhevet() %} style="background: rgb(0, 0, 71); color: white;" {% endif %}>
+	<div class="ukm-card {{ hendelse.harSynligDetaljprogram() ? 'click clickLinkWithin' }} innslagCard mb-2 p-0" {% if hendelse.getFarge() %} style="border-color: {{hendelse.getFarge()}}" {% endif %} {% if hendelse.erFremhevet() %} style="background: rgb(0, 0, 71); color: white;" {% endif %}>
 		<div class="card-body m-0 p-0">
 			<div class="hendelse">
 				<div class="time">

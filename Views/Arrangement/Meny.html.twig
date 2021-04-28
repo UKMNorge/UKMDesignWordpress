@@ -27,11 +27,11 @@
 		{% if arrangement.harPameldte() %}
 		<div class="col menu-item">
 			<a href="{{ arrangement.getLink() }}pameldte/">
-                {#% if antall_pameldte is defined %}
+                {% if arrangement.getAntallPersoner() is defined %}
                     <div class="badge badge-pill badge-primary pameldte-badge">
-                        {{ antall_pameldte }}
+                        {{ arrangement.getAntallPersoner() }}
                     </div>
-                {% endif %#}
+                {% endif %}
 				<div class="icon icon-users"></div>
 				<div class="text">Påmeldte</div>
 			</a>

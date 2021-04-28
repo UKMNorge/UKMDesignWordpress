@@ -17,20 +17,7 @@
 			</div>
 
 			<div class="col-12 col-lg-5 offset-lg-1 float-lg-right order-lg-2 mb-5">
-				{% if omrade.getKommendeArrangementer().getAntall() > 0 %}
-					<h3 class="mb-3 mt-0">Ting som skjer</h3>
-					{% include "Front/Part/ArrangementListe.html.twig" with {arrangementer: omrade.getKommendeArrangementer().getAll()} %}
-					<div class="clearfix"></div>
-					<div class="mb-5"></div>
-				{% else %}
-					{% include "Kommune/Husk.html.twig" %}
-				{% endif %}
-				{% if omrade.getTidligereArrangementer().getAntall() > 0 %}
-					<h3 class="mb-3 mt-0">Tidligere arrangement</h3>
-					{% include "Front/Part/ArrangementListe.html.twig" with {arrangementer: omrade.getTidligereArrangementer().getAll()} %}
-					<div class="clearfix"></div>
-					<div class="mb-5"></div>
-				{% endif %}
+				{% include "Front/Part/Arrangementer.html.twig" %}
 
 				<div class="mt-4">
 					{% include "Front/Part/Kontakt.html.twig" with { kontaktpersoner: omrade.getKontaktpersoner(), expand: omrade.getKommendeArrangementer().getAntall() == 0 } %}
