@@ -1,7 +1,7 @@
 <div class="container footer">
     <div class="row ukm-logo-footer">
         <div class="col col-xl-2 mt-3">
-            <a href="#ukm" class="clickable" href="" ><img class="ukm-logo" src="//assets.{{ UKM_HOSTNAME }}/img/ukm_logo_sort.png" /></a>
+            <a href="" class="footer-ukm-logo"><img  src="//assets.{{ UKM_HOSTNAME }}/img/ukm_logo_sort.png" /></a>
         </div>
         <div class="col-6 mt-4 d-none d-sm-block" style="margin-left: -4rem; padding-top: 0.5rem;">
             <button type="button" class="ukm-button ukm-button-front ukm-button-secondary" style="padding: 0 !important; height: auto;">
@@ -66,7 +66,7 @@
             {# <a class="navbar-brand" href="#">Navbar</a> #}
                 <ul class="navbar-nav flex-row">
                     <li class="nav-item">
-                        <a class="nav-link footerLinks" href="#">
+                        <a class="nav-link footerLinks" href="{{ UKMDesign.getSitemap().getPage('UKM','forsiden') }}">
                         <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 1 24 24" style="margin-right: .3rem; width: 1rem; fill:hsla(228, 96%, 66%, 1);"><path d="M21.743,12.331l-9-10c-0.379-0.422-1.107-0.422-1.486,0l-9,10c-0.265,0.293-0.331,0.715-0.17,1.076 C2.247,13.768,2.605,14,3,14h2v7c0,0.552,0.447,1,1,1h3c0.553,0,1-0.448,1-1v-4h4v4c0,0.552,0.447,1,1,1h3c0.553,0,1-0.448,1-1v-7h2 c0.395,0,0.753-0.232,0.913-0.593C22.074,13.046,22.008,12.625,21.743,12.331z"></path></svg>
                         <span class="breadcrumText">UKM</span>
                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(228, 96%, 67%)" style="margin-right: 0.4rem;">
@@ -74,30 +74,9 @@
                         </svg>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link footerLinks" href="#">
-                        <span class="breadcrumText">Agder</span>
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(228, 96%, 67%)" style="margin-right: 0.4rem;">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                        </svg>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link footerLinks" href="#">
-                        <span class="breadcrumText">Birkenes</span>
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(228, 96%, 67%)" style="margin-right: 0.4rem;">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                        </svg>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link footerLinks" href="#">
-                        <span class="breadcrumText">Arrangementer</span>
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(228, 96%, 67%)" style="margin-right: 0.4rem;">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                        </svg>
-                        </a>
-                    </li>
+                    {# {% include "Norge/Front/Components/Breadcrumb_item.html.twig" with { pagelink: '', pagename: 'Agder'} %}
+                    {% include "Norge/Front/Components/Breadcrumb_item.html.twig" with { pagelink: '', pagename: 'Birkenes'} %}
+                    {% include "Norge/Front/Components/Breadcrumb_item.html.twig" with { pagelink: '', pagename: 'Arrangementer'} %} #}
                 </ul>
             </nav>
         </div>
@@ -122,14 +101,14 @@
             {# <a class="navbar-brand" href="#">Navbar</a> #}
                 <ul class="navbar-nav flex-row pt-3">
                     <li class="nav-item">
-                        <a class="nav-link footerLinks" href="#">
+                        <a class="nav-link footerLinks" href="{{ UKMDesign.getSitemap().getPage('UKM','forsiden') }}">
                         <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 1 24 24" style="margin-right: .3rem; width: 1.5rem; fill:hsla(228, 96%, 66%, 1);"><path d="M21.743,12.331l-9-10c-0.379-0.422-1.107-0.422-1.486,0l-9,10c-0.265,0.293-0.331,0.715-0.17,1.076 C2.247,13.768,2.605,14,3,14h2v7c0,0.552,0.447,1,1,1h3c0.553,0,1-0.448,1-1v-4h4v4c0,0.552,0.447,1,1,1h3c0.553,0,1-0.448,1-1v-7h2 c0.395,0,0.753-0.232,0.913-0.593C22.074,13.046,22.008,12.625,21.743,12.331z"></path></svg>
                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(228, 96%, 67%)" style="margin-right: 0.4rem;">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {# <li class="nav-item">
                         <a class="nav-link footerLinks" href="#">
                         <span class="breadcrumText">Agder</span>
                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(228, 96%, 67%)" style="margin-right: 0.4rem;">
@@ -152,7 +131,7 @@
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
                         </a>
-                    </li>
+                    </li> #}
                 </ul>
             </nav>
         </div>
