@@ -1,16 +1,32 @@
 {% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
 
 {% block content %}
+<div class="contact-section">
 	<div class="container">
 		<div class="row">
-			<div class="col-12">
-				<h1>{{ UKMDesign.getConfig('firenullfire.title') }}</h1>
-				<p class="lead">{{ UKMDesign.getConfig('firenullfire.text') }}</p>
+			{# <div class="hero-text-section" style="margin-left: 0">
+				<h1 class="hero-text mb-5" style="color: black; text-shadow: none; width: auto;">{{ UKMDesign.getConfig('firenullfire.title') }}</h1>
+				<p class="hero-text-lead mb-5" style="color: black;">{{ UKMDesign.getConfig('firenullfire.text') }}</p>
 				<p>Kanskje du kan finne det du leter etter i menyen nedenfor?</p>
+				</div>
+			</div> #}
+			<div class="hero-text-section other-page">
+				{# <img class="mb-2" src="https://picsum.photos/400" alt="" width="100%"> #}
+				<h1 class="hero-text other-page mb-5">
+					1914 translation by H. Rackham Jamilania
+				</h1>
+				<p class="hero-text-lead other-page mb-5">
+					"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+				</p>
+				<p style="font-size: 24px; line-height: 35px;">
+					Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+				</p>
+				</div>
 			</div>
-			<div class="col-12">
-				{% embed "UKMDesign/Layout/nav.html.twig" %}{% endembed %}
-			</div>
+			{# <div class="col-12"> #}
+				{# {% embed "UKMDesign/Layout/nav.html.twig" %}{% endembed %} #}
+			{# </div> #}
 		</div>
 	</div>
+</div>
 {% endblock %}
