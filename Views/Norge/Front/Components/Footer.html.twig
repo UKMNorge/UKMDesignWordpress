@@ -33,19 +33,61 @@
     {# Breadcrum mobile devices #}
     <div class="row mb-4 mt-4 d-block d-sm-none d-lg-none">
         <div class="col d-flex justify-content-center">
-            <nav class="navbar navbar-light bg-light locationBreadcrum">
-                <ul class="navbar-nav flex-row">
+          <nav class="navbar navbar-light locationBreadcrum">
+            <ul class="navbar-nav flex-row p-2">
+              <li class="nav-item">
+                <a class="nav-link footerLinks"
+                  href="{{ UKMDesign.getSitemap().getPage('UKM', 'forsiden') }}">
+                  <svg class=""xmlns="http://www.w3.org/2000/svg" viewBox="0 1 24 24" style="margin-right: .3rem; width: 1rem; fill:hsla(228, 96%, 66%, 1);">
+                    <path d="M21.743,12.331l-9-10c-0.379-0.422-1.107-0.422-1.486,0l-9,10c-0.265,0.293-0.331,0.715-0.17,1.076 C2.247,13.768,2.605,14,3,14h2v7c0,0.552,0.447,1,1,1h3c0.553,0,1-0.448,1-1v-4h4v4c0,0.552,0.447,1,1,1h3c0.553,0,1-0.448,1-1v-7h2 c0.395,0,0.753-0.232,0.913-0.593C22.074,13.046,22.008,12.625,21.743,12.331z"></path>
+                  </svg>
+                  <span class="accordSubtext">UKM</span>
+                  <svg class="icon"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(228, 96%, 67%)" style="margin-right: 0.4rem;">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+              </li>
+          {% for section in UKMDesign.getSitemap().getBreadcrumbs().getSections() %}
+              {% if section.getPages().getCount() == 0 %}
+                  <li class="nav-item">
+                    <a class="nav-link footerLinks" href="{{ section.getUrl() }}">
+                      <span class="accordSubtext">{{ section.getTitle() }}</span>
+                      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(228, 96%, 67%)" style="margin-right: 0.4rem;">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                      </svg>
+                    </a>
+                  </li>
+              {% else %}
+                {% if section.getPages().getAll()|length < 2 %}
+                  {% set pagen = section.getPages().getAll()|first %}
+                  <li class="nav-item">
+                    <a class="nav-link footerLinks" href="{{ pagen.getUrl() }}">
+                      <span class="accordSubtext">{{ pagen.getTitle() }}</span>
+                      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(228, 96%, 67%)" style="margin-right: 0.4rem;">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                      </svg>
+                    </a>
+                  </li>
+                  {% else %}
                     <li class="nav-item">
-                        <a class="nav-link footerLinks" href="{{ UKMDesign.getSitemap().getPage('UKM','forsiden') }}">
-                        <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 1 24 24" style="margin-right: .3rem; width: 1rem; fill:hsla(228, 96%, 66%, 1);"><path d="M21.743,12.331l-9-10c-0.379-0.422-1.107-0.422-1.486,0l-9,10c-0.265,0.293-0.331,0.715-0.17,1.076 C2.247,13.768,2.605,14,3,14h2v7c0,0.552,0.447,1,1,1h3c0.553,0,1-0.448,1-1v-4h4v4c0,0.552,0.447,1,1,1h3c0.553,0,1-0.448,1-1v-7h2 c0.395,0,0.753-0.232,0.913-0.593C22.074,13.046,22.008,12.625,21.743,12.331z"></path></svg>
-                        <span class="breadcrumText">UKM</span>
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(228, 96%, 67%)" style="margin-right: 0.4rem;">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                        </svg>
+                      <div class="dropdown">
+                        <a class="btn nav-link footerLinks" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="accordSubtext">. . .</span>
                         </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          {% for page in section.getPages().getAll() %}
+                            <a class="dropdown-item" href="{{ page.getUrl() }}">
+                              <span class="">{{ page.getTitle() }}</span>
+                            </a>
+                          {% endfor %}
+                        </div>
+                    </div>
                     </li>
-                </ul>
-            </nav>
+                {% endif %}
+              {% endif %}
+          {% endfor %}
+            </ul>
+          </nav>
         </div>
     </div>
 
@@ -64,19 +106,61 @@
     {# Breadcrum desktop #}
     <div class="row">
         <div class="col">
-            <nav class="navbar navbar-light locationBreadcrum d-none d-sm-block">
-                <ul class="navbar-nav flex-row pt-3">
+          <nav class="navbar navbar-light locationBreadcrum d-none d-sm-block">
+            <ul class="navbar-nav flex-row p-2">
+              <li class="nav-item">
+                <a class="nav-link footerLinks"
+                  href="{{ UKMDesign.getSitemap().getPage('UKM', 'forsiden') }}">
+                  <svg class=""xmlns="http://www.w3.org/2000/svg" viewBox="0 1 24 24" style="margin-right: .3rem; width: 1rem; fill:hsla(228, 96%, 66%, 1);">
+                    <path d="M21.743,12.331l-9-10c-0.379-0.422-1.107-0.422-1.486,0l-9,10c-0.265,0.293-0.331,0.715-0.17,1.076 C2.247,13.768,2.605,14,3,14h2v7c0,0.552,0.447,1,1,1h3c0.553,0,1-0.448,1-1v-4h4v4c0,0.552,0.447,1,1,1h3c0.553,0,1-0.448,1-1v-7h2 c0.395,0,0.753-0.232,0.913-0.593C22.074,13.046,22.008,12.625,21.743,12.331z"></path>
+                  </svg>
+                  <span class="accordSubtext">UKM</span>
+                  <svg class="icon"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(228, 96%, 67%)" style="margin-right: 0.4rem;">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+              </li>
+          {% for section in UKMDesign.getSitemap().getBreadcrumbs().getSections() %}
+              {% if section.getPages().getCount() == 0 %}
+                  <li class="nav-item">
+                    <a class="nav-link footerLinks" href="{{ section.getUrl() }}">
+                      <span class="accordSubtext">{{ section.getTitle() }}</span>
+                      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(228, 96%, 67%)" style="margin-right: 0.4rem;">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                      </svg>
+                    </a>
+                  </li>
+              {% else %}
+                {% if section.getPages().getAll()|length < 2 %}
+                  {% set pagen = section.getPages().getAll()|first %}
+                  <li class="nav-item">
+                    <a class="nav-link footerLinks" href="{{ pagen.getUrl() }}">
+                      <span class="accordSubtext">{{ pagen.getTitle() }}</span>
+                      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(228, 96%, 67%)" style="margin-right: 0.4rem;">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                      </svg>
+                    </a>
+                  </li>
+                  {% else %}
                     <li class="nav-item">
-                        <a class="nav-link footerLinks" href="{{ UKMDesign.getSitemap().getPage('UKM','forsiden') }}">
-                        <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 1 24 24" style="margin-right: .3rem; width: 1.5rem; fill:hsla(228, 96%, 66%, 1);"><path d="M21.743,12.331l-9-10c-0.379-0.422-1.107-0.422-1.486,0l-9,10c-0.265,0.293-0.331,0.715-0.17,1.076 C2.247,13.768,2.605,14,3,14h2v7c0,0.552,0.447,1,1,1h3c0.553,0,1-0.448,1-1v-4h4v4c0,0.552,0.447,1,1,1h3c0.553,0,1-0.448,1-1v-7h2 c0.395,0,0.753-0.232,0.913-0.593C22.074,13.046,22.008,12.625,21.743,12.331z"></path></svg>
-                        <span class="breadcrumText">UKM</span>
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(228, 96%, 67%)" style="margin-right: 0.4rem;">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                        </svg>
+                      <div class="dropdown">
+                        <a class="btn nav-link footerLinks" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="accordSubtext">. . .</span>
                         </a>
+                        <div class="dropdown-menu alternativePopup" aria-labelledby="dropdownMenuLink">
+                          {% for page in section.getPages().getAll() %}
+                            <a class="dropdown-item" href="{{ page.getUrl() }}">
+                              <span class="">{{ page.getTitle() }}</span>
+                            </a>
+                          {% endfor %}
+                        </div>
+                    </div>
                     </li>
-                </ul>
-            </nav>
+                {% endif %}
+              {% endif %}
+          {% endfor %}
+            </ul>
+          </nav>
         </div>
         <div class="col mb-4">
             <div id="accordion1">
@@ -109,11 +193,6 @@
             {% include "Norge/Front/Components/Footer-accord-item.html.twig" with { name: 'Organisasjon og historikk'} %}
             {% include "Norge/Front/Components/Footer-accord-item.html.twig" with { name: 'Over hele landet'} %}
             {% include "Norge/Front/Components/Footer-accord-item.html.twig" with { name: 'Personvernpolitikk'} %}
-            {# <div class="button-tint"></div>
-            <button class="btn btn-primary dropdown-toggle accordSubbutton" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2" style="margin-right: 1.5rem;">
-                <svg class="caret-flip" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="margin-right: .3rem; fill:hsla(228, 96%, 67%, 1);"><path d="M9 19L17 12 9 5z"></path></svg>
-                <span class="accordSubtext">Personvernpolitikk</span>
-            </button>  #}
             </div>
         </div> 
     </div> 
