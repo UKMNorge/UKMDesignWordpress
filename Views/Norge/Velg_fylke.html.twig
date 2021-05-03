@@ -1,21 +1,39 @@
 {% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
 
 {% block content %}
+    <div class="container mt-1 p-5 mb-5">
 	<div class="container sitemap">
 		<div class="row">
 			<div class="col-12 col-lg-3 float-right">
-				<h2>Velg ditt fylke</h2>
+				<span class="fylke-title" style="">Velg ditt fylke</span>
             </div>
         </div>
-
-        <div class="row pageContainer">
-            {% for fylke in fylker %}
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="page p-2 px-4 m-2">
-                        <a href="//{{UKM_HOSTNAME}}/{{ fylke.getLink() }}/" class="autoshrink">{{ fylke.getNavn() }}</a>
+        <div class="row pageContainer mt-3">
+            <div class="col-12 col-sm-6">
+                {% for fylke in fylker|slice(0, fylker|length/2+1) %}
+                    <div class="p-2 m-2 center white">
+                        <a class="dropdown-item drop-item choice-item mb-2" href="//{{UKM_HOSTNAME}}/{{ fylke.getLink() }}/">
+                            <span class="accordSubtext">{{ fylke.getNavn() }}</span>
+                            <svg class="icon icon-chevron ml-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsla(var(--color-neutral-coldgray-900), 1);">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
+            <div class="col-12 col-sm-6">
+                {% for fylke in fylker|slice(fylker|length/2) %}
+                    <div class="p-2 m-2 center white">
+                        <a class="dropdown-item drop-item choice-item mb-2" href="//{{UKM_HOSTNAME}}/{{ fylke.getLink() }}/">
+                            <span class="accordSubtext">{{ fylke.getNavn() }}</span>
+                            <svg class="icon icon-chevron ml-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsla(var(--color-neutral-coldgray-900), 1);">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
+    </div>
     </div>
 {% endblock %}
