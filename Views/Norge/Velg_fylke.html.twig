@@ -10,7 +10,7 @@
         </div>
         <div class="row pageContainer mt-3">
             <div class="col-12 col-sm-6">
-                {% for fylke in fylker|slice(0, fylker|length/2+1) %}
+                {% for fylke in fylker|slice(0, (fylker|length/2)|round(0, "ceil")) %}
                     <div class="p-2 m-2 center white">
                         <a class="dropdown-item drop-item choice-item mb-2" href="//{{UKM_HOSTNAME}}/{{ fylke.getLink() }}/">
                             <span class="accordSubtext">{{ fylke.getNavn() }}</span>
@@ -22,7 +22,7 @@
                 {% endfor %}
             </div>
             <div class="col-12 col-sm-6">
-                {% for fylke in fylker|slice(fylker|length/2) %}
+                {% for fylke in fylker|slice((fylker|length/2)|round(0, "floor")+1) %}
                     <div class="p-2 m-2 center white">
                         <a class="dropdown-item drop-item choice-item mb-2" href="//{{UKM_HOSTNAME}}/{{ fylke.getLink() }}/">
                             <span class="accordSubtext">{{ fylke.getNavn() }}</span>
