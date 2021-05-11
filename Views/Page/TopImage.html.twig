@@ -7,3 +7,4 @@
 {% elseif post.hasFeaturedImage() and not post.hasMeta('hideTopImage') %}
 	<div id="the_post_image" style="background-image: url('{{ post.image.large.src }}');{% if post.hasMeta('headerPosition') %}background-position: {{ post.getMeta('headerPosition')}};{% endif %}max-width:100%;"></div>
 {% endif %}
+
