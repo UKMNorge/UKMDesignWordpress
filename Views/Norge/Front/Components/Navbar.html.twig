@@ -1,16 +1,15 @@
-<nav class="navbar navbar-expand-lg navbar-dark burger-text justify-content-between" style="z-index: 9999;">
-<a class="navbar-brand clickable" href="#"><img class="ukm-logo" src="//assets.{{ UKM_HOSTNAME }}/img/ukm.png" /></a>
+<nav class="navbar ukm-navbar">
+    <a class="navbar-brand clickable" href=""><img class="ukm-logo" src="//assets.{{ UKM_HOSTNAME }}/img/ukm.png" /></a>
     <ul class="nav nav-pills burger-text" style="align-items: center;">
 
-        <li class="nav-item active"><a class="nav-link menu-links" href="#">logg inn<span class="sr-only">(current)</span></a> </li>
-
+        {% include "Norge/Front/Components/Navbar_links.html.twig" with {title: 'logg inn', link:''} %}
         {# Show only on desktop-mode #}
-        <li class="nav-item active d-none d-sm-block"><a class="nav-link menu-links" href="#">|<span class="sr-only">(current)</span></a> </li>
-        <li class="nav-item active d-none d-sm-block"><a class="nav-link menu-links" href="#">UKM-festivalen<span class="sr-only">(current)</span></a> </li>
-        <li class="nav-item active d-none d-sm-block"><a class="nav-link menu-links" href="#">Nyheter<span class="sr-only">(current)</span></a> </li>
+        {% include "Norge/Front/Components/Navbar_links.html.twig" with {title: '|', link:'', exception: 'd-none d-sm-block'} %}
+        {% include "Norge/Front/Components/Navbar_links.html.twig" with {title: 'UKM-festivalen', link:'', exception: 'd-none d-sm-block'} %}
+        {% include "Norge/Front/Components/Navbar_links.html.twig" with {title: 'Nyheter', link:'', exception: 'd-none d-sm-block'} %}
 
         <li class="hamburger nav-item dropdown">
-            <a class="hamburger-icon btn btn-link navbar-toggle" id="hamburger-icon" href="#" role="button" id="navbardropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="hamburger-icon btn btn-link navbar-toggle" id="hamburger-icon" href="" role="button" id="navbardropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span></span>
                 <span></span>
             </a>

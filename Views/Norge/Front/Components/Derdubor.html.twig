@@ -1,0 +1,28 @@
+    <div style="padding-left: 4rem;">
+     {% set fylke = fylker.getAll()|first %}
+    <div class="dropdown-fylke">
+        <button type="button" class="btn btn-secondary dropdown-toggle-split" data-toggle="" aria-haspopup="true" aria-expanded="false"
+        style="height: 4.1rem; margin-right: -0.4rem; border-radius: 0;">
+            {# <a class="fylke-link" href=""> #}
+                Gå til
+            {# </a> #}
+        </button>
+        <button class="btn btn-lg btn-secondary" type="button" id="dropdown_fylker" data-toggle="dropdown" aria-haspopup="true"
+            style="height: 4.1rem; width: 25rem; border-radius: 0;"
+            aria-expanded="false">
+            <span class="fylke-name">{{ fylke.getNavn() }}</span>
+        </button>
+        <div id="menu" class="dropdown-menu" aria-labelledby="dropdown_fylker" style="width: 25rem;">
+            <form class="px-4 py-2">
+                <input type="search" class="form-control" id="searchFylke" placeholder="Søk etter fylke" autofocus="autofocus">
+            </form>
+             {% for fylke in fylker %}
+            <div id="menuItems">
+                <input type="button" data-value="{{ fylke.getNavn() }}" data-link="{{ fylke.getLink() }}" class="dropdown-item fylkesItem" type="button" value="{{ fylke.getNavn() }}"/>
+            </div>
+            {% endfor %}
+            {# <div id="empty" class="dropdown-header">Ingen fylker funnet</div> #}
+        </div>
+    </div>
+    </div>
+</div>

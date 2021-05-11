@@ -2,7 +2,7 @@
     <div class="row" id="testimonial">
         {% set post = testiomonial.getAll()|first %}
         <div class="col-xs-1">
-            <div class="side-pic" style="border: 2px solid black; background: url('//assets.{{ UKM_HOSTNAME }}/img/bolde.png') no-repeat center/cover;">{{ post.image.medium.src }}</div>
+            <div class="side-pic" style="border: 2px solid black; overflow-x: hidden; background: url('//assets.{{ UKM_HOSTNAME }}/img/bolde.png') no-repeat center/cover;">{{ post.image.medium.src }}</div>
         </div>
         <div class="col offset-xl-1">
             <svg class="svg-quote" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill:hsla(218, 81%, 94%, 0.4); margin-top: -.6rem;">
