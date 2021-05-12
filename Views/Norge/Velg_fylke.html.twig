@@ -1,17 +1,17 @@
 {% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
 
 {% block content %}
-    <div class="container mt-1 p-5 mb-5">
-	<div class="container sitemap">
+    {# <div class="container mt-1 p-5 mb-5"> #}
+	<div class="container mb-5">
 		<div class="row">
-			<div class="col-12 col-lg-3 float-right">
+			<div class="col-12 col-lg-3">
 				<span class="fylke-title" style="">Velg ditt fylke</span>
             </div>
         </div>
         <div class="row pageContainer mt-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 col-md-6">
                 {% for fylke in fylker|slice(0, (fylker|length/2)|round(0, "ceil")) %}
-                    <div class="p-2 m-2 center white">
+                    <div class="fylke-item">
                         <a class="dropdown-item drop-item choice-item mb-2" href="//{{UKM_HOSTNAME}}/{{ fylke.getLink() }}/">
                             <span class="accordSubtext">{{ fylke.getNavn() }}</span>
                             <svg class="icon icon-chevron ml-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsla(var(--color-neutral-coldgray-900), 1);">
@@ -21,9 +21,9 @@
                     </div>
                 {% endfor %}
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 col-md-6">
                 {% for fylke in fylker|slice((fylker|length/2)|round(0, "floor")+1) %}
-                    <div class="p-2 m-2 center white">
+                    <div class="fylke-item">
                         <a class="dropdown-item drop-item choice-item mb-2" href="//{{UKM_HOSTNAME}}/{{ fylke.getLink() }}/">
                             <span class="accordSubtext">{{ fylke.getNavn() }}</span>
                             <svg class="icon icon-chevron ml-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsla(var(--color-neutral-coldgray-900), 1);">
@@ -35,5 +35,5 @@
             </div>
         </div>
     </div>
-    </div>
+    {# </div> #}
 {% endblock %}
