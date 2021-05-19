@@ -34,7 +34,7 @@
     <div class="row mb-4 mt-4 d-block d-sm-none d-lg-none">
         <div class="col d-flex justify-content-center">
           <nav class="navbar navbar-light locationBreadcrum">
-            <ul class="navbar-nav flex-row p-2">
+            <ul class="navbar-nav flex-row">
               <li class="nav-item">
                 <a class="nav-link footerLinks"
                   href="{{ UKMDesign.getSitemap().getPage('UKM', 'forsiden') }}">
@@ -105,7 +105,7 @@
 
     {# Breadcrum desktop #}
     <div class="row">
-        <div class="col">
+        <div class="col-12 col-md-6">
           <nav class="navbar navbar-light locationBreadcrum d-none d-sm-block">
             <ul class="navbar-nav flex-row p-2">
               <li class="nav-item">
@@ -162,9 +162,10 @@
             </ul>
           </nav>
         </div>
-        <div class="col mb-4">
+        
+        <div class="col-12 col-md-6">
             <div id="accordion1">
-                <a class="button-tint" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2" ></a>
+                <a class="button-tint" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseFooter1 multiCollapseFooter2" ></a>
                 <button class="btn btn-primary dropdown-toggle mainAccordText">
                     <svg id="caret-flip" class="caret-flip" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="margin-right: .3rem; fill:hsla(228, 96%, 67%, 1);"><path d="M9 19L17 12 9 5z"></path></svg>
                     <span class="accordSubtext">Dette er UKM</span>
@@ -183,18 +184,18 @@
             <span class="vibakukm-title" style="">Vi bak UKM</span>
         </div>
     </div>
-    <div class="row vibakukm-footer">
-        <div class="col mt-3">
-        <div class="flex-gap">
+    <div class="row pageContainer vibakukm-footer mt-3">
+        <div class="col-12 col-md-6">
             {% include "Norge/Front/Components/Footer-accord-item.html.twig" with { name: 'Hvorfor har vi UKM?'} %}
             {% include "Norge/Front/Components/Footer-accord-item.html.twig" with { name: 'I samarbeid med andre'} %}
             {% include "Norge/Front/Components/Footer-accord-item.html.twig" with { name: 'Digitale satsninger'} %}
             {% include "Norge/Front/Components/Footer-accord-item.html.twig" with { name: 'Medvirkning'} %}
+            </div>
+        <div class="col-12 col-md-6">
             {% include "Norge/Front/Components/Footer-accord-item.html.twig" with { name: 'Organisasjon og historikk'} %}
             {% include "Norge/Front/Components/Footer-accord-item.html.twig" with { name: 'Over hele landet'} %}
             {% include "Norge/Front/Components/Footer-accord-item.html.twig" with { name: 'Personvernpolitikk'} %}
-            </div>
-        </div> 
+              </div>
     </div> 
 
     <div class="row mt-5">
