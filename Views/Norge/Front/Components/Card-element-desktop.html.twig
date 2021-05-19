@@ -1,9 +1,9 @@
 <div class="col-lg-4 d-flex justify-content-between flex-column">
-    <div style=""><img style="height: 6rem; width: 6rem; border-radius: 50%;" src="//assets.{{ UKM_HOSTNAME }}/img/{{ img|raw }}" /></div>
-    <h5 class="message-title" style="max-width: 12rem; font-size: 40px !important; line-height: 44px !important;">{{ title }}</h5>
-    <span class="message-content" style="max-width: 19rem; font-size: 24px !important; line-height: 34px !important;">{{ content }}</span>
+    <div><img style="height: 6rem; width: 6rem; border-radius: 50%;" src="//assets.{{ UKM_HOSTNAME }}/img/{{ img|raw }}" /></div>
+    <h5 class="message-title">{{ title }}</h5>
+    <span class="message-content">{{ content }}</span>
     <button type="button" class="ukm-button ukm-button-front ukm-button-secondary" style="padding: 0 !important; height: auto;">
-        <span style="font: normal normal bold 20px/24px Roboto;">Les mer</span>
+        <span class="btn-text">Les mer</span>
         {% include "Global/svg/chevron-blue.html.twig"%}
     </button>
 </div>
