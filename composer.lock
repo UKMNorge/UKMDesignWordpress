@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8cf37b83d2253329bde78baea0ea5922",
+    "content-hash": "d40836316a7a64a9db24a05731a3fe61",
     "packages": [
         {
             "name": "mariusmandal/wpoo",
@@ -339,16 +339,16 @@
         },
         {
             "name": "ukmnorge/design",
-            "version": "dev-master",
+            "version": "dev-designassets-support",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UKMNorge/UKMDesign.git",
-                "reference": "3923b43839a55dd0d102f743733e22673931429a"
+                "reference": "451b4511fea30759e05f65e1cb516cc0bde248ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UKMNorge/UKMDesign/zipball/3923b43839a55dd0d102f743733e22673931429a",
-                "reference": "3923b43839a55dd0d102f743733e22673931429a",
+                "url": "https://api.github.com/repos/UKMNorge/UKMDesign/zipball/451b4511fea30759e05f65e1cb516cc0bde248ff",
+                "reference": "451b4511fea30759e05f65e1cb516cc0bde248ff",
                 "shasum": ""
             },
             "require": {
@@ -376,7 +376,11 @@
             ],
             "description": "Felles design for UKM.no og undersider",
             "homepage": "https://github.com/UKMNorge/UKMDesign",
-            "time": "2020-02-24T10:24:33+00:00"
+            "support": {
+                "issues": "https://github.com/UKMNorge/UKMDesign/issues",
+                "source": "https://github.com/UKMNorge/UKMDesign/tree/designassets-support"
+            },
+            "time": "2021-05-20T11:56:33+00:00"
         },
         {
             "name": "ukmnorge/designvanilla",
@@ -384,19 +388,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/UKMNorge/UKMDesignVanilla.git",
-                "reference": "aea12cc105bf140d96c673cc1b7e63b15a505000"
+                "reference": "03a5221afce43d923c9f5901ce9921217c2805c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UKMNorge/UKMDesignVanilla/zipball/aea12cc105bf140d96c673cc1b7e63b15a505000",
-                "reference": "aea12cc105bf140d96c673cc1b7e63b15a505000",
+                "url": "https://api.github.com/repos/UKMNorge/UKMDesignVanilla/zipball/03a5221afce43d923c9f5901ce9921217c2805c4",
+                "reference": "03a5221afce43d923c9f5901ce9921217c2805c4",
                 "shasum": ""
             },
             "require": {
                 "symfony/yaml": ">=2.0",
                 "twig/twig": "^3.0",
-                "ukmnorge/design": "dev-master"
+                "ukmnorge/design": "dev-designassets-support || dev-master"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -418,7 +423,11 @@
             ],
             "description": "Wrapper for UKM Design, brukt uten rammeverk",
             "homepage": "https://github.com/UKMNorge/UKMDesignVanilla",
-            "time": "2020-02-19T18:47:16+00:00"
+            "support": {
+                "issues": "https://github.com/UKMNorge/UKMDesignVanilla/issues",
+                "source": "https://github.com/UKMNorge/UKMDesignVanilla/tree/master"
+            },
+            "time": "2021-05-20T12:05:57+00:00"
         }
     ],
     "packages-dev": [],
@@ -426,10 +435,12 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "mariusmandal/wpoo": 20,
-        "ukmnorge/designvanilla": 20
+        "ukmnorge/designvanilla": 20,
+        "ukmnorge/design": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }
