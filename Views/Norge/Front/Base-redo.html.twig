@@ -5,32 +5,10 @@
 {% endblock %}
 
 {% block framework_content %}
-	{# KOMMENTERER DENNE DELEN BARE FOR TESTING @KIM #}
-	{# NAVBAR MINI #}
-	{# <div class="container-fluid" id="UKMheader">
-		<header>
-            <div class="navbar-header float-left">
-                <a href="{{ UKMDesign.getSitemap().getPage('UKM', 'forsiden') }}">
-                    <img src="https://grafikk.ukm.no/profil/logoer/UKM_logo_hvit_0300.png" id="UKMlogo" />
-                </a>
-			</div>
-
-			<div class="float-right" style="padding-top: 1em;">
-				<a href="//delta.{{ UKM_HOSTNAME }}/ukmid/">
-					<span class="main_menu_button icon icon-user" id="user_menu_button"></span>
-				</a>
-				<a href="//{{ UKM_HOSTNAME }}/hovedmeny/" class="float-right" id="main_menu_button" data-status="hidden" style="    font-size: 1.24em;margin-top: -.02em;">
-                    <span class="main_menu_button icon icon-menu-light"></span>
-				</a>
-			</div>
-			<div class="clearfix"></div>
-		</header>
-	</div> #}
 
 	{# SITEMAP #}
 	<div
 		class="container-fluid" id="UKMDesign_sitemap" style="display:none;">
-		{#% embed "UKMDesign/Mobil/UKMMobil.html.twig"|UKMpath %}{% endembed %#}
 		{% block sectionNav %}{% endblock %}
 		{% embed "UKMDesign/Layout/nav.html.twig"|UKMpath with {'hidden': true} %}{% endembed %}
 	</div>
@@ -39,8 +17,4 @@
 	<div id="UKMDesign_content">
 		{% block content %}Designfil mangler content-block.{% endblock %}
 	</div>
-	
-	{# KOMMENTERER DENNE DELEN BARE FOR TESTING @KIM #}
-	{# FOOTER #}
-	{# {% embed "UKMDesign/Layout/footer.html.twig"|UKMpath %}{% endembed %} #}
 {% endblock %}
