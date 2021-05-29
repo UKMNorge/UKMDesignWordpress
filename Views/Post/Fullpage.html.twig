@@ -1,80 +1,151 @@
 {% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
 
 {% block content %}
-    {% include "Page/TopImage.html.twig" %}
-    <div class="info-section pb-5">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <article>
-                        <div class="info-text-section">
-                            <div class="col p-0 mb-3">
-                                {% for category in post.categories %}
-                                    <a class="category-link" href="{{ category.url }}">{{ category.title }}</a>
-                                    {% if not loop.last %},
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-                            <h1 class="article-header">{{ post.getTitle()|raw }}</h1>
-                            <p class="info-text-lead mt-4">{{ post.lead|raw }}</p>
-                            <div class="row mb-5 mt-5">
-                                <div class="col">
-                                    {% for author in authors %}
-                                        {% embed "Post:madeby.html.twig"|UKMpath %}{% endembed %}
-                                        <div class="clearfix"></div>
-                                    {% endfor %}
-
-                                    {% if post.getMeta('type') == 'workshop' and post.hasMeta('sted') is defined %}
-                                        <b>STED:
-                                        </b>
-                                        {{ post.getMeta('sted') }}
-                                    {% else %}
-                                        <span class="article-date"><b>Publisert: <br /></b>
-                                        {{ post.date|dato('j. M Y') }}</span>
-                                    {% endif %}
-                                </div>
-                                <div class="col share-buttons col-xl-3 d-flex justify-content-around">
-                                    {% include "Post/Share-button.html.twig" with { name: '', class:'', link: '#', path: '<path d="M12.001,2.002c-5.522,0-9.999,4.477-9.999,9.999c0,4.99,3.656,9.126,8.437,9.879v-6.988h-2.54v-2.891h2.54V9.798 c0-2.508,1.493-3.891,3.776-3.891c1.094,0,2.24,0.195,2.24,0.195v2.459h-1.264c-1.24,0-1.628,0.772-1.628,1.563v1.875h2.771 l-0.443,2.891h-2.328v6.988C18.344,21.129,22,16.992,22,12.001C22,6.479,17.523,2.002,12.001,2.002z"></path>' } %}
-                                    {% include "Post/Share-button.html.twig" with { name: '', class:'', link: '#', path: '<path d="M20,4H4C2.896,4,2,4.896,2,6v12c0,1.104,0.896,2,2,2h16c1.104,0,2-0.896,2-2V6C22,4.896,21.104,4,20,4z M20,8.7l-8,5.334 L4,8.7V6.297l8,5.333l8-5.333V8.7z"></path>' } %}
-                                    {% include "Post/Share-button.html.twig" with { name: 'sharelink', class:'kopierUrl', link: '#', path: '<path d="M4.222 19.778c.975.975 2.255 1.462 3.535 1.462 1.281-.001 2.562-.487 3.536-1.462l2.828-2.829-1.414-1.414-2.828 2.829c-1.169 1.167-3.072 1.169-4.243 0-1.169-1.17-1.169-3.073 0-4.243l2.829-2.828L7.051 9.879l-2.829 2.828C2.273 14.656 2.273 17.829 4.222 19.778zM19.778 11.293c1.948-1.949 1.948-5.122 0-7.071-1.95-1.95-5.123-1.948-7.071 0L9.879 7.051l1.414 1.414 2.828-2.829c1.17-1.167 3.073-1.169 4.243 0 1.169 1.17 1.169 3.073 0 4.243l-2.829 2.828 1.414 1.414L19.778 11.293z"></path><path transform="rotate(-134.999 12 12)" d="M11 5.999H13V18H11z"></path>' } %}
-                                    <div colspan="2" class="url" style="margin: 5px !important; display:none;">
-                                        <input type="text" class="urlInput form-control" value="{{post.url()}}" readonly/>
-                                        <div class="copied alert alert-success" style="display:none;">Kopiert!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="bread-text">{{ post.content_wo_lead|raw }}</p>
-                            {# <img class="mb-2" src="https://picsum.photos/600/500" alt="" style=""> #}
-                            <div id="gallery-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
-                                <ol class="carousel-indicators gallery-indicators">
-                                    <li data-target="#gallery-carousel" data-slide-to="0" class="active"></li>
-                                    <li data-target="#gallery-carousel" data-slide-to="1"></li>
-                                    <li data-target="#gallery-carousel" data-slide-to="2"></li>
-                                </ol>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                    <img class="d-block w-100" src="https://picsum.photos/600/500" alt="">
-                                    </div>
-                                    <div class="carousel-item">
-                                    <img class="d-block w-100" src="https://picsum.photos/600/500" alt="">
-                                    </div>
-                                    <div class="carousel-item">
-                                    <img class="d-block w-100" src="https://picsum.photos/600/500" alt="">
-                                    </div>
-                                </div>
-                                <a class="carousel-control-prev" href="#gallery-carousel" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#gallery-carousel" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </div>
-    </div>
+	{% include "Page/TopImage.html.twig" %}
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<article>
+						<div class="info-text-section mt-3">
+							<div class="col p-0 mb-3">
+								{% for category in post.categories %}
+									<a class="category-link" href="{{ category.url }}">{{ category.title }}</a>
+									{% if not loop.last %},
+									{% endif %}
+								{% endfor %}
+							</div>
+							<h1 class="article-header">{{ post.getTitle()|raw }}</h1>
+							<p class="info-text-lead mt-4">{{ post.lead|raw }}</p>
+							<div class="row" style="margin-top: 2rem; margin-bottom: 2rem;">
+								{# <div class="col d-flex justify-content-center">
+									<h4 class="line line-long"></h4>
+								</div> #}
+								<div class="col m-auto pt-2">
+									{% for author in authors %}
+										{% embed "Post:madeby.html.twig"|UKMpath %}{% endembed %}
+										<div class="clearfix"></div>
+									{% endfor %}
+									{% if post.getMeta('type') == 'workshop' and post.hasMeta('sted') is defined %}
+										<b>STED:</b>
+										{{ post.getMeta('sted') }}
+									{% else %}
+										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width=".8rem" height=".8rem" viewBox="0 0 24 24" style="margin-right: .3rem;fill:rgba(0, 0, 0, 1);transform:;-ms-filter:"><path d="M12,2C6.486,2,2,6.486,2,12s4.486,10,10,10c5.514,0,10-4.486,10-10S17.514,2,12,2z M12,20c-4.411,0-8-3.589-8-8 s3.589-8,8-8s8,3.589,8,8S16.411,20,12,20z"></path><path d="M13 7L11 7 11 13 17 13 17 11 13 11z"></path></svg>
+										<span class="article-date" style="font-weight: 500">
+											{{ post.date|dato('j. M Y') }}
+										</span>
+									{% endif %}
+								</div>
+								<div class="col share-buttons col-xl-3 d-flex justify-content-around d-block d-lg-none">
+									<a class="share-btn fb-share" id="facebookShareButton" href="#">
+										<span class="article-svg dot dot-grey-large share-dot">
+											<span class="article-svg dot svg-dot svg-dot-large">
+												<svg class="icon-some" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:">
+													<path d="M12.001,2.002c-5.522,0-9.999,4.477-9.999,9.999c0,4.99,3.656,9.126,8.437,9.879v-6.988h-2.54v-2.891h2.54V9.798 c0-2.508,1.493-3.891,3.776-3.891c1.094,0,2.24,0.195,2.24,0.195v2.459h-1.264c-1.24,0-1.628,0.772-1.628,1.563v1.875h2.771 l-0.443,2.891h-2.328v6.988C18.344,21.129,22,16.992,22,12.001C22,6.479,17.523,2.002,12.001,2.002z"></path>
+												</svg>
+											</span>
+										</span>
+									</a>
+									<a href="mailto:?subject={{post.getTitle()|raw}}&amp;body="{{post.url()}} title="Share by Email" class="share-btn" href="#">
+										<span class="article-svg dot dot-grey-large share-dot">
+											<span class="article-svg dot svg-dot svg-dot-large">
+												<svg class="icon-some" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:">
+													<path d="M20,4H4C2.896,4,2,4.896,2,6v12c0,1.104,0.896,2,2,2h16c1.104,0,2-0.896,2-2V6C22,4.896,21.104,4,20,4z M20,8.7l-8,5.334 L4,8.7V6.297l8,5.333l8-5.333V8.7z"></path>
+												</svg>
+											</span>
+										</span>
+									</a>
+									<a class="share-btn kopierUrl" href="#">
+										<span class="article-svg dot dot-grey-large share-dot">
+											<span class="article-svg dot svg-dot svg-dot-large">
+												<svg class="icon-some" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:">
+													<path d="M4.222 19.778c.975.975 2.255 1.462 3.535 1.462 1.281-.001 2.562-.487 3.536-1.462l2.828-2.829-1.414-1.414-2.828 2.829c-1.169 1.167-3.072 1.169-4.243 0-1.169-1.17-1.169-3.073 0-4.243l2.829-2.828L7.051 9.879l-2.829 2.828C2.273 14.656 2.273 17.829 4.222 19.778zM19.778 11.293c1.948-1.949 1.948-5.122 0-7.071-1.95-1.95-5.123-1.948-7.071 0L9.879 7.051l1.414 1.414 2.828-2.829c1.17-1.167 3.073-1.169 4.243 0 1.169 1.17 1.169 3.073 0 4.243l-2.829 2.828 1.414 1.414L19.778 11.293z"></path><path transform="rotate(-134.999 12 12)" d="M11 5.999H13V18H11z"></path>
+												</svg>
+											</span>
+										</span>
+									</a>
+									<div class="url" style="display:none;">
+										<input type="text" class="urlInput form-control" value="{{post.url()}}" readonly/>
+										<div class="copied alert alert-light" style="display:none;">Kopiert!</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col share-buttons col-xl-2 justify-content-around mt-5 d-none d-sm-flex" style="flex-direction: column; height:7rem;">
+									<a class="share-btn fb-share" id="facebookShareButton" href="#">
+										<span class="article-svg dot dot-grey-large share-dot">
+											<span class="article-svg dot svg-dot svg-dot-large">
+												<svg class="icon-some" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:">
+													<path d="M12.001,2.002c-5.522,0-9.999,4.477-9.999,9.999c0,4.99,3.656,9.126,8.437,9.879v-6.988h-2.54v-2.891h2.54V9.798 c0-2.508,1.493-3.891,3.776-3.891c1.094,0,2.24,0.195,2.24,0.195v2.459h-1.264c-1.24,0-1.628,0.772-1.628,1.563v1.875h2.771 l-0.443,2.891h-2.328v6.988C18.344,21.129,22,16.992,22,12.001C22,6.479,17.523,2.002,12.001,2.002z"></path>
+												</svg>
+											</span>
+										</span>
+									</a>
+									<a href="mailto:?subject={{post.getTitle()|raw}}&amp;body="{{post.url()}} title="Share by Email" class="share-btn" href="#">
+										<span class="article-svg dot dot-grey-large share-dot">
+											<span class="article-svg dot svg-dot svg-dot-large">
+												<svg class="icon-some" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:">
+													<path d="M20,4H4C2.896,4,2,4.896,2,6v12c0,1.104,0.896,2,2,2h16c1.104,0,2-0.896,2-2V6C22,4.896,21.104,4,20,4z M20,8.7l-8,5.334 L4,8.7V6.297l8,5.333l8-5.333V8.7z"></path>
+												</svg>
+											</span>
+										</span>
+									</a>
+									<a class="share-btn kopierUrl" href="#">
+										<span class="article-svg dot dot-grey-large share-dot">
+											<span class="article-svg dot svg-dot svg-dot-large">
+												<svg class="icon-some" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:">
+													<path d="M4.222 19.778c.975.975 2.255 1.462 3.535 1.462 1.281-.001 2.562-.487 3.536-1.462l2.828-2.829-1.414-1.414-2.828 2.829c-1.169 1.167-3.072 1.169-4.243 0-1.169-1.17-1.169-3.073 0-4.243l2.829-2.828L7.051 9.879l-2.829 2.828C2.273 14.656 2.273 17.829 4.222 19.778zM19.778 11.293c1.948-1.949 1.948-5.122 0-7.071-1.95-1.95-5.123-1.948-7.071 0L9.879 7.051l1.414 1.414 2.828-2.829c1.17-1.167 3.073-1.169 4.243 0 1.169 1.17 1.169 3.073 0 4.243l-2.829 2.828 1.414 1.414L19.778 11.293z"></path><path transform="rotate(-134.999 12 12)" d="M11 5.999H13V18H11z"></path>
+												</svg>
+											</span>
+										</span>
+									</a>
+									<div class="url" style="display:none;">
+										<input type="text" class="urlInput form-control" value="{{post.url()}}" readonly/>
+										<div class="copied alert alert-light" style="display:none;">Kopiert!</div>
+									</div>
+								</div>
+	
+								<div class="col-xl-7">
+									<p class="bread-text">{{ post.content_wo_lead|raw }}</p>
+								</div>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="height: 9.875rem;background: transparent linear-gradient(180deg, hsla(var(--color-primary-blue-100), 0) 0%, rgba(227, 236, 252, 0.5) 100%) 0% 0% no-repeat padding-box;">
+			<div class="col share-buttons col-xl-3 d-flex justify-content-around m-5 d-block d-lg-none">
+				<a class="share-btn fb-share" id="facebookShareButton" href="#">
+					<span class="article-svg dot dot-grey-large share-dot">
+						<span class="article-svg dot svg-dot svg-dot-large">
+							<svg class="icon-some" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:">
+								<path d="M12.001,2.002c-5.522,0-9.999,4.477-9.999,9.999c0,4.99,3.656,9.126,8.437,9.879v-6.988h-2.54v-2.891h2.54V9.798 c0-2.508,1.493-3.891,3.776-3.891c1.094,0,2.24,0.195,2.24,0.195v2.459h-1.264c-1.24,0-1.628,0.772-1.628,1.563v1.875h2.771 l-0.443,2.891h-2.328v6.988C18.344,21.129,22,16.992,22,12.001C22,6.479,17.523,2.002,12.001,2.002z"></path>
+							</svg>
+						</span>
+					</span>
+				</a>
+				<a href="mailto:?subject={{post.getTitle()|raw}}&amp;body="{{post.url()}} title="Share by Email" class="share-btn" href="#">
+					<span class="article-svg dot dot-grey-large share-dot">
+						<span class="article-svg dot svg-dot svg-dot-large">
+							<svg class="icon-some" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:">
+								<path d="M20,4H4C2.896,4,2,4.896,2,6v12c0,1.104,0.896,2,2,2h16c1.104,0,2-0.896,2-2V6C22,4.896,21.104,4,20,4z M20,8.7l-8,5.334 L4,8.7V6.297l8,5.333l8-5.333V8.7z"></path>
+							</svg>
+						</span>
+					</span>
+				</a>
+				<a class="share-btn kopierUrl" href="#">
+					<span class="article-svg dot dot-grey-large share-dot">
+						<span class="article-svg dot svg-dot svg-dot-large">
+							<svg class="icon-some" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:">
+								<path d="M4.222 19.778c.975.975 2.255 1.462 3.535 1.462 1.281-.001 2.562-.487 3.536-1.462l2.828-2.829-1.414-1.414-2.828 2.829c-1.169 1.167-3.072 1.169-4.243 0-1.169-1.17-1.169-3.073 0-4.243l2.829-2.828L7.051 9.879l-2.829 2.828C2.273 14.656 2.273 17.829 4.222 19.778zM19.778 11.293c1.948-1.949 1.948-5.122 0-7.071-1.95-1.95-5.123-1.948-7.071 0L9.879 7.051l1.414 1.414 2.828-2.829c1.17-1.167 3.073-1.169 4.243 0 1.169 1.17 1.169 3.073 0 4.243l-2.829 2.828 1.414 1.414L19.778 11.293z"></path><path transform="rotate(-134.999 12 12)" d="M11 5.999H13V18H11z"></path>
+							</svg>
+						</span>
+					</span>
+				</a>
+				<div class="url" style="display:none;">
+					<input type="text" class="urlInput form-control" value="{{post.url()}}" readonly/>
+					<div class="copied alert alert-light" style="display:none;">Kopiert!</div>
+				</div>
+			</div>
+		</div>
 {% endblock %}

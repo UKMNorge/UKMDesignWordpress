@@ -1,9 +1,45 @@
 {% extends "Page/Fullpage.html.twig"|UKMpath %}
 
 {% block content %}
-	<div class="container-fluid">
+	<div id="image-slider" class="carousel slide front-carousel" data-ride="carousel" {#style="margin-top: -5rem;"#}>
+		<div class="carousel-inner">
+			{% for post in posts.getAll() %}
+				{# {% if post.meta.repost is defined %} #}
+					<div class="carousel-item {% if loop.first %} active {% endif %} ">
+						<a href="{{post.url}}">
+							<div class="front-carousel-image card-news" style="background-image: url('{{ post.image.medium.src }}'); no-repeat center/cover; {#height: 18rem; opacity: 0.4;#}">
+								{% if post.meta.video_on_top is defined and post.meta.video_on_top is not empty %}
+									<img src="{{ UKMasset('img/circle-play.png') }}" class="featured-image-play"/>
+								{% endif %}
+								{% if post.image.medium.src is not defined %}
+									<img class="card-image card-news" src="//assets.{{ UKM_HOSTNAME }}/img/bilde.png"/>
+								{% endif %}
+							</div>
+							<div class="row card-element mt-3" style="padding: 0 1rem 0.5rem 1rem;">
+								<span class="message-category" style="padding-right: 3rem; padding-bottom: .3rem;">{{ post.category.name }}</span>
+								<span class="message-title-end">{{ post.getTitle() }}</span>
+								<p class="message-content-end text-truncate">{{ post.lead }}</p>
+							</div>
+						</a>
+					</div>
+				{# {% endif %} #}
+			{% endfor %}
+		</div>
+		<a class="carousel-control-prev" href="#image-slider" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#image-slider" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
+	<div class="container">
+		<div class="col d-flex justify-content-center">
+			<h4 class="line"></h4>
+		</div>
 		<div class="row-flex">
-			<div class="col-12 col-md-5 col-lg-5 mb-3 pull-right">
+			<div class="col-12 mb-3">
 				<div class="right">
 					{% if shortcuts is defined %}
 						{% for link in shortcuts.getAll() %}
@@ -15,41 +51,28 @@
 				</div>
 			</div>
 
-			{# HVA ER UKM? #}
-			<div class="col-12 col-md-7 float-left mt-3 mb-2">
-				<p class="lead">
-					{{ page.getContentBeforeMore()|raw }}
-				</p>
-				<p class="d-block d-md-none">
-					<a href="#" class="UKMtoggleShow phoneReadMoreUKM" data-target="phoneReadMoreUKM">Les mer</a>
-				</p>
-
-				<div class="UKMtoggleContent" style="display:none" id="phoneReadMoreUKM">
-					{{ page.getContentAfterMore()|raw }}
-					<p>
-						<a href="#" class="UKMtoggleHide phoneReadMoreUKM" data-target="phoneReadMoreUKM">Lukk</a>
-					</p>
-				</div>
-				<div class="d-none d-md-block">
-					{{ page.getContentAfterMore|raw }}
-				</div>
-			</div>
-
 			{# NYHETER #}
 			{% if posts is defined and posts.getAntall() > 0 %}
-				<div class="col-12 col-md-5 float-right">
+				<div class="col-12">
 					<div class="row">
+						{# {% for post in posts.getAll()|slice(1,length) %} #}
 						{% for post in posts.getAll() %}
-							<div class="col-6">
+							<div class="col-12 d-flex justify-content-center d-block d-lg-none mt-4">
+								<span class="undertitler undertitler-news">{{ post.date|dato('j. M Y') }}</span>
+							</div>
+							<div class="col-12 col-md-6 p-0 mb-4">
 								{% embed "Post:Grid-default.html.twig"|UKMpath with { post: post } %}{% endembed %}
 							</div>
 						{% endfor %}
 					</div>
-					<div class="col right">
-						<a href="{{ posts.getArchiveLink()|raw }}" class="btn btn-outline-primary">Se eldre saker &raquo;</a>
-					</div>
 				</div>
 			{% endif %}
 		</div>
+	</div>
+	<div class="col d-flex justify-content-center pt-5" style="height: 9.875rem;background: transparent linear-gradient(180deg, hsla(var(--color-primary-blue-100), 0) 0%, rgba(227, 236, 252, 0.5) 100%) 0% 0% no-repeat padding-box;">
+		<a href="{{ posts.getArchiveLink()|raw }}" type="button" class="ukm-button ukm-button-front text ukm-button-primary vis-mer-btn" role="button" aria-disabled="true">
+			<span>Vis mer</span>
+			{% include "Global/svg/chevron-white.html.twig" %}
+		</a>
 	</div>
 {% endblock %}
