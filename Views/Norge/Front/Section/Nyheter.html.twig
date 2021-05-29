@@ -7,8 +7,7 @@
     <div class="row">
         <div class="col-12 col-md-6 col-xl-6 mb-3">
             {% set main_post = posts.getAll()|first %}
-            <pre>{{ dump(main_post )}}</pre>
-            <a href="{{post.getUrl()}}">
+            <a href="{{main_post.getUrl()}}">
                 <div class="ukm-card ukm-card-front ukm-card-front-main">
                     <div class="row card-element card-element-end">
                         {% if main_post.image.medium.src is not defined %}
