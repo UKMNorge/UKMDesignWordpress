@@ -1,9 +1,11 @@
-<div class="col-lg-4 d-flex justify-content-between flex-column">
-    <div><img class="message-img" src="//assets.{{ UKM_HOSTNAME }}/img/{{ img|raw }}" /></div>
+<div class="col-4 d-flex justify-content-between flex-column">
+    <div>
+        <img class="message-img" src="//assets.{{ UKM_HOSTNAME }}/img/{{ img|raw }}" />
+    </div>
     <h5 class="message-title">{{ title }}</h5>
     <span class="message-content">{{ content }}</span>
     <button type="button" class="ukm-button ukm-button-front ukm-button-secondary" style="padding: 0 !important; height: auto;">
         <span class="btn-text">Les mer</span>
-        {% include "Global/svg/chevron-blue.html.twig"%}
+        {% include "UKMDesign/SVG/ChevronBlue.html.twig"%}
     </button>
 </div>

@@ -44,6 +44,8 @@ class Data {
     }
     public static function fylke( Fylke $fylke ) {
         $data = static::fylke_eller_kommune($fylke);
+        $data->url = $fylke->getLink(false);
+
         return $data;
     }
     public static function kommune( Kommune $kommune ) {

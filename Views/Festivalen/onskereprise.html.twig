@@ -4,12 +4,12 @@
 	{{ parent() }}
 	<script>
 		$(document).ready(function() {
-			UKMKonkurranse.on('{{ reprise_id }}:svar', function( response ) {
+			UKM.konkurranse.on('{{ reprise_id }}:svar', function( response ) {
 				$('#reprise-valg').hide();
 				$('#reprise-thanks').fadeIn(200);
 			});
 			
-			UKMKonkurranse.on('{{ reprise_id }}:get', function( response ) {
+			UKM.konkurranse.on('{{ reprise_id }}:get', function( response ) {
 				if( response.harSvart ) {
 					$('#reprise-valg').hide();
 					$('#reprise-mitt-valg').html( response.innslag );
@@ -20,7 +20,7 @@
 			if( UKMMobil.har() ) {
 				$('#reprise-mobil').val( UKMMobil.get() ).attr('type', 'hidden');
 				$('#reprise-mobil-show').html( UKMMobil.get() ).show();
-				UKMKonkurranse.get('{{ reprise_id }}');
+				UKM.konkurranse.get('{{ reprise_id }}');
 			}
 		});
 		
@@ -28,7 +28,7 @@
 			e.preventDefault();
 			$('#reprise-submit').html('Lagrer...');
 			UKMMobil.set( $('#reprise-mobil').val() );
-			UKMKonkurranse.svar('{{ reprise_id }}', $('#reprise-innslag').val());
+			UKM.konkurranse.svar('{{ reprise_id }}', $('#reprise-innslag').val());
 			return false;
 		});
 		

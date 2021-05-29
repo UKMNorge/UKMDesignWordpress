@@ -49,3 +49,8 @@
         {% endif %}
 	</div>
 {% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="//assets.{{ UKM_HOSTNAME }}/js/page/fylke.js" ></script>
+{% endblock %}

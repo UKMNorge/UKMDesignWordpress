@@ -1,4 +1,5 @@
-<a href="{{kommune.url}}">
+{% set omrade = kommune is defined ? kommune : fylke %}
+<a href="{{omrade.url}}" class="linkWithin">
     <img src="//assets.ukm.dev/img/location.svg" />&nbsp;&nbsp;
-    <span>Skal du delta i <span id="derdubor" style="font-weight: 600">{{kommune.navn}}?</span></span>
+    <span>Gå til UKM <span id="derdubor" style="font-weight: 600">{{omrade.navn}}</span></span>
 </a>

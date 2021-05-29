@@ -56,19 +56,8 @@ Wordpress::addViewData('posts', $posts);
 $kategori = get_category_by_slug( 'fornoyde-deltakere' );
 $kategori_id = $kategori->term_id;
 
-$testiomonial = Posts::getByCategory($kategori_id);
-Wordpress::addViewData('testiomonial', $testiomonial);
-//var_dump($testiomonial);
+$testimonial = Posts::getByCategory($kategori_id);
+Wordpress::addViewData('testimonial', $testimonial);
+//var_dump($testimonial);
 
-Wordpress::includeTwigJs();
-Wordpress::setView('Norge/Front/2020');
-
-if( isset($_COOKIE['lastlocation'])) {
-    $kommune = new Kommune($_COOKIE['lastlocation']);
-    $mitt_ukm = new stdClass();
-    $mitt_ukm->kommunenummer = $kommune->getId();
-    $mitt_ukm->fylkesnummer = $kommune->getFylke()->getId();
-    $mitt_ukm->kommunenavn = $kommune->getNavn();
-
-    Wordpress::addViewData('last_location', $mitt_ukm);
-}
+Wordpress::setView('Norge/Front/Standard');

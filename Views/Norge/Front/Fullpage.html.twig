@@ -2,11 +2,11 @@
 
 {% block javascripts %}
 	{{ parent() }}
-	<script type="text/javascript" src="{{ UKMasset("js/scrolloverflow.min.js") }}?20190520-Oskar"></script>
-    <script type="text/javascript" src="{{ UKMasset("js/UKMfullpage.min.js") }}?20190520-Oskar"></script>
+	<script type="text/javascript" src="//assets.{{ UKM_HOSTNAME }}/js/vendor/scrolloverflow.min.js"></script>
+    <script type="text/javascript" src="//assets.{{ UKM_HOSTNAME }}/js/vendor/fullpage.js"></script>
 {% endblock %}
 
 {% block css %}
 	{{ parent() }}
-	<link href="{{ UKMasset("css/UKMfullpage.css") }}" rel="stylesheet" />
+	<link href="//assets.{{ UKM_HOSTNAME }}/css/UKMfullpage.css" rel="stylesheet" />
 {% endblock %}

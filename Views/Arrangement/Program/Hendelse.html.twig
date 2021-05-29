@@ -1,5 +1,10 @@
 {% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
 
+{% block javascripts %}
+	{{ parent() }}
+	<script src="//assets.{{ UKM_HOSTNAME }}/js/page/program.js" ></script>
+{% endblock %}
+
 {% block css %}
 	<style>
 

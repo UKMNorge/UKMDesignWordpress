@@ -6,6 +6,7 @@ use UKMNorge\DesignWordpress\Environment\Ajax;
 use UKMNorge\DesignWordpress\Environment\Redirects;
 use UKMNorge\DesignWordpress\Environment\Setup;
 use UKMNorge\DesignWordpress\Environment\Wordpress;
+use UKMNorge\Geografi\Kommune;
 
 require_once('vendor/autoload.php');
 
@@ -39,6 +40,18 @@ Redirects::hook();
 Setup::hook();
 Shortcodes::hook();
 #Rewrites::hook();
+Wordpress::includeTwigJs();
+
+if( isset($_COOKIE['lastlocation'])) {
+    $kommune = new Kommune($_COOKIE['lastlocation']);
+    $mitt_ukm = new stdClass();
+    $mitt_ukm->kommunenummer = $kommune->getId();
+    $mitt_ukm->fylkesnummer = $kommune->getFylke()->getId();
+    $mitt_ukm->kommunenavn = $kommune->getNavn();
+
+    Wordpress::addViewData('last_location', $mitt_ukm);
+}
+
 
 /**
  * @todo Implementer twig-cache?

@@ -1,53 +1,43 @@
-{% extends "Norge/Front/Fullpage.html.twig"|UKMpath %}
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
+
+{% set showHero = true %}
+
+{% block hero %}
+	<div class="hero-text-section">
+		<h1 class="hero-text">En møteplass for kreativ ungdom</h1>
+		<h3 class="hero-text-lead">UKM handler om å ha det gøy gjennom å skape noe sammen.</h3>
+	</div>
+	<div class="background-space"></div>
+{% endblock %}
+
+{% block hero_cta %}
+	<div class="front-buttons">
+		{% include "Norge/Front/Components/Button.html.twig" %}
+		{% include "Norge/Front/Components/Button-secondary.html.twig" %}
+	</div>
+{% endblock %}
+
+{% block content %}
+	{# Section 1 - Card info #}
+	{% include "Norge/Front/Section/HvaEr.html.twig" %}
+
+	{# Section 2 - Testimonials #}
+	{#% include "Norge/Front/Section/Testimonial.html.twig" %#}
+
+	{# Section 3 - Tidligere arrangementer #}
+	{#% include "Norge/Front/Section/TV.html.twig" %#}
+
+	{# Section 4 - Nyheter #}
+	{% include "Norge/Front/Section/Nyheter.html.twig" %}
+
+	{# Section 5 - Siste nytt #}
+	{# {% include "Norge/Front/Section/NyheterLokalt.html.twig" %} #}
+
+{# Section 6 - Contact-info #}
+	{% include "Norge/Front/Section/Contact.html.twig" %}{# Section 7 - Footer #}
+{% endblock %}
 
 {% block javascripts %}
-    {{parent()}}
-    <script type="text/javascript">
-		$(document).ready(()=>{
-			UKMfullpage( '#fullpage', ['pamelding', 'om', 'fylker']);
-		});
-	</script>
-{% endblock %}
-{% block framework_content %}
-	<div id="fullpage">
-		<section class="section fullpage white waypoint" data-photo-background-transition="#000000" style="background-color: #00508C;" data-photo-background="https://grafikk.ukm.no/forside/superstition-color.jpg">
-			<div class="fullpage-content">
-				<div class="meny">
-					<a href="/hovedmeny/" class="btn btn-sm my-2 btn-outline-primary">MENY</a>
-				</div>
-				<div class="logo">
-					<img src="https://grafikk.ukm.no/profil/logoer/UKM_logo_hvit_0100.png" />
-				</div>
-				<header class="white" style="z-index: 100">
-					<h1 class="border autoshrink">
-						{% if pamelding_apen %}
-							<a href="/derdubor/">START PÅMELDING</a>
-						{% else %}
-							PÅMELDING STARTER
-							<br />
-							1. NOVEMBER
-						{% endif %}
-					</h1>
-					<div class="header-more" style="margin-top: 2vh; margin-bottom: -3vh">
-						<p>
-                            <a href="/korona/">Se hvordan koronaviruset påvirker UKM  🦠</a>
-                        </p>
-                    </div>
-					<div class="header-more" style="margin-top: 5vh;">
-						<p>
-							<a href="#om/2">Hva er UKM?</a>
-							| 
-							<a href="#fylker/3">Finn nærmeste UKM</a>
-						</p>
-
-						<div class="readmoreIcon">
-							<a href="#om/2" style="text-decoration: none"><span class="icon icon-down-2"></span></a>
-						</div>
-					</div>
-				</header>
-			</div>
-		</section>
-		{% include "Norge/Front/Section/Hvaer.html.twig" %}
-		{% include "Norge/Front/Section/Fylker.html.twig" %}
-	</div>	
+	{{ parent() }}
+	<script src="//assets.{{ UKM_HOSTNAME }}/js/page/front/testimonials.js" ></script>
 {% endblock %}

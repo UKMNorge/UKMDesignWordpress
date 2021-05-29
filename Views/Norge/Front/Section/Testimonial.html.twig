@@ -1,6 +1,6 @@
 <div class="container-fluid testimonial" style="margin-bottom: 3.5rem">
     <div class="row" id="testimonial">
-        {% set post = testiomonial.getAll()|first %}
+        {% set post = testimonial.getAll()|first %}
         <div class="col-xs-1">
             <div class="side-pic" style="border: 2px solid black; overflow-x: hidden; background: url('//assets.{{ UKM_HOSTNAME }}/img/bolde.png') no-repeat center/cover;">{{ post.image.medium.src }}</div>
         </div>
@@ -16,7 +16,7 @@
     {# Bildegalleri #}
     <div class="people-carousel">
         <ul class="testimonial-items list-group list-group-horizontal">
-            {% for post in testiomonial.getAll() %}
+            {% for post in testimonial.getAll() %}
             <li class="some-item list-group-item">
                 <a aria-label="">
                     <div
