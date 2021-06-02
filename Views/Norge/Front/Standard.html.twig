@@ -3,16 +3,20 @@
 {% set showHero = true %}
 
 {% block hero %}
-	<div class="hero-text-section">
-		<h1 class="hero-text">En møteplass for kreativ ungdom</h1>
-		<h3 class="hero-text-lead">UKM handler om å ha det gøy gjennom å skape noe sammen.</h3>
+	<div class="container hero-container">
+		<div class="row">
+			<h1>En møteplass for kreativ ungdom</h1>
+			<h3>UKM handler om å ha det gøy gjennom å skape noe sammen.</h3>
+			<div class="background-space"></div>
+			{# {% include "Norge/Front/Components/Button.html.twig" with {title: 'Gå til påmeldingssiden', path: '/fylker/', extra: 'mt-2'} %}
+			{% include "Norge/Front/Components/Button-secondary.html.twig" %} #}
+		</div>
 	</div>
-	<div class="background-space"></div>
 {% endblock %}
 
 {% block hero_cta %}
 	<div class="front-buttons">
-		{% include "Norge/Front/Components/Button.html.twig" %}
+		{% include "Norge/Front/Components/Button.html.twig" with {title: 'Gå til påmeldingssiden', path: '/fylker/', extra: 'mt-2'} %}
 		{% include "Norge/Front/Components/Button-secondary.html.twig" %}
 	</div>
 {% endblock %}
@@ -34,10 +38,11 @@
 	{# {% include "Norge/Front/Section/NyheterLokalt.html.twig" %} #}
 
 {# Section 6 - Contact-info #}
-	{% include "Norge/Front/Section/Contact.html.twig" %}{# Section 7 - Footer #}
+	{% include "Norge/Front/Section/Contact.html.twig" %}
+	{# Section 7 - Footer #}
 {% endblock %}
 
 {% block javascripts %}
 	{{ parent() }}
-	<script src="//assets.{{ UKM_HOSTNAME }}/js/page/front/testimonials.js" ></script>
+	<script src="//assets.{{ UKM_HOSTNAME }}/js/page/front/testimonials.js"></script>
 {% endblock %}
