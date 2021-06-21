@@ -3,15 +3,11 @@
 {% set showHero = true %}
 
 {% block hero %}
-	<div class="container hero-container">
-		<div class="row">
-			<h1>En møteplass for kreativ ungdom</h1>
-			<h3>UKM handler om å ha det gøy gjennom å skape noe sammen.</h3>
-			<div class="background-space"></div>
-			{# {% include "Norge/Front/Components/Button.html.twig" with {title: 'Gå til påmeldingssiden', path: '/fylker/', extra: 'mt-2'} %}
-			{% include "Norge/Front/Components/Button-secondary.html.twig" %} #}
-		</div>
-	</div>
+	<h1>En møteplass for kreativ ungdom</h1>
+	<h3>UKM handler om å ha det gøy gjennom å skape noe sammen.</h3>
+	<div class="background-space"></div>
+	{# {% include "Norge/Front/Components/Button.html.twig" with {title: 'Gå til påmeldingssiden', path: '/fylker/', extra: 'mt-2'} %}
+	{% include "Norge/Front/Components/Button-secondary.html.twig" %} #}
 {% endblock %}
 
 {% block hero_cta %}
@@ -22,6 +18,8 @@
 {% endblock %}
 
 {% block content %}
+	{# {% include "Norge/Front/Components/Perfect-button.html.twig" %} #}
+
 	{# Section 1 - Card info #}
 	{% include "Norge/Front/Section/HvaEr.html.twig" %}
 
