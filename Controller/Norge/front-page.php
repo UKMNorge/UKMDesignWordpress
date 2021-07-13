@@ -58,6 +58,5 @@ $kategori_id = $kategori->term_id;
 
 $testimonial = Posts::getByCategory($kategori_id);
 Wordpress::addViewData('testimonial', $testimonial);
-//var_dump($testimonial);
 
 Wordpress::setView('Norge/Front/Standard');
