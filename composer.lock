@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d40836316a7a64a9db24a05731a3fe61",
+    "content-hash": "8cf37b83d2253329bde78baea0ea5922",
     "packages": [
         {
             "name": "mariusmandal/wpoo",
@@ -97,28 +97,33 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "dev-master",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "fbdeaec0df06cf3d51c93de80c7eb76e271f5a38"
+                "reference": "46cd95797e9df938fdd2b03693b5fca5e64b01ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/fbdeaec0df06cf3d51c93de80c7eb76e271f5a38",
-                "reference": "fbdeaec0df06cf3d51c93de80c7eb76e271f5a38",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/46cd95797e9df938fdd2b03693b5fca5e64b01ce",
+                "reference": "46cd95797e9df938fdd2b03693b5fca5e64b01ce",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=7.1"
             },
             "suggest": {
                 "ext-ctype": "For best performance"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.14-dev"
+                    "dev-main": "1.23-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
                 }
             },
             "autoload": {
@@ -151,32 +156,54 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2020-01-13T11:15:53+00:00"
+            "support": {
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.23.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-02-19T12:13:01+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "dev-master",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "34094cfa9abe1f0f14f48f490772db7a775559f2"
+                "reference": "9174a3d80210dca8daa7f31fec659150bbeabfc6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/34094cfa9abe1f0f14f48f490772db7a775559f2",
-                "reference": "34094cfa9abe1f0f14f48f490772db7a775559f2",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/9174a3d80210dca8daa7f31fec659150bbeabfc6",
+                "reference": "9174a3d80210dca8daa7f31fec659150bbeabfc6",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=7.1"
             },
             "suggest": {
                 "ext-mbstring": "For best performance"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.14-dev"
+                    "dev-main": "1.23-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
                 }
             },
             "autoload": {
@@ -210,7 +237,24 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-01-13T11:15:53+00:00"
+            "support": {
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/main"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-05-27T12:26:48+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -281,27 +325,28 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "73f5ef259026a6b28f4a203ec096f491c8a94787"
+                "reference": "b8cd4d4032a92991b35d7de9a2f94c97a223c29c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/73f5ef259026a6b28f4a203ec096f491c8a94787",
-                "reference": "73f5ef259026a6b28f4a203ec096f491c8a94787",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/b8cd4d4032a92991b35d7de9a2f94c97a223c29c",
+                "reference": "b8cd4d4032a92991b35d7de9a2f94c97a223c29c",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2.5",
+                "php": ">=7.2.5",
                 "symfony/polyfill-ctype": "^1.8",
                 "symfony/polyfill-mbstring": "^1.3"
             },
             "require-dev": {
                 "psr/container": "^1.0",
-                "symfony/phpunit-bridge": "^4.4|^5.0"
+                "symfony/phpunit-bridge": "^4.4.9|^5.0.9|^6.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "3.3-dev"
                 }
             },
             "autoload": {
@@ -335,26 +380,41 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2020-02-14T15:18:25+00:00"
+            "support": {
+                "issues": "https://github.com/twigphp/Twig/issues",
+                "source": "https://github.com/twigphp/Twig/tree/3.x"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/twig/twig",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-06-22T13:52:55+00:00"
         },
         {
             "name": "ukmnorge/design",
-            "version": "dev-designassets-support",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UKMNorge/UKMDesign.git",
-                "reference": "451b4511fea30759e05f65e1cb516cc0bde248ff"
+                "reference": "cc2e728b653e8b13fd6fc10068592658606ab3a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UKMNorge/UKMDesign/zipball/451b4511fea30759e05f65e1cb516cc0bde248ff",
-                "reference": "451b4511fea30759e05f65e1cb516cc0bde248ff",
+                "url": "https://api.github.com/repos/UKMNorge/UKMDesign/zipball/cc2e728b653e8b13fd6fc10068592658606ab3a3",
+                "reference": "cc2e728b653e8b13fd6fc10068592658606ab3a3",
                 "shasum": ""
             },
             "require": {
                 "symfony/yaml": ">=2.0",
                 "twig/twig": "~1.0 || ~2.0 || ^3.0"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -378,9 +438,9 @@
             "homepage": "https://github.com/UKMNorge/UKMDesign",
             "support": {
                 "issues": "https://github.com/UKMNorge/UKMDesign/issues",
-                "source": "https://github.com/UKMNorge/UKMDesign/tree/designassets-support"
+                "source": "https://github.com/UKMNorge/UKMDesign/tree/master"
             },
-            "time": "2021-05-20T11:56:33+00:00"
+            "time": "2020-09-23T20:38:05+00:00"
         },
         {
             "name": "ukmnorge/designvanilla",
@@ -435,8 +495,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "mariusmandal/wpoo": 20,
-        "ukmnorge/designvanilla": 20,
-        "ukmnorge/design": 20
+        "ukmnorge/designvanilla": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
