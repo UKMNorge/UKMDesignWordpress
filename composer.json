@@ -26,6 +26,6 @@
     "require": {
         "symfony/yaml": ">=2.0",
         "mariusmandal/wpoo": "dev-master",
-        "ukmnorge/designvanilla": "dev-master"
+        "ukmnorge/designvanilla": "dev-deployment-test"
     }
 }
