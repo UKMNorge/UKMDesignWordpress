@@ -53,10 +53,12 @@ restore_current_blog();
 Wordpress::addViewData('posts', $posts);
 
 // TESTIMONIALS
-$kategori = get_category_by_slug( 'fornoyde-deltakere' );
-$kategori_id = $kategori->term_id;
+$kategori = get_category_by_slug( 'testimonials' );
 
-$testimonial = Posts::getByCategory($kategori_id);
-Wordpress::addViewData('testimonial', $testimonial);
+if($kategori) {
+    $kategori_id = $kategori->term_id;
+    $testimonial = Posts::getByCategory($kategori_id);
+    Wordpress::addViewData('testimonial', $testimonial);    
+}
 
 Wordpress::setView('Norge/Front/Standard');
