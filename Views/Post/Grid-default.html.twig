@@ -3,17 +3,19 @@
 		<div class="row card-element card-element-end mt-3">
 			<div class="card-image card-news" style="background-image: url('{{ post.image.medium.src }}'); no-repeat center/cover;">
 				{% if post.meta.video_on_top is defined and post.meta.video_on_top is not empty %}
-					<img src="{{ UKMasset('img/circle-play.png') }}" class="featured-image-play" />
+					<img src="{{ UKMasset('img/circle-play.png') }}" class="featured-image-play"/>
 				{% endif %}
 				{% if post.image.medium.src is not defined %}
-					<img class="card-image card-news" src="//assets.{{ UKM_HOSTNAME }}/img/bilde.png" />
+					<img class="card-image card-news" src="//assets.{{ UKM_HOSTNAME }}/img/bilde.png"/>
 				{% endif %}
 			</div>
 		</div>
 		<div class="row card-element" style="padding: 0 1rem 0.5rem 1rem;">
-			<span class="message-category" style="padding-right: 3rem; padding-bottom: .3rem;">{{ post.category.name }}</span>
-			<span class="message-title-end">{{ post.getTitle() }}</span>
-			<p class="message-content-end text-truncate">{{ post.lead }}</p>
+			<div class="card-body news-body">
+				<span class="card-text">{{ post.getCategories() is empty ? 'ukategorisert' : post.getCategories() }}</span>
+				<span class="card-text">{{ post.getTitle() }}</span>
+				<p class="card-text truncate-overflow">{{ post.lead }}</p>
+			</div>
 		</div>
 	</div>
 </a>
