@@ -9,13 +9,30 @@
 					<img class="card-image card-news" src="//assets.{{ UKM_HOSTNAME }}/img/bilde.png"/>
 				{% endif %}
 			</div>
-		</div>
-		<div class="row card-element" style="padding: 0 1rem 0.5rem 1rem;">
-			<div class="card-body news-body">
-				<span class="card-text">{{ post.getCategories() is empty ? 'ukategorisert' : post.getCategories() }}</span>
-				<span class="card-text">{{ post.getTitle() }}</span>
-				<p class="card-text truncate-overflow">{{ post.lead }}</p>
+			<div class="col pr-0 d-flex flex-wrap align-items-center">
+				<div class="card-body news-body">
+					<span class="card-text">{{ post.getCategories() is empty ? 'ukategorisert' : post.getCategories() }}</span>
+					<span class="card-text">{{ post.getTitle() }}</span>
+					<p class="card-text truncate-overflow">{{ post.lead }}</p>
+				</div>
 			</div>
 		</div>
 	</div>
 </a>
+{# 
+<a class="col-12 bottom-buffer card-news" href="{{post.getUrl()}}">
+	<div class="ukm-card ukm-card-front col-12">
+		<div class="row card-element card-margin">
+			<div class="col-xs-1 d-flex flex-wrap align-items-center">
+				<div class="card-image-small" style="background: url('{{ post.getFeaturedImage().getUrl() }}') no-repeat center/cover;"></div>
+			</div>
+			<div class="col pr-0 d-flex flex-wrap align-items-center">
+				<div class="card-body news-body">
+					<span class="card-text">{{ post.getCategories() is empty ? 'ukategorisert' : post.getCategories() }}</span>
+					<span class="card-text">{{ post.getTitle() }}</span>
+					<p class="card-text truncate-overflow">{{ post.lead }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</a> #}

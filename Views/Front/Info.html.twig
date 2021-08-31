@@ -1,7 +1,7 @@
 {% extends "Page/Fullpage.html.twig"|UKMpath %}
 
 {% block content %}
-	<div id="image-slider" class="carousel slide front-carousel" data-ride="carousel" {#style="margin-top: -5rem;"#}>
+	<div id="image-slider" class="carousel slide front-carousel" data-ride="carousel" >
 		<div class="carousel-inner">
 			{% for post in posts.getAll() %}
 				{# {% if post.meta.repost is defined %} #}
@@ -16,9 +16,11 @@
 								{% endif %}
 							</div>
 							<div class="row card-element mt-3" style="padding: 0 1rem 0.5rem 1rem;">
-								<span class="message-category" style="padding-right: 3rem; padding-bottom: .3rem;">{{ post.category.name }}</span>
-								<span class="message-title-end">{{ post.getTitle() }}</span>
-								<p class="message-content-end text-truncate">{{ post.lead }}</p>
+									<div class="card-body news-body">
+										<span class="card-text">{{ post.getCategories() is empty ? 'ukategorisert' : post.getCategories() }}</span>
+										<span class="card-text">{{ post.getTitle() }}</span>
+										<p class="card-text truncate-overflow">{{ post.lead }}</p>
+									</div>
 							</div>
 						</a>
 					</div>
