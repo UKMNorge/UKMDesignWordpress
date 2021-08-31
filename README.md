@@ -99,3 +99,39 @@ eller
     {{ parent() }}
 {% endblock %}
 ```
+
+# Lansering av nye versjoner av tema
+
+Husk: utplassering først må skje på DEV-miljø og etterpå på produksjon. Dette er en 
+
+## Lansering av nye versjoner av tema på DEV-miljø
+
+1. Gå på VM gjennom SSH `vagrant ssh main`
+2. `cd /var/www/wordpress/wp-content/themes` 
+3. `git clone` dette repoet i en ny mappe med navn `UKMDesignWordpress_vX`
+4. `cd UKMDesignWordpress_vX`
+5. `composer install`
+6. `composer update`
+7. Skriv navn og versjon av tema i styles.css (for små endringer kan versjon format X.Y.Z brukes. For eks. 5.0.1)
+8. Legg til bildet med navn `screenshot.png` som skal brukes som thumbnail (valgfritt)
+9. `git commit`. Commit nye endringer i `composer.lock` og `styles.css`
+10. `git push`
+11. Gjør tema tilgjengelig på https://ukm.dev/wp-admin/network/themes.php
+12. Aktiver det på https://ukm.dev/wp-admin/themes.php
+
+Husk å hente riktig branch på assets https://github.com/UKMNorge/UKMDesignAssets. Assets ligger på `/var/www/assets` på VM
+
+## Lansering av nye versjoner av tema på produksjon
+
+OBS: Utplassering på DEV-miljø må skje først!
+
+1. Kjør `git clone` av dette repoet på wordpress/wp-content/themes/
+2. Endre navn av mappen til `UKMDesignWordpress_vX` (X betyr versjon)
+3. Kjør `cd UKMDesignWordpress_vX`
+4. `composer update` (det er sterkt anbefalt å ikke kjøre composer install på produksjon. composer install MÅ kjøres på DEV-miljø og filen composer.lock commites)
+5. Gjør tema tilgjengelig på https://ukm.no/wp-admin/network/themes.php
+6. Aktiver Tema på https://ukm.no/wp-admin/themes.php
+
+Husk å hente riktig branch på assets https://github.com/UKMNorge/UKMDesignAssets.
+
+VIKTIG: i tilfelle det nye temaet gir feilmelding da kan det gamle temaet aktiveres igjen.
