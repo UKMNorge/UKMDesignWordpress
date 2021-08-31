@@ -102,7 +102,7 @@ eller
 
 # Lansering av nye versjoner av tema
 
-Husk: utplassering først må skje på DEV-miljø og etterpå på produksjon. Dette er en 
+Husk: utplassering først må skje på DEV-miljø og etterpå på produksjon.
 
 ## Lansering av nye versjoner av tema på DEV-miljø
 
