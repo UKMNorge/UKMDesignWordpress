@@ -132,7 +132,7 @@ OBS: Utplassering på DEV-miljø må skje først!
 3. Kjør `cd UKMDesignWordpress_vX`
 4. `composer update` (det er sterkt anbefalt å ikke kjøre composer install på produksjon. composer install MÅ kjøres på DEV-miljø og filen composer.lock commites)
 5. Gjør tema tilgjengelig på https://ukm.no/wp-admin/network/themes.php
-6. Aktiver Tema på https://ukm.no/wp-admin/themes.php
+6. Aktiver tema på https://ukm.no/wp-admin/themes.php
 
 Husk å hente riktig branch på assets https://github.com/UKMNorge/UKMDesignAssets.
 
