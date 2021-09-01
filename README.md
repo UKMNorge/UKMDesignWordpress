@@ -106,7 +106,6 @@ Husk: utplassering først må skje på DEV-miljø og etterpå på produksjon.
 
 ## Lansering av nye versjoner av tema på DEV-miljø
 
-UKMDesign:
 1. Commit alle endringer på master på https://github.com/UKMNorge/UKMDesign
 2. Update pakken `ukmnorge/design` på https://packagist.org
 3. Gå på VM gjennom SSH `vagrant ssh main`
