@@ -1,29 +1,29 @@
 {% extends "Page/Fullpage.html.twig"|UKMpath %}
 
 {% block content %}
-	<div id="image-slider" class="carousel slide front-carousel" data-ride="carousel" >
+	<div id="image-slider" class="carousel slide front-carousel" data-ride="carousel">
 		<div class="carousel-inner">
 			{% for post in posts.getAll() %}
 				{# {% if post.meta.repost is defined %} #}
-					<div class="carousel-item {% if loop.first %} active {% endif %} ">
-						<a href="{{post.url}}">
-							<div class="front-carousel-image card-news" style="background-image: url('{{ post.image.medium.src }}'); no-repeat center/cover; {#height: 18rem; opacity: 0.4;#}">
-								{% if post.meta.video_on_top is defined and post.meta.video_on_top is not empty %}
-									<img src="{{ UKMasset('img/circle-play.png') }}" class="featured-image-play"/>
-								{% endif %}
-								{% if post.image.medium.src is not defined %}
-									<img class="card-image card-news" src="//assets.{{ UKM_HOSTNAME }}/img/bilde.png"/>
-								{% endif %}
+				<div class="carousel-item {% if loop.first %} active {% endif %} ">
+					<a href="{{post.url}}">
+						<div class="front-carousel-image card-news" style="background-image: url('{{ post.image.medium.src }}'); no-repeat center/cover; {#height: 18rem; opacity: 0.4;#}">
+							{% if post.meta.video_on_top is defined and post.meta.video_on_top is not empty %}
+								<img src="{{ UKMasset('img/circle-play.png') }}" class="featured-image-play"/>
+							{% endif %}
+							{% if post.image.medium.src is not defined %}
+								<img class="card-image card-news" src="//assets.{{ UKM_HOSTNAME }}/img/bilde.png"/>
+							{% endif %}
+						</div>
+						<div class="row card-element mt-3" style="padding: 0 1rem 0.5rem 1rem;">
+							<div class="card-body news-body">
+								<span class="card-text">{{ post.getCategories() is empty ? 'ukategorisert' : post.getCategories() }}</span>
+								<span class="card-text">{{ post.getTitle() }}</span>
+								<p class="card-text truncate-overflow">{{ post.lead }}</p>
 							</div>
-							<div class="row card-element mt-3" style="padding: 0 1rem 0.5rem 1rem;">
-									<div class="card-body news-body">
-										<span class="card-text">{{ post.getCategories() is empty ? 'ukategorisert' : post.getCategories() }}</span>
-										<span class="card-text">{{ post.getTitle() }}</span>
-										<p class="card-text truncate-overflow">{{ post.lead }}</p>
-									</div>
-							</div>
-						</a>
-					</div>
+						</div>
+					</a>
+				</div>
 				{# {% endif %} #}
 			{% endfor %}
 		</div>
@@ -36,7 +36,7 @@
 			<span class="sr-only">Next</span>
 		</a>
 	</div>
-	<div class="container">
+	<div class="container liker-section news-section">
 		<div class="col d-flex justify-content-center">
 			<h4 class="line"></h4>
 		</div>
@@ -57,24 +57,20 @@
 			{% if posts is defined and posts.getAntall() > 0 %}
 				<div class="col-12">
 					<div class="row">
-						{# {% for post in posts.getAll()|slice(1,length) %} #}
 						{% for post in posts.getAll() %}
-							<div class="col-12 d-flex justify-content-center d-block d-lg-none mt-4">
-								<span class="undertitler undertitler-news">{{ post.date|dato('j. M Y') }}</span>
-							</div>
-							<div class="col-12 col-md-6 p-0 mb-4">
+							<div class="col-12 col-md-6 mb-4">
 								{% embed "Post:Grid-default.html.twig"|UKMpath with { post: post } %}{% endembed %}
 							</div>
 						{% endfor %}
 					</div>
+					<div class="col d-flex justify-content-center pt-5">
+						<a href="{{ posts.getArchiveLink()|raw }}" type="button" class="standard-btn btn-large btn-blue d-flex justify-content-between" role="button" aria-disabled="true">
+							<span>Vis mer</span>
+							{% include "UKMDesign/SVG/ChevronWhite.html.twig"%}
+						</a>
+					</div>
 				</div>
 			{% endif %}
 		</div>
-	</div>
-	<div class="col d-flex justify-content-center pt-5">
-		<a href="{{ posts.getArchiveLink()|raw }}" type="button" class="ukm-button ukm-button-front text ukm-button-primary vis-mer-btn" role="button" aria-disabled="true">
-			<span>Vis mer</span>
-			{# {% include "Global/svg/chevronWhite.html.twig" %} #}
-		</a>
 	</div>
 {% endblock %}
