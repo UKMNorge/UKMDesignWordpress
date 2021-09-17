@@ -1,0 +1,43 @@
+<div class="container mb-5">
+	<div class="row">
+		<div class="mt-5 mb-3 col d-flex justify-content-center">
+			<span class="undertitler undertitler-news">Prosjekter</span>
+		</div>
+	</div>
+    <div class="row">
+        <div class="col-12 col-md-6 col-xl-6 bottom-buffer">
+            {% set main_post = posts.getAll()|first %}
+            <a class="card-news" href="{{main_post.getUrl()}}">
+                <div class="ukm-card ukm-card-front ukm-card-front-main">
+                    <div class="row card-element card-element-end">
+                        {% if main_post.image.medium.src is not defined %}
+                            <img class="card-image" src="//assets.{{ UKM_HOSTNAME }}/img/bilde.png" />
+                        {% else %}
+                            <div class="card-image" style="background: url('{{ main_post.getFeaturedImage().getUrl() }}') no-repeat center/cover;"></div>
+                        {% endif %}
+                    </div>
+                    <div class="row card-element d-flex flex-wrap align-items-center card-news" style="padding: 0 1rem .2rem 1rem;">
+                        <span class="message-title-end">{{ main_post.getTitle() }}</span>
+                        <p class="message-content-end text-truncate">{{ main_post.lead }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-md-6 col-xl-6">
+            <div class="row">
+                {% for post in posts.getAll()|slice(1, 3) %}
+                <a class="col-12 bottom-buffer card-news" href="{{post.getUrl()}}">
+                    <div class="ukm-card ukm-card-front col-12">
+                        <div class="row card-element card-element-end">
+                            <div class="col pr-1 d-flex flex-wrap align-items-center">
+                                <span class="message-title-end">{{ post.getTitle() }}</span>
+                                <p class="message-content-end text-truncate" style="width: 12rem;">{{ post.lead }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
