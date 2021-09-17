@@ -68,6 +68,12 @@ templates:
         name: Liste med fylkeskontakter
         file: Organisasjonen/fylkeskontakter
         description: Lister ut den første fylkeskontakten for alle fylker
+      infoside:
+        name: Informasjon om organisasjonen (vibakukukm-design)
+        file: TestOrganisasjonen/infoside
+        description: >
+          Viser forsiden av organisasjonensiden. 
+          Her vil man få overordnet informasjon om organisasjonen, dette i nytt design.
   arrangement:
     name: Tilknyttet et arrangement
     controllers:
