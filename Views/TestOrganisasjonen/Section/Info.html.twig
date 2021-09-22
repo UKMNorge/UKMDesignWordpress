@@ -1,9 +1,9 @@
 <div class="container">
-    <div class="row">
-        <div class="mt-5 mb-3 col d-flex justify-content-center">
-            <span class="undertitler undertitler-news">Hvem er vi</span>
-        </div>
-    </div> 
+	<div class="row">
+		<div class="mt-5 mb-3 col d-flex justify-content-center">
+			<span class="undertitler undertitler-news">Hvem er vi</span>
+		</div>
+	</div>
 </div>
 
 {# Mobile devices #}
@@ -11,10 +11,10 @@
 	<div class="row">
 		<div class="col-12 col-md-8 offset-md-2">
 			<div class="ukm-card ukm-card-front">
-				{% include "TestOrganisasjonen/Components/Card-element.html.twig" with { img: '', title: 'Kultur mot utenforskap', content: 'Hva UKM er samt enkle tips til å få ungdommen interessert i UKM' , extra: 'pt-4'} %}
-				{% include "TestOrganisasjonen/Components/Card-element.html.twig" with { img: '', title: 'Talent-utvikling', content: 'Sikkerhet og personvernregler rundt UKM arrangementer', extra: 'pt-4'} %}
-				{% include "TestOrganisasjonen/Components/Card-element.html.twig" with { img: '', title: 'Kultur for folkehelsa', content: 'Finn praktisk informasjon og hjelp noen å melde seg på UKM', extra: 'pt-4'} %}
-				{% include "TestOrganisasjonen/Components/Card-element.html.twig" with { img: '', title: 'Ungdom driver utviklingen', content: 'Finn praktisk informasjon og hjelp noen å melde seg på UKM', extra: 'py-4'} %}
+				{% include "TestOrganisasjonen/Components/Card-element.html.twig" with { link: 'https://bak.ukm.no/hvorfor/utenforskap/', img: '', title: 'Kultur mot utenforskap', content: 'Les om hvordan UKM bidrar i kampen mot utenforskap' , extra: 'pt-4'} %}
+				{% include "TestOrganisasjonen/Components/Card-element.html.twig" with { link: 'https://bak.ukm.no/hvorfor/talentfabrikk/', img: '', title: 'Talent-utvikling', content: 'Hos UKM får alle sjansen til å vise, og noen ganger finne og blomstre, sitt talent', extra: 'pt-4'} %}
+				{% include "TestOrganisasjonen/Components/Card-element.html.twig" with { link: 'https://bak.ukm.no/hvorfor/folkehelse/' , img: '', title: 'Kultur for folkehelsa', content: 'Betydningen av kunst og kultur til ungdommens helse', extra: 'pt-4'} %}
+				{% include "TestOrganisasjonen/Components/Card-element.html.twig" with { link: 'https://bak.ukm.no/hvorfor/samfunnsutvikling/', img: '', title: 'Ungdom driver utviklingen', content: 'Les om hvordan UKM kan motivere dagens unge til å skape sin egen fremtid', extra: 'py-4'} %}
 			</div>
 		</div>
 	</div>
@@ -24,12 +24,11 @@
 	<div class="row" style="height: 25.5rem;">
 		<div class="col-10 offset-1">
 			<div class="row">
-				{% include "TestOrganisasjonen/Components/Card-element-desktop.html.twig" with { img: '', title: 'Kultur mot utenforskap', content: 'Hva UKM er samt enkle tips til å få ungdommen interessert i UKM' } %}
-				{% include "TestOrganisasjonen/Components/Card-element-desktop.html.twig" with { img: '', title: 'Talent-utvikling', content: 'Sikkerhet og personvernregler rundt UKM arrangementer'} %}
-				{% include "TestOrganisasjonen/Components/Card-element-desktop.html.twig" with { img: '', title: 'Kultur for folkehelsa', content: 'Finn praktisk informasjon og hjelp noen å melde seg på UKM'} %}
-				{% include "TestOrganisasjonen/Components/Card-element-desktop.html.twig" with { img: '', title: 'Ungdom driver utviklingen', content: 'Finn praktisk informasjon og hjelp noen å melde seg på UKM'} %}
+				{% include "TestOrganisasjonen/Components/Card-element-desktop.html.twig" with { link: 'https://bak.ukm.no/hvorfor/utenforskap/', img: '', title: 'Kultur mot utenforskap', content: 'Les om hvordan UKM bidrar i kampen mot utenforskap' } %}
+				{% include "TestOrganisasjonen/Components/Card-element-desktop.html.twig" with { link: 'https://bak.ukm.no/hvorfor/talentfabrikk/', img: '', title: 'Talent-utvikling', content: 'Hos UKM får alle sjansen til å vise, og noen ganger finne og blomstre, sitt talent'} %}
+				{% include "TestOrganisasjonen/Components/Card-element-desktop.html.twig" with { link: 'https://bak.ukm.no/hvorfor/folkehelse/' , img: '', title: 'Kultur for folkehelsa', content: 'Betydningen av kunst og kultur til ungdommens helse'} %}
+				{% include "TestOrganisasjonen/Components/Card-element-desktop.html.twig" with { link: 'https://bak.ukm.no/hvorfor/samfunnsutvikling/', img: '', title: 'Ungdom driver utviklingen', content: 'Les om hvordan UKM kan motivere dagens unge til å skape sin egen fremtid'} %}
 			</div>
 		</div>
 	</div>
-</div>
 </div>
