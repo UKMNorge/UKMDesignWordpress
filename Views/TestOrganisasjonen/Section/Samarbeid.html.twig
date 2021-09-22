@@ -4,11 +4,6 @@
 			<span class="undertitler undertitler-news">UKM samarbeider med</span>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col d-flex justify-content-center">
-			{% include "Norge/Front/Components/Standard-button.html.twig" with {title: 'Mer om våre samarbeid', path: '/fylker/', extra: 'btn-black mt-2'} %}
-		</div>
-	</div>
 	<div class="row some-section">
 		<div class="col some-col">
 			<ul class="list-group some-list-group">
@@ -28,6 +23,11 @@
 				{% include "TestOrganisasjonen/Components/Rolling-card.html.twig" with { name: 'ks', link:'https://www.ks.no/fagomrader/barn-og-unge/kultur/', img:'ks.svg' } %}	
 				{% include "TestOrganisasjonen/Components/Rolling-card.html.twig" with { name: 'kulturradet', link:'https://www.kulturradet.no/', img:'kulturradet.svg' } %}				
 			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col d-flex justify-content-center">
+			{% include "Norge/Front/Components/Standard-button.html.twig" with {title: 'Mer om vårt samarbeid', path: '', extra: 'btn-black mt-2'} %}
 		</div>
 	</div>
 </div>
