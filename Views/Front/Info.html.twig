@@ -1,14 +1,14 @@
 {% extends "Page/Fullpage.html.twig"|UKMpath %}
 
 {% block content %}
-	<div id="image-slider" class="carousel slide front-carousel" data-ride="carousel">
+	{# <div id="image-slider" class="carousel slide front-carousel" data-ride="carousel">
 		<div class="carousel-inner">
-			{% for post in posts.getAll() %}
+			{% for post in posts.getAll() %} #}
 				{# {% if post.meta.repost is defined %} #}
-				<div class="carousel-item {% if loop.first %} active {% endif %} ">
-					<a href="{{post.url}}">
-						<div class="front-carousel-image card-news" style="background-image: url('{{ post.image.medium.src }}'); no-repeat center/cover; {#height: 18rem; opacity: 0.4;#}">
-							{% if post.meta.video_on_top is defined and post.meta.video_on_top is not empty %}
+				{# <div class="carousel-item {% if loop.first %} active {% endif %} ">
+					<a href="{{post.url}}"> #}
+						{# <div class="front-carousel-image card-news" style="background-image: url('{{ post.image.medium.src }}'); no-repeat center/cover; height: 18rem; opacity: 0.4;"> #}
+							{# {% if post.meta.video_on_top is defined and post.meta.video_on_top is not empty %}
 								<img src="{{ UKMasset('img/circle-play.png') }}" class="featured-image-play"/>
 							{% endif %}
 							{% if post.image.medium.src is not defined %}
@@ -23,9 +23,9 @@
 							</div>
 						</div>
 					</a>
-				</div>
+				</div> #}
 				{# {% endif %} #}
-			{% endfor %}
+			{# {% endfor %}
 		</div>
 		<a class="carousel-control-prev" href="#image-slider" role="button" data-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -35,7 +35,7 @@
 			<span class="carousel-control-next-icon" aria-hidden="true"></span>
 			<span class="sr-only">Next</span>
 		</a>
-	</div>
+	</div> #}
 	<div class="container liker-section news-section">
 		<div class="col d-flex justify-content-center">
 			<h4 class="line"></h4>
