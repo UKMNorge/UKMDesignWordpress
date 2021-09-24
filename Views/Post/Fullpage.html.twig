@@ -19,9 +19,9 @@
 						<h1 class="article-header">{{ post.getTitle()|raw }}</h1>
 						<p class="info-text-lead mt-4">{{ post.lead|raw }}</p>
 						{% if post.hasFeaturedFilm() != true %}
-							{% if post.content_wo_lead|raw != "" %}
+							{# {% if post.content_wo_lead|raw != "" %} #}
 								{% include "Page/TopImage.html.twig" %}
-							{% endif %}
+							{# {% endif %} #}
 						{% endif %}
 						<div class="row" style="margin-top: 2rem; margin-bottom: 2rem;">
 							<div class="col m-auto pt-2">
