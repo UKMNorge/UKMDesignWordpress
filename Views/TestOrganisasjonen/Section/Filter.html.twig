@@ -6,15 +6,15 @@
     </div>
     <div class="row">
         <div class="col  d-flex justify-content-center">
-            {% include "TestOrganisasjonen/Components/Button-filter.html.twig" with { path: '', title: 'Alt innhold'} %}
-            {% include "TestOrganisasjonen/Components/Button-filter.html.twig" with { path: '', title: 'For næringslivet'} %}
+            {% include "TestOrganisasjonen/Components/Button-filter.html.twig" with { target: 'all', title: 'Alt innhold'} %}
+            {% include "TestOrganisasjonen/Components/Button-filter.html.twig" with { target: 'naeringslivet', title: 'For næringslivet'} %}
         </div>
     </div>
     <div class="row mt-2">
         <div class="col  d-flex justify-content-center">
-            {% include "TestOrganisasjonen/Components/Button-filter.html.twig" with { path: '', title: 'Foresatt'} %}
-            {% include "TestOrganisasjonen/Components/Button-filter.html.twig" with { path: '', title: 'Politiker'} %}
-            {% include "TestOrganisasjonen/Components/Button-filter.html.twig" with { path: '', title: 'Presse'} %}
+            {% include "TestOrganisasjonen/Components/Button-filter.html.twig" with { target: 'foresatt', title: 'Foresatt'} %}
+            {% include "TestOrganisasjonen/Components/Button-filter.html.twig" with { target: 'politiker', title: 'Politiker'} %}
+            {% include "TestOrganisasjonen/Components/Button-filter.html.twig" with { target: 'presse', title: 'Presse'} %}
         </div>
     </div>
 </div>

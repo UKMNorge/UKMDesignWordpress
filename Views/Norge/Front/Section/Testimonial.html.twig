@@ -12,7 +12,26 @@
             <span class="signature">- {{ post.getTitle() }}</span>
         </div>
     </div>
-    
+    <div class="filter-section">
+    <div class="row">
+        <div class="mt-5 mb-3 col d-flex justify-content-center">
+            <span class="undertitler undertitler-news">Skreddersy innholdet etter ditt behov</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col  d-flex justify-content-center">
+            {% include "TestOrganisasjonen/Components/Button-filter.html.twig" with { target: 'all', title: 'Alt innhold'} %}
+            {% include "TestOrganisasjonen/Components/Button-filter.html.twig" with { target: 'naeringslivet', title: 'For næringslivet'} %}
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col  d-flex justify-content-center">
+            {% include "TestOrganisasjonen/Components/Button-filter.html.twig" with { target: 'foresatt', title: 'Foresatt'} %}
+            {% include "TestOrganisasjonen/Components/Button-filter.html.twig" with { target: 'politiker', title: 'Politiker'} %}
+            {% include "TestOrganisasjonen/Components/Button-filter.html.twig" with { target: 'presse', title: 'Presse'} %}
+        </div>
+    </div>
+</div>
     {# Bildegalleri #}
     <div class="people-carousel">
         <ul class="testimonial-items list-group list-group-horizontal">
