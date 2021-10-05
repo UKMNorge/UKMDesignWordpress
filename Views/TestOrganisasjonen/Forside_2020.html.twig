@@ -1,0 +1,482 @@
+{% extends "Page/Fullpage.html.twig"|UKMpath %}
+
+{% block css %}
+    {{ parent() }}
+    <style>
+
+    html {
+        scroll-behavior: smooth;
+        font-family: "Helvetica-Neue";
+
+    }
+
+    @media (min-width: 1200px) {
+        html{
+                width: 1900px;
+                margin: auto;
+            }
+    }
+
+    @media (min-width: 1200px) {
+        .container{
+                max-width: 1400px;
+            }
+    }
+
+    .bounce {
+	    -moz-animation: bounce 3s infinite;
+	    -webkit-animation: bounce 3s infinite;
+	    animation: bounce 3s infinite;
+    }
+
+    @-moz-keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {-moz-transform: translateY(0); transform: translateY(0);}
+        40% {-moz-transform: translateY(-30px); transform: translateY(-30px);}
+        60% {-moz-transform: translateY(-15px); transform: translateY(-15px);}
+    }
+
+    @-webkit-keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0); transform: translateY(0);}
+        40% { -webkit-transform: translateY(-30px); transform: translateY(-30px);}
+        60% {-webkit-transform: translateY(-15px); transform: translateY(-15px);}
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {-moz-transform: translateY(0); -ms-transform: translateY(0); -webkit-transform: translateY(0); transform: translateY(0);}
+        40% {-moz-transform: translateY(-30px); -ms-transform: translateY(-30px); -webkit-transform: translateY(-30px); transform: translateY(-30px);}
+        60% {-moz-transform: translateY(-15px); -ms-transform: translateY(-15px); -webkit-transform: translateY(-15px); transform: translateY(-15px);}
+    }
+
+    .sticky-top {
+        top: 160px; /* height of header */
+    }
+
+    .anchor{
+    display: block;
+    height: 225px;
+    margin-top: -225px;
+    visibility: hidden;
+    }
+
+    .anchor1{
+    display: block;
+    height: 250px;
+    margin-top: -250px;
+    visibility: hidden;
+    }
+
+    .hideme
+    {
+        opacity:0;
+    }
+
+    li::marker {
+        color: #e65800;
+        font-size: 6.5rem;
+        line-height: 30px;
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+    <section class="" style="background: grey; height: 55vh;">
+        <div class="container-fluid">
+            <div class="row pt-5" style="">
+                <div class="col pl-5 text-left">
+                    <img style="height: 70px; width: 130px;" />  
+                </div>
+                <div class="col pr-5 text-right">
+                    <button style="width: 100px; height: 55px;">MENY</button>  
+                </div>
+            </div>
+            <div class="row" style="">
+                <div class="col-xl-8 offset-xl-2 text-center" style="">
+                    <h1 class="" style="font-size: 75px; line-height: 1.3; font-weight: bolder; color: white;">
+                    Norges viktigste kulturelle møteplass for unge</h1>  
+                </div>
+            </div>
+            <div class="row pt-5 text-center" style="">
+                <div class="col">  
+                    <button style="width: 200px; height: 55px;">Start påmelding</button> 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="" style="height:30vh; background: white;" id="section2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 offset-xl-2 text-center" style="padding-top: 100px;">
+                    <p style="font-size: 28px; color:black;">
+                    UKM utvikler ung kultur lokalt, regionalt og nasjonalt, der målet er å skape noe sammen og vokse som menneske.</p> 
+                    <div class="downArrow bounce pt-3" {# style="-webkit-filter: grayscale(1) invert(1);filter: grayscale(1) invert(1);"#}> 
+                        <a id="arrow" href="#section3">
+                        <img width="40" height="40" alt="" src="https://www.flaticon.com/svg/static/icons/svg/2223/2223613.svg" />
+                        </a>
+                    </div>   
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="" style="height:50vh; background: black;" id="section2">
+        <div class="container h-100">
+            <div class="row">
+                <div class="col-xl-4 d-flex align-content-center flex-wrap">
+                    <img src="https://unsplash.it/400" style="height: 250px; width: 400px;" />    
+                    <p style="font-size: 20px; ">Menneskene jobber for å fremme og utvikle ung kultur over hele landet. 
+                    UKM finansieres av det offentlige, og eksisterer både lokalt, regionalt og nasjonalt.</p>
+                </div>
+                <div class="col-xl-4 d-flex align-content-center flex-wrap">
+                    <img src="https://unsplash.it/400" style="height: 250px; width: 400px;" />    
+                    <p style="font-size: 20px; ">Menneskene jobber for å fremme og utvikle ung kultur over hele landet. 
+                    UKM finansieres av det offentlige, og eksisterer både lokalt, regionalt og nasjonalt.</p>
+                </div>
+                <div class="col-xl-4 d-flex align-content-center flex-wrap">
+                    <img src="https://unsplash.it/400" style="height: 250px; width: 400px;" />    
+                    <p style="font-size: 20px; ">Menneskene jobber for å fremme og utvikle ung kultur over hele landet. 
+                    UKM finansieres av det offentlige, og eksisterer både lokalt, regionalt og nasjonalt.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="" style="" id="section3">
+    <div class="container">
+        <div class="row" style="padding-top: 50px;">
+            <div class="col-xl-7">
+                <h1 style="font-size: 65px; color: #e65800; font-weight: 900;">Ung kultur møtes</h1> 
+            </div>
+        </div>
+                <div class="row" style="">
+            <div class="col-xl-7">
+                <p style="font-size: 25px; color: black;">Ikke bare på mønstringene, men gjennom flere arrangementer, året rundt.</p> 
+            </div>
+        </div>
+        <div class="row no-gutters" style="padding-top: 30px; margin-left: -20px;">
+            {# <div id="miniScroll" class="col-xx-1 d-none d-lg-block sticky-top mt-2" style="border-left: 3px solid #e65800; height: 150px; top: 210px;"></div> #}
+                <aside class="col-xl-6 pl-5">
+                    <div class="sticky-top pb-5 pr-5">
+                        <ul class="{#"nav#}" id="sidenav">
+                            <li id="list1" class="nav-item pt-5" style="opacity: 1;">
+                                <a id="txt1" href="#section3" class="nav-link active" style="top:-80px; position:relative;">                        
+                                    <h2 class="pb-2" style="font-size: 30px; color: black; font-weight: bolder;">Ungdom bygger framtida</h2>
+                                    <p style="font-size: 25px; color: black; line-height: 1.3;">
+                                    Dagens unge skal inn i jobber som ennå ikke finnes. Kanskje skal de selv skape sin arbeidsplass. På UKM lærer de hvordan.</p>
+                                  </a>   <img class="d-lg-none" style="margin-top: 50px;" src="https://unsplash.it/400">
+                               
+                            </li>
+                            <li id="list2" class="nav-item" style="opacity: 0.5;">
+                                <a id="txt2" href="#sec2" class="nav-link" style="top:-80px; position:relative;">                        
+                                    <h2 class="pb-2 mt-0" style="font-size: 30px; color: black; font-weight: bolder;";>Talentfabrikk</h2>
+                                    <p style="font-size: 25px; color: black; line-height: 1.3;">
+                                    På UKM er det plass til alle. Her er det ingen som stemmer deg ut, eller prøver å lage “god TV” ut av deg. Her får alle sjansen til å utvikle og vise sitt talent, og visst er det mange av dem!</p>
+                                  </a>   <img class="d-lg-none" style="margin-top: 50px;" src="https://unsplash.it/400">
+                            
+                            </li>
+                            <li id="list3" class="nav-item" style="opacity: 0.5;">
+                                <a id="txt3" href="#sec3" class="nav-link" style="top:-80px; position:relative;">
+                                    <h2 class="pb-2 mt-0" style="font-size: 30px; color: black; font-weight: bolder;">Kultur mot utenforskap</h2>
+                                    <p style="font-size: 25px; color: black; line-height: 1.3;">
+                                    Ungdommer nok til å fylle en middels stor by tar ikke feil - på UKM møter man likesinnede og får venner.</p>
+                                  </a>   <img class="d-lg-none" style="margin-top: 50px;" src="https://unsplash.it/400">
+                            </li>
+                            <li id="list4" class="nav-item" style="opacity: 0.5;">
+                                <a id="txt4" href="#sec4" class="nav-link" style="top:-80px; position:relative;">
+                                    <h2 class="pb-2 mt-0" style="font-size: 30px; color: black; font-weight: bolder;">Kultur for folkehelsa</h2>
+                                    <p style="font-size: 25px; color: black; line-height: 1.3;">
+                                    Vi er selvsagt ikke uenig med forskning - kultur gir bedre helse.</p>
+                                  </a>   <img class="d-lg-none" style="margin-top: 50px;" src="https://unsplash.it/400">
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+                <main class="col d-none offset-1 mr-4 d-lg-block mb-5 pl-5" style="padding-top: 30px;">
+                    <img id="" style="height: 500px; width: 700px; margin-bottom: 500px;" src="https://unsplash.it/400">
+                    <div class="row">
+                        <span class="anchor" id="sec2"></span>
+                        <div id="img2" class="col pb-5">
+                            <img style="height: 500px; width: 700px; margin-bottom: 500px;" src="https://unsplash.it/400">
+                            <div class="row">
+                                <span class="anchor" id="sec3"></span>
+                                <div id="img2" class="col pb-5">
+                                    <img style="height: 500px; width: 700px; margin-bottom: 500px;" src="https://unsplash.it/400">
+                                    <div class="row">
+                                        <span class="anchor" id="sec4"></span>
+                                        <div id="img3" class="col pb-1">
+                                            <img style="height: 500px; width: 700px;" src="https://unsplash.it/400">
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+        
+    </div>
+    <hr />
+    </section>
+        <section class="" style="" id="section3-1">
+    <div class="container">
+        <div class="row" style="padding-top: 50px;">
+            <div class="col-xl-7">
+                <h1 style="font-size: 65px; color: #e65800; font-weight: 900;">Ung kultur møtes</h1> 
+            </div>
+        </div>
+                <div class="row" style="">
+            <div class="col-xl-7">
+                <p style="font-size: 25px; color: black;">Ikke bare på mønstringene, men gjennom flere arrangementer, året rundt.</p> 
+            </div>
+        </div>
+        <div class="row no-gutters" style="padding-top: 30px; margin-left: -20px;">
+            <div id="miniScroll" class="col-xx-1 d-none d-lg-block sticky-top mt-2" style="border-left: 3px solid #e65800; height: 150px; top: 210px;"></div>
+                <aside class="col-xl-6 pl-5">
+                    <div class="sticky-top pb-5 pr-5">
+                        <ul class="nav" id="sidenav">
+                            <li class="nav-item" style="">
+                                <a id="txt1" href="#section3" class="nav-link active" style="opacity: 1;">                        
+                                    <h2 class="pb-2 mt-0" style="font-size: 30px; color: black; font-weight: bolder;">Ungdom bygger framtida</h2>
+                                    <p style="font-size: 25px; color: black; line-height: 1.3;">
+                                    Dagens unge skal inn i jobber som ennå ikke finnes. Kanskje skal de selv skape sin arbeidsplass. På UKM lærer de hvordan.</p>
+                                  </a>   <img class="d-lg-none" style="margin-top: 50px;" src="https://unsplash.it/400">
+                               
+                            </li>
+                            <li class="nav-item">
+                                <a id="txt2" href="#sec2" class="nav-link" style="opacity: 0.5;">                        
+                                    <h2 class="pb-2 mt-0" style="font-size: 30px; color: black; font-weight: bolder;";>Talentfabrikk</h2>
+                                    <p style="font-size: 25px; color: black; line-height: 1.3;">
+                                    På UKM er det plass til alle. Her er det ingen som stemmer deg ut, eller prøver å lage “god TV” ut av deg. Her får alle sjansen til å utvikle og vise sitt talent, og visst er det mange av dem!</p>
+                                  </a>   <img class="d-lg-none" style="margin-top: 50px;" src="https://unsplash.it/400">
+                            
+                            </li>
+                            <li class="hide me">
+                                <a id="txt3" href="#sec3" class="nav-link" style="opacity: 0.5;">
+                                    <h2 class="pb-2 mt-0" style="font-size: 30px; color: black; font-weight: bolder;">Kultur mot utenforskap</h2>
+                                    <p style="font-size: 25px; color: black; line-height: 1.3;">
+                                    Ungdommer nok til å fylle en middels stor by tar ikke feil - på UKM møter man likesinnede og får venner.</p>
+                                  </a>   <img class="d-lg-none" style="margin-top: 50px;" src="https://unsplash.it/400">
+                            </li>
+                            <li class="nav-item">
+                                <a id="txt4" href="#sec4" class="nav-link" style="opacity: 0.5;">
+                                    <h2 class="pb-2 mt-0" style="font-size: 30px; color: black; font-weight: bolder;">Kultur for folkehelsa</h2>
+                                    <p style="font-size: 25px; color: black; line-height: 1.3;">
+                                    Vi er selvsagt ikke uenig med forskning - kultur gir bedre helse.</p>
+                                  </a>   <img class="d-lg-none" style="margin-top: 50px;" src="https://unsplash.it/400">
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+                <main class="col d-none offset-1 mr-4 d-lg-block mb-5 pl-5" style="padding-top: 30px;">
+                    <img id="" style="height: 500px; width: 700px; margin-bottom: 500px;" src="https://unsplash.it/400">
+                    <div class="row">
+                        <span class="anchor" id="sec2"></span>
+                        <div id="img2" class="col pb-5">
+                            <img style="height: 500px; width: 700px; margin-bottom: 500px;" src="https://unsplash.it/400">
+                            <div class="row">
+                                <span class="anchor" id="sec3"></span>
+                                <div id="img2" class="col pb-5">
+                                    <img style="height: 500px; width: 700px; margin-bottom: 500px;" src="https://unsplash.it/400">
+                                    <div class="row">
+                                        <span class="anchor" id="sec4"></span>
+                                        <div id="img3" class="col pb-1">
+                                            <img style="height: 500px; width: 700px;" src="https://unsplash.it/400">
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+        
+    </div>
+    <hr />
+    </section>
+        <section class="" style=";" id="section4">
+    <div class="container">
+        <div class="row" style="padding-top: 70px;">
+            <div class="col-xl-6">
+                <h1 style="font-size: 60px; color: #e65800;">Ung kultur møtes over hele landet</h1> 
+            </div>
+        </div>
+        <div class="row no-gutters" style="padding-top: 30px; margin-left: -20px;">
+            <div id="miniScroll" class="col-xx-1 d-none d-lg-block sticky-top mt-2" style="border-left: 3px solid white; height: 100px; top: 210px;"></div>
+                <aside class="col-xl-4">
+                    <div class="sticky-top pb-5">
+                        <ul class="nav" id="sidenav">
+                            <li class="nav-item">
+                                <a id="txt1" href="#sec1" class="nav-link active">                        
+                                    <h2 class="pb-2 mt-0" style="font-size: 30px; ;">UKM-festivalen</h2>
+                                    <p style="font-size: 20px; ">Arrangementet foregår på tre forvaltningsnivåer; lokalmønstring i kommunene om vinteren, fylkesmønstringer om våren og til slutt den nasjonale UKM-festivalen i juni.</p>
+                                  </a>   <img class="d-lg-none" style="margin-top: 50px;" src="https://unsplash.it/400">
+                               
+                            </li>
+                            <li class="nav-item">
+                                <a id="txt2" href="#sec2" class="nav-link">                        
+                                    <h2 class="pb-2 mt-0" style="font-size: 30px; ";>Midler</h2>
+                                    <p style="font-size: 20px; ">Helt siden 1987 har ungdom over hele landet møttes for å dele kulturopplevelser på tvers av sjangre.</p>
+                                  </a>   <img class="d-lg-none" style="margin-top: 50px;" src="https://unsplash.it/400">
+                            
+                            </li>
+                            <li class="nav-item">
+                                <a id="txt3" href="#sec3" class="nav-link">
+                                    <h2 class="pb-2 mt-0" style="font-size: 30px; ";>Historikk</h2>
+                                    <p style="font-size: 20px; ">Allerede i 1987 var Ungdommens Kulturmønstring (UKM) en etablert institusjon i norske fylker og kommuner.</p>
+                                  </a>   <img class="d-lg-none" style="margin-top: 50px;" src="https://unsplash.it/400">
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+                <main class="col d-none offset-1 mr-5 d-lg-block mb-5" style="padding-top: 30px;">
+                <span class="anchor" id="sec1"></span>
+                    <img id="" style="height: 500px; width: 700px; margin-bottom: 500px;" src="https://unsplash.it/400">
+                    <div class="row">
+                        <span class="anchor" id="sec2"></span>
+                        <div id="img2" class="col pb-5">
+                            <img style="height: 500px; width: 700px; margin-bottom: 500px;" src="https://unsplash.it/400">
+                            <div class="row">
+                                <span class="anchor" id="sec3"></span>
+                                <div id="img3" class="col pb-1">
+                                    <img style="height: 500px; width: 700px;" src="https://unsplash.it/400">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+        <hr />
+    </div>
+
+    </section>
+
+        <section class="" style="height:100vh;" id="section2">
+        <div class="container h-100">
+            <div class="row">
+                <div class="col-xl-4 d-flex align-content-center flex-wrap">
+                    <img src="https://unsplash.it/400" style="height: 250px; width: 400px;" />    
+                    <p style="font-size: 20px; ">Menneskene jobber for å fremme og utvikle ung kultur over hele landet. 
+                    UKM finansieres av det offentlige, og eksisterer både lokalt, regionalt og nasjonalt.</p>
+                </div>
+                <div class="col-xl-4 d-flex align-content-center flex-wrap">
+                    <img src="https://unsplash.it/400" style="height: 250px; width: 400px;" />    
+                    <p style="font-size: 20px; ">Menneskene jobber for å fremme og utvikle ung kultur over hele landet. 
+                    UKM finansieres av det offentlige, og eksisterer både lokalt, regionalt og nasjonalt.</p>
+                </div>
+                <div class="col-xl-4 d-flex align-content-center flex-wrap">
+                    <img src="https://unsplash.it/400" style="height: 250px; width: 400px;" />    
+                    <p style="font-size: 20px; ">Menneskene jobber for å fremme og utvikle ung kultur over hele landet. 
+                    UKM finansieres av det offentlige, og eksisterer både lokalt, regionalt og nasjonalt.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+    <script type="text/javascript">
+    $(function(){
+
+        // Smooth scrolling with anchor 
+        $("a").on('click', function(event) {
+            if (this.hash !== "") {
+                event.preventDefault();
+
+                var hash = this.hash;
+
+                $('html, body').animate({scrollTop: $(hash).offset().top}, 500, function(){
+                    window.location.hash = hash;
+                });
+            }
+        });
+
+        // Animate transition when scroll for third section
+        /*
+        $('.hideme').each( function(i){
+            
+            var bottom_of_object = $(this).position().top + $(this).outerHeight();
+            var bottom_of_window = $(window).scrollTop() + $(window).height();
+            
+            if( bottom_of_window > bottom_of_object ){
+                
+                $(this).animate({'opacity':'1'},800);
+                    
+            }
+            
+        }); */
+
+        // Mini-scrollbar in third section
+        $(window).scroll(function(){
+            
+            // Height for de ulike punktene 
+            var txt1 = $( "#txt1" ).height()-25,
+            txt2 = $( "#txt2" ).height()-25,
+            txt3 = $( "#txt3" ).height()-25,
+
+            a = parseInt(5650), // Scrollpos for section 3 
+            scrollPos = $(document).scrollTop()-a , // Setter scrollpos lik 0 
+
+            // Scrollpos for de ulike punktene 
+            s1 = a + txt1,
+            s2 = a + txt2,
+            s3 = a + txt3,
+            
+            // Scrollops for de ulike punktene med nullstill 
+            s11 = $(document).scrollTop()-s1,
+            s22 = $(document).scrollTop()-s2,
+            s33 = $(document).scrollTop()-s3;
+
+            console.log("Scrollposisjon: " + scrollPos);
+
+            // Kulepunkt og opacity når man scroller over ulike sections
+            var hT1 = $( '#sec1' ).offset().top,
+            hH1 = $( '#sec1' ).outerHeight(),
+            hT2 = $( '#sec2' ).offset().top,
+            hH2 = $( '#sec2' ).outerHeight(),
+            hT3 = $( '#sec3' ).offset().top,
+            hH3 = $( '#sec3' ).outerHeight(),
+            hT4 = $( '#sec4' ).offset().top,
+            hH4 = $( '#sec4' ).outerHeight(),
+
+            wH = $(window).height(),
+            wS = $(this).scrollTop();
+
+            if (wS > (hT2+hH2-wH) && (hT2 > wS) && (wS+wH > hT2+hH2)){
+                $( '#list2' ).css({'opacity': '1'});
+                $( '#list1' ).css({'opacity': '0.5'});
+            } else if (wS > (hT3+hH3-wH) && (hT3 > wS) && (wS+wH > hT3+hH3)) {
+                $( '#list3' ).css({'opacity': '1'});
+                $( '#list2' ).css({'opacity': '0.5'});
+            } else if (wS > (hT4+hH4-wH) && (hT4 > wS) && (wS+wH > hT4+hH4)) {
+                $( '#list4' ).css({'opacity': '1'});
+                $( '#list3' ).css({'opacity': '0.5'});
+            }
+            else {
+                //$( '#txt1' ).css({'opacity': '0.5'});
+            }
+
+
+            transform = parseInt($( '#miniScroll' ).css('transform').split(',')[4]);
+            var scrollState = 'above';
+            
+            if (scrollPos > 0) {
+                $( '#miniScroll' ).css({
+                "transform": "translateY("+ scrollPos +"px)"});
+            }
+
+            if (scrollPos == 36px){
+                $( '#txt1' ).css({'opacity': '1'});
+                $( '#txt1' ).css({'opacity': '0.5'});
+            } else if (wS > (hT3+hH3-wH) && (hT3 > wS) && (wS+wH > hT3+hH3)) {
+                $( '#txt3' ).css({'opacity': '1'});
+                $( '#txt2' ).css({'opacity': '0.5'});
+            } else if (wS > (hT4+hH4-wH) && (hT4 > wS) && (wS+wH > hT4+hH4)) {
+                $( '#txt4' ).css({'opacity': '1'});
+                $( '#txt3' ).css({'opacity': '0.5'});
+            }
+            else {
+                //$( '#txt1' ).css({'opacity': '0.5'});
+            }
+            
+        });
+
+     });
+    </script>
+{% endblock %}
