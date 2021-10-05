@@ -1,8 +1,8 @@
 <div class="card-component col-4 d-flex justify-content-between flex-column">
     {# <img src="//assets.{{ UKM_HOSTNAME }}/img/{{ img|raw }}" /> #}
-    <img class="card-image" src="//assets.{{ UKM_HOSTNAME }}/img/bilde.png"/>
+    {# <img class="card-image" src="//assets.{{ UKM_HOSTNAME }}/img/bilde.png"/> #}
     {# <img class="" src="//assets.{{ UKM_HOSTNAME }}/img/bilde.png"/> #}
-    <h5>{{ title }}</h5>
+    <h5 style="{{ extra }}">{{ title }}</h5>
     <span>{{ content }}</span>
     <a href="{{ link }}" type="button" class="ukm-button ukm-button-front ukm-button-secondary" style="padding: 0 !important; height: auto;">
         <span>Les mer</span>
