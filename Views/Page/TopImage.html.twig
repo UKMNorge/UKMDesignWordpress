@@ -3,6 +3,7 @@
 {% endif %}
 
 {% if post.hasFeaturedFilm()%}
+	<h1>Has feature film</h1>
 	{{ post.getFeaturedFilm.getEmbedHtml()|raw }}
 {% elseif post.hasFeaturedImage() and not post.hasMeta('hideTopImage') %}
 	<img id="the_post_image" src="{{ post.image.large.src }}"{% if post.hasMeta('headerPosition') %}background-position: {{ post.getMeta('headerPosition')}};{% endif %}max-width:100%;"></img>
