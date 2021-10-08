@@ -78,47 +78,4 @@
 			</div>
 		</div>
 	</div>
-	{# Has content #}
-	{% if post.content_wo_lead|raw != "" %}
-		<div class="share-line-footer">
-			<div class="row">
-				<div class="col share-buttons col-xl-3 d-flex justify-content-around">
-					<a class="share-btn fb-share" id="facebookShareButton" href="#">
-						<span class="article-svg dot dot-grey-large share-dot">
-							<span class="article-svg dot svg-dot svg-dot-large">
-								<svg class="icon-some" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:">
-									<path d="M12.001,2.002c-5.522,0-9.999,4.477-9.999,9.999c0,4.99,3.656,9.126,8.437,9.879v-6.988h-2.54v-2.891h2.54V9.798 c0-2.508,1.493-3.891,3.776-3.891c1.094,0,2.24,0.195,2.24,0.195v2.459h-1.264c-1.24,0-1.628,0.772-1.628,1.563v1.875h2.771 l-0.443,2.891h-2.328v6.988C18.344,21.129,22,16.992,22,12.001C22,6.479,17.523,2.002,12.001,2.002z"></path>
-								</svg>
-							</span>
-						</span>
-					</a>
-					<a href="mailto:?subject={{post.getTitle()|raw}}&amp;body=" {{post.url()}} title="Share by Email" class="share-btn" href="#">
-						<span class="article-svg dot dot-grey-large share-dot">
-							<span class="article-svg dot svg-dot svg-dot-large">
-								<svg class="icon-some" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:">
-									<path d="M20,4H4C2.896,4,2,4.896,2,6v12c0,1.104,0.896,2,2,2h16c1.104,0,2-0.896,2-2V6C22,4.896,21.104,4,20,4z M20,8.7l-8,5.334 L4,8.7V6.297l8,5.333l8-5.333V8.7z"></path>
-								</svg>
-							</span>
-						</span>
-					</a>
-					<a class="share-btn kopierUrl" href="#">
-						<span class="article-svg dot dot-grey-large share-dot">
-							<span class="article-svg dot svg-dot svg-dot-large">
-								<svg class="icon-some" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:">
-									<path d="M4.222 19.778c.975.975 2.255 1.462 3.535 1.462 1.281-.001 2.562-.487 3.536-1.462l2.828-2.829-1.414-1.414-2.828 2.829c-1.169 1.167-3.072 1.169-4.243 0-1.169-1.17-1.169-3.073 0-4.243l2.829-2.828L7.051 9.879l-2.829 2.828C2.273 14.656 2.273 17.829 4.222 19.778zM19.778 11.293c1.948-1.949 1.948-5.122 0-7.071-1.95-1.95-5.123-1.948-7.071 0L9.879 7.051l1.414 1.414 2.828-2.829c1.17-1.167 3.073-1.169 4.243 0 1.169 1.17 1.169 3.073 0 4.243l-2.829 2.828 1.414 1.414L19.778 11.293z"></path>
-									<path transform="rotate(-134.999 12 12)" d="M11 5.999H13V18H11z"></path>
-								</svg>
-							</span>
-						</span>
-					</a>
-					<div class="url" style="display:none;">
-						<input type="text" class="urlInput form-control" value="{{post.url()}}" readonly/>
-						<div class="copied alert alert-light" style="display:none;">Kopiert!</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	{% endif %}
-
 {% endblock %}
