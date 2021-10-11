@@ -46,7 +46,12 @@ if( $start_nasjonaldag < $now && $stop_nasjonaldag > $now || isset($_GET['nasjon
 */ 
 
 // NYHETER
-switch_to_blog(BLOG_ID_REDAKSJONELT);
+try{
+    switch_to_blog(BLOG_ID_REDAKSJONELT);
+}
+catch(Exception $e) {
+    throw new Exception("Variablen BLOG_ID_REDAKJSONELT ble ikke funnet");
+}
 $posts = new Posts(3);
 restore_current_blog();
 
