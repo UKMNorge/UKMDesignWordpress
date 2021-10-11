@@ -13,7 +13,7 @@ if( Wordpress::getIncludeTwigJs() ) {
 }
 
 if(is_user_logged_in() ) {
-	echo '<style>body {margin-top: 33px;} @media (max-width:782px) {body {margin-top: 48px;}}</style>';
+	echo '<style>.geolocation-banner {margin-top: 2rem;} @media (max-width:782px) {.geolocation-banner {margin-top: 2.9rem;}}</style>';
 }
 
 if( UKMDesign::isDevEnv() ) {

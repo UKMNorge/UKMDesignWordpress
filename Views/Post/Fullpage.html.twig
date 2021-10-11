@@ -1,57 +1,80 @@
 {% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
 
 {% block content %}
-	{% include "Page/TopImage.html.twig" %}
-
+	{% if post is not defined %}
+		{% set post = page %}
+	{% endif %}
 	<div class="container">
 		<div class="row">
-			<div class="col-md-10 ml-md-auto mr-md-auto col-lg-8">
+			<div class="col">
 				<article>
-					<div class="row postmeta">
-						<div class="col">
-							{% if post.getMeta('type') == 'workshop' and post.hasMeta('sted') is defined %}
-								<b>STED: </b>
-								{{ post.getMeta('sted') }}
-							{% else %}
-								{{ post.date|dato('d.m.Y') }}{#~ ' kl. '~ post.date|dato('H:i') }}#}
+					{# Category, title and breadtext #}
+					<div class="info-text-section mt-3">
+						<div class="col p-0 mb-3">
+							{% for category in post.categories %}
+								<a class="category-link" href="{{ category.url }}">{{ category.title }}</a>
+								{% if not loop.last %},
+								{% endif %}
+							{% endfor %}
+						</div>
+						<h1 class="article-header">{{ post.getTitle()|raw }}</h1>
+						<p class="info-text-lead mt-4">{{ post.lead|raw }}</p>
+						{% if post.hasFeaturedFilm() != true %}
+							{% include "Page/TopImage.html.twig" %}
+						{% endif %}
+						<div class="row" style="margin-top: 2rem; margin-bottom: 2rem;">
+							<div class="col m-auto pt-2">
+								{% for author in authors %}
+									{% embed "Post:madeby.html.twig"|UKMpath %}{% endembed %}
+									<div class="clearfix"></div>
+								{% endfor %}
+								{% if post.getMeta('type') == 'workshop' and post.hasMeta('sted') is defined %}
+									<b>STED:</b>
+									{{ post.getMeta('sted') }}
+								{% else %}
+									<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" width=".8rem" height=".8rem" viewbox="0 0 24 24" style="margin-right: .3rem;fill:rgba(0, 0, 0, 1);transform:;-ms-filter:">
+										<path d="M12,2C6.486,2,2,6.486,2,12s4.486,10,10,10c5.514,0,10-4.486,10-10S17.514,2,12,2z M12,20c-4.411,0-8-3.589-8-8 s3.589-8,8-8s8,3.589,8,8S16.411,20,12,20z"></path>
+										<path d="M13 7L11 7 11 13 17 13 17 11 13 11z"></path>
+									</svg>
+									<span class="article-date" style="font-weight: 500">
+										{{ post.date|dato('j. M Y') }}
+									</span>
+								{% endif %}
+							</div>
+
+							{# Social media share buttons #}
+							<div class="share-line-horizontal">
+								<div class="col-2 share-buttons d-flex justify-content-around">
+									{% include "Post/Share.html.twig" %}
+								</div>
+							</div>
+							{% if post.hasFeaturedFilm() == true %}
+								<div class="col-2 share-buttons justify-content-around d-none d-lg-flex">
+									{% include "Post/Share.html.twig" %}
+								</div>
 							{% endif %}
 						</div>
-						<div class="col right">
-							{% for category in post.categories %}
-								<a href="{{ category.url }}">{{ category.title }}</a>{% if not loop.last %}, {% endif %}
-							{% endfor %}
-						</div>
-					</div>
-					<h1>{{ post.getTitle()|raw }}</h1>
-					<p class="lead">{{ post.lead|raw }}</p>
-					
-					<div class="d-block d-md-none center" style="margin-bottom: 1em;">
-						{% include "Facebook/Count.html.twig" with {'url': post.url} %}
-					</div>
-	
-					<p>{{ post.content_wo_lead|raw }}</p>
-				</article>
-				
-				{# CUSTOM WORKSHOP STUFF BRUKT PÅ FESTIVALEN #}
-				
-				{# E.O CUSTOM WORKSHOP STUFF BRUKT PÅ FESTIVALEN #}
-			</div>
-			
-			<div class="col-md-2 col-lg-3 float-right">
-				<div class="madeby">
-					<div class="row">
-						<div class="col">
-							{% for author in authors %}
-								{% embed "Post:madeby.html.twig"|UKMpath %}{% endembed %}
-								<div class="clearfix"></div>
-							{% endfor %}
-							<div class="float-right right my-1" style="margin-left: 1em; margin-bottom: 1em;">
-								{% include "Facebook/Count.html.twig" with {'url': post.url} %}
+						{# Has content and not a video #}
+						{% if post.content_wo_lead|raw != "" %}
+							<div class="row">
+								<div class="share-line-vertical">
+									<div class="col share-buttons col-xl-1 justify-content-around">
+										{% include "Post/Share.html.twig" %}
+									</div>
+								</div>
+							{% endif %}
+							<div class="col-md-9 col-xl-9">
+								<p class="bread-text">{{ post.content_wo_lead|raw }}</p>
 							</div>
-	
 						</div>
 					</div>
-				</div>
+					{# Video under header for prettier layout imo #}
+					{% if post.hasFeaturedFilm()%}
+						{% if post.content_wo_lead|raw == "" %}
+							{% include "Page/TopImage.html.twig" %}
+						{% endif %}
+					{% endif %}
+				</article>
 			</div>
 		</div>
 	</div>

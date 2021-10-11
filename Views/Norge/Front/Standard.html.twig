@@ -1,53 +1,30 @@
-{% extends "Norge/Front/Fullpage.html.twig"|UKMpath %}
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
 
-{% block javascripts %}
-    {{parent()}}
-    <script type="text/javascript">
-		$(document).ready(()=>{
-			UKMfullpage( '#fullpage', ['pamelding', 'om', 'fylker']);
-		});
-	</script>
+{% set showHero = true %}
+
+{% block hero %}
+    <h1>En møteplass for kreativ ungdom</h1>
+    <h3>UKM handler om å ha det gøy gjennom å skape noe sammen.</h3>
+    <div class="background-space"></div>
 {% endblock %}
-{% block framework_content %}
-	<div id="fullpage">
-		<section class="section fullpage white waypoint" data-photo-background-transition="#000000" style="background-color: #00508C;" data-photo-background="https://grafikk.ukm.no/forside/superstition-color.jpg">
-			<div class="fullpage-content">
-				<div class="meny">
-					<a href="/hovedmeny/" class="btn btn-sm my-2 btn-outline-primary">MENY</a>
-				</div>
-				<div class="logo">
-					<img src="https://grafikk.ukm.no/profil/logoer/UKM_logo_hvit_0100.png" />
-				</div>
-				<header class="white" style="z-index: 100">
-					<h1 class="border autoshrink">
-						{% if pamelding_apen %}
-							<a href="/derdubor/">START PÅMELDING</a>
-						{% else %}
-							PÅMELDING STARTER
-							<br />
-							1. NOVEMBER
-						{% endif %}
-					</h1>
-					<div class="header-more" style="margin-top: 2vh; margin-bottom: -3vh">
-						<p>
-                            <a href="/korona/">Se hvordan koronaviruset påvirker UKM  🦠</a>
-                        </p>
-                    </div>
-					<div class="header-more" style="margin-top: 5vh;">
-						<p>
-							<a href="#om/2">Hva er UKM?</a>
-							| 
-							<a href="#fylker/3">Finn nærmeste UKM</a>
-						</p>
 
-						<div class="readmoreIcon">
-							<a href="#om/2" style="text-decoration: none"><span class="icon icon-down-2"></span></a>
-						</div>
-					</div>
-				</header>
-			</div>
-		</section>
-		{% include "Norge/Front/Section/Hvaer.html.twig" %}
-		{% include "Norge/Front/Section/Fylker.html.twig" %}
-	</div>	
+{% block hero_cta %}
+    <div class="front-buttons">
+        {% include "Norge/Front/Components/Standard-button.html.twig" with {title: 'Gå til påmeldingssiden', path: '/derdubor/', extra: 'btn-blue mt-2'} %}
+        {% include "Norge/Front/Components/Button-secondary.html.twig" %}
+
+    </div>
+{% endblock %}
+
+{% block content %}
+    {% include "Norge/Front/Section/HvaEr.html.twig" %}
+    {% include "Norge/Front/Section/Testimonial.html.twig" %}
+    {#% include "Norge/Front/Section/TV.html.twig" %#}
+    {% include "Norge/Front/Section/Nyheter.html.twig" %}
+    {# {% include "Norge/Front/Section/NyheterLokalt.html.twig" %} #}
+{% include "Norge/Front/Section/Contact.html.twig" %}
+{% endblock %}
+
+    {% block javascripts %}
+    {{ parent() }}<script src="//assets.{{ UKM_HOSTNAME }}/js/page/front/testimonials.js"> </script>
 {% endblock %}

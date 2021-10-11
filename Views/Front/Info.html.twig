@@ -1,9 +1,23 @@
 {% extends "Page/Fullpage.html.twig"|UKMpath %}
 
 {% block content %}
-	<div class="container-fluid">
+	<div class="liker-page">
+		<div class="container hero-container">
+			<div class="row">
+				<div class="col-12 col-sm-10 offset-sm-1">
+					<h1>Bli bedre kjent med UKM</h1>
+					<h3>Les mer om all magien som skjer her hos oss</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container liker-section news-section">
+		<div class="col d-flex justify-content-center">
+			<h4 class="line"></h4>
+		</div>
 		<div class="row-flex">
-			<div class="col-12 col-md-5 col-lg-5 mb-3 pull-right">
+			<div class="col-12 mb-3">
 				<div class="right">
 					{% if shortcuts is defined %}
 						{% for link in shortcuts.getAll() %}
@@ -15,38 +29,24 @@
 				</div>
 			</div>
 
-			{# HVA ER UKM? #}
-			<div class="col-12 col-md-7 float-left mt-3 mb-2">
-				<p class="lead">
-					{{ page.getContentBeforeMore()|raw }}
-				</p>
-				<p class="d-block d-md-none">
-					<a href="#" class="UKMtoggleShow phoneReadMoreUKM" data-target="phoneReadMoreUKM">Les mer</a>
-				</p>
-
-				<div class="UKMtoggleContent" style="display:none" id="phoneReadMoreUKM">
-					{{ page.getContentAfterMore()|raw }}
-					<p>
-						<a href="#" class="UKMtoggleHide phoneReadMoreUKM" data-target="phoneReadMoreUKM">Lukk</a>
-					</p>
-				</div>
-				<div class="d-none d-md-block">
-					{{ page.getContentAfterMore|raw }}
-				</div>
-			</div>
-
 			{# NYHETER #}
 			{% if posts is defined and posts.getAntall() > 0 %}
-				<div class="col-12 col-md-5 float-right">
-					<div class="row">
+				<div class="col-12">
+					<div class="row d-flex justify-content-center">
 						{% for post in posts.getAll() %}
-							<div class="col-6">
+							<div class="col-12 d-flex justify-content-center d-block d-lg-none mt-4">
+								<span class="undertitler undertitler-news">{{ post.date|dato('j. M Y') }}</span>
+							</div>
+							<div class="col-12 col-md-8 col-xl-6 mb-5">
 								{% embed "Post:Grid-default.html.twig"|UKMpath with { post: post } %}{% endembed %}
 							</div>
 						{% endfor %}
 					</div>
-					<div class="col right">
-						<a href="{{ posts.getArchiveLink()|raw }}" class="btn btn-outline-primary">Se eldre saker &raquo;</a>
+					<div class="col d-flex justify-content-center pt-5">
+						<a href="{{ posts.getArchiveLink()|raw }}" type="button" class="standard-btn btn-large btn-blue d-flex justify-content-between" role="button" aria-disabled="true">
+							<span>Vis mer</span>
+							{% include "UKMDesign/SVG/ChevronWhite.html.twig"%}
+						</a>
 					</div>
 				</div>
 			{% endif %}

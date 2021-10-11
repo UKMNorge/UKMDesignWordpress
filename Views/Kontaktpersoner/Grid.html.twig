@@ -1,13 +1,13 @@
 <div class="card">
-	{% if kontakt.getBilde() is not empty and kontakt.getBilde() != 0 %}
-		<div class="card-img-top center">
-			<div class="card-img-top kontaktperson-bilde" style="background-image: url('{{ kontakt.getBilde() }}');">&nbsp;</div>
-		</div>
-	{% else %}
-		<div class="card-img-top center">
-			<div class="icon icon-user kontaktPlaceholder"></div>
-		</div>
-	{% endif %}
+	<div class="card-img-top center">
+		{% if kontakt.getBilde() is not empty and kontakt.getBilde() != 0 %}
+			<div class="card-img-top kontakt-bilde" style="background-image: url('{{ kontakt.getBilde() }}');">&nbsp;</div>
+		{% else %}
+			<div class="card-img-top kontakt-bilde">
+				<div class="kontakt-bilde-placeholder"></div>
+			</div>
+		{% endif %}
+	</div>
 	<div class="card-body px-2 pt-0">
 		<h3 class="card-title my-1 bold">{{ kontakt.getNavn() }}</h3>
 		{% if kontakt.getTittel() is not empty %}

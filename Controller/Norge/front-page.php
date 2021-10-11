@@ -1,6 +1,7 @@
 <?php
 
 use UKMNorge\DesignWordpress\Environment\Front\Front;
+use UKMNorge\DesignWordpress\Environment\Posts;
 use UKMNorge\DesignWordpress\Environment\Wordpress;
 use UKMNorge\Geografi\Fylker;
 use UKMNorge\Geografi\Kommune;
@@ -42,17 +43,27 @@ if( $start_nasjonaldag < $now && $stop_nasjonaldag > $now || isset($_GET['nasjon
 } else {
     Wordpress::setView('Norge/Front/Standard');
 }
-*/
+*/ 
 
-Wordpress::includeTwigJs();
-Wordpress::setView('Norge/Front/2020');
-
-if( isset($_COOKIE['lastlocation'])) {
-    $kommune = new Kommune($_COOKIE['lastlocation']);
-    $mitt_ukm = new stdClass();
-    $mitt_ukm->kommunenummer = $kommune->getId();
-    $mitt_ukm->fylkesnummer = $kommune->getFylke()->getId();
-    $mitt_ukm->kommunenavn = $kommune->getNavn();
-
-    Wordpress::addViewData('last_location', $mitt_ukm);
+// NYHETER
+try{
+    switch_to_blog(BLOG_ID_REDAKSJONELT);
 }
+catch(Exception $e) {
+    throw new Exception("Variablen BLOG_ID_REDAKJSONELT ble ikke funnet");
+}
+$posts = new Posts(3);
+restore_current_blog();
+
+Wordpress::addViewData('posts', $posts);
+
+// TESTIMONIALS
+$kategori = get_category_by_slug( 'testimonials' );
+
+if($kategori) {
+    $kategori_id = $kategori->term_id;
+    $testimonial = Posts::getByCategory($kategori_id);
+    Wordpress::addViewData('testimonial', $testimonial);    
+}
+
+Wordpress::setView('Norge/Front/Standard');

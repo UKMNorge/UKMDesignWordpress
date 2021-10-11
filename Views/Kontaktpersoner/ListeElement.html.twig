@@ -1,18 +1,7 @@
-<style>
-	.kontaktPlaceholder {
-		font-size: 2.4em;
-		color: #010260;
-		margin: 0 0.15em 0.15em;
-		background: #ccc;
-		width: 1.2em;
-		border-radius: 3px;
-		padding: 0.1em;
-	}
-</style>
 <div class="clearfix">
 	<div class="float-left mr-3" style="margin-top: .25em;">
 		{% if kontakt.getBilde() is not empty %}
-			<div class="center kontaktPlaceholder">
+			<div class="center kontakt-placeholder-large">
 				<div class="kontaktperson-bilde" style="background-image: url('{{ kontakt.getBilde() }}');">&nbsp;</div>
 			</div>
 		{% else %}

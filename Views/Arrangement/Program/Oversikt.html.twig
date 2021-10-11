@@ -1,33 +1,8 @@
 {% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
 
-{% block css %}
-    {{ parent() }}
-    <style>
-        .card {
-            border-radius: 0 !important;
-        }
-    </style>
-{% endblock %}
-
 {% block javascripts %}
-    {{parent()}}
-
-    <script>
-        jQuery(document).on('touchend click', '.clickLinkWithin', function(e) {
-            if (jQuery(e.target).is('a') || jQuery(e.target).is('button')) {
-                return true;
-            }
-            if (jQuery(e.target).hasClass('clickLinkWithin')) {
-                var clicked = jQuery(e.target);
-            } else {
-                var clicked = jQuery(e.target).parents('.clickLinkWithin');
-            }
-            var link = clicked.find('a.linkWithin');
-            if (link) {
-                window.location.href = link.attr('href');
-            }
-        });
-    </script>
+	{{ parent() }}
+	<script src="//assets.{{ UKM_HOSTNAME }}/js/page/program.js" ></script>
 {% endblock %}
 
 {% block content %}
@@ -42,7 +17,7 @@
 		<div class="row vertical-align-center program">
 			{% for dag in program %}
 				<div class="col mt-4 dag">
-					<h4 class="linje">{{ dag.date|dato('l j.M')|capitalize }}</h4>
+					<h3 class="mb-3">{{ dag.date|dato('l j.M')|capitalize }}</h3>
 					{% embed "Arrangement/Program/Hendelser.html.twig"|UKMpath with {'hendelser': dag.forestillinger} %}{% endembed %}
 				</div>
 			{% else %}
@@ -63,3 +38,4 @@
 		</div>
 	</div>
 {% endblock %}
+

@@ -1,11 +1,11 @@
 <script>
 	$(document).ready(function() {
-		UKMKonkurranse.on('3:svar', function( response ) {
+		UKM.konkurranse.on('3:svar', function( response ) {
 			$('#rusfritt-sporsmal').hide();
 			$('#rusfritt-agreed').fadeIn(200);
 		});
 		
-		UKMKonkurranse.on('3:get', function( response ) {
+		UKM.konkurranse.on('3:get', function( response ) {
 			if( response.harSvart != null && response.harSvart !== undefined && response.harSvart == true ) {
 				$('#rusfritt-sporsmal').hide();
 				$('#rusfritt-agreed').fadeIn(200);
@@ -13,13 +13,13 @@
 		});
 		
 		if( UKMMobil.har() ) {
-			UKMKonkurranse.get(3);
+			UKM.konkurranse.get(3);
 		}
 	});
 	
 	$(document).on('click', '.rusfritt-agree', function( response ) {
 		$( this ).html('Lagrer...');
-		UKMKonkurranse.svar(3, $(this).attr('data-val'));
+		UKM.konkurranse.svar(3, $(this).attr('data-val'));
 	});
 	
 </script>

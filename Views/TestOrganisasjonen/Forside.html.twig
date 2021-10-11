@@ -1,0 +1,27 @@
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
+
+{% set showHero = false %}
+{% set vibakukm = true %}
+
+{% block heros %}
+    <h1>Norges viktigste kulturelle møteplass for unge</h1>
+    {# <h3>UKM skal inspirere ungdom til personlig utvikling, kulturell fordypning, dedikasjon og øving</h3> #}
+    <div class="background-space"></div>
+{% endblock %}
+
+{% block content %}
+    {# {% include "TestOrganisasjonen/Section/Filter.html.twig" %} #}
+    <div class="vibakukm vibakukm-content">
+        {% include "TestOrganisasjonen/Section/Hvemervi.html.twig" %}
+        {% include "TestOrganisasjonen/Section/Samarbeid.html.twig" %}
+        {% include "TestOrganisasjonen/Section/Prosjekter.html.twig" %}
+        {% include "TestOrganisasjonen/Section/Info.html.twig" %}
+        {% include "TestOrganisasjonen/Section/Metodikk.html.twig" %}
+        {# {% include "TestOrganisasjonen/Section/Praktisk.html.twig" %} #}
+        {# {% include "TestOrganisasjonen/Section/Datakultur.html.twig" %} #}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

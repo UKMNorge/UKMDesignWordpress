@@ -1,0 +1,39 @@
+<div class="naeringslivet">
+<div class="container">
+    <div class="row">
+        <div class="mt-5 mb-3 col d-flex justify-content-center">
+            <span class="undertitler undertitler-news">Hvem er vi</span>
+        </div>
+    </div> 
+</div>
+
+{# Mobile devices #}
+<div class="container d-block d-lg-none mb-5">
+	<div class="row">
+		<div class="col-12 col-md-8 offset-md-2">
+			<div class="ukm-card ukm-card-front">
+				{% include "TestOrganisasjonen/Components/Card-element.html.twig" with { link: 'https://bak.ukm.no/hva-er/', img: '', title: 'Hva er UKM?', content: 'Les om vårt inititativ og tiltak for å løfte fram kunst og kultur for, med og av barn og unge', extra: 'pt-4'} %}
+				{% include "TestOrganisasjonen/Components/Card-element.html.twig" with { link: 'https://bak.ukm.no/nyheter/', img: '', title: 'Blogg og meninger', content: 'Les vår blogg og hold deg oppdatert på det siste fra UKM.' , extra: 'pt-4'} %}
+				{% include "TestOrganisasjonen/Components/Card-element.html.twig" with { link: 'https://bak.ukm.no/historien/', img: '', title: 'UKM gjennom tiden', content: 'Siden 1987 har UKM vært en viktig møteplass for ungdom og kultur', extra: 'pt-4'} %}
+				{% include "TestOrganisasjonen/Components/Card-element.html.twig" with { link: 'https://bak.ukm.no/kontakt/', img: '', title: 'Kom i kontakt med oss', content: 'Har du et spørsmål eller ønsker å du å prate med noen i UKM?', extra: 'pt-4'} %}
+				{% include "TestOrganisasjonen/Components/Card-element.html.twig" with { link: 'https://bak.ukm.no/grafisk-profil/', img: '', title: 'Logoer og grafisk', content: 'Finn bilder, fargepalett, fonter og logoer av UKM tilgjengelig til trykk og web', extra: 'py-4'} %}
+			</div>
+		</div>
+	</div>
+</div>
+{# Desktop #}
+<div class="container card-info-section d-none d-lg-block">
+	<div class="row" style="height: 25.5rem;">
+		{# <div class="col-10 offset-1"> #}
+		<div class="col-12">
+			<div class="row">
+				{% include "TestOrganisasjonen/Components/Card-element-desktop.html.twig" with { link: 'https://bak.ukm.no/hva-er/', img: '', title: 'Hva er UKM?', content: 'Finn praktisk informasjon og hjelp noen å melde seg på UKM', extra: 'max-width: 15.5rem;'} %}
+				{% include "TestOrganisasjonen/Components/Card-element-desktop.html.twig" with { link: 'https://bak.ukm.no/nyheter/', img: '', title: 'Blogg og meninger', content: 'Les vår blogg og hold deg oppdatert på det siste fra UKM.' } %}
+				{% include "TestOrganisasjonen/Components/Card-element-desktop.html.twig" with { link: 'https://bak.ukm.no/historien/', img: '', title: 'UKM gjennom tiden', content: 'Siden 1987 har UKM vært en viktig møteplass for ungdom og kultur'} %}
+				{% include "TestOrganisasjonen/Components/Card-element-desktop.html.twig" with { link: 'https://bak.ukm.no/kontakt/', img: '', title: 'Kom i kontakt med oss', content: 'Har du et spørsmål eller ønsker å du å prate med noen i UKM?'} %}
+				{% include "TestOrganisasjonen/Components/Card-element-desktop.html.twig" with { link: 'https://bak.ukm.no/grafisk-profil/', img: '', title: 'Logoer og grafisk', content: 'Finn bilder, fargepalett, fonter og logoer av UKM tilgjengelig til trykk og web'} %}
+			</div>
+		</div>
+	</div>
+</div>
+</div>

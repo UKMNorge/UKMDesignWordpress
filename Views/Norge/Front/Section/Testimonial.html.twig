@@ -1,0 +1,34 @@
+<div class="container testimonial">
+    <div class="row" id="testimonial">
+        {% set post = testimonial.getAll()|first %}
+        <div class="col col-xs-1 col-sm-5 p-0">
+            <div class="side-pic" style="overflow-x: hidden; background: url('{{ post.image.medium.src }}') no-repeat center/cover;"></div>
+        </div>
+        <div class="col col-lg-6 col-xl-6 offset-lg-1 offset-xl-0 quote-font-left">
+            <svg class="svg-quote" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill:hsla(218, 81%, 94%, 0.4); margin-top: -.6rem;">
+                <path d="M6.5 10c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35.208-.086.39-.16.539-.222.302-.125.474-.197.474-.197L9.758 4.03c0 0-.218.052-.597.144C8.97 4.222 8.737 4.278 8.472 4.345c-.271.05-.56.187-.882.312C7.272 4.799 6.904 4.895 6.562 5.123c-.344.218-.741.4-1.091.692C5.132 6.116 4.723 6.377 4.421 6.76c-.33.358-.656.734-.909 1.162C3.219 8.33 3.02 8.778 2.81 9.221c-.19.443-.343.896-.468 1.336-.237.882-.343 1.72-.384 2.437-.034.718-.014 1.315.028 1.747.015.204.043.402.063.539.017.109.025.168.025.168l.026-.006C2.535 17.474 4.338 19 6.5 19c2.485 0 4.5-2.015 4.5-4.5S8.985 10 6.5 10zM17.5 10c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35.208-.086.39-.16.539-.222.302-.125.474-.197.474-.197L20.758 4.03c0 0-.218.052-.597.144-.191.048-.424.104-.689.171-.271.05-.56.187-.882.312-.317.143-.686.238-1.028.467-.344.218-.741.4-1.091.692-.339.301-.748.562-1.05.944-.33.358-.656.734-.909 1.162C14.219 8.33 14.02 8.778 13.81 9.221c-.19.443-.343.896-.468 1.336-.237.882-.343 1.72-.384 2.437-.034.718-.014 1.315.028 1.747.015.204.043.402.063.539.017.109.025.168.025.168l.026-.006C13.535 17.474 15.338 19 17.5 19c2.485 0 4.5-2.015 4.5-4.5S19.985 10 17.5 10z"></path>
+            </svg>
+            <h2 class="signature-text">{{ post.lead }}</h2>
+            <span class="signature">- <b>{{ post.getTitle() }}</b> <span>fra {{ post.getMeta('Kommune')}}</span></span>
+        </div>
+    </div>
+    
+    {# Bildegalleri #}
+    <div class="people-carousel">
+        <ul class="testimonial-items list-group list-group-horizontal">
+            {% for post in testimonial.getAll() %}
+            <li class="some-item list-group-item">
+                <a aria-label="">
+                    <div
+                        data-img="{{ post.image.medium.src }}"
+                        data-text="{{ post.lead }}" 
+                        data-signature="- <b>{{ post.title }}</b> <span> fra {{ post.getMeta('Kommune')}}</span>" 
+                        class="img-carousel img-carousel-people img-carousel-square testimonial-small" 
+                        style="background: url('{{ post.image.medium.src }}') no-repeat center/cover;">
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

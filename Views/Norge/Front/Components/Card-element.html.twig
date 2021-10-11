@@ -1,0 +1,14 @@
+<div class="card-component row card-element pt-4">
+    <div class="col-xs-1 d-flex flex-wrap align-items-center">
+        <img src="//assets.{{ UKM_HOSTNAME }}/img/{{ img|raw }}" />
+    </div>
+    <div class="col pr-1">
+        <h5 class="message-title">{{ title }}</h5>
+        <span class="message-content">{{ content }}</span>
+    </div>
+    <div class="col-xs-1 d-flex">
+        <a href="{{ link }}" class="stretched-link align-self-center">
+            {% include "UKMDesign/SVG/ChevronGray.html.twig"%}
+        </a>
+    </div>
+</div>
