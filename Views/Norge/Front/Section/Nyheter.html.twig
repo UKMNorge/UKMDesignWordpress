@@ -18,7 +18,11 @@
 					</div>
 					<div class="row card-element d-flex flex-wrap align-items-center card-news">
 						<div class="card-body" style="padding: 0.25rem 0.5rem 0.8rem 1.5rem; width: 20rem;">
-							<span class="card-text">{{ post.getCategories() is empty ? 'ukategorisert' : post.getCategories() }}</span>
+							{% for category in main_post.categories %}								
+								<span class="card-text">{{ category.title }}</span>
+								{% if not loop.last %},
+								{% endif %}
+							{% endfor %}
 							<span class="card-text">{{ main_post.getTitle() }}</span>
 							<p class="card-text truncate-overflow">{{ main_post.lead }}</p>
 						</div>
@@ -37,7 +41,11 @@
 								</div>
 								<div class="col pr-0 d-flex flex-wrap align-items-center">
 									<div class="card-body news-body">
-										<span class="card-text">{{ post.getCategories() is empty ? 'ukategorisert' : post.getCategories() }}</span>
+										{% for category in post.categories %}								
+											<span class="card-text">{{ category.title }}</span>
+											{% if not loop.last %},
+											{% endif %}
+										{% endfor %}
 										<span class="card-text">{{ post.getTitle() }}</span>
 										<p class="card-text truncate-overflow">{{ post.lead }}</p>
 									</div>

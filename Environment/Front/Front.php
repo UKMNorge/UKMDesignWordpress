@@ -354,7 +354,7 @@ class Front
         if (static::harArrangement()) {
             $arrangement = static::getArrangement();
             UKMDesign::getHeader()::getSEO()
-                ->setTitle('UKM ' . $arrangement->getNavn())
+                ->setTitle($arrangement->getNavn() . ' – UKM')
                 ->setDescription(
                     ($arrangement->harKart()
                         ? $arrangement->getKart()->getName()

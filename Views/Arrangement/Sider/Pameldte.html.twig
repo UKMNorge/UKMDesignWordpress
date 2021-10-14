@@ -35,7 +35,7 @@
                 
                 <div class="row" style="padding-left: .75em; padding-right:.75em;">
                     {% for kategori in kategorier %}
-                        <button class="col btn btn-sm m-1 btn-outline-primary filterKategori" id="kategori-{{ kategori.getId() }}" data-id="{{ kategori.getId() }}" >{{ kategori.getNavn() }}</button>
+                        <button class="col btn btn-sm m-1 btn-outline-primary filterKategori" id="kategori-{{ kategori.getKey() }}" data-id="{{ kategori.getKey() }}" >{{ kategori.getNavn() }}</button>
                     {% endfor %}
                 </div>
             </div>
@@ -50,7 +50,7 @@
 	 	<div class="row">
 	 		<div class="col-12" id="searchList">
 				{% for innslag in arrangement.getInnslag().getAll() %}
-					<div class="card innslagCard UKMcard mb-2 p-0 filter filter-kategori-{{ innslag.getType().getId() }} filter-fylke-{{ innslag.getFylke().getId() }}" data-visning="skjult" data-id="{{ innslag.getId() }}" id="innslag-{{innslag.getId()}}" data-filter="{{ innslag.getNavn() }}{% for person in innslag.getPersoner().getAll() %} {{ person.getNavn() }}{% endfor %}">
+					<div class="card innslagCard UKMcard mb-2 p-0 filter filter-kategori-{{ innslag.getType().getKey() }} filter-fylke-{{ innslag.getFylke().getId() }}" data-visning="skjult" data-id="{{ innslag.getId() }}" id="innslag-{{innslag.getId()}}" data-filter="{{ innslag.getNavn() }}{% for person in innslag.getPersoner().getAll() %} {{ person.getNavn() }}{% endfor %}">
 				 		{% embed 'Arrangement/Innslag-liste.html.twig' with {'innslag': innslag} %}{% endembed %}
 					</div>
 				{% endfor %}
