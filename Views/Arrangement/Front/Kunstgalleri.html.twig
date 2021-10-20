@@ -1,5 +1,5 @@
 {% if arrangement.erStartet() %}
-<div class="row kunstgalleri-tittel">
+<div class="kunstgalleri-tittel">
     <h1>Kunstgalleri</h1>
 </div>
 <div class="row alle-kunstverk">
@@ -66,7 +66,7 @@
     margin-bottom: 60px;
 }
 .kunstgalleri-tittel h1 {
-    margin: auto;
+    text-align: center;
     padding-bottom: 10px;
 }
 .alle-kunstverk {
@@ -112,7 +112,7 @@
     max-width: 80%;
     margin: auto;
 }
-.modal.show {
+.modal.show.fade {
     display: flex !important;
 }
 .modal-body {
@@ -124,6 +124,7 @@
 @media(max-width: 768px) {
     .single-bilde {
         width: 100%;
+        margin: 0 !important;
     }
     .modal-dialog {
         max-width: 100%;
