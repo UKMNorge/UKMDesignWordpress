@@ -107,10 +107,14 @@
 .modal-footer .kunst-info .teknikk {
     margin: 12px 0 16px 0;
 }
+
 .modal-dialog {
-    width: auto;
+    width: 80%;
     max-width: 80%;
     margin: auto;
+}
+.modal.fade {
+    transition: .35s all;
 }
 .modal.show.fade {
     display: flex !important;
@@ -122,6 +126,10 @@
     z-index: 999999;
 }
 @media(max-width: 768px) {
+    .modal-dialog {
+        width: 100%;
+        max-width: 100%;
+    }
     .single-bilde {
         width: 100%;
         margin: 0 !important;
