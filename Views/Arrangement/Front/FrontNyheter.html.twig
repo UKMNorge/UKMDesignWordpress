@@ -56,5 +56,9 @@
                 </div>
             </div>
         {% endif %}
+
+		{% if arrangement.erKunstgalleri() %}
+        	{% include "Arrangement/Front/Kunstgalleri.html.twig" %}
+		{% endif %}
 	</div>
 {% endblock %}

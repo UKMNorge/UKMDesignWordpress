@@ -33,6 +33,10 @@
                 </div>
 			</div>
 		</div>
+		{% if arrangement.erKunstgalleri() %}
+        	{% include "Arrangement/Front/Kunstgalleri.html.twig" %}
+		{% endif %}
+
 		{% if not skjulHvaErUKM %}
             <div class="row">
                 <div class="col-12 col-md-12 mb-5">
@@ -41,4 +45,5 @@
             </div>
         {% endif %}
 	</div>
+	
 {% endblock %}

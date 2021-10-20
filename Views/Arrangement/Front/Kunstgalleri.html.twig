@@ -1,0 +1,142 @@
+{% if arrangement.erStartet() %}
+<div class="row kunstgalleri-tittel">
+    <h1>Kunstgalleri</h1>
+</div>
+<div class="row alle-kunstverk">
+    {% for innslag in innslag_utstilling %}
+        {% for utstilling in innslag.getTitler().getAll() %}
+            {% if utstilling.getBilde() %}
+                {% set bildeId = utstilling.getId() %}
+                <div class="single-bilde">
+                    <div class="inner">
+                        <div type="button" data-toggle="modal" data-target="#modal{{ bildeId }}">
+                            <img src="{{ utstilling.getBilde().getSize('original').getUrl() }}"/>
+                        </div>
+                        <h4 class="bilde-kunstgalleri-innslag">{{ utstilling.getNavn() }}</h4>
+                        {# <span class="small text-muted normal">{{ utstilling.getType() }}</span> #}
+                        {% for person in innslag.getPersoner().getAll() %}
+                            <p class="blide-kunstgalleri-kunstner signature">{{ person.getNavn() }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</div>
+
+
+{% for innslag in innslag_utstilling %}
+    {% for utstilling in innslag.getTitler().getAll() %}
+        {% if utstilling.getBilde() %}
+            {% set bildeId = utstilling.getId() %}
+            <!-- Button trigger modal -->
+            
+
+            <div class="modal fade" id="modal{{ bildeId }}" tabindex="5" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <img src="{{ utstilling.getBilde().getSize('original').getUrl() }}"/>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="kunst-info">
+                                <h1>Tittel</h1>
+                                <p class="small text-muted normal teknikk">{{ utstilling.getType() }}</p>
+                                {% for person in innslag.getPersoner().getAll() %}
+                                    <p class="blide-kunstgalleri-kunstner signature">{{ person.getNavn() }}</p>
+                                {% endfor %}
+                                <div>
+                                    <p>{{ utstilling.getBeskrivelse() }}</p>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Lukk</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
+<style>
+.kunstgalleri-tittel {
+    width: 100%;
+    margin: auto;
+    border-bottom: solid 1px #dadce0;
+    margin-bottom: 60px;
+}
+.kunstgalleri-tittel h1 {
+    margin: auto;
+    padding-bottom: 10px;
+}
+.alle-kunstverk {
+    display: flex;
+}
+.single-bilde {
+    width: 48%;
+}
+.single-bilde .inner {
+    padding: 20px;
+    float: left;
+    transition: 1.5s opacity ease;
+    background: #fff;
+    box-shadow: 5px 5px 3px #0000002e;
+    margin-bottom: 60px;
+    position: relative;
+    border: solid 1px #dbdbdb;
+}
+.single-bilde:nth-child(even) {
+    margin-left: 2%;
+}
+.single-bilde:nth-child(odd) {
+    margin-right: 2%;
+}
+.bilde-kunstgalleri-innslag {
+    margin: 20px 0;
+}
+.blide-kunstgalleri-kunstner {
+    font-size: 25px;
+    margin-bottom: 0;
+}
+.modal-footer .kunst-info {
+    width: 100%;
+}
+.modal-footer .kunst-info h1 {
+    margin: 0;
+}
+.modal-footer .kunst-info .teknikk {
+    margin: 12px 0 16px 0;
+}
+.modal-dialog {
+    width: auto;
+    max-width: 80%;
+    margin: auto;
+}
+.modal.show {
+    display: flex !important;
+}
+.modal-body {
+    text-align: center;
+}
+.modal {
+    z-index: 999999;
+}
+@media(max-width: 768px) {
+    .single-bilde {
+        width: 100%;
+    }
+    .modal-dialog {
+        max-width: 100%;
+    }
+    .modal-body {
+        margin: -16px;
+    }
+    .blide-kunstgalleri-kunstner.signature {
+        line-height: 2.125rem !important;
+    }
+}
+</style>
+
+
+{% endif %}
+
