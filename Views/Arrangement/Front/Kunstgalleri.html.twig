@@ -112,18 +112,27 @@
     width: 80%;
     max-width: 1500px;
     margin: auto;
+    height: 100%;
+    display: flex;
+}
+.modal-content {
+    margin: auto;
 }
 .modal.fade {
     transition: .35s all;
 }
 .modal.show.fade {
     display: flex !important;
+    padding: 0 !important;
 }
 .modal-body {
     text-align: center;
 }
 .modal {
     z-index: 999999;
+}
+.modal-open {
+    padding-right: 0 !important;
 }
 @media(max-width: 768px) {
     .modal-dialog {
