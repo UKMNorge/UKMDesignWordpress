@@ -73,7 +73,19 @@
                     {{' dager' }}
                 {% endif %}
             {% else %}
-                Visning starter {{ date(arrangement.getStart())|date("d m Y") }}
+                Visning starter</h1>
+                
+                <div class="overunder mr-3" style="margin-top: 0; margin-bottom: 20px;">
+                    <div class="under mb-1" style="font-size: .7em;">
+                        {{ arrangement.getStart()|dato('M')|upper }}
+                    </div>
+                    <div class="over" style="font-size:1.26em;margin-top: -.1em; margin-bottom: -.3em">
+                        {{ arrangement.getStart()|dato('d')}}
+                    </div>
+                    <div class="under mb-1 badge badge-warning" style="font-size: .7em; background: rgba(255, 18, 139, 65%); color: #fff;">
+                        {{ arrangement.getStart()|dato('Y')|upper }}
+                    </div>
+                </div>
             {% endif %}
             
         </h1>
