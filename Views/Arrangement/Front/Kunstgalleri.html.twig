@@ -40,7 +40,7 @@
                             </div>
                             <div class="modal-footer">
                                 <div class="kunst-info">
-                                    <h1>Tittel</h1>
+                                    <h1>{{ utstilling.getTittel() }}</h1>
                                     <p class="small text-muted normal teknikk">{{ utstilling.getType() }}</p>
                                     {% for person in innslag.getPersoner().getAll() %}
                                         <p class="blide-kunstgalleri-kunstner signature">{{ person.getNavn() }}</p>
