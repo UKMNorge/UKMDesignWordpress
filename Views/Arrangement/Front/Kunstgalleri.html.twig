@@ -24,6 +24,17 @@
         {% endfor %}
     </div>
 
+    <!-- Farge knapper -->
+    <div id="floatingKnapper">
+        <div style="background-color: #fdebd0"></div>
+        <div style="background-color: #fef1e8"></div>
+        <div style="background-color: #fffbd4"></div>
+        <div style="background-color: #f8e0d4"></div>
+        <div style="background-color: #deddeb"></div>
+        <div style="background-color: #eff3e3"></div>
+        <div style="background-color: #cee0ef"></div>
+    </div>
+
 
     {% for innslag in innslag_utstilling %}
         {% for utstilling in innslag.getTitler().getAll() %}
@@ -92,103 +103,166 @@
     </div>
 {% endif %}
 
-  <style>
-    .kunstgalleri-tittel {
+<style>
+.kunstgalleri-tittel {
+    width: 100%;
+    margin: auto;
+    border-bottom: solid 1px #dadce0;
+    margin-bottom: 60px;
+}
+.kunstgalleri-tittel h1 {
+    text-align: center;
+    padding-bottom: 10px;
+}
+.alle-kunstverk {
+    display: flex;
+}
+.single-bilde {
+    width: 48%;
+}
+.single-bilde .inner {
+    padding: 20px;
+    float: left;
+    transition: 1.5s opacity ease;
+    background: #fff;
+    box-shadow: 5px 5px 3px #0000002e;
+    margin-bottom: 60px;
+    position: relative;
+    border: solid 1px #dbdbdb;
+}
+.single-bilde:nth-child(even) {
+    margin-left: 2%;
+}
+.single-bilde:nth-child(odd) {
+    margin-right: 2%;
+}
+.bilde-kunstgalleri-innslag {
+    margin: 20px 0;
+}
+.blide-kunstgalleri-kunstner {
+    font-size: 25px;
+    margin-bottom: 0;
+}
+.modal-footer .kunst-info {
+    width: 100%;
+}
+.modal-footer .kunst-info h1 {
+    margin: 0;
+}
+.modal-footer .kunst-info .teknikk {
+    margin: 12px 0 16px 0;
+}
+
+.modal-dialog {
+    width: 80%;
+    max-width: 1500px;
+    margin: auto;
+    height: 100%;
+    display: flex;
+}
+.modal-content {
+    margin: auto;
+}
+.modal.fade {
+    transition: .35s all;
+}
+.modal.show.fade {
+    display: flex !important;
+    padding: 0 !important;
+}
+.modal-body {
+    text-align: center;
+}
+.modal {
+    z-index: 999999;
+}
+.modal-open {
+    padding-right: 0 !important;
+}
+.kunstgalleri-tittel .info-text {
+    font-size: 15px;
+    margin-top: -35px;
+}
+#floatingKnapper {
+    position: fixed;
+    display: grid;
+    right: 40px;
+    bottom: 100px;
+    border-top: solid 1px;
+    z-index: 99;
+    opacity: .2;
+    transition: 1s;
+    transition-delay: 2s;
+}
+#floatingKnapper div {
+    height: 40px;
+    width: 40px;
+    border: solid 1px;
+    border-top: none;
+    transition: .1s;
+}
+#floatingKnapper div.active,
+#floatingKnapper div:hover {
+    height: 46px;
+    width: 46px;
+    margin: -3px;
+    overflow: overlay;
+    border: solid 1px;
+    cursor: pointer;
+}
+#floatingKnapper:hover {
+    opacity: 1;
+    transition: .2s;
+}
+#floatingKnapper div:active {
+    height: 50px;
+    width: 50px;
+    margin: -5px;
+    overflow: overlay;
+    border: solid 1px;
+    cursor: pointer;
+
+}
+@media(min-width: 992px) {
+    #floatingKnapper {
+        right: 15px;
+    }
+}
+@media(max-width: 768px) {
+    .modal-dialog {
         width: 100%;
-        margin: auto;
-        border-bottom: solid 1px #dadce0;
-        margin-bottom: 60px;
-    }
-    .kunstgalleri-tittel h1 {
-        text-align: center;
-        padding-bottom: 10px;
-    }
-    .alle-kunstverk {
-        display: flex;
+        max-width: 100%;
     }
     .single-bilde {
-        width: 48%;
-    }
-    .single-bilde .inner {
-        padding: 20px;
-        float: left;
-        transition: 1.5s opacity ease;
-        background: #fff;
-        box-shadow: 5px 5px 3px #0000002e;
-        margin-bottom: 60px;
-        position: relative;
-        border: solid 1px #dbdbdb;
-    }
-    .single-bilde:nth-child(even) {
-        margin-left: 2%;
-    }
-    .single-bilde:nth-child(odd) {
-        margin-right: 2%;
-    }
-    .bilde-kunstgalleri-innslag {
-        margin: 20px 0;
-    }
-    .blide-kunstgalleri-kunstner {
-        font-size: 25px;
-        margin-bottom: 0;
-    }
-    .modal-footer .kunst-info {
         width: 100%;
+        margin: 0 !important;
     }
-    .modal-footer .kunst-info h1 {
-        margin: 0;
-    }
-    .modal-footer .kunst-info .teknikk {
-        margin: 12px 0 16px 0;
-    }
-
     .modal-dialog {
-        width: 80%;
-        max-width: 1500px;
-        margin: auto;
-        height: 100%;
-        display: flex;
-    }
-    .modal-content {
-        margin: auto;
-    }
-    .modal.fade {
-        transition: .35s all;
-    }
-    .modal.show.fade {
-        display: flex !important;
-        padding: 0 !important;
+        max-width: 100%;
     }
     .modal-body {
-        text-align: center;
+        margin: -16px;
     }
-    .modal {
-        z-index: 999999;
+    .blide-kunstgalleri-kunstner.signature {
+        line-height: 2.125rem !important;
     }
-    .modal-open {
-        padding-right: 0 !important;
+    #floatingKnapper {
+        right: 0;
+        opacity: 1;
     }
-    .kunstgalleri-tittel .info-text {
-        font-size: 15px;
-        margin-top: -35px;
+    #floatingKnapper div {
+        height: 30px !important;
+        width: 20px !important;
+        margin: 0 !important;
     }
-    @media(max-width: 768px) {
-        .modal-dialog {
-            width: 100%;
-            max-width: 100%;
-        }
-        .single-bilde {
-            width: 100%;
-            margin: 0 !important;
-        }
-        .modal-dialog {
-            max-width: 100%;
-        }
-        .modal-body {
-            margin: -16px;
-        }
-        .blide-kunstgalleri-kunstner.signature {
-            line-height: 2.125rem !important;
-        }
-    }
-    </style>
+}
+</style>
+
+<script>
+    jQuery('#floatingKnapper div').click((e) => {
+        jQuery('#floatingKnapper div').removeClass('active');
+        jQuery(e.currentTarget).addClass('active');
+        var farge = jQuery(e.currentTarget).css('background-color');
+        jQuery('body').css('background-color', farge);
+    })
+</script>
