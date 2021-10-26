@@ -260,9 +260,15 @@
 
 <script>
     jQuery('#floatingKnapper div').click((e) => {
-        jQuery('#floatingKnapper div').removeClass('active');
-        jQuery(e.currentTarget).addClass('active');
-        var farge = jQuery(e.currentTarget).css('background-color');
-        jQuery('body').css('background-color', farge);
+        if(jQuery(e.currentTarget).hasClass('active')) {
+            jQuery('#floatingKnapper div').removeClass('active');
+            jQuery('body').css('background-color', '#fff');
+        }
+        else {
+            jQuery('#floatingKnapper div').removeClass('active');
+            jQuery(e.currentTarget).addClass('active');
+            var farge = jQuery(e.currentTarget).css('background-color');
+            jQuery('body').css('background-color', farge);
+        }
     })
 </script>
