@@ -6,6 +6,8 @@ use UKMNorge\DesignWordpress\Environment\Wordpress;
 use UKMNorge\Geografi\Fylker;
 use UKMNorge\Geografi\Kommune;
 
+require_once('UKMconfig.inc.php');
+
 $now = new DateTime();
 
 /**
@@ -46,9 +48,9 @@ if( $start_nasjonaldag < $now && $stop_nasjonaldag > $now || isset($_GET['nasjon
 */ 
 
 // NYHETER
-define("BLOG_ID_REDAKSJONELT", "BLOG_ID_REDAKSJONELT");
 
 switch_to_blog(BLOG_ID_REDAKSJONELT);
+
 $posts = new Posts(3);
 restore_current_blog();
 
