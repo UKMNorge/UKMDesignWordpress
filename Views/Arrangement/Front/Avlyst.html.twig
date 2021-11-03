@@ -13,7 +13,7 @@ jQuery('#avlysInfo').slideUp();
 </script>
 <style>
 	#avlyst_banner {
-		background: #ff128b;
+		background: gray;
 		color: #fff;
 	}
 </style>
@@ -23,16 +23,19 @@ jQuery('#avlysInfo').slideUp();
 			<div class="col-12 title">
 				<div class="float-right mt-2 click" id="visAvlysInfo">
 					<div class="overunder" style="font-size: 1.2em;">
-						<div class="over" style="font-size: 2em;">
-							<span class="icon icon-info-circle-outline"></span>
-						</div>
 						<div class="under" style="margin-top: .3em;">
 							les mer
 						</div>
 					</div>
 				</div>
-
-				<h1 class="mt-1 mb-1" style="opacity: 1 !important; text-transform: uppercase; font-size: 1.9em;">
+				<div class="float-left">
+					<div class="overunder" style="font-size: 1.2em; margin-right: 1rem;">
+						<div class="under">
+							<img src="//assets.{{ UKM_HOSTNAME }}/img/alert.svg" alt="alert" />
+						</div>
+					</div>
+				</div>
+				<h1 style="opacity: 1 !important; font-size: 1em; margin-top: .5em;">
 					{% include "Arrangement/Avlyst-status.html.twig" %}
 				</h1>
 				<p class="small mt-2">
