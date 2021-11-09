@@ -4,16 +4,23 @@
 {% set bolgecomponent = true %}
 
 {% block herotext %}
-    <h1>Aktiviteter</h1>
-    <div class="background-space"></div>
+	<h1>Aktiviteter og arrangementer</h1>
+	<h3>Leter du etter noe å finne på? Finn UKM aktiviteter nær deg.</h3>
+	<div class="background-space"></div>
+{% endblock %}
+
+{% block hero_button %}
+	<div class="front-buttons">
+		{% include "Norge/Front/Components/Standard-button.html.twig" with {title: 'Gå til påmeldingssiden', path: '/derdubor/', extra: 'btn-blue'} %}
+	</div>
 {% endblock %}
 
 {% block content %}
-    <div class="">
-
-    </div>
+	<div class="container">
+		<h5>Info om festivalen 2020</h5>
+	</div>
 {% endblock %}
 
 {% block javascripts %}
-    {{ parent() }}
+	{{ parent() }}
 {% endblock %}
