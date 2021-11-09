@@ -19,7 +19,7 @@ I feltet `verdi` skriver du navnet på templaten du vil lage. Dette navnet må v
 3. Nå har du en testside du kan bruke.
 
 #### Opprett template-filer
-4. Lag, eller velg deg en mappe i [Controller/](/Controller/), hvor du oppretter Controller-filen din.
+4. Lag, eller velg deg en mappe i [Controller/](/Controller/), hvor du oppretter Controller-filen din. Se gjerne punkt 7 først for å få en pekepinn på hvor filen bør ligge. <br />
 5. I [Views/](/Views/) oppretter du en `.html.twig`-fil. <br />
 Filen plasseres i en mappe med samme navn som mappen du puttet controlleren din i.
 6. Skriv hei eller noe i template-filen, så du kan se at du har fått opp denne (se standard-template)
