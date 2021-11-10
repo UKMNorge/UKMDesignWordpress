@@ -12,13 +12,11 @@
 {% block hero_button %}
 	<div class="front-buttons">
 		{% include "Norge/Front/Components/Standard-button.html.twig" with {title: 'Gå til påmeldingssiden', path: '/derdubor/', extra: 'btn-blue'} %}
+        {% include "Norge/Front/Components/Standard-button.html.twig" with {title: 'Les om UKM-festivalen', path: '/info-om-ukm-festivalen-2022/', extra: 'btn-blue my-2'} %}
 	</div>
 {% endblock %}
 
 {% block content %}
-	<div class="container">
-		<h5>Info om festivalen 2020</h5>
-	</div>
 {% endblock %}
 
 {% block javascripts %}
