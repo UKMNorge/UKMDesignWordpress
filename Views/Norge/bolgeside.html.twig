@@ -1,0 +1,25 @@
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
+
+{% set showHero = false %}
+{% set bolgecomponent = true %}
+
+{% block herotext %}
+	<h1>Aktiviteter og arrangementer</h1>
+	<h3>Leter du etter noe å finne på? Finn UKM aktiviteter nær deg.</h3>
+	<div class="background-space"></div>
+{% endblock %}
+
+{% block hero_button %}
+	<div class="front-buttons">
+		{% include "Norge/Front/Components/Standard-button.html.twig" with {title: 'Gå til påmeldingssiden', path: '/derdubor/', extra: 'btn-blue'} %}
+        {% include "Norge/Front/Components/Standard-button.html.twig" with {title: 'Les om UKM-festivalen', path: '/festivalen/info-om-ukm-festivalen-2022/', extra: 'btn-blue my-2'} %}
+	</div>
+{% endblock %}
+
+{% block content %}
+	<div class="mb-5"></div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+{% endblock %}
