@@ -57,6 +57,11 @@ templates:
           file: Norge/avlyst
           description: >
             Lister ut alle arrangement som har blitt avlyst.
+      bolgeside:
+          name: En side med bolgekomponentet som header
+          file: Norge/bolgeside
+          description: >
+            Side med med bolgekomponentet som header.
   organisasjonen:
     name: Om organisasjonen
     controllers:
