@@ -19,58 +19,62 @@ jQuery('#avlysInfo').slideUp();
 </style>
 <div id="avlyst_banner">
 	<div class="container mb-3 clearfix" style="margin-top:-1em;">
-		<div class="row py-3">
-			<div class="col-12 title">
-				<div class="float-right mt-2 click" id="visAvlysInfo">
-					<div class="overunder" style="font-size: 1.2em;">
-						<div class="under" style="margin-top: .3em;">
-							les mer
-						</div>
-					</div>
-				</div>
-				<div class="float-left">
+		<div class="row">
+			<div class="col-12 media title">
+				<div class="float-left align-self-center">
 					<div class="overunder" style="font-size: 1.2em; margin-right: 1rem;">
 						<div class="under">
-							<img src="//assets.{{ UKM_HOSTNAME }}/img/alert.svg" alt="alert" />
-						</div>
+							<span class="dot dot-grey-large" style="background: gray;">
+								<span class="dot svg-dot svg-dot-large">
+									<img src="//assets.{{ UKM_HOSTNAME }}/img/alert.svg" alt="alert"/>
+								</span>
+							</span>
+						</span>
 					</div>
 				</div>
-				<h1 style="opacity: 1 !important; font-size: 1em; margin-top: .5em;">
+			</div>
+			<div class="media-body">
+				<h1 style="opacity: 1 !important; font-size: 1em;">
 					{% include "Arrangement/Avlyst-status.html.twig" %}
 				</h1>
 				<p class="small mt-2">
 					{{ arrangement.getMetaValue('avlys_status_kort') }}
 				</p>
 			</div>
-		</div>
-	</div>
-</div>
-
-<div id="avlysInfo" class="mb-4" style="{{ not expandinfo ? 'display: none;' }}">
-	<div class="container">
-		<div class="row">
-			<div class="col-12 col-sm-12">
-				<p>
-					{{ arrangement.getMetaValue('avlys_status_lang')|raw|nl2br }}
-				</p>
-                {% if arrangement.getMetaValue('avlys') != 'avlys' %}
-                    {% if arrangement.getVideresending().getMottakere()|length == 1 %}
-                        {% set mottaker = arrangement.getVideresending().getMottakere()|first %}
-                        <p>
-                            Les mer på nettsiden til
-                            <a href="{{ mottaker.getArrangement().getLink(false) }}">{{ mottaker.getNavn() }}</a>
-                        </p>
-                    {% elseif arrangement.getVideresending().getMottakere()|length > 0 %}
-                        <p>
-                            Les mer på:
-                            <br/>
-                            {% for mottaker in arrangement.getVideresending().getMottakere() %}
-                                <a href="{{ mottaker.getArrangement().getLink(false) }}" class="btn btn-outline-primary mb-2">{{ mottaker.getNavn() }}</a>
-                            {% endfor %}
-                        </p>
-                    {% endif %}
-                {% endif %}
+			<div class="float-right click align-self-center" id="visAvlysInfo">
+				<div class="overunder" style="font-size: 1.2em;">
+					<div class="under">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" style="fill:#FFF;">
+							<path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+						</svg>
+					</div>
+				</div>
 			</div>
 		</div>
+
 	</div>
-</div>
+</div></div></div><div id="avlysInfo" class="mb-4" style="{{ not expandinfo ? 'display: none;' }}"><div class="container">
+<div class="row">
+	<div class="col-12 col-sm-12">
+		<p>
+			{{ arrangement.getMetaValue('avlys_status_lang')|raw|nl2br }}
+		</p>
+		{% if arrangement.getMetaValue('avlys') != 'avlys' %}
+			{% if arrangement.getVideresending().getMottakere()|length == 1 %}
+				{% set mottaker = arrangement.getVideresending().getMottakere()|first %}
+				<p>
+					Les mer på nettsiden til
+					<a href="{{ mottaker.getArrangement().getLink(false) }}">{{ mottaker.getNavn() }}</a>
+				</p>
+			{% elseif arrangement.getVideresending().getMottakere()|length > 0 %}
+				<p>
+					Les mer på:
+					<br/>
+					{% for mottaker in arrangement.getVideresending().getMottakere() %}
+						<a href="{{ mottaker.getArrangement().getLink(false) }}" class="btn btn-outline-primary mb-2">{{ mottaker.getNavn() }}</a>
+					{% endfor %}
+				</p>
+			{% endif %}
+		{% endif %}
+	</div>
+</div></div></div>
