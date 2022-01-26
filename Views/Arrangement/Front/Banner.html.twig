@@ -99,6 +99,10 @@ jQuery('#kartet').slideUp();
 				<a href="#" id="skjulKart" class="btn btn-xs btn-outline-primary float-right">Skjul kart</a>
 			</div>
 		</div>
+		{# Midlertidig #}
+		<div>
+			<a href="{{ arrangement.getKart().getLink() }}" target="_blank" style="max-width: 250px;" class="btn btn-primary btn-block">Se Google Maps</a>
+		</div>
 	</div>
 </div>
 {% if arrangement.getMetaValue('avlys') %}
