@@ -3,9 +3,10 @@
 
 <h3 class="mb-3 mt-0">Ting som skjer</h3>
 {% if kommendeArrangement|length > 0 %}
-    {% if omrade.getType() == 'fylke' %}
-		{# <small>(etter UKM lokalt)</small> #}
-    {% endif %}
+    {# Kommenterer ut denne fordi den ikke lenger passer den UKM-modellen #}
+	{# {% if omrade.getType() == 'fylke' %}
+		<small>(etter UKM lokalt)</small>
+    {% endif %} #}
 	{% include "Front/Part/ArrangementListe.html.twig" with {arrangementer: kommendeArrangement, id: 'kommende'} %}
 	<div class="clearfix"></div>
 	<div class="mb-5"></div>
