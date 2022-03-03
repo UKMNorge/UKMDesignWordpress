@@ -1,10 +1,11 @@
 <div class="container-fluid contact-section">
     <div class="row">
         <div class="col d-flex justify-content-center mb-2">
-            <span class="undertitler">Kontakt oss</span>
+            <span class="undertitler">Lurer du på noe?</span>
         </div>
     </div>
-    <div class="row">
+    {# Kommenterer ut til vi har fått mer innhold på forsiden #}
+    {# <div class="row">
         <div class="col d-flex justify-content-center">
             <ul class="list-group list-group-horizontal">
                 <li class="some-item some-item-large list-group-item">
@@ -45,17 +46,25 @@
                 </li>
             </ul>
         </div>
+    </div> #}
+    <div class="row">
+        <div class="col d-flex justify-content-center my-4">
+            <a href="{{ UKMDesign.getSitemap().getPage('vibakukm','kontakt') }}" class="contact-link undertitler-small">
+                <span>Ofte stilte spørsmål<span>
+                {% include "UKMDesign/SVG/ChevronBlue.html.twig" %}
+            </a>
+        </div>
     </div>
     <div class="row">
         <div class="col d-flex justify-content-center">
             <h4 class="line"><span>eller</span></h4>
         </div>
-    </div>
+    </div> 
     <div class="row">
         <div class="col d-flex justify-content-center mt-2">
             <a href="{{ UKMDesign.getSitemap().getPage('vibakukm','kontakt') }}" class="contact-link undertitler-small">
-                {% include "UKMDesign/SVG/Email.html.twig"%}
-                <span>Send oss en e-post<span>
+                <span>Kontakt oss<span>
+                {% include "UKMDesign/SVG/ChevronBlue.html.twig" %}
             </a>
         </div>
     </div>
