@@ -1,100 +1,48 @@
-<div
-	class="row-flex flex-row">
-	{# <div class="float-left overunder mr-3" style="margin-top: .25em;">
-			<div class="under mb-1" style="font-size: .7em;">
-				{{ arrangement.getStart()|dato('M')|upper }}
+<div class="row-flex flex-row">
+	<div class="event-container card">
+		<div class="event-box">
+			<div class="float-left overunder mr-3" style="align-self: center; border-right: solid 2px #A0AEC0; padding-right: 16px;">
+				<div class="over" style="font-size: .7em;">
+					{{ arrangement.getStart()|dato('D')|upper }}
+				</div>
+				<div class="under" style="font-size:1.4em;">
+					{{ arrangement.getStart()|dato('d')}}
+				</div>
+				<div class="under" style="font-size: .7em; margin-top: 0.2em; white-space: nowrap;">
+					{{ arrangement.getStart()|dato('M')|upper }}
+					{{ arrangement.getStart()|dato('Y')|upper }}
+				</div>
 			</div>
-			<div class="over" style="font-size:1.26em;margin-top: -.1em; {{ arrangement.erFerdig() ? 'margin-bottom: -.3em'}}">
-				{{ arrangement.getStart()|dato('d')}}
-			</div>
-	        {% if arrangement.erFerdig() %}
-	            <div class="under mb-1 badge badge-warning" style="font-size: .7em; background: rgba(255, 18, 139, 65%); color: #fff;">
-	                {{ arrangement.getStart()|dato('Y')|upper }}
-	            </div>
-	        {% endif %}
-		</div>
-		<div>
-			<div style="margin-bottom: -.4em;">
-	            <a href="{{ arrangement.getLink() }}">{{ arrangement.getNavn()}}</a>
-	        </div>
-			<small class="text-muted">
-				{% if arrangement.harKart() and arrangement.getKart().getName() %}
-					{{ arrangement.getKart().getName() }}
+			<span style="align-self: center; margin-right: 10px;">
+				<a class="stretched-link" style="text-decoration: underline;" href="{{ arrangement.getLink() }}">{{ arrangement.getNavn()}}</a>
+				<p class="event-lead">
+					{% if arrangement.harKart() and arrangement.getKart().getName() %}
+						{{ arrangement.getKart().getName() }}
+					{% else %}
+						{{ arrangement.getSted() }}
+					{% endif %}
+				</p>
+			</span>
+			{% if not arrangement.erFerdig() %}
+				{% if arrangement.harPamelding() and (arrangement.erPameldingApen(1) or arrangement.erPameldingApen(2)) %}
+					{% if arrangement.erFellesmonstring() %}
+						<a href="{{ arrangement.getLink() }}" target="_blank" class="btn btn-primary btn-paamelding">
+							<span>Påmelding</span>
+						</a>
+					{% else %}
+						<a href="//delta.{{ UKM_HOSTNAME }}/ukmid/pamelding/{{ arrangement.getType() == 'fylke' ? 'fylke' : arrangement.getEierKommune().getId() }}-{{ arrangement.getId() }}/" target="_blank" class="btn btn-primary btn-paamelding">
+							<span>Påmelding</span>
+						</a>
+					{% endif %}
 				{% else %}
-					{{ arrangement.getSted() }}
+					<a href="{{ arrangement.getLink() }}" target="_blank" class="btn btn-outline-dark btn-paamelding mer-info">
+						<span>Mer info</span>
+					</a>
 				{% endif %}
-			</small>
-		</div> #}
-
-	{# <div class="panel-body accordion-item accordion-child panel-body-arrangement collapse show">
-		<div class="panel-inner fylke-body card">
-			<div class="panel-group" id="accordionKommune" href="{{ arrangement.getLink() }}">
-				<div class="panel panel-default accordion-panel-child arrangement-default" data-toggle="collapse" data-parent="#accordionArrangement" href="#collapseForm">
-					<div class="panel-heading accordion-header-child card-body card-body-arrangement meldpaa">
-						<div class="float-left overunder mr-3" style="align-self: center;">
-							<div class="over" style="font-size: .7em;">
-								{{ arrangement.getStart()|dato('D')|upper }}
-							</div>
-							<div class="under" style="font-size:1.4em;">
-								{{ arrangement.getStart()|dato('d')}}
-							</div>
-							<div class="under" style="font-size: .7em; margin-top: 0.2em;">
-								{{ arrangement.getStart()|dato('M')|upper }} 
-								{{ arrangement.getStart()|dato('Y')|upper }}
-							</div>
-						</div>
-						<span style="border-left: solid 2px #A0AEC0; padding: 20px;">
-							<a class="stretched-link" href="{{ arrangement.getLink() }}">{{ arrangement.getNavn()}}</a>
-							<p class="info-label">
-								{% if arrangement.harKart() and arrangement.getKart().getName() %}
-									{{ arrangement.getKart().getName() }}
-								{% else %}
-									{{ arrangement.getSted() }}
-								{% endif %}
-							</p>
-						</span>
-						<svg class="${arrangement.kommuner_fellesmonstring == null ? '' : 'hide'}" style="height: 24px;width: auto; align-self: center; margin-left: auto;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="#718096">
-							<path fill-rule="evenod d" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-						</svg>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> #}
-
-	<div class="panel-body accordion-item accordion-child panel-body-arrangement collapse show">
-		<div class="panel-inner fylke-body card">
-			<div class="panel-group" id="accordionKommune" href="{{ arrangement.getLink() }}">
-				<div class="panel panel-default accordion-panel-child arrangement-default" data-toggle="collapse" data-parent="#accordionArrangement" href="#collapseForm">
-					<div class="panel-heading accordion-header-child card-body card-body-arrangement meldpaa">
-						<div class="float-left overunder mr-3" style="align-self: center;">
-							<div class="over" style="font-size: .7em;">
-								{{ arrangement.getStart()|dato('D')|upper }}
-							</div>
-							<div class="under" style="font-size:1.4em;">
-								{{ arrangement.getStart()|dato('d')}}
-							</div>
-							<div class="under" style="font-size: .7em; margin-top: 0.2em;">
-								{{ arrangement.getStart()|dato('M')|upper }} 
-								{{ arrangement.getStart()|dato('Y')|upper }}
-							</div>
-						</div>
-						<span style="border-left: solid 2px #A0AEC0; padding: 20px;">
-							<a class="stretched-link" href="{{ arrangement.getLink() }}">{{ arrangement.getNavn()}}</a>
-							<p class="info-label">
-								{% if arrangement.harKart() and arrangement.getKart().getName() %}
-									{{ arrangement.getKart().getName() }}
-								{% else %}
-									{{ arrangement.getSted() }}
-								{% endif %}
-							</p>
-						</span>
-						<svg class="${arrangement.kommuner_fellesmonstring == null ? '' : 'hide'}" style="height: 24px;width: auto; align-self: center; margin-left: auto;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="#718096">
-							<path fill-rule="evenod d" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-						</svg>
-					</div>
-				</div>
-			</div>
+			{% endif %}
+			<svg class="event-button" xmlns="http://www.w3.org/2000/svg" fill="#718096">
+				<path fill-rule="evenod d" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+			</svg>
 		</div>
 	</div>
 </div>
