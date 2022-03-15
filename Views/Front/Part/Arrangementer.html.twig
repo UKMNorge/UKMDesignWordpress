@@ -15,7 +15,7 @@
 {% endif %}
 
 {% if tidligereArrangement|length > 0 %}
-	<h3 class="mb-3 mt-0">Tidligere arrangement</h3>
+	<h3 class="mb-3 mt-0">Tidligere arrangementer</h3>
 	{% include "Front/Part/ArrangementListe.html.twig" with {arrangementer: tidligereArrangement|reverse, id: 'tidligere'} %}
 	<div class="clearfix"></div>
 	{% if tidligereArrangement|length > 3 %}
@@ -26,9 +26,9 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
-		$('#arrangementListeTidligere > div:gt(3)').hide();
+		$('#arrangementListeTidligere > div:gt(2)').hide();
 		$("#collapse").click(function () {
-			$("#collapse").text(($("#collapse").text() == 'Vis færre') ? 'Vis flere' : 'Vis færre', $('#arrangementListeTidligere > div:gt(3)').slideToggle( "slow" ));
+			$("#collapse").text(($("#collapse").text() == 'Vis færre') ? 'Vis flere' : 'Vis færre', $('#arrangementListeTidligere > div:gt(2)').slideToggle( "slow" ));
 		})
 	});
 </script>
