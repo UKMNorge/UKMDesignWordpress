@@ -1,7 +1,7 @@
 {% set kommendeArrangement = omrade.getKommendeArrangementer().getAll()|filter(arrangement => arrangement.erRegistrert() and arrangement.erSynlig()) %}
 {% set tidligereArrangement = omrade.getTidligereArrangementer().getAll()|filter(arrangement => arrangement.erRegistrert() and arrangement.erSynlig() and arrangement.getSesong() > 2019 ) %}
 
-<h3 class="mb-3 mt-0">Ting som skjer</h3>
+<h3 class="mb-3 mt-0">Kommende arrangementer</h3>
 {% if kommendeArrangement|length > 0 %}
     {# Kommenterer ut denne fordi den ikke lenger passer den UKM-modellen #}
 	{# {% if omrade.getType() == 'fylke' %}
@@ -26,9 +26,9 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
-		$('#arrangementListeTidligere > li:gt(3)').hide();
+		$('#arrangementListeTidligere > div:gt(3)').hide();
 		$("#collapse").click(function () {
-			$("#collapse").text(($("#collapse").text() == 'Vis færre') ? 'Vis flere' : 'Vis færre', $('#arrangementListeTidligere > li:gt(3)').slideToggle( "slow" ));
+			$("#collapse").text(($("#collapse").text() == 'Vis færre') ? 'Vis flere' : 'Vis færre', $('#arrangementListeTidligere > div:gt(3)').slideToggle( "slow" ));
 		})
 	});
 </script>
