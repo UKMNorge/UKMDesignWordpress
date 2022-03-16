@@ -1,13 +1,3 @@
-{# <ol class="list-unstyled" id="arrangementListe{{id|capitalize}}">
-    {% for arrangement in arrangementer %}
-        <li class="clearfix mb-3" style="{{ arrangement.erFerdig() ? 'opacity: .65' }}">
-            {% include "Arrangement/ListeElement.html.twig" %}
-        </li>
-    {% else %}
-        <li>{{ omrade.getNavn() }} har ingen arrangement.</li>
-    {% endfor %}
-</ol> #}
-
 <div class="list-unstyled" id="arrangementListe{{id|capitalize}}">
     {% for arrangement in arrangementer %}
         <div class="clearfix mb-3" style="{{ arrangement.erFerdig() ? 'opacity: .65' }}">
