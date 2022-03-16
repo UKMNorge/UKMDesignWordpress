@@ -1,13 +1,33 @@
-<div class="row">
+<div style="height: 15rem; padding-top: 2rem;">
+	<div class="container">
 	{% if posts.hasPagePrev() %}
-		<div class="col left">
-			<a href="{{ posts.getPagePrev()|raw }}" class="btn btn-outline-primary">&laquo; Se nyere saker</a>
+		<div class="col d-flex justify-content-center p-0">
+			<a href="{{ posts.getPagePrev()|raw }}" type="button" class="ukm-button ukm-button-front text ukm-button-primary vis-mer-btn" role="button" aria-disabled="true">
+				<svg class="icon" style="transform: scaleX(-1);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(216, 33%, 97%)">
+					<path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+				</svg>
+				<span>Vis eldre</span>
+			</a>
 		</div>
 	{% endif %}
 	
 	{% if posts.hasPageNext() %}
-		<div class="col right">
-			<a href="{{ posts.getPageNext()|raw }}" class="btn btn-outline-primary">Se eldre saker &raquo;</a>
+		<div class="col d-flex justify-content-center p-0 pt-4">
+			<a href="{{ posts.getPageNext()|raw }}" type="button" class="ukm-button ukm-button-front text ukm-button-primary vis-mer-btn" role="button" aria-disabled="true">
+				<span>Vis nyere</span>
+				{# {% include "Global/svg/chevron-white.html.twig" %} #}
+			</a>
 		</div>
 	{% endif %}
+
+	{# Infinity scroll #}
+		{# {% if posts.hasPageNext() %}
+		<div class="col d-flex justify-content-center">
+			<a href="{{ posts.getPageNext()|raw }}" type="button" class="ukm-button ukm-button-front text ukm-button-primary vis-mer-btn" role="button" aria-disabled="true">
+				<span>Vis mer</span>
+				{% include "Global/svg/chevron-white.html.twig" %}
+			</a>
+		</div>
+		{% endif %} #}
+	</div>
 </div>
