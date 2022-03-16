@@ -1,9 +1,9 @@
-<ol class="list-unstyled" id="arrangementListe{{id|capitalize}}">
+<div class="list-unstyled" id="arrangementListe{{id|capitalize}}">
     {% for arrangement in arrangementer %}
-        <li class="clearfix mb-3" style="{{ arrangement.erFerdig() ? 'opacity: .65' }}">
+        <div class="clearfix mb-3" style="{{ arrangement.erFerdig() ? 'opacity: .65' }}">
             {% include "Arrangement/ListeElement.html.twig" %}
-        </li>
+        </div>
     {% else %}
-        <li>{{ omrade.getNavn() }} har ingen arrangement.</li>
+        <div>{{ omrade.getNavn() }} har ingen arrangement.</div>
     {% endfor %}
-</ol>
+</div>
