@@ -5,5 +5,7 @@
 {% if post.hasFeaturedFilm()%}
 	{{ post.getFeaturedFilm.getEmbedHtml()|raw }}
 {% elseif post.hasFeaturedImage() and not post.hasMeta('hideTopImage') %}
+<div class="the-post-image-div">
 	<img id="the_post_image" src="{{ post.image.large.src }}"></img>
+</div>
 {% endif %}
