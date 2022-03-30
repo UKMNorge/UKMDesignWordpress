@@ -9,5 +9,6 @@ UKMDesign::getHeader()->getLogo()->hide();
 
 Wordpress::setView('Festivalen/Front/Underveis');
 
-$posts = Posts::getByCategory(1);
+// Get post for current year
+$posts = Posts::getByYear(date("Y"));
 Wordpress::setPosts($posts);
