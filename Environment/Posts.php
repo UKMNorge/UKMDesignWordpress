@@ -9,6 +9,7 @@ class Posts
     var $nextpage = false;
     var $prevpage = false;
     var $category = null;
+    var $year = null;
 
     public function __construct(Int $posts_per_page = null, bool $awaitManualLoad = false)
     {
@@ -47,6 +48,40 @@ class Posts
             $posts->loadPosts();
         }
         return $posts;
+    }
+
+    /**
+     * Load all posts by year
+     * 
+     * load posts by running ->loadPosts();
+     *
+     * @param Int $categyearory_id
+     * @return Posts
+     */
+    public static function getByYear(Int $year) : Posts {
+        $posts = new Posts(null, true);
+        $posts->setYear($year);
+        $posts->loadPosts();
+        return $posts;
+    }
+
+    /**
+     * Set year
+     *
+     * @param Int $year
+     * @return void
+     */
+    public function setYear(Int $year) : void {
+        $this->year = $year;
+    }
+
+    /**
+     * Set year
+     *
+     * @return bool
+     */
+    public function hasYear() : bool {
+        return $this->year != null;
     }
 
     /**
@@ -215,9 +250,16 @@ class Posts
         } else {
             $categorySelector = '';
         }
+        
+        if ($this->hasYear()) {
+            $yearSelector = '&year=' . $this->year;
+        } else {
+            $yearSelector = '';
+        }
 
-
-        $posts = query_posts('posts_per_page=' . $this->getPostsPerPage() . '&paged=' . $this->getPage() . $categorySelector);
+        $args = 'posts_per_page=' . $this->getPostsPerPage() . '&paged=' . $this->getPage() . $yearSelector . $categorySelector;
+        $posts = query_posts($args);
+        
         while (have_posts()) {
             the_post();
             $this->posts[] = Post::loadByPostObject($post);
