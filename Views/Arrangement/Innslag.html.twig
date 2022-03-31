@@ -75,6 +75,13 @@
 									</div>
 								{% endfor %}
 							</div>
+						{% elseif innslag.getPersoner().getAntall() > 0 %}
+							<h4 class="col-12">Personer</h4>
+							{% for person in innslag.getPersoner().getAll() %}
+									<div class="col-12">
+										{{ person.getNavn() }}, {{ person.getAlder() }}
+									</div>
+							{% endfor %}
 							
 						{% endif %}
 
