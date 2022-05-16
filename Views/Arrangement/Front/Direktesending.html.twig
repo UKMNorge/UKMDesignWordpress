@@ -11,6 +11,23 @@
 	a:hover {
 		text-decoration: none !important;
 	}
+	#direktesend_embed iframe {
+        width: 100% !important;
+        height: 30vw !important;
+		max-height: 750px !important;
+    }
+	@media (max-width: 1550px) {
+		#direktesend_embed iframe {
+			width: 100% !important;
+			height: 40vw !important;
+		}
+	}
+	@media (max-width: 992px) {
+		#direktesend_embed iframe {
+			width: 100% !important;
+			height: 45vw !important;
+		}
+	}
 </style>
 <script>
 	jQuery(document).on('click', '#direktesend_banner', function (e) {
@@ -44,6 +61,8 @@ jQuery('#direktesend_embed').slideDown(250);
 	</a>
 {% endif %}
 
-<div id="direktesend_embed" class="mb-4 center" style="{{ not sending.erAktiv() ? 'display: none;' }}">
-	{{ arrangement.getMetaValue('live_embed')|raw }}
+<div class="container">
+	<div id="direktesend_embed" class="mb-4 center" style="{{ not sending.erAktiv() ? 'display: none;' }}">
+		{{ arrangement.getMetaValue('live_embed')|raw }}
+	</div>
 </div>
