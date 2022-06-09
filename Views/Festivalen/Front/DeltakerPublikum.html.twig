@@ -1,0 +1,30 @@
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
+
+{% block content %}
+<div class="container festival-section news-section mt-4">
+    <div class="row deltaker-publikum-main">
+        <div class="col-12">
+            <h1>Er du deltaker på UKM-festivalen 2022?</h1>
+        </div>
+        <div class="col-12 question-box-festivalen">
+            <div class="buttons">
+                <div class="inner">
+                    <a href="#" class="standard-btn festival-style btn-large d-flex justify-content-between btn-blue mt-2">Ja, jeg er deltaker? ></a>
+                </div>
+
+                <div class="inner">
+                    <a href="#" class="standard-btn festival-style btn-large d-flex justify-content-between btn-blue mt-2">Nei, jeg er foresatt/annet? ></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #UKMheader {
+        visibility: hidden;
+        display: none;
+    }
+</style>
+{% endblock %}
+
