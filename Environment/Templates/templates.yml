@@ -170,5 +170,12 @@ templates:
         file: Festivalen/sjekkliste-deltaker
         description: >
           Sjekkliste til deltakeren
+      deltakerordensregler:
+        name: Ordensrelger til deltakere
+        file: Festivalen/ordensregler-deltaker
+        description: >
+          Ordensregler til deltakeren
+
+          
           
           
