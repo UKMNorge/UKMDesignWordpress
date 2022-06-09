@@ -165,3 +165,10 @@ templates:
         file: Festivalen/informasjon-deltaker
         description: >
           Description for informasjon deltaker
+      deltakersjekkliste:
+        name: Sjekkliste til deltakeren
+        file: Festivalen/sjekkliste-deltaker
+        description: >
+          Sjekkliste til deltakeren
+          
+          
