@@ -185,7 +185,14 @@ templates:
         file: Festivalen/foresatt-annet
         description: >
           Andre (foresatt eller annet) på festivalen
+      programannet:
+        name: Program for foresatt/annet
+        file: Festivalen/program-annet
+        description: >
+          Andre (foresatt eller annet) på festivalen
 
+
+  
           
           
           

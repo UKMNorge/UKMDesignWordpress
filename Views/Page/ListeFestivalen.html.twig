@@ -15,7 +15,7 @@
 	<div class="container question-box-festivalen">
         <div class="col-12 boxes row">
             {% for section in page.getPageBlocks().getAll() %}
-                <a href="{{ section.redirectLenke }}" class="col-6 box">
+                <a href="{{ section.redirectLenke }}" class="col-sm-12 col-md-6 box">
                     <div class="inner">
                         <h2 class="title">{{ section.title }} {{ section.getIcon() }}</h2>
                     </div>
