@@ -20,14 +20,21 @@
     </div>
 </div>
 
-<div class="container festival-section news-section mt-4">
+
+<div id="nyheterIFestivalen" class="container">
+    <h1>Nyheter</h1>
+    <div class="news-section mt-4">
         {% embed "Kategori/Listen.html.twig"|UKMpath %}{% endembed %}
+    </div>
 </div>
 
 <style>
     #UKMheader, #festivalHeader {
         visibility: hidden;
         display: none;
+    }
+    #nyheterIFestivalen {
+        margin-top: 100px;
     }
     
 </style>
