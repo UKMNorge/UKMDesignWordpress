@@ -38,6 +38,7 @@ Wordpress::setView('Arrangement/Program/Oversikt');
 Wordpress::addViewData(
     [
         'visInterne' =>$visInterne,
-        'program' => $program
+        'program' => $program,
+        'isUKMFestivalen' => true
     ]
 );
