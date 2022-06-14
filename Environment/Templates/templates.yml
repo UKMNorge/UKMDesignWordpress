@@ -137,6 +137,11 @@ templates:
         file: Page/liste
         description: >
           Lager ei fin liste av alle underlagte sider (som må ha template: Liste-element)
+      listefestivalen:
+        name: Liste av undersider
+        file: Page/liste_festivalen
+        description: >
+          Lager ei fin liste av alle underlagte sider (som må ha template: Liste-element)
       list:
         name: Liste-element
         file: Page/liste_element
@@ -160,3 +165,35 @@ templates:
         file: Festivalen/nyhetsbrev
         description: >
           Husk også å sette meta-feltet `dato` med `dd_mm`-formatøage
+      deltakerinfo:
+        name: Informasjon til deltakeren
+        file: Festivalen/informasjon-deltaker
+        description: >
+          Description for informasjon deltaker
+      deltakersjekkliste:
+        name: Sjekkliste til deltakeren
+        file: Festivalen/sjekkliste-deltaker
+        description: >
+          Sjekkliste til deltakeren
+      deltakerordensregler:
+        name: Ordensrelger til deltakere
+        file: Festivalen/ordensregler-deltaker
+        description: >
+          Ordensregler til deltakeren
+      andredeltakere:
+        name: Andre foresatt/annet
+        file: Festivalen/foresatt-annet
+        description: >
+          Andre (foresatt eller annet) på festivalen
+      programannet:
+        name: Program for foresatt/annet
+        file: Festivalen/program-annet
+        description: >
+          Andre (foresatt eller annet) på festivalen
+
+
+  
+          
+          
+          
+          

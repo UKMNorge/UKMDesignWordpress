@@ -1,0 +1,70 @@
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
+
+{% block content %}
+<div class="container festival-section mt-4">
+    <div class="row deltaker-publikum-main">
+        <div class="col-12">
+            <h1 class="hero-text">Informasjon for deg som ikke er deltaker på festivalen</h1>
+        </div>
+
+        <div class="col-12 question-box-festivalen">
+            <div class="boxes row">
+                <a href="/festivalen/program-annet/" class="col-sm-12 col-md-6 box">
+                    <div class="inner">
+                        <h2 class="title">For publikum</h2>
+                        <p class="beskrivelse">Program, informasjon om reise, hotell, og forestillinger. </p>
+                    </div>
+                </a>
+                
+                <a href="/festivalen/direkte/" class="col-sm-12 col-md-6 box">
+                    <div class="inner">
+                        <h2 class="title">Livestream</h2>
+                        <p class="beskrivelse">Se direktesending av forestillingene.</p>
+                    </div>
+                </a>
+
+                <a href="/festivalen/til-foreldre-og-foresatte/" class="col-sm-12 col-md-6 box">
+                    <div class="inner">
+                        <h2 class="title">Til foreldre og foresatte</h2>
+                        <p class="beskrivelse">Informasjon om hva din ungdom gjør på festivalen.</p>
+                    </div>
+                </a>
+                
+                <a href="/festivalen/kontakt-info/" class="col-sm-12 col-md-6 box">
+                    <div class="inner">
+                        <h2 class="title">Kontaktinfo</h2>
+                        <p class="beskrivelse">Kontaktpersoner i ditt fylke og festival-ledelsen.</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #UKMheader {
+        visibility: hidden;
+        display: none;
+    }
+    .question-box-festivalen .boxes .box {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        text-decoration: none !important;
+    }
+    .question-box-festivalen .boxes .box:nth-child(odd) {
+        padding-right: 30px;
+    }
+    .question-box-festivalen .boxes .box:nth-child(even) {
+        padding-left: 30px;
+    }
+    .question-box-festivalen .boxes .box .inner {
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: -1px 1px 5px 1px #0000003d;
+    }
+
+
+</style>
+{% endblock %}
+

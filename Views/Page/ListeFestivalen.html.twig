@@ -1,0 +1,41 @@
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
+
+{% block content %}
+
+    <div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>
+					{% include "Page/Title.html.twig" %}
+				</h1>
+			</div>
+		</div>
+	</div>
+
+	<div class="container question-box-festivalen">
+        <div class="col-12 boxes row">
+            {% for section in page.getPageBlocks().getAll() %}
+                <a href="{{ section.redirectLenke }}" class="col-sm-12 col-md-6 box">
+                    <div class="inner">
+                        <h2 class="title">{{ section.title }} {{ section.getIcon() }}</h2>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+	</div>
+
+    <style>
+        .box .inner .title {
+            text-align: center !important;
+        }
+        .question-box-festivalen .boxes .box {
+            margin-bottom: 0 !important;
+        }
+        .question-box-festivalen .boxes .box .inner {
+            padding: 20px !important;
+        }
+        .question-box-festivalen {
+            padding: 0px 70px;
+        }
+    </style>
+{% endblock %}

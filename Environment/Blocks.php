@@ -89,6 +89,12 @@ class Blocks extends DesignBlocks
                     $page->getTitle(),
                     $page->getContent()
                 );
+                if ($page->hasMeta('redirect')) {
+                    $block->setRedirectLenke($page->getMeta('redirect', true));
+                } else {
+                    $block->setRedirectLenke($page->url);
+                }
+
                 if ($page->hasMeta('ikon')) {
                     $block->setIcon($page->getMeta('ikon', true));
                 } elseif ($page->hasMeta('icon')) {

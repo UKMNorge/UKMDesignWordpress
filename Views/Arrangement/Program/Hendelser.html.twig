@@ -4,7 +4,12 @@
 			<div class="hendelse">
 				<div class="time">
 					{% if hendelse.harSynligDetaljprogram() %}
-						<a href="{{ hendelse.getId() }}/" class="linkWithin" {% if hendelse.erFremhevet() %} style="color: rgb(0, 0, 71); color: white;" {% endif %}>{{ hendelse.getStart()|date('H:i') }}</a>
+						{% if isUKMFestivalen is defined and isUKMFestivalen == true %}
+							<a href="/festivalen/program/{{ hendelse.getId() }}/" class="linkWithin" {% if hendelse.erFremhevet() %} style="color: rgb(0, 0, 71); color: white;" {% endif %}>{{ hendelse.getStart()|date('H:i') }}</a>
+						{% else %}
+							<a href="{{ hendelse.getId() }}/" class="linkWithin" {% if hendelse.erFremhevet() %} style="color: rgb(0, 0, 71); color: white;" {% endif %}>{{ hendelse.getStart()|date('H:i') }}</a>
+						{% endif %}
+
 					{% else %}
 						{{ hendelse.getStart()|date('H:i') }}
 					{% endif %}
@@ -17,8 +22,14 @@
                         </div>
                     {% endif %}
 					<div class="tittel">
+
 						{% if hendelse.harSynligDetaljprogram() %}
-							<a href="{{ hendelse.getId() }}/" {% if hendelse.erFremhevet() %} style="color: rgb(0, 0, 71); color: white;" {% endif %}>{{ hendelse.getNavn() }}</a>
+							{% if isUKMFestivalen is defined and isUKMFestivalen == true %}
+								<a href="/festivalen/program/{{ hendelse.getId() }}/" {% if hendelse.erFremhevet() %} style="color: rgb(0, 0, 71); color: white;" {% endif %}>{{ hendelse.getNavn() }}</a>
+							{% else %}
+								<a href="{{ hendelse.getId() }}/" {% if hendelse.erFremhevet() %} style="color: rgb(0, 0, 71); color: white;" {% endif %}>{{ hendelse.getNavn() }}</a>
+							{% endif %}
+							
 						{% else %}
 							{{ hendelse.getNavn() }}
 						{% endif %}
