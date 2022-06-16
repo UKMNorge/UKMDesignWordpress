@@ -31,5 +31,17 @@
 				</p>
 			</div>
 		</div>
+
+	{% if arrangement.getType() == 'land' %}
+		<div class="row">
+			<div class="col-12">
+				<p>
+					<a href="https://{{ UKM_HOSTNAME }}/festivalen/kontaktinfo-festival/">Her kan du finne nummeret til fylkeskontakten din</a>
+				</p>
+			</div>
+		</div>
+	{% endif %}
+	
 	</div>
+	
 {% endblock %}
