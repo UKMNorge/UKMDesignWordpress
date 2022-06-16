@@ -49,7 +49,7 @@ else {
     Wordpress::addViewData(
         [
             'arrangement' => $arrangement,
-            'fylker' => Fylker::getAllInkludertGjester(),
+            'fylker' => Fylker::getAll(),
             'kategorier' => $arrangement->getInnslagTyper()->getAll()
         ]
     );
