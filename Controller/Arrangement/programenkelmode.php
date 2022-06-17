@@ -7,6 +7,8 @@ use UKMNorge\DesignWordpress\Environment\Post;
 use UKMNorge\DesignWordpress\Environment\Posts;
 use UKMNorge\DesignWordpress\Environment\Wordpress;
 use UKMNorge\Filmer\UKMTV\Direkte\Sendinger;
+use Twig\TwigFilter;
+use UKMNorge\Twig\Twig;
 
 $arrangement = new Arrangement( get_option('pl_id') );
 
@@ -19,14 +21,77 @@ $visInterne = defined('DELTAKERPROGRAM') && DELTAKERPROGRAM;
 $hendelser = $visInterne ? $arrangement->getProgram()->getAllInkludertInterne() : $arrangement->getProgram()->getAll();
 
 $program = Hendelser::sorterPerDag( $hendelser );
-Wordpress::setView('Arrangement/Program/EnkelVisning');
+Wordpress::setView('Arrangement/Program/LiveMode');
 Wordpress::getPage()
     ->setTitle( 'Program for '.( $arrangement->getEierType() == 'kommune' ? 'UKM ' : ''). $arrangement->getNavn() )
     ->setDescription( 'Vi starter '. $arrangement->getStart()->format('j. M \k\l. H:i') );
 
+
+$hendelserDato = [];
+// echo '<pre>';
+// var_dump($program[0]->forestillinger);
+// echo '</pre>';
+foreach ($program as $p) {
+    foreach($p->forestillinger as $f) {
+        // echo '<pre>';
+        // var_dump($f);
+        // echo '</pre>';
+        $hendelserDato[$f->getStart()->getTimestamp()][] = $f;
+    }
+}
+
+$filter = function ($datetime) {
+
+    $passed = time() > strtotime($datetime);
+
+
+    $time = abs(time() - strtotime($datetime)); 
+    
+    if($time > 3600) {
+        // return $datetime;
+    }
+    
+    $units = array (
+        3600 => 'time',
+        60 => 'minutt',
+        1 => 'sekund'
+    );
+  
+    foreach ($units as $unit => $val) {
+        if ($time < $unit) continue;
+        
+        $numberOfUnits = abs(floor($time / $unit));
+
+        $ret = $passed ? 'For ' : 'Om ';
+        
+
+        if($val == 'sekund') {
+            $ret = $ret . 'noen sekunder';
+        }
+        else if($val == 'minutt') {
+            $ret = $ret . $numberOfUnits . ' minutt' . (($numberOfUnits > 1) ? 'er' : '');
+        }
+        else if($val == 'time') {
+            if($numberOfUnits > 23) {
+                $date = new DateTime($datetime);
+
+                return $date->format('m-d h:i');
+            }
+            $ret = $ret . $numberOfUnits . ' time' . (($numberOfUnits > 1) ? 'r' : '');
+        }
+        
+        return $passed ? $ret . ' siden' : $ret;
+    }
+
+  };
+
+Twig::addFilter('timeago', $filter);
+
+
 Wordpress::addViewData(
     [
         'visInterne' =>$visInterne,
-        'program' => $program
+        'program' => $program,
+        'hendelserDato' => $hendelserDato,
     ]
 );
