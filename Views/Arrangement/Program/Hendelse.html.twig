@@ -88,8 +88,11 @@
                     </div>
                 {% endfor %}
 
+
 				<p class="my-4">
+				{% if not arrangement.getType() == 'land' %}
 					<a href="../">Tilbake til rammeprogrammet</a>
+				{% endif %}
 				</p>
 			</div>
 		</div>
