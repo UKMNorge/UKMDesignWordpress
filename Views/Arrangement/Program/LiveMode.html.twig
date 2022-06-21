@@ -15,6 +15,7 @@
 
 {% block content %}
 
+    {% set dag = '' %}
     {% set timeNow = 'now'|date('U') %}
     <div class="row program-enkel-visning-header">
         {# START - Left #}
@@ -28,8 +29,13 @@
                 {% set startDato = hendelse.getStart()|date('U') %}
                 {% set finishDato = startDato + hendelse.getTid().getSekunder() %}
 
+                {% if hendelse.getStart()|dato('l') != dag %}
+                    {% set dag = hendelse.getStart()|dato('l') %}
+                    <div class="point dag empty"><span></span></div>
+                    <div class="point empty dag"><span>{{ dag }}</span></div>
+                {% endif %}
                 <div class="point col-6">
-
+                    
                     <div class="box-innslag">
                         <a {#href="/festivalen/program/{{ hendelse.getId() }}"#}>
                         {% if timeNow > startDato and timeNow < finishDato %}
@@ -104,6 +110,30 @@
             min-height: 300px;
             padding: 30px;
             display: flex;
+        }
+        .point.dag {
+            border: none !important;
+            width: 10%;
+            max-width: 100px;
+            padding: 0;
+            min-height: 30px !important;
+        }
+        .point.dag span {
+            color: #fff !important;
+            width: 100%;
+            position: absolute;
+            left: 0;
+            right: 0;
+            text-align: center;
+            box-shadow: 1px 1px 19px 30px #272e48;
+            z-index: 1;
+        }
+        .point.dag:nth-child(odd) {
+            margin-left: 40%;
+            text-align: right;
+        }
+        .point.dag:nth-child(even) {
+            margin-right: 40%;
         }
         .point.empty {
             min-height: 70px;
@@ -264,8 +294,11 @@
             padding-left: 25px;
         }
 
-    @media (max-width: 768px) {
+    @media (max-width: 650px) {
+        .point .box-innslag {
+            padding: 10px;
+        }
+    }
 
-        .point .box-innslag
     </style>
 {% endblock %}
