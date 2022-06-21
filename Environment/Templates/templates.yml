@@ -93,6 +93,13 @@ templates:
           Viser en liste over alle synlige hendelser på arrangementet.
           Hendelser med synlig offentlig program er klikkbare, og viser mer informasjon
           innenfor samme siden.
+      programenkelmode:
+        name: ProgramEnkelMode
+        file: Arrangement/programenkelmode
+        description: >
+          Viser en liste over alle synlige hendelser på arrangementet.
+          Hendelser med synlig offentlig program er klikkbare, og viser mer informasjon
+          innenfor samme siden.
       deltakerprogram:
         name: Deltakerprogram
         file: Arrangement/deltakerprogram
