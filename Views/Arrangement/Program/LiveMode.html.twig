@@ -116,8 +116,6 @@
             width: 10%;
             padding: 0;
             min-height: 30px !important;
-            height: 400px;
-            margin-top: -152px;
         }
         .point.dag span {
             color: #fff !important;
@@ -296,11 +294,55 @@
             padding-left: 25px;
         }
 
-    @media (max-width: 650px) {
-        .point .box-innslag {
-            padding: 10px;
+        @media (max-width: 720px) {
+            .point .box-innslag .title {
+                font-size: 17px;
+            }
+            .point .box-innslag .beskrivelse {
+                font-size: 14px;
+            }
         }
-    }
+        
+        @media (max-width: 540px) {
+            .point .box-innslag {
+                padding: 20px 10px;
+            }
+            .point .box-innslag .title {
+                font-size: 15px;
+            }
+            .point .box-innslag .beskrivelse {
+                font-size: 12px;
+            }
+            .point {
+                padding: 15px;
+            }
+            .point .box-innslag .timeline-point {
+                height: 17px;
+                width: 17px;
+                top: 14px;
+            }
+            .point:nth-child(odd) .box-innslag .timeline-point {
+                right: -25px;
+            }
+            .point .box-innslag .timeline-point {
+                left: -25px;
+            }
+            .point:nth-child(odd) .box-innslag::after {
+                margin-right: -10px;
+            }
+            .point:nth-child(even) .box-innslag::after {
+                left: -10px;
+            }
+            .point .box-innslag .timeline-point.now .blinking {
+                margin: 1px;
+            }
+            .point .box-innslag .time {
+                right: -240px;
+            }
+            .point:nth-child(even) .box-innslag .time {
+                left: -240px;
+            }
+        }
 
     </style>
 {% endblock %}
