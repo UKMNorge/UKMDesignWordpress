@@ -28,9 +28,9 @@
                 {% set startDato = hendelse.getStart()|date('U') %}
                 {% set finishDato = startDato + hendelse.getTid().getSekunder() %}
 
-                <div class="point col-md-6">
+                <div class="point col-6">
 
-                    <div class="box-innslag ">
+                    <div class="box-innslag">
                         <a {#href="/festivalen/program/{{ hendelse.getId() }}"#}>
                         {% if timeNow > startDato and timeNow < finishDato %}
                             <div class="timeline-point now"><div class="blinking"></div></div>
@@ -78,8 +78,8 @@
                     </div>
                 </div>
                 {% if right == false %}
-                    <div class="point col-md-6 empty"></div>
-                    <div class="point col-md-6 empty"></div>
+                    <div class="point col-6 empty"></div>
+                    <div class="point col-6 empty"></div>
 
                     {% set right = true %}    
                 {% else %}
@@ -263,5 +263,9 @@
             list-style-type: disc;
             padding-left: 25px;
         }
+
+    @media (max-width: 768px) {
+
+        .point .box-innslag
     </style>
 {% endblock %}
