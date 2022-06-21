@@ -31,7 +31,7 @@
 
                 {% if hendelse.getStart()|dato('l') != dag %}
                     {% set dag = hendelse.getStart()|dato('l') %}
-                    <div class="point dag empty"><span></span></div>
+                    <div class="point dag empty"></div>
                     <div class="point empty dag"><span>{{ dag }}</span></div>
                 {% endif %}
                 <div class="point col-6">
