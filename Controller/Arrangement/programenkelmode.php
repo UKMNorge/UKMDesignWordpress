@@ -28,14 +28,8 @@ Wordpress::getPage()
 
 
 $hendelserDato = [];
-// echo '<pre>';
-// var_dump($program[0]->forestillinger);
-// echo '</pre>';
 foreach ($program as $p) {
     foreach($p->forestillinger as $f) {
-        // echo '<pre>';
-        // var_dump($f);
-        // echo '</pre>';
         $hendelserDato[$f->getStart()->getTimestamp()][] = $f;
     }
 }
@@ -75,7 +69,7 @@ $filter = function ($datetime) {
             if($numberOfUnits > 23) {
                 $date = new DateTime($datetime);
 
-                return $date->format('m-d h:i');
+                return $date->format('d.m H:i');
             }
             $ret = $ret . $numberOfUnits . ' time' . (($numberOfUnits > 1) ? 'r' : '');
         }
