@@ -42,12 +42,14 @@
 
                             <h4 class="title center">{{ hendelse.getNavn() }}</h4>
                             
-                            <span class="beskrivelse">{{ hendelse.getBeskrivelse() }}</span>
-                            
                             <h6 class="sted center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: #fff; transform: ;msFilter:;"><path d="M12 2C7.589 2 4 5.589 4 9.995 3.971 16.44 11.696 21.784 12 22c0 0 8.029-5.56 8-12 0-4.411-3.589-8-8-8zm0 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"></path></svg>
                                 {{ hendelse.getSted() }}
                             </h6>
+
+                            <div class="beskrivelse">
+                                <span>{{ hendelse.getBeskrivelse() }}</span>
+                            </div>
 
 
                             <div class="deltakere collapse" id="collapse{{ hendelse.getId() }}">
@@ -61,14 +63,17 @@
                                     {% endfor %}
                                 {% endfor %}
                             </div>
+
+                            {% if hendelse.getInnslag().getAntall() > 1 %}
+                                <div class="alle-deltakere-div">
+                                    <button class="vis-alle-deltakere standard-btn btn-large collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ hendelse.getId() }}" aria-expanded="false" aria-controls="collapse{{ hendelse.getId() }}">
+                                        <span class="icon-chevron">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="m12 6.879-7.061 7.06 2.122 2.122L12 11.121l4.939 4.94 2.122-2.122z"></path></svg>
+                                        </span>
+                                    </button>
+                                </div>
+                            {% endif %}
                             
-                            <div class="alle-deltakere-div">
-                                <button class="vis-alle-deltakere standard-btn btn-large collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ hendelse.getId() }}" aria-expanded="false" aria-controls="collapse{{ hendelse.getId() }}">
-                                    <span class="icon-chevron">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="m12 6.879-7.061 7.06 2.122 2.122L12 11.121l4.939 4.94 2.122-2.122z"></path></svg>
-                                    </span>
-                                </button>
-                            </div>
                         </a>
                     </div>
                 </div>
@@ -181,6 +186,9 @@
             margin: 2px;
             box-shadow: 0px 0px 6px 1px green;
             border: solid 2px #006300;
+        }
+        .point .box-innslag .beskrivelse {
+            margin-bottom: 20px;
         }
         .alle-deltakere-div {
             padding-top: 15px;
