@@ -381,4 +381,28 @@
         }
 
     </style>
+    
+    <script>
+        let searchParams = new URLSearchParams(window.location.search);
+
+        if(jQuery(".timeline-point.now").length > 0 && !searchParams.has('withoutScroll')) {
+            jQuery([document.documentElement, document.body]).animate({
+                scrollTop: jQuery(".timeline-point.now").offset().top - 200 
+            }, 1000);
+            addParam('withoutScroll', true);
+
+        }
+
+        setTimeout(() => {
+            location.reload();
+        }, 1000 * 30); // 30 sekunder
+
+
+        // add param, update param
+        function addParam(name, value) {
+            const params = new URLSearchParams(window.location.search);
+            params.set(name, value);
+            window.history.replaceState({}, "", decodeURIComponent(`${window.location.pathname}?${params}`));
+        }
+    </script>
 {% endblock %}
