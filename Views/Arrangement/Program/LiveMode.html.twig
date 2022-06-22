@@ -52,10 +52,13 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: #00004B; transform: ;msFilter:;"><path d="M12 2C7.589 2 4 5.589 4 9.995 3.971 16.44 11.696 21.784 12 22c0 0 8.029-5.56 8-12 0-4.411-3.589-8-8-8zm0 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"></path></svg>
                                 {{ hendelse.getSted() }}
                             </h6>
-
-                            <div class="beskrivelse">
-                                <span>{{ hendelse.getBeskrivelse() }}</span>
-                            </div>
+                            
+                            {% if hendelse.getBeskrivelse()|length > 0 %}
+                                <div class="beskrivelse">
+                                    <span>{{ hendelse.getBeskrivelse() }}</span>
+                                </div>
+                            {% endif %}
+                            
 
 
                             <div class="deltakere collapse" id="collapse{{ hendelse.getId() }}">
@@ -217,10 +220,10 @@
             border: solid 2px #006300;
         }
         .point .box-innslag .beskrivelse {
-            margin-bottom: 20px;
+            margin-top: 20px;
         }
         .alle-deltakere-div {
-            padding-top: 15px;
+            padding-top: 35px;
             display: flex;
         }
 
@@ -326,6 +329,9 @@
                 height: 17px;
                 width: 17px;
                 top: 14px;
+            }
+            .point .box-innslag .sted {
+                margin-bottom: 0;
             }
             .point:nth-child(odd) .box-innslag .timeline-point {
                 right: -25px;
