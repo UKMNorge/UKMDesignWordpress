@@ -61,8 +61,10 @@
 
                             {% if hendelse.harSending() %}
                                 <div class="direktesending">
-                                    <span class="icon icon-video" style="font-size: 1.1em;"></span>
-                                    <span>Direktesendes</span>
+                                    <a href="/festivalen/program/{{ hendelse.getId() }}">
+                                        <span class="icon icon-video" style="font-size: 1.1em;"></span>
+                                        <span>Direktesendes</span>
+                                    </a>
                                 </div>
                             {% endif %}
             
@@ -246,6 +248,18 @@
             }
         }
 
+        .direktesending {
+            margin-top: 15px;
+        }
+        .direktesending a {
+            padding: 4px;
+            border-radius: 5px;
+        }
+        .direktesending a:hover {
+            cursor: pointer;
+            background: linear-gradient(45deg, hsl(var(--color-primary-blue-800, var(--color-primary-orange-900))), hsl(var(--color-primary-blue-600, var(--color-primary-orange-900)))) !important;
+            color: #fff;
+        }
         .direktesending .icon {
             margin-right: 5px;
             vertical-align: text-bottom;
