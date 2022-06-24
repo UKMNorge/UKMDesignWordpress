@@ -56,11 +56,12 @@ $filter = function ($datetime) {
         
         $numberOfUnits = abs(floor($time / $unit));
 
-        $ret = $passed ? 'For ca. ' : 'Om ca. ';
+        $ret = $passed ? 'Startet for ca. ' : 'Om ca. ';
+        $retSek = $passed ? 'Startet for ' : 'Starter Om ';
         
 
         if($val == 'sekund') {
-            $ret = $ret . 'noen sekunder';
+            $ret = $retSek . 'noen sekunder';
         }
         else if($val == 'minutt') {
             $ret = $ret . $numberOfUnits . ' minutt' . (($numberOfUnits > 1) ? 'er' : '');
