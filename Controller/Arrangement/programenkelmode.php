@@ -56,7 +56,7 @@ $filter = function ($datetime) {
         
         $numberOfUnits = abs(floor($time / $unit));
 
-        $ret = $passed ? 'For ' : 'Om ';
+        $ret = $passed ? 'For ca. ' : 'Om ca. ';
         
 
         if($val == 'sekund') {
