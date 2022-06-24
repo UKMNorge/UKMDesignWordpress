@@ -58,9 +58,14 @@
                                     <span>{{ hendelse.getBeskrivelse() }}</span>
                                 </div>
                             {% endif %}
-                            
 
-
+                            {% if hendelse.harSending() %}
+                                <div class="direktesending">
+                                    <span class="icon icon-video" style="font-size: 1.1em;"></span>
+                                    <span>Direktesendes</span>
+                                </div>
+                            {% endif %}
+            
                             <div class="deltakere collapse" id="collapse{{ hendelse.getId() }}">
                                 {% for innslag in hendelse.getInnslag().getAll() %}
                                     <h5 class="innslag-navn">{{ innslag.getNavn() }}</h5>
@@ -241,6 +246,10 @@
             }
         }
 
+        .direktesending .icon {
+            margin-right: 5px;
+            vertical-align: text-bottom;
+        }
         .innslag-navn {
             margin-top: 20px;
             font-size: 18px;
@@ -382,6 +391,11 @@
             .point:nth-child(even) .box-innslag .time {
                 left: -240px;
             }
+            .direktesending {
+                font-size: 14px !important;
+                margin: 7px 0 !important;
+            }
+
         }
         
 
