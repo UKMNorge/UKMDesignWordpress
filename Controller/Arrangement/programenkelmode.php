@@ -56,7 +56,7 @@ $filter = function ($datetime) {
         
         $numberOfUnits = abs(floor($time / $unit));
 
-        $ret = $passed ? 'For ' : 'Om ';
+        $ret = $passed ? 'For cirka ' : 'Om cirka ';
         
 
         if($val == 'sekund') {
@@ -77,9 +77,13 @@ $filter = function ($datetime) {
         return $passed ? $ret . ' siden' : $ret;
     }
 
-  };
+};
+
+$
 
 Twig::addFilter('timeago', $filter);
+
+
 
 
 Wordpress::addViewData(
