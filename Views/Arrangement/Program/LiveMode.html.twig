@@ -36,7 +36,7 @@
                 {% endif %}
                 <div class="point col-6">
                     
-                    <div class="box-innslag">
+                    <div class="box-innslag {{ timeNow - 7200 > startDato ? 'tidligere' : ''  }}">
                         <a {#href="/festivalen/program/{{ hendelse.getId() }}"#}>
                         {% if timeNow > startDato and timeNow < finishDato %}
                             <div class="timeline-point now"><div class="blinking"></div></div>
@@ -157,6 +157,15 @@
         }
         .point:nth-child(even) {
             border-left: 1px dashed #4b546f;
+        }
+        .point .box-innslag.tidligere {
+            opacity: .4;
+            transition: .2s opacity;
+        }
+        .point .box-innslag.tidligere:hover,
+        .point .box-innslag.tidligere:active {
+            opacity: 1;
+            transition: .2s opacity;
         }
         .point .box-innslag {
             position: relative;
