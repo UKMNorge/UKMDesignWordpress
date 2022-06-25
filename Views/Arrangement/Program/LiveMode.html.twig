@@ -427,12 +427,13 @@
     <script>
         let searchParams = new URLSearchParams(window.location.search);
 
-        if(jQuery(".timeline-point.now").length > 0 && !searchParams.has('withoutScroll')) {
+        if(jQuery(".timeline-point.now").length > 0 && searchParams.get('withoutScroll') != 'true') {
             jQuery([document.documentElement, document.body]).animate({
                 scrollTop: jQuery(".timeline-point.now").offset().top - 200 
             }, 1000);
         }
-        else if(!searchParams.has('withoutScroll')) {
+        else if(searchParams.get('withoutScroll') != 'true') {
+
             var tidligere = jQuery('.point .box-innslag.tidligere');
             if(tidligere.length > 0) {
                 jQuery([document.documentElement, document.body]).animate({
@@ -441,11 +442,12 @@
             }
         }
         
-        addParam('withoutScroll', true);
+        addParam('withoutScroll', 'false');
 
         setTimeout(() => {
-            location.reload();
-        }, 1000 * 60 * 5); // 5 minutter
+            addParam('withoutScroll', 'true');
+            location.reload();            
+        }, 1000 * 60 * 3); // 3 minutter
 
 
         // add param, update param
