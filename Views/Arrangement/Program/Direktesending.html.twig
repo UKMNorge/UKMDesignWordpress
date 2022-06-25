@@ -51,17 +51,23 @@
             </p>
         </div>
     {% elseif not hendelse.getSending().erFerdig() %}
-        <div class="center mt-2 mb-2 direktevindu">
-            <div class="bold sendeinfo">
-                <div class="icon icon-video pull-left"></div> 
-                <div class="pull-left">
-                    DIREKTE KL. 
-                    {{ hendelse.getSending().getStart()|dato('H:i') }} - 
-                    {{ hendelse.getSending().getStop()|dato('H:i') }} 
+        {% if arrangement.getType() == 'land' %}
+        <a href="/festivalen/direkte/">
+        {% endif %}
+            <div class="center mt-2 mb-2 direktevindu">
+                <div class="bold sendeinfo">
+                    <div class="icon icon-video pull-left"></div> 
+                    <div class="pull-left">
+                        DIREKTE KL. 
+                        {{ hendelse.getSending().getStart()|dato('H:i') }} - 
+                        {{ hendelse.getSending().getStop()|dato('H:i') }} 
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="clearfix"></div>
+                {{ hendelse.getSending().getEmbed()|raw }}
             </div>
-            {{ hendelse.getSending().getEmbed()|raw }}
-        </div>
+        {% if arrangement.getType() == 'land' %}
+        </a>
+        {% endif %}
     {% endif %}
 {% endif %}
