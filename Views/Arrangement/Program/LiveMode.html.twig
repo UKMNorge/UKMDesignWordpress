@@ -431,9 +431,17 @@
             jQuery([document.documentElement, document.body]).animate({
                 scrollTop: jQuery(".timeline-point.now").offset().top - 200 
             }, 1000);
-            addParam('withoutScroll', true);
-
         }
+        else if(!searchParams.has('withoutScroll')) {
+            var tidligere = jQuery('.point .box-innslag.tidligere');
+            if(tidligere.length > 0) {
+                jQuery([document.documentElement, document.body]).animate({
+                    scrollTop: jQuery(tidligere[tidligere.length-1]).offset().top + 100 
+                }, 1000);
+            }
+        }
+        
+        addParam('withoutScroll', true);
 
         setTimeout(() => {
             location.reload();
