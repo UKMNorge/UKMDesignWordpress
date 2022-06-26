@@ -36,9 +36,10 @@
                 {% endif %}
                 <div class="point col-6">
                     
-                    <div class="box-innslag {{ timeNow - 7200 > startDato ? 'tidligere' : ''  }}">
+                    {% set isNow = timeNow > startDato and timeNow < finishDato %}
+                    <div class="box-innslag {{ not isNow and (timeNow - 7200) > startDato ? 'tidligere' : ''  }}">
                         <a {#href="/festivalen/program/{{ hendelse.getId() }}"#}>
-                        {% if timeNow > startDato and timeNow < finishDato %}
+                        {% if isNow %}
                             <div class="timeline-point now"><div class="blinking"></div></div>
                             <div class="time">Nå</div>
                         {% else %}
