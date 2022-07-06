@@ -6,7 +6,15 @@
 {% endblock %}
 
 {% block content %}
-{% if arrangement.erKunstgalleri() == false %}
+
+{% if not arrangement.erDeltakereSynlig() %}
+<div class="container">
+	<p>Deltakere er ikke synlig!</p>
+</div>
+{% endif %}
+
+
+{% if arrangement.erKunstgalleri() == false and arrangement.erDeltakereSynlig() %}
 	<div class="container">
 		<h1>Påmeldte</h1>
 		<div class="row">

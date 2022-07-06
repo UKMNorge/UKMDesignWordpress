@@ -25,7 +25,7 @@
 				</a>
 			</div>
 		{% endif %}
-		{% if arrangement.harPameldte() %}
+		{% if arrangement.harPameldte() and arrangement.erDeltakereSynlig() %}
 		<div class="col menu-item">
 			<a href="{{ arrangement.getLink() }}pameldte/">
                 {% if arrangement.getAntallPersoner() is defined %}
