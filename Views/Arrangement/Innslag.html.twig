@@ -5,6 +5,14 @@
 {#% set col_left = innslag.getFilmer().getAntall() > 0 or innslag.getBilder().getAntall() > 0 ? 'col-md-7 col-xl-8 float-left'%#}
 
 {% block content %}
+	{# Hvis deltakere ikke er synlige, ikke vis denne deltakeren #}
+	{% if not arrangement.erDeltakereSynlig() %}
+	<div class="container">
+		<p>Deltakere er ikke synlig!</p>
+	</div>
+
+	{# Deltakere er synlige #}
+	{% else %}
 	<div id="innslag">
 		{% set valgt_bilde = innslag.getBilder().getValgtOrFirst().getSize("large") %}
 		{# HEADER #}
@@ -302,5 +310,8 @@
 			{% endif %}
 
 		</div>
-	</div>
+	</div>	
+	{% endif %}
+
+	
 {% endblock content %}

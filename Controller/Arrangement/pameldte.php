@@ -20,6 +20,8 @@ if( is_numeric( $id ) ) {
         );
 	}
 
+    Wordpress::addViewData('arrangement', $arrangement);
+
     $innslag = $arrangement->getInnslag()->get( $id );
     Wordpress::setView('Arrangement/Innslag');
 
