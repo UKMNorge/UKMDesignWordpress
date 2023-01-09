@@ -2,7 +2,8 @@
 
 use UKMNorge\DesignWordpress\Environment\Wordpress;
 
-if( date('m') < 3 ) {
+// Hvis vi skal ha plakat, fjern false
+if( false && date('m') < 3 ) {
     Wordpress::requireController('Festivalen','plakat');
 } else {
     Wordpress::requireController('Festivalen','ferdig');
