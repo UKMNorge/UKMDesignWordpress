@@ -197,6 +197,11 @@ templates:
         file: Festivalen/program-annet
         description: >
           Andre (foresatt eller annet) på festivalen
+      foerFestivalen:
+        name: Informasjon før festivalen starter
+        file: Festivalen/foer-festivalen
+        description: >
+          Description for informasjon deltaker
 
 
   

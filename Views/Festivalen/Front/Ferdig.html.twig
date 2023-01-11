@@ -2,9 +2,18 @@
 
 {% block content %}
 <div class="container festival-section mt-4">
+
+    <div class="col-12 question-box-festivalen">
+        <div class="buttons">
+            <div class="inner center-button">
+                <a href="/festivalen/for-festivalen/" class="standard-btn festival-style btn-large d-flex justify-content-between btn-blue mt-2">Informasjon om årets festival ></a>
+            </div>
+        </div>
+    </div>
+
     <div class="row ferdig-main" style="text-align: center">
         <div class="col-12">
-            <h1 class="festival-header-title hero-text">UKM-festivalen 2022</h1>
+            <h4 class="festival-header-title">UKM-festivalen 2022</h4>
         </div>
         <div class="col-12" style="padding-bottom:2%; padding-top:2%">
             <p><h3><blockquote>...UKM for meg er en sjanse til å møte nye folk med samme interesser og skape vennskap. For meg er det viktig fordi det ofte er vanskelig å finne venner i hverdagen.</blockquote></h3></p>
@@ -36,6 +45,7 @@
         <div>
             <p>Neste års UKM-festival blir i Olavshallen i Trondheim den 23.–27. juni 2023. Sees vi der?</p>
         </div>
+        
     </div>
 </div>
 
@@ -48,6 +58,13 @@
 </div> #}
 
 <style>
+    .question-box-festivalen {
+        margin-top: 80px;
+    }
+    .question-box-festivalen .buttons .inner.center-button{
+        width: auto;
+        margin: auto;
+    }
     .ferdig-main div {
         width: 100%;
     }
@@ -58,10 +75,16 @@
     #nyheterIFestivalen {
         margin-top: 100px;
     }
+    .festival-header-title {
+        margin-top: 80px;
+    }
     
     @media (max-width: 992px) {
         .artikkel-beskrivelse-festivalen {
             margin-top: 15px;
+        }
+        .question-box-festivalen {
+            margin-top: 40px;
         }
     }
 
