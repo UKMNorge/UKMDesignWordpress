@@ -435,12 +435,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/UKMNorge/UKMDesign.git",
-                "reference": "994dee42ca56eaeca93ad985a7452ea5fb5cac5f"
+                "reference": "ac5ccdaa9867c39c568a14fcc6ac35b482978a62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UKMNorge/UKMDesign/zipball/994dee42ca56eaeca93ad985a7452ea5fb5cac5f",
-                "reference": "994dee42ca56eaeca93ad985a7452ea5fb5cac5f",
+                "url": "https://api.github.com/repos/UKMNorge/UKMDesign/zipball/ac5ccdaa9867c39c568a14fcc6ac35b482978a62",
+                "reference": "ac5ccdaa9867c39c568a14fcc6ac35b482978a62",
                 "shasum": ""
             },
             "require": {
@@ -473,7 +473,7 @@
                 "issues": "https://github.com/UKMNorge/UKMDesign/issues",
                 "source": "https://github.com/UKMNorge/UKMDesign/tree/master"
             },
-            "time": "2023-01-11T13:54:06+00:00"
+            "time": "2023-01-11T14:41:02+00:00"
         },
         {
             "name": "ukmnorge/designvanilla",
