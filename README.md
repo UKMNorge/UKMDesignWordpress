@@ -130,7 +130,7 @@ OBS: Utplassering på DEV-miljø må skje først!
 1. Kjør `git clone` av dette repoet på wordpress/wp-content/themes/
 2. Endre navn av mappen til `UKMDesignWordpress_vX` (X betyr versjon)
 3. Kjør `cd UKMDesignWordpress_vX`
-4. `composer update` (det er sterkt anbefalt å ikke kjøre composer install på produksjon. composer install MÅ kjøres på DEV-miljø og filen composer.lock commites)
+4. `composer install` (det er sterkt anbefalt å ikke kjøre `composer update` i produksjon. `composer update` MÅ kjøres på DEV-miljø og filen composer.lock commites)
 5. Gjør tema tilgjengelig på https://ukm.no/wp-admin/network/themes.php
 6. Aktiver tema på https://ukm.no/wp-admin/themes.php
 
