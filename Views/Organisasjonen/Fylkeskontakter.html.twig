@@ -1,0 +1,90 @@
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
+
+{% block content %}
+    <div class="container">
+        <h1>Fylkeskontakter</h1>
+        <div class="row nop">
+            {% for fylke in fylker %}
+                <div class="fylke-item col-6 nop">
+                    <div class="drop-item choice-item mb-2 collapsed" data-toggle="collapse" href="#collapseAdmins{{fylke.getId()}}" role="button" aria-expanded="false" aria-controls="collapseAdmins{{fylke.getId()}}">
+                        <h5>{{ fylke.getNavn() }}</h5>
+                        <div class="button-show-more">
+                            <a class="btn">
+                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(228, 96%, 67%)"> 
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="collapse fylke-kontaktpersoner row" id="collapseAdmins{{fylke.getId()}}">
+                            {% set omrade = fylke.getNettverkOmrade %}
+
+                            {% for kontakt in omrade.getKontaktpersoner().getAll() %}
+                                <div class="col-6 kontaktperson">
+                                    {% embed "Kontaktpersoner/Grid.html.twig"|UKMpath %}{% endembed %}
+                                </div>
+                            {% else %}
+                                    <p>
+                                        Vi har ikke kontaktinformasjon for
+                                        {{ omrade.getNavn() }}
+                                        enda.
+                                        Vi jobber med å skaffe det, så du må gjerne prøve igjen om noen dager.
+                                    </p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    $( document ).ready(function() {
+        jQuery(".kontaktperson").click(function(e) {
+            e.stopPropagation();
+        });
+    });
+</script>
+{% endblock %}
+
+
+
+{% block css %}
+<style>
+    .choice-item {
+        display: block;
+        width: 100%;
+    }
+    .button-show-more {
+        display: flex;
+    }
+    .button-show-more .btn {
+        margin: auto;
+        display: block;
+    }
+    .button-show-more .btn p {
+        margin: 0;
+    }
+    .choice-item.collapsed .button-show-more .btn .icon {
+        transform: rotate(90deg);
+    }
+    .button-show-more .btn .icon {
+        transform: rotate(-90deg);
+    }
+    .fylke-kontaktpersoner {
+        display: flex;
+    }
+    .kontaktperson .card {
+        border: none;
+        box-shadow: 0px 0px 14px -5px #0000002e;
+    }
+    .kontaktperson .card .card-title {
+        margin-top: 15px !important;
+        font-size: 15px;
+    }
+    .fylke-kontaktpersoner .kontaktperson {
+        margin-top: 20px;
+    }
+</style>
+{% endblock %}
