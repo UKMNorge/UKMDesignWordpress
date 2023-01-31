@@ -2,18 +2,18 @@
 
 {% block content %}
     <div class="container">
-        <h1>Fylkeskontakter</h1>
+        <h1 class="title-fylkeskontakter">Fylkeskontakter</h1>
         <div class="row nop">
             {% for fylke in fylker %}
-                <div class="fylke-item col-6 nop">
-                    <div class="drop-item choice-item mb-2 collapsed" data-toggle="collapse" href="#collapseAdmins{{fylke.getId()}}" role="button" aria-expanded="false" aria-controls="collapseAdmins{{fylke.getId()}}">
-                        <h5>{{ fylke.getNavn() }}</h5>
+                <div class="fylke-item col-xl-4 col-lg-6 col-sm-12 nop">
+                    <div class="drop-item choice-item mb-2 collapsed card grid-kontaktpersoner" data-toggle="collapse" href="#collapseAdmins{{fylke.getId()}}" role="button" aria-expanded="false" aria-controls="collapseAdmins{{fylke.getId()}}">
+                        <h5 class="fylke-navn">{{ fylke.getNavn() }}</h5>
                         <div class="button-show-more">
-                            <a class="btn">
+                            <div class="btn">
                                 <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(228, 96%, 67%)"> 
                                     <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                                 </svg>
-                            </a>
+                            </div>
                         </div>
                         <div class="collapse fylke-kontaktpersoner row" id="collapseAdmins{{fylke.getId()}}">
                             {% set omrade = fylke.getNettverkOmrade %}
@@ -52,9 +52,16 @@
 
 {% block css %}
 <style>
+    .title-fylkeskontakter {
+        margin-bottom: 50px;
+    }
     .choice-item {
         display: block;
         width: 100%;
+        background-color: #e5ebf42e;
+    }
+    .choice-item .fylke-navn {
+        text-align: center;
     }
     .button-show-more {
         display: flex;
@@ -85,6 +92,9 @@
     }
     .fylke-kontaktpersoner .kontaktperson {
         margin-top: 20px;
+    }
+    .drop-item:hover, .drop-item:active {
+        background-color: #e3ecfc61;
     }
 </style>
 {% endblock %}
