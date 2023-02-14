@@ -7,7 +7,7 @@
 	{# {% if omrade.getType() == 'fylke' %}
 		<small>(etter UKM lokalt)</small>
     {% endif %} #}
-	{% include "Front/Part/ArrangementListe.html.twig" with {arrangementer: kommendeArrangement, id: 'kommende'} %}
+	{% include "Front/Part/ArrangementListe.html.twig" with {arrangementer: kommendeArrangement, id: 'kommende', sort: 'normal'} %}
 	<div class="clearfix"></div>
 	<div class="mb-5"></div>
 {% else %}
@@ -16,7 +16,7 @@
 
 {% if tidligereArrangement|length > 0 %}
 	<h3 class="mb-3 mt-0">Tidligere arrangementer</h3>
-	{% include "Front/Part/ArrangementListe.html.twig" with {arrangementer: tidligereArrangement|reverse, id: 'tidligere'} %}
+	{% include "Front/Part/ArrangementListe.html.twig" with {arrangementer: tidligereArrangement|reverse, id: 'tidligere', sort: 'reverse'} %}
 	<div class="clearfix"></div>
 	{% if tidligereArrangement|length > 3 %}
 		<a id="collapse">Vis flere</a>
