@@ -6,7 +6,15 @@ use UKMNorge\DesignWordpress\Environment\Wordpress;
 if( false && date('m') < 3 ) {
     Wordpress::requireController('Festivalen','plakat');
 } else {
-    Wordpress::requireController('Festivalen','ferdig');
+    // Hvis det er superadmin vis nettsiden
+    if(is_super_admin()) {
+        Wordpress::requireController('Festivalen','deltaker-publikum');
+    }
+    // Ellers info om nettsiden
+    else {
+        Wordpress::requireController('Festivalen','ferdig');
+    }
+    
 }
 
 /*
