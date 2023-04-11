@@ -7,13 +7,13 @@ if( false && date('m') < 3 ) {
     Wordpress::requireController('Festivalen','plakat');
 } else {
     // Hvis det er superadmin vis nettsiden
-    if(is_super_admin()) {
+    // if(is_super_admin()) {
         Wordpress::requireController('Festivalen','deltaker-publikum');
-    }
+    // }
     // Ellers info om nettsiden
-    else {
-        Wordpress::requireController('Festivalen','ferdig');
-    }
+    // else {
+    //     Wordpress::requireController('Festivalen','ferdig');
+    // }
     
 }
 
