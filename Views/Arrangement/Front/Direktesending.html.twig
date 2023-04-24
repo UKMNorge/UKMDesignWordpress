@@ -63,6 +63,8 @@ jQuery('#direktesend_embed').slideDown(250);
 
 <div class="container">
 	<div id="direktesend_embed" class="mb-4 center" style="{{ not sending.erAktiv() ? 'display: none;' }}">
-		{{ arrangement.getMetaValue('live_embed')|raw }}
+		<div style="position: relative; padding-top: 56.25%;">
+			<iframe src="{{ arrangement.getMetaValue('live_link')|raw }}/iframe" style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true"></iframe>
+		</div>
 	</div>
 </div>
