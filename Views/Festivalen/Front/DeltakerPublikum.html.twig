@@ -28,9 +28,6 @@
     <div class="news-section mt-4">
         <div class="row d-flex justify-content-center">
         {% for post in posts.getAll() %}
-            <div class="col-12 d-flex justify-content-center d-block d-lg-none mt-4">
-                <span class="undertitler undertitler-news">{{ post.date|dato('j. M Y') }}</span>
-            </div>
             {% set riktigCat = false %}
             {% for cat in post.categories %}
                 {% if cat.slug == 'pa-forsiden' %}
@@ -38,6 +35,9 @@
                 {% endif %}
             {% endfor %}
             {% if riktigCat %}
+            <div class="col-12 d-flex justify-content-center d-block d-lg-none mt-4">
+                <span class="undertitler undertitler-news">{{ post.date|dato('j. M Y') }}</span>
+            </div>
             <div class="col-12 col-md-8 col-xl-6 mb-5">
                 {% embed "Post:Grid-default.html.twig"|UKMpath with { post: post } %}{% endembed %}
             </div>
