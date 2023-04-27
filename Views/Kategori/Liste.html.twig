@@ -3,7 +3,7 @@
 {% block content %}
 	{% if category is defined %}
 		<h1 class="undertitler undertitler-news">{{ category.name }}</h1>
-		<p>{{ category.description|raw }}</p>
+		<p class="center">{{ category.description|raw }}</p>
 	{% endif %}
 	<div class="container category-page">
 		{% embed "Kategori:Listen.html.twig"|UKMpath %}{% endembed %}
