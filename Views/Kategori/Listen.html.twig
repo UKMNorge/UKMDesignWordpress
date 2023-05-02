@@ -5,6 +5,8 @@
 				<div class="col-12 d-flex justify-content-center d-block d-lg-none mt-4">
 					{% if post.getMeta('type') != 'workshop' %}
 						<span class="undertitler undertitler-news">{{ post.date|dato('j. M Y') }}</span>
+					{% elseif post.getMeta('dato') %}
+						<span class="undertitler undertitler-news">{{ post.getMeta('dato') }}</span>
 					{% endif %}
 				</div>
 				<div class="col-12 col-md-8 col-xl-6 mb-5">
