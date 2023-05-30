@@ -54,7 +54,7 @@
 							</div>
 
 							{# Social media share buttons #}
-							<div class="share-line-horizontal">
+							<div class="share-line-horizontal {{ post.getMeta('type') == 'workshop' ? 'workshop-social-media' : '' }}">
 								<div class="col-2 share-buttons d-flex justify-content-around">
 									{% include "Post/Share.html.twig" %}
 								</div>
