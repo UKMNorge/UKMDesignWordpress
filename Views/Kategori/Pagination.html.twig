@@ -1,13 +1,22 @@
-<div class="row">
-	{% if posts.hasPagePrev() %}
-		<div class="col left">
-			<a href="{{ posts.getPagePrev()|raw }}" class="btn btn-outline-primary">&laquo; Se nyere saker</a>
-		</div>
-	{% endif %}
-	
-	{% if posts.hasPageNext() %}
-		<div class="col right">
-			<a href="{{ posts.getPageNext()|raw }}" class="btn btn-outline-primary">Se eldre saker &raquo;</a>
-		</div>
-	{% endif %}
+<div class="container m	t-5">
+	<div class="row">
+		{% set allePosts = posts.getAll() %}
+		{% set workshops = allePosts|filter(p => p.getMeta('type') and p.getMeta('type') == 'workshop') %}
+
+		{# Pagination kan brukes på vanlige saker men også workshops. Når det fines en sak med type workshop, da brukes ordet 'workshops' #}
+		{% set paginationIdentificatorNyere = workshops|length > 0 ? 'Forrige side' : 'Se nyere saker' %}
+		{% set paginationIdentificatorEldre = workshops|length > 0 ? 'Neste side' : 'Se eldre saker' %}
+
+		{% if posts.hasPagePrev() %}
+			<div class="col left">
+				<a href="{{ posts.getPagePrev()|raw }}" class="btn btn-outline-primary">&laquo; {{ paginationIdentificatorNyere }}</a>
+			</div>
+		{% endif %}
+		
+		{% if posts.hasPageNext() %}
+			<div class="col right">
+				<a href="{{ posts.getPageNext()|raw }}" class="btn btn-outline-primary"> {{ paginationIdentificatorEldre }} &raquo;</a>
+			</div>
+		{% endif %}
+	</div>
 </div>
