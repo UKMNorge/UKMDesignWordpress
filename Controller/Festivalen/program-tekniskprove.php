@@ -24,7 +24,7 @@ $gyldigeHendelser = [];
 // OBS!!!!!! 
 // Her sjekker vi navn av hendelsen. Kan være farlig fordi navnet kan inneholde "Teknisk prøver" hvor som helst
 foreach($hendelser as $hendelse) {
-    if(strpos($hendelse->navn, 'Teknisk prøve') !== false || strpos($hendelse->navn, 'Tekniske prøver') !== false) {
+    if(strpos(strtolower($hendelse->navn), 'teknisk prøve') !== false || strpos(strtolower($hendelse->navn), 'tekniske prøver') !== false) {
         $gyldigeHendelser[] = $hendelse;    
     }
 }
