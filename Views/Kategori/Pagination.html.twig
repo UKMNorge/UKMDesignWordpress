@@ -1,4 +1,4 @@
-<div class="container m	t-5">
+<div class="container mt-5">
 	<div class="row">
 		{% set allePosts = posts.getAll() %}
 		{% set workshops = allePosts|filter(p => p.getMeta('type') and p.getMeta('type') == 'workshop') %}
