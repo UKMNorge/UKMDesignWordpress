@@ -197,6 +197,11 @@ templates:
         file: Festivalen/program-annet
         description: >
           Andre (foresatt eller annet) på festivalen
+      programtekniskprove:
+        name: Program teknisk prøve
+        file: Festivalen/program-tekniskprove
+        description: >
+          Tekniske prøver
       foerFestivalen:
         name: Informasjon før festivalen starter
         file: Festivalen/foer-festivalen
