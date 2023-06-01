@@ -11,25 +11,9 @@
 {% block javascripts %}
 	{{ parent() }}
 	<script src="//assets.{{ UKM_HOSTNAME }}/js/page/program.js" ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
 {% endblock %}
 
 {% block content %}
-
-    <div id="scene">
-        <div data-depth="0.05">
-            <img class="img-1" src="https://assets.{{ UKM_HOSTNAME }}/img/parallax-bilder/bolge1.png" />
-        </div>
-        <div data-depth="0.1">
-            <img class="img-2" src="https://assets.{{ UKM_HOSTNAME }}/img/parallax-bilder/bolge2.png" />
-        </div>
-        <div data-depth="0.3">
-            <img class="img-3" src="https://assets.{{ UKM_HOSTNAME }}/img/parallax-bilder/bolge3.png" />
-        </div>
-        <div data-depth="0.4">
-            <img class="img-4" src="https://assets.{{ UKM_HOSTNAME }}/img/parallax-bilder/bolge4.png" />
-        </div>    
-    </div>
 
     {% set dag = '' %}
     {% set timeNow = 'now'|date('U') %}
@@ -380,28 +364,6 @@
             .deltakere .deltaker .icon {
                 display: none;
             }
-            #scene {
-                display: inline !important;
-            }
-            .point.dag {
-                display: flex;
-            }
-            .point.dag span {
-                color: #fff !important;
-                width: 100%;
-                position: absolute;
-                left: 0;
-                right: 0;
-                text-align: center;
-                box-shadow: 0px 0px 42px 27px #00004B;
-                z-index: 1;
-                background: #00004B;
-                margin: auto;
-                width: fit-content;
-            }
-            .program-enkel-visning-header {
-                background: #00004bf5;
-            }
 
         }
         
@@ -459,33 +421,6 @@
             }
 
         }
-
-        .gradient, footer {
-            background: #fff !important;
-        }
-
-        #scene div .img-1 {
-            margin-top: -10px;
-        }
-        #scene div .img-2 {
-            margin-top: -50px;
-        }
-        #scene div .img-3 {
-            margin-top: -90px;
-        }
-        #scene div .img-4 {
-            margin-top: -120px;
-        }
-
-        #scene {
-            display: none;
-            position: fixed;
-            z-index: -1;
-            width: 120%;
-            left: -10%;
-            right: -10%;
-            bottom: 0;
-        }
         
 
     </style>
@@ -522,13 +457,5 @@
             params.set(name, value);
             window.history.replaceState({}, "", decodeURIComponent(`${window.location.pathname}?${params}`));
         }
-
-
-
-        var scene = document.getElementById('scene');
-        var parallaxInstance = new Parallax(scene, {
-            relativeInput: true
-        });
-
     </script>
 {% endblock %}
