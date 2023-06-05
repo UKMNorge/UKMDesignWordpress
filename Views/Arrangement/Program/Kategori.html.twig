@@ -24,51 +24,10 @@
 					<p>{{ hendelse.getBeskrivelse()|nl2br }}</p>
 				{% endif %}
 
-				{% for post in posts.getAll() %}
-					<div class="card UKMcard mb-2 p-0 showPost post" data-post-url="{{ post.url }}" data-post-hidetopimage="true">
-						<div class="topimage-xs" style="background-image: url('{{ post.getFeaturedImage() }}');"></div>
-						<div
-							class="card-body m-0 p-0" style="max-width: 100%;">
-							<div class="header click m-2">
-								<div class="hendelse">
-									<div class="name bold">
-										<a href="{{ post.url }}">{{ post.getTitle()|raw }}</a>
-									</div>
-									<div class="description">
-										{{ post.lead|raw }}
-									</div>
-								</div>
-							</div>
-							<div class="data" style="display:none; margin-left: -.4rem !important; margin-top: 1rem;">
-								<div class="center">Vennligst vent, laster inn..</div>
-							</div>
-
-							{% if post.getMeta('type') == 'workshop' %}
-								<div class="categories my-2" style="margin-left: -.4rem !important;">
-									<div class="col-12">
-										<p class="small text-muted">
-											<b>STED</b>
-											<br/>
-											{{ post.getMeta('sted') }}
-										</p>
-										<p class="mt-0 small text-muted">
-											<b>I PROGRAMMET</b>
-											<br/>
-											{% for category in post.categories|filter(category => category.term_id != 3) %}
-												{{ category.name }}
-											{% endfor %}
-										</p>
-									</div>
-								</div>
-							{% endif %}
-
-							<div class="cancel m-2" style="text-align:right; display:none;">
-								<button type="button" class="btn btn-outline-primary btn-sm hidePost">Lukk</button>
-							</div>
-
-						</div>
+				<div class="container category-page">
+						{% embed "Kategori:Listen.html.twig"|UKMpath %}{% endembed %}
+						{# {% embed "Kategori:Pagination.html.twig"|UKMpath %}{% endembed %} #}
 					</div>
-				{% endfor %}
 
 				<p class="my-4">
 					<a href="../">Tilbake til rammeprogrammet</a>

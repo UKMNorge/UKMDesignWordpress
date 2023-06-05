@@ -48,6 +48,8 @@ if( is_numeric( $id ) ) {
 		# TYPE: KATEGORI
         case 'category':
             $posts = Posts::getByCategory( $hendelse->getTypeCategoryId() );
+            $posts->setPostsPerPage(200);
+            $posts->loadPosts();
             
             Wordpress::setView('Arrangement/Program/Kategori');
             Wordpress::addViewData(
