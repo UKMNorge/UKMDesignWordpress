@@ -13,7 +13,13 @@ if (is_category()) {
     Wordpress::addViewData('category', $category);
 }
 
-Wordpress::setPosts(new Posts());
+$posts = new Posts();
+// Hvis det er workshops category vis alle workshops i en side
+if($category && $category->name == 'Workshop') {
+    $posts->setPostsPerPage(200);
+    $posts->loadPosts();
+}
+Wordpress::setPosts($posts);
 
 Wordpress::setView('Kategori/Liste');
 UKMDesign::getHeader()::getSEO()
