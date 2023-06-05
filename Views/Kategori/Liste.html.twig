@@ -11,5 +11,10 @@
 		{% embed "Kategori:Listen.html.twig"|UKMpath %}{% endembed %}
 		{# {% embed "Kategori:Pagination.html.twig"|UKMpath %}{% endembed %} #}
 	</div>
-	{% embed "Kategori:Pagination.html.twig"|UKMpath %}{% endembed %}
+	{# Workshop brukes på UKM-festivalen og viser alle workshop derfor trenger ikke pagination #}
+	{% if category is defined and category.name != 'Workshop' %}
+		{% embed "Kategori:Pagination.html.twig"|UKMpath %}{% endembed %}
+	{% endif %}
+
+	
 {% endblock %}
