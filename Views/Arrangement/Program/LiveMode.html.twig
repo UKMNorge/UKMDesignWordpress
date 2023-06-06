@@ -38,7 +38,7 @@
                     
                     {% set isNow = timeNow > startDato and timeNow < finishDato %}
                     <div class="box-innslag {{ not isNow and (timeNow - 7200) > startDato ? 'tidligere' : ''  }}">
-                        <a {#href="/festivalen/program/{{ hendelse.getId() }}"#}>
+                        {# <a href="/festivalen/program/{{ hendelse.getId() }}"> #}
                         {% if isNow %}
                             <div class="timeline-point now"><div class="blinking"></div></div>
                             <div class="time">Nå</div>
@@ -49,10 +49,18 @@
 
                             <h4 class="title center">{{ hendelse.getNavn() }}</h4>
                             
-                            <h6 class="sted center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: #00004B; transform: ;msFilter:;"><path d="M12 2C7.589 2 4 5.589 4 9.995 3.971 16.44 11.696 21.784 12 22c0 0 8.029-5.56 8-12 0-4.411-3.589-8-8-8zm0 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"></path></svg>
-                                {{ hendelse.getSted() }}
-                            </h6>
+                            <div class="sted center">
+                                <div class="sted-btn collapsed" data-toggle="collapse" data-target="#collapseVisVei{{ hendelse.getId() }}" aria-expanded="false" aria-controls="collapseVisVei{{ hendelse.getId() }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: #00004B; transform: ;msFilter:;"><path d="M12 2C7.589 2 4 5.589 4 9.995 3.971 16.44 11.696 21.784 12 22c0 0 8.029-5.56 8-12 0-4.411-3.589-8-8-8zm0 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"></path></svg>
+                                    {{ hendelse.getSted() }}
+                                </div>
+                                <div class="button-live-style collapse" id="collapseVisVei{{ hendelse.getId() }}">
+                                    <a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ hendelse.getSted() }} Trondheim">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 28 26" style="fill: #00004b; transform: ;msFilter:;"><path d="m2.295 12.707 8.978 9c.389.39 1.025.391 1.414.002l9.021-9a1 1 0 0 0 0-1.416l-9.021-9a.999.999 0 0 0-1.414.002l-8.978 9a.998.998 0 0 0 0 1.412zm6.707-2.706h5v-2l3 3-3 3v-2h-3v4h-2v-6z"></path></svg>
+                                        <span>Vis vei</span>
+                                    </a>
+                                </div>
+                            </div>
                             
                             {% if hendelse.getBeskrivelse()|length > 0 %}
                                 <div class="beskrivelse">
@@ -61,7 +69,7 @@
                             {% endif %}
 
                             {% if hendelse.harSending() %}
-                                <div class="direktesending">
+                                <div class="button-live-style">
                                     <a href="/festivalen/direkte/) }}">
                                         <span class="icon icon-video" style="font-size: 1.1em;"></span>
                                         <span>Direktesendes</span>
@@ -233,7 +241,7 @@
         }
         .point .box-innslag .timeline-point.now .blinking {
             background: #008000 !important;
-            animation: blinker 2s linear infinite;
+            animation: blinker 2s cubic-bezier(0, 1.98, 0.32, 1.28) infinite;
             height: 80%;
             width: 80%;
             border-radius: 50%;
@@ -258,19 +266,22 @@
             }
         }
 
-        .direktesending {
-            margin-top: 15px;
+        .button-live-style {
+            /* margin-top: 15px; */
         }
-        .direktesending a {
-            padding: 4px;
+        .button-live-style a {
+            padding: 4px 8px;
             border-radius: 5px;
         }
-        .direktesending a:hover {
+        .button-live-style a:hover {
             cursor: pointer;
             background: linear-gradient(45deg, hsl(var(--color-primary-blue-800, var(--color-primary-orange-900))), hsl(var(--color-primary-blue-600, var(--color-primary-orange-900)))) !important;
             color: #fff;
         }
-        .direktesending .icon {
+        .button-live-style a:hover svg {
+            fill: #fff !important;
+        }
+        .button-live-style .icon {
             margin-right: 5px;
             vertical-align: text-bottom;
         }
@@ -341,6 +352,19 @@
         .alle-innslag {
             list-style-type: disc;
             padding-left: 25px;
+        }
+        .sted-btn {
+            height: 0;
+            visibility: hidden;
+            transition: .5s height;
+        }
+        .sted-btn.collapsed {
+            height: auto;
+            visibility: visible;
+            transition: .5s height;
+        }
+        .sted-btn:hover {
+            cursor: pointer;
         }
 
         @media (max-width: 720px) {
@@ -415,7 +439,7 @@
             .point:nth-child(even) .box-innslag .time {
                 left: -240px;
             }
-            .direktesending {
+            .button-live-style {
                 font-size: 14px !important;
                 margin: 7px 0 !important;
             }
