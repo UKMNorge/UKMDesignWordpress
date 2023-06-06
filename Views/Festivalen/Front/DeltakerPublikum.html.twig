@@ -23,7 +23,7 @@
 
 <div id="nyheterIFestivalen" class="container">
     {% if posts.getAll()|filter(post => post.categories|filter(cat => cat.slug == 'pa-forsiden')|length > 0 )|length %}
-    <h1>Nyheter</h1>
+    <h1 class="center">Nyheter</h1>
     {% endif %}
     <div class="news-section mt-4">
         <div class="row d-flex justify-content-center">
