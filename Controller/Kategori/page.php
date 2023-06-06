@@ -14,10 +14,14 @@ if (is_category()) {
 }
 
 // Hvis det er workshops category vis alle workshops i en side
-if($category && $category->name == 'Workshop') {
+if($category instanceof WP_Term && $category->name == 'Workshop') {
     $posts->setPostsPerPage(200);
     $posts->loadPosts();
 }
+else {
+    $posts = new Posts();
+}
+
 Wordpress::setPosts($posts);
 
 Wordpress::setView('Kategori/Liste');
