@@ -4,16 +4,15 @@ use UKMNorge\Design\UKMDesign;
 use UKMNorge\DesignWordpress\Environment\Posts;
 use UKMNorge\DesignWordpress\Environment\Wordpress;
 
-
 $category = get_queried_object();
+$posts = Posts::getByCategory(get_queried_object_id());
 if (is_category()) {
     Wordpress::setPosts(
-        Posts::getByCategory(get_queried_object_id())
+        $posts
     );
     Wordpress::addViewData('category', $category);
 }
 
-$posts = new Posts();
 // Hvis det er workshops category vis alle workshops i en side
 if($category && $category->name == 'Workshop') {
     $posts->setPostsPerPage(200);
