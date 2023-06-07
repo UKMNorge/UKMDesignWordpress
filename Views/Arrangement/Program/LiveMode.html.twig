@@ -24,7 +24,7 @@
 
         {% for hendelse in hendelser %}
             {% if hendelse.erSynligRammeprogram() %}
-            
+
                 {% set right = false %}
                 {% set startDato = hendelse.getStart()|date('U') %}
                 {% set finishDato = startDato + hendelse.getTid().getSekunder() %}
@@ -90,7 +90,8 @@
                                 {% endfor %}
                             </div>
 
-                            {% if hendelse.getInnslag().getAntall() > 1 %}
+                            {# Har innslag og hendelse er ikke koblet mot kategori fra WP posts (kategori brukes for å bruke hendelse på workshops) #}
+                            {% if hendelse.getInnslag().getAntall() > 1 and hendelse.getType() != 'category' %}
                                 <div class="alle-deltakere-div">
                                     <button class="vis-alle-deltakere standard-btn btn-large collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ hendelse.getId() }}" aria-expanded="false" aria-controls="collapse{{ hendelse.getId() }}">
                                         <span class="icon-chevron">
@@ -99,6 +100,42 @@
                                     </button>
                                 </div>
                             {% endif %}
+
+                            {# Workshops #}
+                            {% if hendelse.getType() == 'category' %}
+                                <div class="deltakere collapse" id="collapseWshops{{ hendelse.getId() }}">
+                                    <h4>Workshops:</h4>
+                                    {% for wshop in hendelse.getWorkshops() %} 
+                                        <a class="wshop-href" target="_blank" href="{{ wshop.url }}">
+                                            <h5 class="innslag-navn">{{ wshop.getTitle() }}</h5>
+                                            <div class="deltaker">
+                                                <div>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 26 26" style="fill: #00004B; transform: ;msFilter:;"><path d="M12 2C7.589 2 4 5.589 4 9.995 3.971 16.44 11.696 21.784 12 22c0 0 8.029-5.56 8-12 0-4.411-3.589-8-8-8zm0 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"></path></svg>
+                                                    <b>STED:</b>
+                                                    <span>
+                                                        {{ wshop.getMeta('sted') }}
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" style="fill: #00004B; transform: ;msFilter:;"><path d="M12.25 2c-5.514 0-10 4.486-10 10s4.486 10 10 10 10-4.486 10-10-4.486-10-10-10zM18 13h-6.75V6h2v5H18v2z"></path></svg>
+                                                    <b>TID:</b>
+                                                    <span>
+                                                        {{ wshop.getMeta('dato') }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="alle-deltakere-div">
+                                    <button class="vis-alle-deltakere standard-btn btn-large collapsed" type="button" data-toggle="collapse" data-target="#collapseWshops{{ hendelse.getId() }}" aria-expanded="false" aria-controls="collapseWshops{{ hendelse.getId() }}">
+                                        <span class="icon-chevron">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="m12 6.879-7.061 7.06 2.122 2.122L12 11.121l4.939 4.94 2.122-2.122z"></path></svg>
+                                        </span>
+                                    </button>
+                                </div>
+                        {% endif %}
                             
                         </a>
                     </div>
@@ -341,6 +378,17 @@
         }
         .deltakere .deltaker span {
             vertical-align: middle;
+        }
+        .deltakere .wshop-href {
+            display: block;
+            margin-top: 20px;
+            border: solid 2px transparent;
+            padding: 2px;
+            transition: .1s;
+        }
+        .deltakere .wshop-href:hover {
+            border-color: #00004B;
+            transition: .1s;
         }
         .innslag-type {
             padding: 5px 10px;
