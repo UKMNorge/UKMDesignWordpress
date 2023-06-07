@@ -10,6 +10,7 @@ class Posts
     var $prevpage = false;
     var $category = null;
     var $year = null;
+    var $posts = null;
 
     public function __construct(Int $posts_per_page = null, bool $awaitManualLoad = false)
     {
