@@ -555,5 +555,16 @@
             params.set(name, value);
             window.history.replaceState({}, "", decodeURIComponent(`${window.location.pathname}?${params}`));
         }
+
+        jQuery('button.vis-alle-deltakere').click((e) => {
+            var el = jQuery(e.currentTarget);
+            if(!jQuery(el).hasClass('collapsed')) {
+                var parentDiv = el.parent().parent();
+                // console.log('scroll to top');
+                jQuery([document.documentElement, document.body]).animate({
+                    scrollTop: jQuery(parentDiv).offset().top - 200 
+                }, 200);
+            }
+        });
     </script>
 {% endblock %}
