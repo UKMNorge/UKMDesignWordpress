@@ -77,7 +77,7 @@
                             {% endif %}
 
                             {% if hendelse.harSending() %}
-                                <div class="button-live-style">
+                                <div class="button-live-style har-sending-div">
                                     <a href="/festivalen/direkte/) }}">
                                         <span class="icon icon-video" style="font-size: 1.1em;"></span>
                                         <span>Direktesendes</span>
@@ -310,6 +310,9 @@
                 opacity: .3;
             }
         }
+        .har-sending-div {
+            margin-top: 30px !important;
+        }
 
         .button-live-style {
             /* margin-top: 15px; */
@@ -508,7 +511,7 @@
             }
             .button-live-style {
                 font-size: 14px !important;
-                margin: 7px 0 !important;
+                margin: 7px 0;
             }
 
         }
