@@ -3,8 +3,12 @@
 {% block content %}
 	{% if category is defined %}
 		<div class="container">
-			<h1 class="undertitler undertitler-news">{{ category.name }}</h1>
-			<p class="center">{{ category.description|raw }}</p>
+			<div class="row>
+				<div class="col-12">
+					<h1>{{ category.name }}</h1>
+					<p>{{ category.description|raw }}</p>
+				</div>
+			</div>
 		</div>
 	{% endif %}
 	<div class="container category-page">
