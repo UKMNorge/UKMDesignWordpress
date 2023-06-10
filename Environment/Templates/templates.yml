@@ -212,6 +212,11 @@ templates:
         file: Festivalen/foer-festivalen
         description: >
           Description for informasjon deltaker
+      demo:
+        name: Demo av ny forside
+        file: Festivalen/dette-er-festivalen
+        description: >
+          Bør slettes, da det kun er for demo-formål før vi får en "go" på lansering
 
 
   
