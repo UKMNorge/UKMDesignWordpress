@@ -1,0 +1,65 @@
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
+
+{% block content %}
+	{% embed "UKMDesignBundle:Page:TopImage.html.twig"|UKMpath %}{% endembed %}
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 ml-md-auto mr-md-auto col-lg-8">
+				<article>
+					{% include "Page/Title.html.twig" %}
+					{{ page.content|raw }}
+				</article>
+			</div>
+		</div>
+	</div>
+
+	<style>
+		.pageListItem.icon > .pageListItemContent {
+			margin-left: 4rem;
+		}
+		.pageListItem.icon .pageListItemIcon {
+			margin-left: -3.6rem;
+			margin-top: 0.1rem;
+			font-size: 2rem;
+			float: left;
+		}
+		.pageListItem .pageListItemHeader {
+			font-weight: bold;
+			font-size: 15px;
+		}
+		.list-group-item {
+			display: inline-table;
+		}
+		.pageListItem div {
+			font-size: initial;
+		}
+	</style>
+
+
+{# Mobile devices #}
+<div class="container d-block d-lg-none mb-5">
+	<div class="row">
+		<div class="col-12 col-md-8 offset-md-2">
+			<div class="ukm-card ukm-card-front">
+				{% for section in page.getPageBlocks().getAll() %}
+					{% include "TestOrganisasjonen/Components/Card-element.html.twig" with { link: section.redirectLenke, img: '', title: section.getTitle(), content: section.getContent(), extra: 'pt-4'} %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{# Desktop #}
+<div class="container card-info-section d-none d-lg-block">
+	<div class="row" style="height: 25.5rem;">
+		{# <div class="col-10 offset-1"> #}
+		<div class="col-12">
+			<div class="row">
+				{% for section in page.getPageBlocks().getAll() %}
+					{% include "TestOrganisasjonen/Components/Card-element-desktop.html.twig" with { link: section.redirectLenke, img: '', title: section.getTitle(), content: section.getContent(), extra: 'pt-4'} %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

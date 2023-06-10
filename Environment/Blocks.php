@@ -14,10 +14,17 @@ use UKMNorge\Design\Image;
 class Blocks extends DesignBlocks
 {
     public $page_id;
+    private $page_type;
 
     public function __construct(Int $page_id)
     {
         $this->page_id = $page_id;
+        
+        $meta = get_post_meta($page_id, 'UKMviseng');
+        if( is_array($meta)) {
+            $meta = $meta[0];
+        }
+        $this->page_type = $meta;
     }
 
     public function load()
@@ -84,10 +91,15 @@ class Blocks extends DesignBlocks
                 $block->setContent($page->getContent());
                 break;
             case 'list':
+                if($this->page_type == 'link-liste') {
+                    $content = $page->getMeta('list_lead');
+                } else {
+                    $content = $page->getContent();
+                }
                 $block = new ListElement(
                     $page->ID,
                     $page->getTitle(),
-                    $page->getContent()
+                    $content
                 );
                 if ($page->hasMeta('redirect')) {
                     $block->setRedirectLenke($page->getMeta('redirect', true));

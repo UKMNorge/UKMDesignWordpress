@@ -144,6 +144,11 @@ templates:
         file: Page/liste
         description: >
           Lager ei fin liste av alle underlagte sider (som må ha template: Liste-element)
+      link-liste:
+        name: Liste som lenker til undersider
+        file: Page/liste_link
+        description: >
+          Lager ei fin liste av alle underlagte sider (som må ha template: Liste-element)
       listefestivalen:
         name: Liste av undersider
         file: Page/liste_festivalen
