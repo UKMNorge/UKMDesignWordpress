@@ -120,6 +120,11 @@ class Page extends Post
         return $this->blocks;
     }
 
+    /**
+     * Hent pageBlocks som kun er direct child av denne siden
+     * 
+     * I motsetningen til standarden som henter absolutt alle child pages
+     */
     public function useOnlyDirectChildPageBlocks() {
         $this->blocks = null;
         $this->blocks_direct_children_only = true;

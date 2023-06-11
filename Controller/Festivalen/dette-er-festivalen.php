@@ -30,7 +30,9 @@ function getPageForPart($part) {
     );
     
     if(is_array($toppmeny) && sizeof($toppmeny) == 1) {
-        return Page::loadByPostObject($toppmeny[0]);
+        $page = Page::loadByPostObject($toppmeny[0]);
+        $page->useOnlyDirectChildPageBlocks();
+        return $page;
     }
     return false;
 }
