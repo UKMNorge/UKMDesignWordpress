@@ -132,6 +132,33 @@
             </div>
         </div>
     {% endif %}
+    <div class="clearfix"></div>
+
+    <div id="nyheterIFestivalen" class="container">
+        {% if posts.getAll()|filter(post => post.categories|filter(cat => cat.slug == 'pa-forsiden')|length > 0 )|length %}
+            <h1 class="center">Nyheter</h1>
+        {% endif %}
+        <div class="news-section mt-4">
+            <div class="row d-flex justify-content-center">
+            {% for post in posts.getAll() %}
+                {% set riktigCat = false %}
+                {% for cat in post.categories %}
+                    {% if cat.slug == 'pa-forsiden' %}
+                        {% set riktigCat = true %}
+                    {% endif %}
+                {% endfor %}
+                {% if riktigCat %}
+                <div class="col-12 d-flex justify-content-center d-block d-lg-none mt-4">
+                    <span class="undertitler undertitler-news">{{ post.date|dato('j. M Y') }}</span>
+                </div>
+                <div class="col-12 col-md-8 col-xl-6 mb-5">
+                    {% embed "Post:Grid-default.html.twig"|UKMpath with { post: post } %}{% endembed %}
+                </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
 
     <div class="container festival-section mt-4">
         <div class="row deltaker-publikum-main">
