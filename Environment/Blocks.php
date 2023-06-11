@@ -15,10 +15,15 @@ class Blocks extends DesignBlocks
 {
     public $page_id;
     private $page_type;
+    private $only_direct_children;
 
-    public function __construct(Int $page_id)
+    // legacy we used `child_of` instead of `parent` to fetch subpages
+    // thus adding this as separate param to maintain current functionality
+    // in other pages
+    public function __construct(Int $page_id, $only_direct_children=false)
     {
         $this->page_id = $page_id;
+        $this->only_direct_children = $only_direct_children;
         
         $meta = get_post_meta($page_id, 'UKMviseng');
         if( is_array($meta)) {
@@ -31,7 +36,7 @@ class Blocks extends DesignBlocks
     {
         $subpages = get_pages(
             [
-                'child_of' => $this->page_id,
+                ($this->only_direct_children ? 'parent' : 'child_of') => $this->page_id,
                 'sort_column' => 'menu_order',
                 'post_status' => 'publish'
             ]

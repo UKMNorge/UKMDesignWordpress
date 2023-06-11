@@ -21,7 +21,7 @@ Wordpress::setPosts($posts);
 function getPageForPart($part) {
     $toppmeny = get_pages(
         [
-            'child_of' => Wordpress::getPage()->getId(),
+            'parent' => Wordpress::getPage()->getId(),
             'meta_key' => 'forside-part',
             'meta_value' => $part,
             'sort_column' => 'menu_order',

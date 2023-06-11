@@ -12,6 +12,7 @@ class Page extends Post
     private $template;
     private $blocks;
     private $featured_image;
+    private $blocks_direct_children_only = false;
 
     /**
      * Hent hvilket template denne siden skal ha
@@ -114,9 +115,14 @@ class Page extends Post
     public function getPageBlocks()
     {
         if (is_null($this->blocks)) {
-            $this->blocks = new Blocks($this->getId());
+            $this->blocks = new Blocks($this->getId(), $this->blocks_direct_children_only);
         }
         return $this->blocks;
+    }
+
+    public function useOnlyDirectChildPageBlocks() {
+        $this->blocks = null;
+        $this->blocks_direct_children_only = true;
     }
 
     /**
