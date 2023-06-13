@@ -5,7 +5,6 @@ use UKMNorge\DesignWordpress\Environment\Wordpress;
 use UKMNorge\Innslag\Innslag;
 use UKMNorge\DesignWordpress\Environment\Posts;
 
-
 Wordpress::setView('Arrangement/Kunstner-info.htm.twig');
 $arrangement = new Arrangement(get_option('pl_id'));;
 
@@ -14,7 +13,8 @@ $innslag = null;
 try{
     $innslag = Innslag::getById((int)$id);
 }catch(Exception $e) {
-    // Ikke nødvendigvis noe feil. Lenken kan inneholde ugyldig id for innslag
+    // Ikke nødvendigvis stor feil. Lenken kan inneholde ugyldig id for innslag
+    throw new Exception('Ugyldig lenke!');
 }
 
 
