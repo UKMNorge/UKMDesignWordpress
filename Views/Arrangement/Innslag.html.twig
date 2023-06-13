@@ -313,5 +313,16 @@
 	</div>	
 	{% endif %}
 
+	{# Hvis det finnes en WP post #}
+	{% if post %}
+		<div class="container">
+            <div class="grid_post_image" style="background-image: url('{{post.image.url}}');"></div>
+            <h2>{{post.title|raw}}</h2>
+            <p class="lead">{{ post.lead|raw }}</p>
+            {{post.content|raw}}
+        </div>
+	{% endif %}
+	
+
 	
 {% endblock content %}
