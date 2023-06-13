@@ -17,7 +17,7 @@ if (isset($_GET['hendelse'])) {
 $id = Wordpress::getLastParameter();
 $innslag = null;
 try{
-    $innslag = Innslag::getById($id);
+    $innslag = Innslag::getById((int)$id);
 }catch(Exception $e) {
     // Ikke nødvendigvis noe feil. Lenken kan inneholde ugyldig id for innslag
 }
