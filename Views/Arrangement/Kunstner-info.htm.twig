@@ -1,8 +1,69 @@
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
+
 {% block content %}
     {% if innslag %}
-        {% include "Arrangement/Innslag.html.twig" %}
         <div class="container">
-            <h1>Hello world!</h1>
+            {% if innslag.getBilder().getAntall() > 1 %}
+                    <div class="{{ col_right }}">
+
+                    <div id="imageslider{{ innslag.getId() }}" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                        {% for bilde in innslag.getBilder().getAll() %}
+                            
+                                <div class="carousel-item {% if loop.first %} active {% endif %} ">
+                                    <a href="{{ bilde.getSize("original").getUrl()|replace({'http:':'https:'}) }}" target="_blank">
+                                        <img src="{{ bilde.getSize("medium").getUrl()|replace({'http:':'https:'}) }}" class="d-block w-100"/>
+                                    </a>
+                                </div>
+                        {% endfor %}
+
+                        </div>
+                        <a class="carousel-control-prev" href="#imageslider{{ innslag.getId() }}" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#imageslider{{ innslag.getId() }}" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+            {% if innslag.getBilder().getAntall() == 1 %}
+                <div class="{{ col_right }}">
+                    <center>
+                        {% for bilde in innslag.getBilder().getAll() %}
+                            <a href="{{ bilde.getSize("original").getUrl()|replace({'http:':'https:'}) }}" target="_blank">
+                                <img src="{{ bilde.getSize("medium").getUrl()|replace({'http:':'https:'}) }}" class="mt-2" />
+                            </a>
+                        {% endfor %}
+                    </center>
+                </div>
+            {% endif %}
+        </div>
+            
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <article>
+                        {# Category, title and breadtext #}
+                        <div class="info-text-section mt-3">
+                            <h1 class="article-header center">{{ post.getTitle()|raw }}</h1>
+                            <p class="info-text-lead mt-4">{{ post.lead|raw }}</p>
+                            {% if post.hasFeaturedFilm() != true %}
+                                {% include "Page/TopImage.html.twig" %}
+                            {% endif %}
+                        </div>
+                        {# Video under header for prettier layout imo #}
+                        {% if post.hasFeaturedFilm()%}
+                            {% if post.content_wo_lead|raw == "" %}
+                                {% include "Page/TopImage.html.twig" %}
+                            {% endif %}
+                        {% endif %}
+                    </article>
+                </div>
+            </div>
         </div>
     {% else %}
         <h4>
@@ -10,4 +71,9 @@
         </h4>
     {% endif %}
     
+<style>
+    .carousel-item img {
+        max-height: 300px;
+    }
+</style>
 {% endblock %}
