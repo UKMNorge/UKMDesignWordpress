@@ -9,11 +9,6 @@ use UKMNorge\DesignWordpress\Environment\Posts;
 Wordpress::setView('Arrangement/Kunstner-info.htm.twig');
 $arrangement = new Arrangement(get_option('pl_id'));;
 
-
-if (isset($_GET['hendelse'])) {
-    Wordpress::addViewData('vis', $_GET['hendelse']);
-}
-
 $id = Wordpress::getLastParameter();
 $innslag = null;
 try{
