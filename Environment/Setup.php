@@ -54,6 +54,12 @@ class Setup {
             'top'
         );
 
+        add_rewrite_rule(
+            'kunstnerinfo/([0-9]+)/?$',
+            'index.php?pagename=kunstnerinfo&id=$matches[1]',
+            'top'
+        );
+
         global $wp_rewrite; 
         $wp_rewrite->flush_rules();
         flush_rewrite_rules();
