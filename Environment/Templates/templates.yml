@@ -113,6 +113,10 @@ templates:
         name: Bilder
         file: Arrangement/bilder
         description: Lister ut alle bilder fra arrangementet, gruppert per forestilling.
+      kunstnerinfo:
+        name: Kunstnerinfo
+        file: Arrangement/kunstnerInfo
+        description: Viser informasjon om kunstner som er påmeldt på arrangementet.
   statistikk:
       name: Statistikk
       controllers:
