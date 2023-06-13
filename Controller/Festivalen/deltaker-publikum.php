@@ -9,8 +9,15 @@ UKMDesign::getHeader()->getLogo()->hide();
 
 Wordpress::setView('Festivalen/Front/Underveis');
 
-// Get post for current year
-$posts = Posts::getByYear(date("Y"));
+// Get alle posts på kategori 'pa-forside'
+$catid = get_category_by_slug('pa-forsiden')->term_id;
+$posts = Posts::getByCategory($catid);
+$posts->paged = 0;
+$posts->setPostsPerPage(200);
+$posts->loadPosts();
+
+
 Wordpress::setPosts($posts);
+
 
 Wordpress::setView('Festivalen/Front/DeltakerPublikum');
