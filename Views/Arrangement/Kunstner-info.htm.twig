@@ -50,6 +50,12 @@
                         {# Category, title and breadtext #}
                         <div class="info-text-section mt-3">
                             <h1 class="article-header center">{{ post.getTitle()|raw }}</h1>
+
+                            {# Info om kunstner #}
+                            <p class="beskrivelse">
+                                {{ innslag.getBeskrivelse() }}
+                            </p>
+
                             <p class="info-text-lead mt-4">{{ post.lead|raw }}</p>
                             {% if post.hasFeaturedFilm() != true %}
                                 {% include "Page/TopImage.html.twig" %}
