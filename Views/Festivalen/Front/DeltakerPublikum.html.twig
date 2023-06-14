@@ -1,24 +1,90 @@
 {% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
 
 {% block content %}
-<div class="container festival-section mt-4">
-    <div class="row deltaker-publikum-main">
-        <div class="col-12">
-            <h1 class="festival-header-title hero-text">Er du deltaker på UKM-festivalen 2023?</h1>
-        </div>
-        <div class="col-12 question-box-festivalen">
-            <div class="buttons">
-                <div class="inner">
-                    <a href="/festivalen/deltaker-info/" class="standard-btn festival-style btn-large d-flex justify-content-between btn-blue mt-2">Ja, jeg er deltaker ></a>
-                </div>
 
-                <div class="inner">
-                    <a href="/festivalen/andre-deltakere/" class="standard-btn festival-style btn-large d-flex justify-content-between btn-blue mt-2">Nei, jeg er foresatt/annet ></a>
+<div id="festivalenMainContainer" class="container">
+    <div class="sider xs-reverse row">
+        <div class="side info-text col-md-6 col-12">
+            <h1 class="hoved-tittel">Velkommen til <br> Trondheim <br> 23.-27. juni!</h1>
+
+            <div class="left-down-text">
+                <h2 class="under-hoved-tittel">Er du deltaker på UKM-festivalen 2023?</h2>
+
+                <div class="buttons">
+                    <a type="button" href="/festivalen/deltaker-info/" class="standard-btn btn-large d-flex justify-content-between btn-blue mt-2">
+                        <span>Jeg er deltaker</span>
+                    </a>
+
+                    <a type="button" href="/festivalen/andre-deltakere/" class="empty-style standard-btn btn-large d-flex justify-content-between btn-blue mt-2">
+                        <span>Jeg er foresatt/annet</span>
+                    </a>
                 </div>
             </div>
         </div>
+
+        <div class="side col-md-6 col-12">
+            <div class="space-img-div">
+                <img src="//assets.{{ UKM_HOSTNAME }}/img/festival/toppbilde2023.png" />
+            </div>
+        </div>
+    </div>
+
+    {# andre del #}
+    <div class="sider row">
+        <div class="side-single col-12">
+            <div class="farge-space row">
+                <div class="col-3 info-text">
+                    <h1 class="hoved">450+</h1>
+                    <p class="under">deltakere</p>
+                </div>
+                <div class="col-3 info-text">
+                    <h1 class="hoved">265+</h1>
+                    <p class="under">innslag</p>
+                </div>
+                <div class="col-3 info-text">
+                    <h1 class="hoved">50+</h1>
+                    <p class="under">workshops</p>
+                </div>
+                <div class="col-3 info-text">
+                    <h1 class="hoved">70</h1>
+                    <p class="under">kunstdeltakere</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    {# tredje del #}
+    <div class="sider row">
+        <div class="side-single col-xs-12">
+            <img src="//assets.{{ UKM_HOSTNAME }}/img/festival/toppbilde2-2023.png" />
+            <h1 class="text-center-all">Velkommen til å vise oss det du har på hjertet; og gled deg til å se alt de andre har forberedt!</h1>
+            <h5 class="under-text">Et lite tilbakeblikk på en fantastisk fest fra i fjor!</h5>
+            <div class="buttons">
+                <a class="standard-btn button festival-style with-collapse collapsed btn-large btn-xs d-flex justify-content-between btn-blue mt-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    UKM-festivalen 2022
+                </a>
+            </div>
+            <div class="collapse col-xs-12" id="collapseExample">
+                <div style="padding-bottom:36.25%; position:relative; display:block; width: 80%; margin-left: auto; margin-right: auto;">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/mZaM-GQ1kVQ?rel=0&showinfo=0&modestbranding=1&hd=1&autohide=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left: 0"></iframe>
+                </div>
+            </div>
+        </div>
+        {# <div class="side col-md-6">
+            <div class="med-farge">
+                <h1 class="text-center-all">Velkommen til å vise oss det du har på hjertet; og gled deg til å se alt de andre har forberedt!</h1>
+            </div>
+        </div> #}
     </div>
 </div>
+
+
+
+
+
+
+{# NYHETER #}
 
 
 <div id="nyheterIFestivalen" class="container">
@@ -54,18 +120,18 @@
                 <a href="/festivalen/for-festivalen/" class="standard-btn festival-style btn-large btn-xs d-flex justify-content-between btn-blue mt-2">
                     Viktig informasjon
                 </a>
-                <a class="standard-btn festival-style btn-large btn-xs d-flex justify-content-between btn-blue mt-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    UKM-festivalen 2022
+                <a href="https://bak.ukm.no/prosjekter/festivalen/" class="standard-btn festival-style btn-large btn-xs d-flex justify-content-between btn-blue mt-2">
+                    Hva er UKM-festivalen?
                 </a>
             </div>
         </div>
     </div>
 
-    <div class="collapse col-xs-12" id="collapseExample">
+    {# <div class="collapse col-xs-12" id="collapseExample">
         <div style="padding-bottom:36.25%; position:relative; display:block; width: 80%; margin-left: auto; margin-right: auto;">
             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/mZaM-GQ1kVQ?rel=0&showinfo=0&modestbranding=1&hd=1&autohide=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left: 0"></iframe>
         </div>
-    </div>
+    </div> #}
 
 
 </div>
@@ -81,6 +147,151 @@
     .prev-year-festival {
         margin-top: 200px;
     }
+
+    #festivalenMainContainer {
+        margin-top: 100px;
+    }
+    #festivalenMainContainer .sider {
+        margin-bottom: 200px;
+    }
+    #festivalenMainContainer .sider .side-single {
+        text-align: center;
+        width: 100%;
+    }
+    #festivalenMainContainer .sider .side-single .text-center-all {
+        margin: 40px 0;
+    }
+    #festivalenMainContainer .sider .side-single .under-text {
+        /* margin-top: 50px; */
+    }
+    #festivalenMainContainer .sider .side-single .buttons {
+        display: flex;
+    }
+    #festivalenMainContainer .sider .side.info-text {
+        min-height: 480px;
+    }
+    #festivalenMainContainer .sider .side-single .buttons .button {
+        margin: auto;
+    }
+    #festivalenMainContainer .sider .side-single img {
+        max-height: 510px;
+    }
+    #festivalenMainContainer .sider .side.make-flex {
+        display: flex;
+    }
+    #festivalenMainContainer .sider .side .med-farge {
+        border-radius: 20px;
+        background: linear-gradient(45deg, hsl(var(--color-primary-blue-800, var(--color-primary-orange-900))), hsl(var(--color-primary-blue-600, var(--color-primary-orange-900))));
+    }
+    #festivalenMainContainer .sider .side .med-farge * {
+        color: #fff;
+    }
+    #festivalenMainContainer .sider .side .hoved-tittel {
+        font-size: 50px;
+        margin-top: 0;
+    }
+    #festivalenMainContainer .sider .side .under-hoved-tittel {
+        font-size: 27px;
+        margin-bottom: 20px;
+    }
+    #festivalenMainContainer .sider .side {
+        /* border: solid 1px; */
+    }
+    .side .left-down-text {
+        position: absolute;
+        bottom: 0;
+    }
+    .side .left-down-text .buttons {
+        display: flex;
+    }
+    .side .left-down-text .buttons a {
+        margin-right: 25px;
+    }
+    .side .left-down-text .buttons a span {
+        font-size: 18px;
+    }
+    .side .left-down-text .buttons a.empty-style {
+        background: transparent;
+        border: solid 4px #4165f3;
+    }
+    .side .left-down-text .buttons a.empty-style:hover {
+        background: #4165f3;
+    }
+    .side .left-down-text .buttons a.empty-style span {
+        color: #4165f3;
+    }
+    .side .left-down-text .buttons a.empty-style:hover span {
+        color: #fff;
+    }
+    .single-side-box {
+        border
+    }
+
+    #festivalenMainContainer .sider .side:nth-child(odd) {
+        padding-right: 3vw;
+    }
+    #festivalenMainContainer .sider .side:nth-child(even) {
+        padding-left: 3vw;
+    }
+
+    a.festival-style.with-collapse {
+        display: none !important;
+    }
+    a.festival-style.with-collapse.collapsed {
+        display: inline !important;
+    }
+
+    .side-single .farge-space {
+        width: 100%;
+        padding: 0;
+        background: linear-gradient(45deg, #fff056, #ff128b, #ff128b, #ff128b, #ff128b, #ff128b, #ff128b, #ff128b, #fff056);
+        border-radius: 30px;
+        padding: 30px;
+        box-shadow: 0px 0px 13px 1px #0000007a;
+        margin: 0;
+    }
+    .side-single .farge-space * {
+        color: #fff;
+    }   
+    .side-single .farge-space .info-text {
+        display: grid;
+        padding: 0;
+        text-align: center;
+        border-right: solid 1px;
+    }
+    .side-single .farge-space .info-text:last-child {
+        border-right: none;
+    }
+    .side-single .farge-space .info-text .hoved,
+    .side-single .farge-space .info-text .under {
+        margin: 0;
+    }
+    .side-single .farge-space .info-text .hoved {
+        font-size: 40px;
+    }
+    #nyheterIFestivalen .news-section,
+    #nyheterIFestivalen h1.center {
+        margin-top: 0 !important;
+    }
+
+    @media (max-width: 1200px) {
+        .side .left-down-text .buttons a span {
+            font-size: 16px;
+        }
+        .side .left-down-text .buttons a {
+            padding: 22px;
+        }
+        #festivalenMainContainer .sider .side .hoved-tittel {
+            font-size: 45px;
+        }
+        #festivalenMainContainer .sider .side.info-text {
+            min-height: 400px;
+        }
+        #festivalenMainContainer .sider {
+            margin-bottom: 180px;
+        }
+
+    }
     
     @media (max-width: 992px) {
         .artikkel-beskrivelse-festivalen {
@@ -89,7 +300,167 @@
         #nyheterIFestivalen {
             margin-top: 100px;
         }
+        #festivalenMainContainer .sider .side .hoved-tittel {
+            font-size: 35px;
+        }
+        #festivalenMainContainer .sider .side .under-hoved-tittel {
+            font-size: 19px;
+        }
+        #festivalenMainContainer .sider .side.info-text {
+            min-height: 295px;
+        }
+        .side .left-down-text .buttons a {
+            padding: 15px;
+        }
+        .side .left-down-text .buttons a span {
+            font-size: 12px;
+        }
+        .side .left-down-text .buttons a {
+            margin-right: 10px;
+        }
+        #festivalenMainContainer .sider {
+            margin: 0;
+            margin-bottom: 165px;
+        }
+        .side-single .farge-space .info-text .hoved {
+            font-size: 34px;
+        }
+        .side-single .farge-space .info-text .under {
+            font-size: 15px;
+        }
+        #festivalenMainContainer .sider .side-single .text-center-all {
+            font-size: 30px;
+        }
     }
+    @media (max-width: 767px) {
+        .sider.xs-reverse {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        #festivalenMainContainer .sider .side.info-text {
+            margin-top: -100px;
+             width: 100%;
+            margin-top: -70px;
+            /* background: linear-gradient(0deg, #fff, red); */
+            box-shadow: 0px -90px 85px 29px #fff;
+            background: #fff;
+            z-index: 1;
+            text-align: center;
+            padding: 0;
+        }
+        #festivalenMainContainer .sider .side.info-text .hoved-tittel {
+            margin-top: 0;
+        }
+        #festivalenMainContainer {
+            padding: 0;
+        }
+        .side .left-down-text .buttons a {
+            padding: 15px 30px;
+        }
+        #festivalenMainContainer .sider .side:nth-child(odd) {
+            padding: 0;
+        }
+        #festivalenMainContainer .sider .side:nth-child(even) {
+            padding: 0;
+        }
+        .side .left-down-text {
+            left: 0;
+            right: 0;
+        }
+        .side .left-down-text .buttons a {
+            margin: auto;
+            padding: 22px;
+        }
+        .side .left-down-text .buttons a:first-child {
+            margin-right: 5px;
+            padding: 25px;
+        }
+        .side .left-down-text .buttons a:last-child {
+            margin-left: 5px;
+        }
+        .side .left-down-text .buttons a span {
+            font-size: 18px;
+        }
+        #festivalenMainContainer .sider .side .under-hoved-tittel {
+            font-size: 24px;
+        }
+        #festivalenMainContainer .sider .side.info-text {
+            min-height: 350px;
+        }
+        #festivalenMainContainer .sider .side .hoved-tittel {
+            font-size: 45px;
+        }
+        .side .left-down-text {
+            position: relative;
+            bottom: 0;
+            margin-top: 50px;
+        }
+        .side-single .farge-space {
+            padding: 30px 10px;
+        }
+        .side-single .farge-space .info-text .hoved {
+            font-size: 31px;
+        }
+        #festivalenMainContainer .sider {
+            margin-bottom: 150px;
+        }
+        #festivalenMainContainer .sider .side-single {
+            padding: 0 15px;
+        }
+        #festivalenMainContainer {
+            margin-top: 30px;
+        }
+    }
+    @media (max-width: 500px) {
+        .side .left-down-text .buttons a span {
+            font-size: 15px;
+        }
+        #festivalenMainContainer .sider .side .hoved-tittel {
+            font-size: 42px;
+        }
+        #festivalenMainContainer .sider .side .under-hoved-tittel {
+            font-size: 21px;
+        }
+        .side .left-down-text .buttons a {
+            padding: 19px;
+        }
+        .side .left-down-text .buttons a:first-child {
+            padding: 22px;
+        }
+        #festivalenMainContainer .sider .side.info-text {
+            padding: 15px;
+        }
+        .side-single .farge-space .info-text .hoved {
+            font-size: 7vw;
+        }
+        .side-single .farge-space .info-text .under {
+            font-size: 3vw;
+        }
+        #festivalenMainContainer .sider {
+            margin-bottom: 120px;
+        }
+        .side-single .farge-space {
+            padding: 30px 0px;
+        }
+        #festivalenMainContainer .sider .side-single .text-center-all {
+            font-size: 6vw;
+        }
+    }
+    @media (max-width: 420px) {
+        .side .left-down-text .buttons a {
+            padding: 14px;
+        }
+        .side .left-down-text .buttons a span {
+            font-size: 12px;
+        }
+        .side .left-down-text .buttons a:first-child {
+            padding: 18px;
+        }
+        .side-single .farge-space {
+            padding: 25px 0px;
+        }
+    }
+
     
 </style>
 {% endblock %}
