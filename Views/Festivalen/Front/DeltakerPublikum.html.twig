@@ -21,30 +21,54 @@
 </div> #}
 
 <div id="festivalenMainContainer" class="container">
-    <div class="sider row">
-        <div class="side col-sm-6">
+    <div class="sider xs-reverse row">
+        <div class="side info-text col-md-6 col-12">
             <h1 class="hoved-tittel">Velkommen til <br> Trondheim <br> 23.-27. juni!</h1>
 
             <div class="left-down-text">
                 <h2 class="under-hoved-tittel">Er du deltaker på UKM-festivalen 2023?</h2>
 
                 <div class="buttons">
-                    <a type="button" href="/derdubor/" class="standard-btn btn-large d-flex justify-content-between btn-blue mt-2">
+                    <a type="button" href="/festivalen/deltaker-info/" class="standard-btn btn-large d-flex justify-content-between btn-blue mt-2">
                         <span>Jeg er deltaker</span>
                     </a>
 
-                    <a type="button" href="/derdubor/" class="empty-style standard-btn btn-large d-flex justify-content-between btn-blue mt-2">
+                    <a type="button" href="/festivalen/andre-deltakere/" class="empty-style standard-btn btn-large d-flex justify-content-between btn-blue mt-2">
                         <span>Jeg er foresatt/annet</span>
                     </a>
                 </div>
             </div>
         </div>
 
-        <div class="side col-sm-6">
+        <div class="side col-md-6 col-12">
             <div class="space-img-div">
                 <img src="//assets.{{ UKM_HOSTNAME }}/img/festival/toppbilde2023.png" />
             </div>
         </div>
+    </div>
+
+    {# Andre delen #}
+    <div class="sider row">
+        <div class="side-single col-xs-12">
+            <img src="//assets.{{ UKM_HOSTNAME }}/img/festival/toppbilde2-2023.png" />
+            <h1 class="text-center-all">Velkommen til å vise oss det du har på hjertet; og gled deg til å se alt de andre har forberedt!</h1>
+            <h5 class="under-text">Et lite tilbakeblikk på en fantastisk fest fra i fjor!</h5>
+            <div class="buttons">
+                <a class="standard-btn button festival-style with-collapse collapsed btn-large btn-xs d-flex justify-content-between btn-blue mt-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    UKM-festivalen 2022
+                </a>
+            </div>
+            <div class="collapse col-xs-12" id="collapseExample">
+                <div style="padding-bottom:36.25%; position:relative; display:block; width: 80%; margin-left: auto; margin-right: auto;">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/mZaM-GQ1kVQ?rel=0&showinfo=0&modestbranding=1&hd=1&autohide=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left: 0"></iframe>
+                </div>
+            </div>
+        </div>
+        {# <div class="side col-md-6">
+            <div class="med-farge">
+                <h1 class="text-center-all">Velkommen til å vise oss det du har på hjertet; og gled deg til å se alt de andre har forberedt!</h1>
+            </div>
+        </div> #}
     </div>
 </div>
 
@@ -89,18 +113,18 @@
                 <a href="/festivalen/for-festivalen/" class="standard-btn festival-style btn-large btn-xs d-flex justify-content-between btn-blue mt-2">
                     Viktig informasjon
                 </a>
-                <a class="standard-btn festival-style btn-large btn-xs d-flex justify-content-between btn-blue mt-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                {# <a class="standard-btn festival-style btn-large btn-xs d-flex justify-content-between btn-blue mt-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                     UKM-festivalen 2022
-                </a>
+                </a> #}
             </div>
         </div>
     </div>
 
-    <div class="collapse col-xs-12" id="collapseExample">
+    {# <div class="collapse col-xs-12" id="collapseExample">
         <div style="padding-bottom:36.25%; position:relative; display:block; width: 80%; margin-left: auto; margin-right: auto;">
             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/mZaM-GQ1kVQ?rel=0&showinfo=0&modestbranding=1&hd=1&autohide=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left: 0"></iframe>
         </div>
-    </div>
+    </div> #}
 
 
 </div>
@@ -117,7 +141,37 @@
         margin-top: 200px;
     }
 
-    
+    #festivalenMainContainer .sider {
+        margin-bottom: 200px;
+    }
+    #festivalenMainContainer .sider .side-single {
+        text-align: center;
+    }
+    #festivalenMainContainer .sider .side-single .under-text {
+        margin-top: 50px;
+    }
+    #festivalenMainContainer .sider .side-single .buttons {
+        display: flex;
+    }
+    #festivalenMainContainer .sider .side.info-text {
+        min-height: 500px;
+    }
+    #festivalenMainContainer .sider .side-single .buttons .button {
+        margin: auto;
+    }
+    #festivalenMainContainer .sider .side-single img {
+        max-height: 510px;
+    }
+    #festivalenMainContainer .sider .side.make-flex {
+        display: flex;
+    }
+    #festivalenMainContainer .sider .side .med-farge {
+        border-radius: 20px;
+        background: linear-gradient(45deg, hsl(var(--color-primary-blue-800, var(--color-primary-orange-900))), hsl(var(--color-primary-blue-600, var(--color-primary-orange-900))));
+    }
+    #festivalenMainContainer .sider .side .med-farge * {
+        color: #fff;
+    }
     #festivalenMainContainer .sider .side .hoved-tittel {
         font-size: 50px;
     }
@@ -154,6 +208,24 @@
     .side .left-down-text .buttons a.empty-style:hover span {
         color: #fff;
     }
+    .single-side-box {
+        border
+    }
+
+    #festivalenMainContainer .sider .side:nth-child(odd) {
+        padding-right: 3vw;
+    }
+    #festivalenMainContainer .sider .side:nth-child(even) {
+        padding-left: 3vw;
+    }
+
+    a.festival-style.with-collapse {
+        display: none !important;
+    }
+    a.festival-style.with-collapse.collapsed {
+        display: inline !important;
+    }
+
 
     
     @media (max-width: 992px) {
@@ -164,6 +236,33 @@
             margin-top: 100px;
         }
     }
+    @media (max-width: 767px) {
+        .sider.xs-reverse {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        #festivalenMainContainer .sider .side.info-text {
+            margin-top: -100px;
+             width: 100%;
+            margin-top: -70px;
+            /* background: linear-gradient(0deg, #fff, red); */
+            box-shadow: 0px -90px 85px 29px #fff;
+            background: #fff;
+            z-index: 1;
+            text-align: center;
+            padding: 0;
+        }
+        #festivalenMainContainer .sider .side.info-text .hoved-tittel {
+            margin-top: 0;
+        }
+        #festivalenMainContainer {
+            padding: 0;
+        }
+        .side .left-down-text .buttons a {
+            padding: 15px 30px;
+        }
+    }
+
     
 </style>
 {% endblock %}
