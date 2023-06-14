@@ -120,9 +120,9 @@
                 <a href="/festivalen/for-festivalen/" class="standard-btn festival-style btn-large btn-xs d-flex justify-content-between btn-blue mt-2">
                     Viktig informasjon
                 </a>
-                {# <a class="standard-btn festival-style btn-large btn-xs d-flex justify-content-between btn-blue mt-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    UKM-festivalen 2022
-                </a> #}
+                <a href="https://bak.ukm.no/prosjekter/festivalen/" class="standard-btn festival-style btn-large btn-xs d-flex justify-content-between btn-blue mt-2">
+                    Hva er UKM-festivalen?
+                </a>
             </div>
         </div>
     </div>
@@ -158,8 +158,11 @@
         text-align: center;
         width: 100%;
     }
+    #festivalenMainContainer .sider .side-single .text-center-all {
+        margin: 40px 0;
+    }
     #festivalenMainContainer .sider .side-single .under-text {
-        margin-top: 50px;
+        /* margin-top: 50px; */
     }
     #festivalenMainContainer .sider .side-single .buttons {
         display: flex;
@@ -245,6 +248,7 @@
         border-radius: 30px;
         padding: 30px;
         box-shadow: 0px 0px 13px 1px #0000007a;
+        margin: 0;
     }
     .side-single .farge-space * {
         color: #fff;
@@ -265,8 +269,29 @@
     .side-single .farge-space .info-text .hoved {
         font-size: 40px;
     }
+    #nyheterIFestivalen .news-section,
+    #nyheterIFestivalen h1.center {
+        margin-top: 0 !important;
+    }
 
+    @media (max-width: 1200px) {
+        .side .left-down-text .buttons a span {
+            font-size: 16px;
+        }
+        .side .left-down-text .buttons a {
+            padding: 22px;
+        }
+        #festivalenMainContainer .sider .side .hoved-tittel {
+            font-size: 45px;
+        }
+        #festivalenMainContainer .sider .side.info-text {
+            min-height: 400px;
+        }
+        #festivalenMainContainer .sider {
+            margin-bottom: 180px;
+        }
 
+    }
     
     @media (max-width: 992px) {
         .artikkel-beskrivelse-festivalen {
@@ -274,6 +299,37 @@
         }
         #nyheterIFestivalen {
             margin-top: 100px;
+        }
+        #festivalenMainContainer .sider .side .hoved-tittel {
+            font-size: 35px;
+        }
+        #festivalenMainContainer .sider .side .under-hoved-tittel {
+            font-size: 19px;
+        }
+        #festivalenMainContainer .sider .side.info-text {
+            min-height: 295px;
+        }
+        .side .left-down-text .buttons a {
+            padding: 15px;
+        }
+        .side .left-down-text .buttons a span {
+            font-size: 13px;
+        }
+        .side .left-down-text .buttons a {
+            margin-right: 10px;
+        }
+        #festivalenMainContainer .sider {
+            margin: 0;
+            margin-bottom: 165px;
+        }
+        .side-single .farge-space .info-text .hoved {
+            font-size: 34px;
+        }
+        .side-single .farge-space .info-text .under {
+            font-size: 15px;
+        }
+        #festivalenMainContainer .sider .side-single .text-center-all {
+            font-size: 30px;
         }
     }
     @media (max-width: 767px) {
@@ -300,6 +356,105 @@
         }
         .side .left-down-text .buttons a {
             padding: 15px 30px;
+        }
+        #festivalenMainContainer .sider .side:nth-child(odd) {
+            padding: 0;
+        }
+        #festivalenMainContainer .sider .side:nth-child(even) {
+            padding: 0;
+        }
+        .side .left-down-text {
+            left: 0;
+            right: 0;
+        }
+        .side .left-down-text .buttons a {
+            margin: auto;
+            padding: 22px;
+        }
+        .side .left-down-text .buttons a:first-child {
+            margin-right: 5px;
+            padding: 25px;
+        }
+        .side .left-down-text .buttons a:last-child {
+            margin-left: 5px;
+        }
+        .side .left-down-text .buttons a span {
+            font-size: 18px;
+        }
+        #festivalenMainContainer .sider .side .under-hoved-tittel {
+            font-size: 24px;
+        }
+        #festivalenMainContainer .sider .side.info-text {
+            min-height: 350px;
+        }
+        #festivalenMainContainer .sider .side .hoved-tittel {
+            font-size: 45px;
+        }
+        .side .left-down-text {
+            position: relative;
+            bottom: 0;
+            margin-top: 50px;
+        }
+        .side-single .farge-space {
+            padding: 30px 10px;
+        }
+        .side-single .farge-space .info-text .hoved {
+            font-size: 31px;
+        }
+        #festivalenMainContainer .sider {
+            margin-bottom: 150px;
+        }
+        #festivalenMainContainer .sider .side-single {
+            padding: 0 15px;
+        }
+        #festivalenMainContainer {
+            margin-top: 30px;
+        }
+    }
+    @media (max-width: 500px) {
+        .side .left-down-text .buttons a span {
+            font-size: 15px;
+        }
+        #festivalenMainContainer .sider .side .hoved-tittel {
+            font-size: 42px;
+        }
+        #festivalenMainContainer .sider .side .under-hoved-tittel {
+            font-size: 21px;
+        }
+        .side .left-down-text .buttons a {
+            padding: 19px;
+        }
+        .side .left-down-text .buttons a:first-child {
+            padding: 22px;
+        }
+        #festivalenMainContainer .sider .side.info-text {
+            padding: 15px;
+        }
+        .side-single .farge-space .info-text .hoved {
+            font-size: 7vw;
+        }
+        .side-single .farge-space .info-text .under {
+            font-size: 3vw;
+        }
+        #festivalenMainContainer .sider {
+            margin-bottom: 120px;
+        }
+        .side-single .farge-space {
+            padding: 30px 0px;
+        }
+        #festivalenMainContainer .sider .side-single .text-center-all {
+            font-size: 6vw;
+        }
+    }
+    @media (max-width: 420px) {
+        .side .left-down-text .buttons a {
+            padding: 14px;
+        }
+        .side .left-down-text .buttons a span {
+            font-size: 12px;
+        }
+        .side .left-down-text .buttons a:first-child {
+            padding: 18px;
         }
     }
 
