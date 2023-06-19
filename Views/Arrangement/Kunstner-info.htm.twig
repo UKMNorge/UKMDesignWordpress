@@ -71,6 +71,11 @@
 							{% endif %}
 						</div>
 						{# Has content and not a video #}
+                        {% if post.content_wo_lead|raw == "" %}
+                            <p class="beskrivelse center">
+                                {{ innslag.getBeskrivelse() }}
+                            </p>
+                        {% endif %}
 						{% if post.content_wo_lead|raw != "" %}
 							<div class="row">
 								
