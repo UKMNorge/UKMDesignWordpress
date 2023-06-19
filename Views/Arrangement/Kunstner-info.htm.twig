@@ -8,16 +8,14 @@
 
                     <div id="imageslider{{ innslag.getId() }}" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
-                        {% if post.hasFeaturedFilm() == true %}
-                            {% for bilde in innslag.getBilder().getAll() %}
-                                
-                                    <div class="carousel-item {% if loop.first %} active {% endif %} ">
-                                        <a href="{{ bilde.getSize("original").getUrl()|replace({'http:':'https:'}) }}" target="_blank">
-                                            <img src="{{ bilde.getSize("medium").getUrl()|replace({'http:':'https:'}) }}" class="d-block w-100"/>
-                                        </a>
-                                    </div>
-                            {% endfor %}
-                        {% endif %}
+                        {% for bilde in innslag.getBilder().getAll() %}
+                            
+                                <div class="carousel-item {% if loop.first %} active {% endif %} ">
+                                    <a href="{{ bilde.getSize("original").getUrl()|replace({'http:':'https:'}) }}" target="_blank">
+                                        <img src="{{ bilde.getSize("medium").getUrl()|replace({'http:':'https:'}) }}" class="d-block w-100"/>
+                                    </a>
+                                </div>
+                        {% endfor %}
 
                         </div>
                         <a class="carousel-control-prev" href="#imageslider{{ innslag.getId() }}" role="button" data-slide="prev">
@@ -53,9 +51,6 @@
 					<div class="info-text-section mt-3">
 						<h1 class="article-header">{{ post.getTitle()|raw }}</h1>
 						<p class="info-text-lead mt-4"></p>
-						{% if post.hasFeaturedFilm() != true %}
-							{% include "Page/TopImage.html.twig" %}
-						{% endif %}
 						<div class="row" style="margin-top: 2rem; margin-bottom: 2rem;">
 
 							{# Social media share buttons #}
