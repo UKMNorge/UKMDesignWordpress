@@ -44,33 +44,50 @@
             
 
         <div class="container">
-            <div class="row">
-                <div class="col">
-                    <article>
-                        {# Category, title and breadtext #}
-                        <div class="info-text-section mt-3">
-                            <h1 class="article-header center">{{ post.getTitle()|raw }}</h1>
+		<div class="row">
+			<div class="col">
+				<article>
+					{# Category, title and breadtext #}
+					<div class="info-text-section mt-3">
+						<h1 class="article-header">{{ post.getTitle()|raw }}</h1>
+						<p class="info-text-lead mt-4"></p>
+						{% if post.hasFeaturedFilm() != true %}
+							{% include "Page/TopImage.html.twig" %}
+						{% endif %}
+						<div class="row" style="margin-top: 2rem; margin-bottom: 2rem;">
 
-                            {# Info om kunstner #}
-                            <p class="beskrivelse center">
-                                {{ innslag.getBeskrivelse() }}
-                            </p>
-
-                            <p class="info-text-lead mt-4">{{ post.lead|raw }}</p>
-                            {% if post.hasFeaturedFilm() != true %}
-                                {% include "Page/TopImage.html.twig" %}
-                            {% endif %}
-                        </div>
-                        {# Video under header for prettier layout imo #}
-                        {% if post.hasFeaturedFilm()%}
-                            {% if post.content_wo_lead|raw == "" %}
-                                {% include "Page/TopImage.html.twig" %}
-                            {% endif %}
-                        {% endif %}
-                    </article>
-                </div>
-            </div>
-        </div>
+							{# Social media share buttons #}
+							<div class="share-line-horizontal {{ post.getMeta('type') == 'workshop' ? 'workshop-social-media' : '' }}">
+								<div class="col-2 share-buttons d-flex justify-content-around">
+									{% include "Post/Share.html.twig" %}
+								</div>
+							</div>
+							{% if post.hasFeaturedFilm() == true %}
+								<div class="col-2 share-buttons justify-content-around d-none d-lg-flex">
+									{% include "Post/Share.html.twig" %}
+								</div>
+							{% endif %}
+						</div>
+						{# Has content and not a video #}
+						{% if post.content_wo_lead|raw != "" %}
+							<div class="row">
+								
+							{% endif %}
+							<div class="col-md-9 col-xl-9">
+								<p class="bread-text">{{ post.content_wo_lead|raw }}</p>
+							</div>
+						</div>
+					</div>
+					{# Video under header for prettier layout imo #}
+					{% if post.hasFeaturedFilm()%}
+						{% if post.content_wo_lead|raw == "" %}
+							{% include "Page/TopImage.html.twig" %}
+						{% endif %}
+					{% endif %}
+				</article>
+			</div>
+		</div>
+	</div>
     {% else %}
         <h4>
             Ugyldig lenke!
