@@ -8,14 +8,16 @@
 
                     <div id="imageslider{{ innslag.getId() }}" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
-                        {% for bilde in innslag.getBilder().getAll() %}
-                            
-                                <div class="carousel-item {% if loop.first %} active {% endif %} ">
-                                    <a href="{{ bilde.getSize("original").getUrl()|replace({'http:':'https:'}) }}" target="_blank">
-                                        <img src="{{ bilde.getSize("medium").getUrl()|replace({'http:':'https:'}) }}" class="d-block w-100"/>
-                                    </a>
-                                </div>
-                        {% endfor %}
+                        {% if post.hasFeaturedFilm() == true %}
+                            {% for bilde in innslag.getBilder().getAll() %}
+                                
+                                    <div class="carousel-item {% if loop.first %} active {% endif %} ">
+                                        <a href="{{ bilde.getSize("original").getUrl()|replace({'http:':'https:'}) }}" target="_blank">
+                                            <img src="{{ bilde.getSize("medium").getUrl()|replace({'http:':'https:'}) }}" class="d-block w-100"/>
+                                        </a>
+                                    </div>
+                            {% endfor %}
+                        {% endif %}
 
                         </div>
                         <a class="carousel-control-prev" href="#imageslider{{ innslag.getId() }}" role="button" data-slide="prev">
