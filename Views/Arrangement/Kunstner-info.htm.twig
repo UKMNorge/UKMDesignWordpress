@@ -12,7 +12,7 @@
                             
                                 <div class="carousel-item {% if loop.first %} active {% endif %} ">
                                     <a href="{{ bilde.getSize("original").getUrl()|replace({'http:':'https:'}) }}" target="_blank">
-                                        <img src="{{ bilde.getSize("medium").getUrl()|replace({'http:':'https:'}) }}" class="d-block w-100"/>
+                                        <img src="{{ bilde.getSize("medium").getUrl()|replace({'http:':'https:'}) }}" class="img-carousel d-block w-100"/>
                                     </a>
                                 </div>
                         {% endfor %}
@@ -96,4 +96,13 @@
         </h4>
     {% endif %}
     
+    {% block stylesheets %}
+        <style>
+            .carousel-item a .img-carousel {
+                max-height: 450px;
+                width: auto !important;
+                margin: auto;
+            }
+        </style>
+    {% endblock %}
 {% endblock %}
