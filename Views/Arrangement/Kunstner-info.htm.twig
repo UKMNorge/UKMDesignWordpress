@@ -45,7 +45,7 @@
 
         <div class="container">
 		<div class="row">
-			<div class="col">
+			<div class="col article-div">
 				<article>
 					{# Category, title and breadtext #}
 					<div class="info-text-section mt-3">
@@ -114,6 +114,15 @@
                 height: 400px !important;
                 overflow: hidden !important;
                 display: flex;
+            }
+            .col.article-div {
+                margin-top: 3px !important;
+                background: #fff;
+                box-shadow: 0px -10px 15px 9px #ffffff;
+            }
+            .info-text-section.mt-3 {
+                margin-top: 0 !important;
+                padding-top: 0;
             }
         </style>
     {% endblock %}
