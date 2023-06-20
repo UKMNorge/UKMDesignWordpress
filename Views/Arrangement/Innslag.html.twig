@@ -16,7 +16,7 @@
 	<div id="innslag">
 		{% set valgt_bilde = innslag.getBilder().getValgtOrFirst().getSize("large") %}
 		{# HEADER #}
-		<div class="header {{ innslag.getBilder().getAntall() == 0 ? 'noImage' }}" style="background-image: url('{{ valgt_bilde.getUrl()|replace({'http:':'https:'}) }}'); {{ valgt_bilde.getOrientation() == 'portrait' ? 'background-position-y: top;' : ''}}">
+		<div class="header {{ innslag.getBilder().getAntall() == 0 ? 'noImage' }}" style="margin-bottom: 20px; background-image: url('{{ valgt_bilde.getUrl()|replace({'http:':'https:'}) }}'); {{ valgt_bilde.getOrientation() == 'portrait' ? 'background-position-y: top;' : ''}}">
 			<div class="container">
 				<div class="row title-innslag bs-margin-fix">
 					<div class="col-12 nop-xs">
