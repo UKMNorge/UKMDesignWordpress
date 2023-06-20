@@ -43,14 +43,14 @@
 					<div class="info-text-section mt-3">
 						<h1 class="article-header">{{ post.getTitle()|raw }}</h1>
 						<p class="info-text-lead mt-4"></p>
+						{% if post.hasFeaturedFilm() == true %}
 						<div class="row" style="margin-top: 2rem; margin-bottom: 2rem;">
 
-							{% if post.hasFeaturedFilm() == true %}
 								<div class="col-2 share-buttons justify-content-around d-none d-lg-flex">
 									{% include "Post/Share.html.twig" %}
 								</div>
-							{% endif %}
 						</div>
+						{% endif %}
 						{# Has content and not a video #}
                         {% if post.content_wo_lead|raw == "" %}
                             <p class="beskrivelse">
