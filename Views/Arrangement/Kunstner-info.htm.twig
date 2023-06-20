@@ -98,10 +98,16 @@
     
     {% block stylesheets %}
         <style>
+            .carousel-item a {
+                display: flex;
+            }
             .carousel-item a .img-carousel {
                 max-height: 450px;
+                min-height: 350px;
                 width: auto !important;
                 margin: auto;
+                height: 100%;
+                overflow: hidden;
             }
         </style>
     {% endblock %}
