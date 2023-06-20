@@ -19,7 +19,7 @@
 		<div class="header {{ innslag.getBilder().getAntall() == 0 ? 'noImage' }}" style="background-image: url('{{ valgt_bilde.getUrl()|replace({'http:':'https:'}) }}'); {{ valgt_bilde.getOrientation() == 'portrait' ? 'background-position-y: top;' : ''}}">
 			<div class="container">
 				<div class="row title-innslag bs-margin-fix">
-					<div class="col-12">
+					<div class="col-12 nop-xs">
 						<h1 class="mb-2">{{ innslag.getNavn() }}</h1>
 						<div class="clearfix"></div>
 					</div>
