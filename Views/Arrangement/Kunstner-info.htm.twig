@@ -45,12 +45,6 @@
 						<p class="info-text-lead mt-4"></p>
 						<div class="row" style="margin-top: 2rem; margin-bottom: 2rem;">
 
-							{# Social media share buttons #}
-							<div class="share-line-horizontal {{ post.getMeta('type') == 'workshop' ? 'workshop-social-media' : '' }}">
-								<div class="col-2 share-buttons d-flex justify-content-around">
-									{% include "Post/Share.html.twig" %}
-								</div>
-							</div>
 							{% if post.hasFeaturedFilm() == true %}
 								<div class="col-2 share-buttons justify-content-around d-none d-lg-flex">
 									{% include "Post/Share.html.twig" %}
