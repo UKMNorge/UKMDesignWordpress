@@ -126,6 +126,15 @@
                 margin-top: auto !important;
                 margin-bottom: 0 !important;
             }
+
+            @media(max-width: 768px) {
+                .carousel.slide {
+                    height: 350px !important;
+                }
+                .carousel-item a .img-carousel {
+                    max-height: 350px;
+                }
+            }
         </style>
     {% endblock %}
 {% endblock %}
