@@ -100,14 +100,22 @@
         <style>
             .carousel-item a {
                 display: flex;
+                height: 400px;
+                overflow: hidden;
             }
             .carousel-item a .img-carousel {
                 max-height: 450px;
                 min-height: 350px;
                 width: auto !important;
                 margin: auto;
+                margin-bottom: 0;
                 height: 100%;
                 overflow: hidden;
+            }
+            .carousel.slide {
+                height: 400px !important;
+                overflow: hidden !important;
+                display: flex;
             }
         </style>
     {% endblock %}
