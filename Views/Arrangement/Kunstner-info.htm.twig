@@ -79,6 +79,10 @@
 							{% include "Page/TopImage.html.twig" %}
 						{% endif %}
 					{% endif %}
+
+                    {% if post.hasFeaturedFilm() != true %}
+                        {% include "Page/TopImage.html.twig" %}
+                    {% endif %}
 				</article>
 			</div>
 		</div>
