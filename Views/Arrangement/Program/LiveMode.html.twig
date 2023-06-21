@@ -87,7 +87,7 @@
             
                             <div class="deltakere collapse" id="collapse{{ hendelse.getId() }}">
                                 {% for innslag in hendelse.getInnslag().getAll() %}
-                                    <a class="wshop-href" href="/festivalen/pameldte/{{ innslag.getId() }}">
+                                    <a class="wshop-href" target="_blank" href="/festivalen/pameldte/{{ innslag.getId() }}">
                                         <h5 class="innslag-navn">{{ innslag.getNavn() }}</h5>
                                         {% for person in innslag.getPersoner().getAll() %}
                                             <div class="deltaker">
