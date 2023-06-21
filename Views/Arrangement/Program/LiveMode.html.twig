@@ -87,14 +87,16 @@
             
                             <div class="deltakere collapse" id="collapse{{ hendelse.getId() }}">
                                 {% for innslag in hendelse.getInnslag().getAll() %}
-                                    <h5 class="innslag-navn">{{ innslag.getNavn() }}</h5>
-                                    {% for person in innslag.getPersoner().getAll() %}
-                                        <div class="deltaker">
-                                            <svg class="sm-size-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" style="fill: #00004b; transform: ;msFilter:;" viewBox="0 0 24 24"><path d="M7.5 6.5C7.5 8.981 9.519 11 12 11s4.5-2.019 4.5-4.5S14.481 2 12 2 7.5 4.019 7.5 6.5zM20 21h1v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h17z"></path></svg>
-                                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: #00004b; transform: ;msFilter:;" viewBox="0 0 24 24"><path d="M7.5 6.5C7.5 8.981 9.519 11 12 11s4.5-2.019 4.5-4.5S14.481 2 12 2 7.5 4.019 7.5 6.5zM20 21h1v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h17z"></path></svg>
-                                            <span>{{ person.getNavn() }} </span>
-                                        </div>
-                                    {% endfor %}
+                                    <a class="wshop-href" href="#">
+                                        <h5 class="innslag-navn">{{ innslag.getNavn() }}</h5>
+                                        {% for person in innslag.getPersoner().getAll() %}
+                                            <div class="deltaker">
+                                                <svg class="sm-size-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" style="fill: #00004b; transform: ;msFilter:;" viewBox="0 0 24 24"><path d="M7.5 6.5C7.5 8.981 9.519 11 12 11s4.5-2.019 4.5-4.5S14.481 2 12 2 7.5 4.019 7.5 6.5zM20 21h1v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h17z"></path></svg>
+                                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: #00004b; transform: ;msFilter:;" viewBox="0 0 24 24"><path d="M7.5 6.5C7.5 8.981 9.519 11 12 11s4.5-2.019 4.5-4.5S14.481 2 12 2 7.5 4.019 7.5 6.5zM20 21h1v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h17z"></path></svg>
+                                                <span>{{ person.getNavn() }} </span>
+                                            </div>
+                                        {% endfor %}
+                                    </a>
                                 {% endfor %}
                             </div>
 
@@ -111,22 +113,20 @@
 
                             {# Workshops #}
                             {% if hendelse.getType() == 'category' %}
-                                <div class="deltakere collapse" id="collapseWshops{{ hendelse.getId() }}">
-                                    <h4>Workshops:</h4>
+                                <div class="deltakere collapse workshops" id="collapseWshops{{ hendelse.getId() }}">
+                                    <h4 class="title-workshops">Workshops:</h4>
                                     {% for wshop in hendelse.getWorkshops()|sort((a, b) => a.getMeta('rekkefolge') ? a.getMeta('rekkefolge') : 0 <=> b.getMeta('rekkefolge') ? b.getMeta('rekkefolge') : 0 ) %} 
                                         <a class="wshop-href" target="_blank" href="{{ wshop.url }}">
                                             <h5 class="innslag-navn">{{ wshop.getTitle() }}</h5>
                                             <div class="deltaker">
                                                 <div>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 26 26" style="fill: #00004B; transform: ;msFilter:;"><path d="M12 2C7.589 2 4 5.589 4 9.995 3.971 16.44 11.696 21.784 12 22c0 0 8.029-5.56 8-12 0-4.411-3.589-8-8-8zm0 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"></path></svg>
-                                                    <b>STED:</b>
                                                     <span>
                                                         {{ wshop.getMeta('sted') }}
                                                     </span>
                                                 </div>
                                                 <div>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" style="fill: #00004B; transform: ;msFilter:;"><path d="M12.25 2c-5.514 0-10 4.486-10 10s4.486 10 10 10 10-4.486 10-10-4.486-10-10-10zM18 13h-6.75V6h2v5H18v2z"></path></svg>
-                                                    <b>TID:</b>
                                                     <span>
                                                         {{ wshop.getMeta('dato') }}
                                                     </span>
@@ -174,6 +174,9 @@
             padding: 100px 0;
             margin: 0;
             overflow: hidden;
+            box-shadow: 0px 0px 17px 4px #00004b36;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
         }
         .point {
             height: auto;
@@ -236,11 +239,12 @@
             border-radius: 5px;
             background: #fff;
             color: #00004B;
-            padding: 20px;
+            padding: 30px 20px;
         }
         .point .box-innslag a {
             text-decoration: none;
             color: #00004B;
+            box-shadow: 0px 0px 3px #00000038;
         }
         .point .box-innslag:hover {
             box-shadow: 0px 0px 7px 1px #ffffff94;
@@ -282,11 +286,12 @@
         }
         .point .box-innslag .title {
             font-size: 30px;
-            margin-top: 20px;
+            margin-top: 0;
         }
         .point .box-innslag .sted {
             font-size: 12px;
-            margin-bottom: 30px;
+            padding-bottom: 40px !important;
+
         }
         .point .box-innslag .timeline-point.now .blinking {
             background: #008000 !important;
@@ -299,7 +304,7 @@
             border: solid 2px #006300;
         }
         .point .box-innslag .beskrivelse {
-            margin-top: 30px;
+
         }
         .alle-deltakere-div {
             padding-top: 30px;
@@ -315,7 +320,7 @@
             }
         }
         .har-sending-div {
-            margin-top: 30px !important;
+
         }
 
         .button-live-style {
@@ -358,7 +363,7 @@
             padding: 10px;
             border: none;
             display: flex;
-            border: solid 1px #00004B;
+            border: solid 2px #00004B;
         }
         .vis-alle-deltakere .icon-chevron {
             margin: auto;
@@ -387,8 +392,7 @@
             text-align: right;
         }
         .deltakere {
-            margin: 0;
-            margin-top: 30px;
+            margin: 0 !important;
         }
         .deltakere .deltaker {
             padding-left: 20px;
@@ -443,8 +447,11 @@
 
         @media (max-width: 720px) {
             .point .box-innslag .title {
-                font-size: 17px;
+                font-size: 20px;
                 margin-top: 10px;
+            }
+            .point .box-innslag {
+                padding: 20px;
             }
             .point .box-innslag .beskrivelse {
                 font-size: 14px;
@@ -453,8 +460,11 @@
                 font-size: 13px;
             }
             .deltakere .deltaker {
-                padding-left: 5px;
+                padding-left: 0px;
                 font-size: 11px;
+            }
+            .deltakere .wshop-href {
+                padding: 8px 8px;
             }
             .deltakere .deltaker .sm-size-icon {
                 display: inline;
@@ -462,7 +472,12 @@
             .deltakere .deltaker .icon {
                 display: none;
             }
-
+            .deltakere.workshops .title-workshops {
+                font-size: 15px;
+            }
+            a.wshop-href svg {
+                width: 20px !important;
+            }
         }
         
         @media (max-width: 540px) {
@@ -517,6 +532,10 @@
                 font-size: 14px !important;
                 margin: 7px 0;
             }
+            a.wshop-href svg {
+                width: 17px !important;
+            }
+
 
         }
         
@@ -556,6 +575,7 @@
             window.history.replaceState({}, "", decodeURIComponent(`${window.location.pathname}?${params}`));
         }
 
+        // S
         jQuery('button.vis-alle-deltakere').click((e) => {
             var el = jQuery(e.currentTarget);
             if(!jQuery(el).hasClass('collapsed')) {
