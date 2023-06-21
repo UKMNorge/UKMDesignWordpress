@@ -87,7 +87,7 @@
             
                             <div class="deltakere collapse" id="collapse{{ hendelse.getId() }}">
                                 {% for innslag in hendelse.getInnslag().getAll() %}
-                                    <a class="wshop-href" href="#">
+                                    <a class="wshop-href" href="/festivalen/pameldte/{{ innslag.getId() }}">
                                         <h5 class="innslag-navn">{{ innslag.getNavn() }}</h5>
                                         {% for person in innslag.getPersoner().getAll() %}
                                             <div class="deltaker">
@@ -363,7 +363,7 @@
             padding: 10px;
             border: none;
             display: flex;
-            border: solid 2px #00004B;
+            border: solid 2 px #00004B;
         }
         .vis-alle-deltakere .icon-chevron {
             margin: auto;
