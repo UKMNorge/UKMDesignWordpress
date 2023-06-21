@@ -31,6 +31,69 @@
 
     {# andre del #}
     <div class="sider row">
+        <div class="timeline-festivalen col-12">
+            <div class="buttons">
+                <div>Forestillinger</div>
+                <div>Workshops</div>
+            </div>
+            
+            <div class="col-12 timeline-sider nop">
+
+                {# Forestillinger #}
+                    
+                <div class="timeline-side nop left forestillinger col-12 col-sm-6">
+                    <div class="top-title">
+                        <h4 class="title forestillinger">Forestillinger</h4>
+                    </div>
+
+                    {% for h in henselserSorter|slice(0, 2) %}
+                        {% set hendelse = h['hendelse'] %}
+                        <div class="row activity-timeline">
+                            <div class="point-only"></div>
+                            <div class="left-side-item">
+                                {{ hendelse.getStart()|date()|timeago }}
+                            </div>
+                            <div class="col-12 inner">
+                                <a href="/festivalen/program/7070">
+                                    <h5 class="title">{{ hendelse.getNavn() }} {{ h['value'] }}</h5>
+                                    <span class="under-title">{{ hendelse.getSted() }}</span>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    
+                </div>
+
+                {# Workshops #}
+                <div class="timeline-side workshops nop col-12 col-sm-6">
+                    <div class="top-title">
+                        <h4 class="title workshops">Workshops</h4>
+                    </div>
+                    
+                    {% for h in henselserSorter|filter(he => he['hendelse'].getType() == 'category')|slice(0, 2) %}
+                        {% set hendelse = h['hendelse'] %}
+                        <div class="row activity-timeline">
+                            <div class="point-only"></div>
+                            <div class="left-side-item">
+                                {{ hendelse.getStart()|date()|timeago }}
+                            </div>
+                            <div class="col-12 inner">
+                                <a href="/festivalen/program/7070">
+                                    <h5 class="title">{{ hendelse.getNavn() }} {{ h['value'] }}</h5>
+                                    <span class="under-title">{{ hendelse.getSted() }}</span>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+           
+        </div>
+    </div>
+
+    {# tredje del #}
+    <div class="sider row">
         <div class="side-single col-12">
             <div class="farge-space row">
                 <div class="col-3 info-text">
@@ -54,7 +117,7 @@
 
     </div>
 
-    {# tredje del #}
+    {# fjerde del #}
     <div class="sider row">
         <div class="side-single col-xs-12">
             <img src="//assets.{{ UKM_HOSTNAME }}/img/festival/toppbilde2-2023.png" />
@@ -135,6 +198,10 @@
 
 
 </div>
+
+<pre>
+    {{ dump(henselserSorter) }}
+</pre>
 
 <style>
     #UKMheader, #festivalHeader {
@@ -283,6 +350,61 @@
     }
     .ukm-card-front .card-element {
         margin: 0 !important;
+    }
+
+        /* padding: 40px; */
+    /* border: solid 1px; */
+    /* border-radius: 20px; */
+    .timeline-festivalen {
+        width: 100%;
+        padding: 0;
+        background: #00ff890d;
+        border-radius: 30px;
+        padding: 30px;
+        box-shadow: inset 0px 0px 20px 1px #00000030;
+        margin: 0;
+    }
+    .timeline-festivalen .buttons {
+        display: none;
+    }
+    .timeline-festivalen .top-title {
+
+    }
+    .timeline-festivalen .top-title .title {
+        margin: 0;
+        margin-bottom: 20px;
+    }
+    .timeline-festivalen .top-title .title.forestillinger {
+        margin-left: 15px;
+        color: #000000d6
+    }
+    .timeline-festivalen .top-title .title.workshops {
+        margin-left: 20px;
+        color: #ff128b;
+    }
+    .timeline-sider {
+        display: flex;
+    }
+    .timeline-sider .timeline-side.left {
+        border-right: solid 1px #cfd8e0;
+    }
+    .timeline-sider .timeline-side {
+        padding-left: 50px;
+    }
+    .timeline-side.workshops .activity-timeline .point-only {
+        border-color: #ff128b;
+    }
+    .timeline-side.forestillinger .activity-timeline .point-only {
+
+    }
+    .activity-timeline .left-side-item {
+        top: 20px;
+        left: -150px;
+        width: 135px;
+        text-align: right;
+    }
+    .timeline-sider .timeline-side.workshops {
+        padding-left: calc(50px + 30px);
     }
 
     @media (max-width: 1200px) {
