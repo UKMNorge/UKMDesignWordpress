@@ -152,12 +152,14 @@
 										<div class="point-only"></div>
 										<div class="left-side-dato">{{ forestilling.getStart()|dato('d.m H:i') }}</div>
 										<div class="col-12 inner">
-											<h5 class="title">
-											{{ forestilling.getNavn() }}
-											</h5>
-											{% if forestilling.erSynligDetaljprogram() %}
-												<span class="under-title">Nr {{ forestilling.getNummer( innslag ) }}</span>
-											{% endif %}
+											<a href="/festivalen/program/{{ forestilling.getId() }}">
+												<h5 class="title">
+												{{ forestilling.getNavn() }}
+												</h5>
+												{% if forestilling.erSynligDetaljprogram() %}
+													<span class="under-title">Nr {{ forestilling.getNummer( innslag ) }}</span>
+												{% endif %}
+											</a>
 										</div>
 									</div>
 								{% endfor %}
