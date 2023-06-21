@@ -31,6 +31,7 @@
 
     {# andre del #}
     <div class="sider row">
+        <h1>Hva skjer?</h1>
         <div class="timeline-festivalen col-12">
             <div class="buttons">
                 <div>Forestillinger</div>
@@ -397,6 +398,12 @@
     .timeline-side.forestillinger .activity-timeline .point-only {
 
     }
+    .activity-timeline .point-only {
+        left: -9px;
+    }
+    .activity-timeline {
+        border-left: solid 3px #cfd8e0;
+    }
     .activity-timeline .left-side-item {
         top: 20px;
         left: -150px;
@@ -405,6 +412,9 @@
     }
     .timeline-sider .timeline-side.workshops {
         padding-left: calc(50px + 30px);
+    }
+    .timeline-sider .timeline-side.workshops .activity-timeline {
+        border-color: #ff128b2e;
     }
 
     @media (max-width: 1200px) {

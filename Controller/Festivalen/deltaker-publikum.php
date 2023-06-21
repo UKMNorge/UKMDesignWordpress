@@ -6,6 +6,7 @@ use UKMNorge\DesignWordpress\Environment\Wordpress;
 use UKMNorge\Twig\Twig;
 use UKMNorge\Arrangement\Arrangement;
 use UKMNorge\Arrangement\Program\Hendelser;
+use UKMNorge\Twig\Definitions\Filters;
 
 
 UKMDesign::getHeader()->hideSectionTitle();
@@ -34,6 +35,7 @@ foreach ($program as $p) {
 }
 
 $filter = function ($datetime) {
+    $filtersClass = new Filters();
     $passed = time() > strtotime($datetime);
     $time = abs(time() - strtotime($datetime)); 
     
@@ -65,7 +67,8 @@ $filter = function ($datetime) {
         else if($val == 'time') {
             if($numberOfUnits > 23 || !$passed) {
                 $date = new DateTime($datetime);
-
+                
+                // ucfirst($filtersClass->dato(date("Y-m-d H:i:s"), 'l')) . ' ' . 
                 return $date->format('d.m H:i');
             }
             $ret = $ret . $numberOfUnits . ' time' . (($numberOfUnits > 1) ? 'r' : '');
@@ -82,10 +85,18 @@ Wordpress::setPosts($posts);
 
 function find_closest($array, $date) {
     foreach($array as $hendelse) {   
-        $interval[] = ['value' => abs(strtotime($date) - strtotime($hendelse[0]->getStart()->format('Y-m-d H:i:s'))), 'hendelse' => $hendelse[0]];
+        $val = (strtotime($date) - strtotime($hendelse[0]->getStart()->format('Y-m-d H:i:s')));
+        $retArr[] = [
+            'valueReal' => $val, 
+            'value' => abs($val),
+            'hendelse' => $hendelse[0]
+        ];
     }
-    asort($interval);
-    return $interval;
+
+    usort($retArr, function($a, $b) { return $a['value'] > $b['value'] ? 1 : ($b['value'] < $a['value'] ? -1 : 0); });
+
+
+    return $retArr;
 }
 
 $henselserSorter = find_closest($hendelserDato, date("Y-m-d H:i:s"));
