@@ -65,11 +65,11 @@ $filter = function ($datetime) {
             $ret = $ret . $numberOfUnits . ' minutt' . (($numberOfUnits > 1) ? 'er' : '');
         }
         else if($val == 'time') {
-            if($numberOfUnits > 23 || !$passed) {
+            if($numberOfUnits > 5 || !$passed) {
                 $date = new DateTime($datetime);
                 
-                // ucfirst($filtersClass->dato(date("Y-m-d H:i:s"), 'l')) . ' ' . 
-                return $date->format('d.m H:i');
+                // return $date->format('d.m H:i');
+                return ucfirst($filtersClass->dato(date("Y-m-d H:i:s"), 'l')) . ' ' . $date->format('H:i');
             }
             $ret = $ret . $numberOfUnits . ' time' . (($numberOfUnits > 1) ? 'r' : '');
         }
