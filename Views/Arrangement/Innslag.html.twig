@@ -148,9 +148,9 @@
 									{% if showOppmoteTid == false and forestilling.erSynligOppmotetid() %}
 										{% set showOppmoteTid = true %}
 									{% endif %}
-									<div class="row program-point">
+									<div class="row activity-timeline">
 										<div class="point-only"></div>
-										<div class="left-side-dato">{{ forestilling.getStart()|dato('d.m H:i') }}</div>
+										<div class="left-side-item">{{ forestilling.getStart()|dato('d.m H:i') }}</div>
 										<div class="col-12 inner">
 											<a href="/festivalen/program/{{ forestilling.getId() }}">
 												<h5 class="title">
@@ -315,43 +315,6 @@
 		</div>
 	</div>	
 	{% endif %}
-
-	<style>
-		.program-point {
-			border-left: dashed 1px #cfd8e0;
-			position: relative;
-			margin-left: 85px;
-			min-height: 70px;
-    		padding: 20px 0;
-		}
-		.program-point .point-only {
-			position: absolute;
-			height: 15px;
-			width: 15px;
-			border-radius: 50%;
-			left: -8px;
-			top: 24px;
-			border: solid 5px #75797d;
-			background: #fff;
-		}
-		.program-point .left-side-dato {
-			position: absolute;
-			left: -85px;
-			color: #75797d;
-			font-size: 13px;
-			top: 19px;
-		}
-		.program-point .inner {
-			padding-left: 25px;
-		}
-		.program-point .inner .title {
-			margin: 0;
-			font-size: 18px;
-		}
-		.program-point .inner .under-title {
-    		font-size: 12px;
-		}
-	</style>
 
 	
 {% endblock content %}
