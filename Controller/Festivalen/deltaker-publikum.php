@@ -3,6 +3,11 @@
 use UKMNorge\Design\UKMDesign;
 use UKMNorge\DesignWordpress\Environment\Posts;
 use UKMNorge\DesignWordpress\Environment\Wordpress;
+use UKMNorge\Twig\Twig;
+use UKMNorge\Arrangement\Arrangement;
+use UKMNorge\Arrangement\Program\Hendelser;
+use UKMNorge\Twig\Definitions\Filters;
+
 
 UKMDesign::getHeader()->hideSectionTitle();
 UKMDesign::getHeader()->getLogo()->hide();
@@ -16,8 +21,102 @@ $posts->paged = 0;
 $posts->setPostsPerPage(200);
 $posts->loadPosts();
 
+$arrangement = new Arrangement( get_option('pl_id') );
+
+$hendelser = $visInterne ? $arrangement->getProgram()->getAllInkludertInterne() : $arrangement->getProgram()->getAll();
+$program = Hendelser::sorterPerDag( $hendelser );
+
+
+$hendelserDato = [];
+$hendelserWorkshopDato = [];
+foreach ($program as $p) {
+    foreach($p->forestillinger as $f) {
+        if($f->getType() == 'category') {
+            $hendelserWorkshopDato[] = $f;
+        } else {
+            $hendelserDato[] = $f;
+        }
+    }
+}
+
+$filter = function ($datetime) {
+    $filtersClass = new Filters();
+    $passed = time() > strtotime($datetime);
+    $time = abs(time() - strtotime($datetime)); 
+    
+    if($time > 3600) {
+        // return $datetime;
+    }
+    
+    $units = array (
+        3600 => 'time',
+        60 => 'minutt',
+        1 => 'sekund'
+    );
+  
+    foreach ($units as $unit => $val) {
+        if ($time < $unit) continue;
+        
+        $numberOfUnits = abs(floor($time / $unit));
+
+        $ret = $passed ? 'Startet for ca. ' : 'Om ca. ';
+        $retSek = $passed ? 'Startet for ' : 'Starter Om ';
+        
+
+        if($val == 'sekund') {
+            $ret = $retSek . 'noen sekunder';
+        }
+        else if($val == 'minutt') {
+            $ret = $ret . $numberOfUnits . ' minutt' . (($numberOfUnits > 1) ? 'er' : '');
+        }
+        else if($val == 'time') {
+            if($numberOfUnits > 5 || !$passed) {
+                $date = new DateTime($datetime);
+                
+                // return $date->format('d.m H:i');
+                return ucfirst($filtersClass->dato($date, 'l')) . ' ' . $date->format('H:i');
+            }
+            $ret = $ret . $numberOfUnits . ' time' . (($numberOfUnits > 1) ? 'r' : '');
+        }
+        
+        return $passed ? $ret . ' siden' : $ret;
+    }
+};
+
+Twig::addFilter('timeago', $filter);
 
 Wordpress::setPosts($posts);
 
+
+function find_closest($array, $date) {
+    $currentVal = null;
+    $bestKey = 0;
+    foreach($array as $key => $hendelse) {
+        $val = abs(strtotime($date) - strtotime($hendelse->getStart()->format('Y-m-d H:i:s')));
+        
+        if($currentVal == null) {
+            $currentVal = $val;
+        }
+        
+        if($val < $currentVal) {
+            $currentVal = $val;
+            $bestKey = $key;
+        }
+    }
+
+    return $bestKey;
+}
+
+$hendelseKey = find_closest($hendelserDato, date("Y-m-d H:i:s"));
+$workshopKey = find_closest($hendelserWorkshopDato, date("Y-m-d H:i:s"));
+
+
+Wordpress::addViewData([
+    'hendelserDato' => $hendelserDato,
+    'hendelserWorkshopDato' => $hendelserWorkshopDato,
+    // Hvis hendelseKey er større enn 0, da går vi en gang tilbake for å starte med en hendelse tilbake
+    'hendelseKey' => $hendelseKey > 0 ? ($hendelseKey-1) : $hendelseKey,
+    'workshopKey' => $workshopKey > 0 ? ($workshopKey-1) : $workshopKey
+]);
 
 Wordpress::setView('Festivalen/Front/DeltakerPublikum');
