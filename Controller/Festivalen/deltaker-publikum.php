@@ -28,9 +28,14 @@ $program = Hendelser::sorterPerDag( $hendelser );
 
 
 $hendelserDato = [];
+$hendelserWorkshopDato = [];
 foreach ($program as $p) {
     foreach($p->forestillinger as $f) {
-        $hendelserDato[$f->getStart()->getTimestamp()][] = $f;
+        if($f->getType() == 'category') {
+            $hendelserWorkshopDato[] = $f;
+        } else {
+            $hendelserDato[] = $f;
+        }
     }
 }
 
@@ -69,7 +74,7 @@ $filter = function ($datetime) {
                 $date = new DateTime($datetime);
                 
                 // return $date->format('d.m H:i');
-                return ucfirst($filtersClass->dato(date("Y-m-d H:i:s"), 'l')) . ' ' . $date->format('H:i');
+                return ucfirst($filtersClass->dato($date, 'l')) . ' ' . $date->format('H:i');
             }
             $ret = $ret . $numberOfUnits . ' time' . (($numberOfUnits > 1) ? 'r' : '');
         }
@@ -84,25 +89,34 @@ Wordpress::setPosts($posts);
 
 
 function find_closest($array, $date) {
-    foreach($array as $hendelse) {   
-        $val = (strtotime($date) - strtotime($hendelse[0]->getStart()->format('Y-m-d H:i:s')));
-        $retArr[] = [
-            'valueReal' => $val, 
-            'value' => abs($val),
-            'hendelse' => $hendelse[0]
-        ];
+    $currentVal = null;
+    $bestKey = 0;
+    foreach($array as $key => $hendelse) {
+        $val = abs(strtotime($date) - strtotime($hendelse->getStart()->format('Y-m-d H:i:s')));
+        
+        if($currentVal == null) {
+            $currentVal = $val;
+        }
+        
+        if($val < $currentVal) {
+            $currentVal = $val;
+            $bestKey = $key;
+        }
     }
 
-    usort($retArr, function($a, $b) { return $a['value'] > $b['value'] ? 1 : ($b['value'] < $a['value'] ? -1 : 0); });
-
-
-    return $retArr;
+    return $bestKey;
 }
 
-$henselserSorter = find_closest($hendelserDato, date("Y-m-d H:i:s"));
+$hendelseKey = find_closest($hendelserDato, date("Y-m-d H:i:s"));
+$workshopKey = find_closest($hendelserWorkshopDato, date("Y-m-d H:i:s"));
+
 
 Wordpress::addViewData([
-    'henselserSorter' => $henselserSorter
+    'hendelserDato' => $hendelserDato,
+    'hendelserWorkshopDato' => $hendelserWorkshopDato,
+    // Hvis hendelseKey er større enn 0, da går vi en gang tilbake for å starte med en hendelse tilbake
+    'hendelseKey' => $hendelseKey > 0 ? ($hendelseKey-1) : $hendelseKey,
+    'workshopKey' => $workshopKey > 0 ? ($workshopKey-1) : $workshopKey
 ]);
 
 Wordpress::setView('Festivalen/Front/DeltakerPublikum');
