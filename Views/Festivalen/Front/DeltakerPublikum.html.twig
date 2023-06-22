@@ -50,7 +50,7 @@
                     <div class="top-title">
                         <h4 class="title forestillinger">Forestillinger</h4>
                     </div>
-
+                    
                     <div class="alle-hendelser">
                         {% for hendelse in hendelserDato|slice(hendelseKey, 3) %}
                             <div class="row activity-timeline {{ hendelse.erFerdig() ? 'ferdig' : '' }}">
@@ -59,13 +59,19 @@
                                     {{ hendelse.getStart()|date()|timeago }}
                                 </div>
                                 <div class="col-12 inner">
-                                    <a href="/festivalen/program/7070">
-                                        <h5 class="title">{{ hendelse.getNavn() }} {{ h['value'] }}</h5>
-                                        <span class="under-title">{{ hendelse.getSted() }}</span>
-                                    </a>
+                                    <h5 class="title">{{ hendelse.getNavn() }}</h5>
+                                    <span class="under-title">{{ hendelse.getSted() }}</span>
                                 </div>
                             </div>
                         {% endfor %}
+                        <div class="row activity-timeline empty ">
+                            <a class="empty-item" href="/festivalen/program-live-mode">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #75797d; transform: ;msFilter:;"><path d="m12 19.24-4.95-4.95-1.41 1.42L12 22.07l6.36-6.36-1.41-1.42L12 19.24zM5.64 8.29l1.41 1.42L12 4.76l4.95 4.95 1.41-1.42L12 1.93 5.64 8.29z"></path></svg>
+                            </a>
+                            <div class="col-12 inner">                                        
+
+                            </div>
+                        </div>
                     </div>
                     
                 </div>
@@ -84,15 +90,20 @@
                                     {{ hendelse.getStart()|date()|timeago }}
                                 </div>
                                 <div class="col-12 inner">
-                                    <a href="/festivalen/program/7070">
-                                        <h5 class="title">{{ hendelse.getNavn() }} {{ h['value'] }}</h5>
-                                        <span class="under-title">{{ hendelse.getSted() }}</span>
-                                    </a>
+                                    <h5 class="title">{{ hendelse.getNavn() }}</h5>
+                                    <span class="under-title">{{ hendelse.getSted() }}</span>
                                 </div>
                             </div>
                         {% endfor %}
-                    </div>
+                        <div class="row activity-timeline empty ">
+                            <a class="empty-item" href="/festivalen/program-live-mode">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #6f807e; transform: ;msFilter:;"><path d="m12 19.24-4.95-4.95-1.41 1.42L12 22.07l6.36-6.36-1.41-1.42L12 19.24zM5.64 8.29l1.41 1.42L12 4.76l4.95 4.95 1.41-1.42L12 1.93 5.64 8.29z"></path></svg>
+                            </a>
+                            <div class="col-12 inner">                                        
 
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
            
@@ -419,6 +430,9 @@
         border-left: solid 3px #cfd8e0;
         z-index: -1;
     }
+    .activity-timeline.empty {
+        z-index: 1;
+    }
     .activity-timeline .left-side-item {
         top: 20px;
         left: -150px;
@@ -436,6 +450,36 @@
     }
     .activity-timeline .inner {
         padding-right: 15;
+    }
+    .activity-timeline .empty-item {
+        margin-left: -36px;
+        background: #f2fff9;
+        box-shadow: 0px 0px 13px 2px #f2fff9;
+        padding: 4px;
+        color: #6f807e8f;
+        padding: 5px 20px;
+        border: solid 2px #cfd8e0;
+        border-radius: 5px;
+    }
+    .timeline-sider .timeline-side.workshops .activity-timeline .empty-item {
+        border-color: #f2d6e5;   
+    }
+    .timeline-sider .timeline-side.workshops .activity-timeline .empty-item:hover {
+        background: #f21e8b;
+        border-color: #f21e8b;   
+    }
+    .timeline-sider .timeline-side.workshops .activity-timeline .empty-item svg {
+        fill: #f21e8b !important;
+    }
+    .timeline-sider .timeline-side.workshops .activity-timeline .empty-item:hover svg {
+        fill: #fff !important;
+    }
+    .activity-timeline .empty-item:hover {
+        background: #75797d;
+        border-color: #75797d;
+    }
+    .activity-timeline .empty-item:hover svg {
+        fill: #fff !important;
     }
 
     @media (max-width: 1200px) {
