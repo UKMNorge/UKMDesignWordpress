@@ -30,15 +30,15 @@
     </div>
 
     {# andre del #}
-    <div class="sider row">
+    <div class="sider sider-timeline">
         <h1 class="title-for-row">Tidsplan</h1>
-        <div class="timeline-festivalen col-12">
+        <div class="timeline-festivalen col-12" selected-type="0">
             <div class="buttons">
                 <div class="button-div">
-                    <button class="selected">Forestillinger</button>
+                    <button type-forestilling="0" class="selected">Forestillinger</button>
                 </div>
                 <div class="button-div">
-                    <button>Workshops</button>
+                    <button type-forestilling="1">Workshops</button>
                 </div>
             </div>
             
@@ -509,6 +509,9 @@
         .timeline-festivalen .top-title .title.workshops {
             margin-left: 55px;
         }
+        .sider-timeline {
+            padding: 0 15px;
+        }
     }
     @media (max-width: 767px) {
         .sider.xs-reverse {
@@ -595,7 +598,10 @@
         .timeline-sider .timeline-side.left {
             border: none;
         }
-        .timeline-festivalen .top-title .title.forestillinger {
+        .timeline-sider .timeline-side.workshops {
+            padding-left: 0;
+        }
+        .timeline-festivalen .top-title .title {
             display: none;
         }
         .timeline-festivalen .buttons {
@@ -620,9 +626,19 @@
             padding: 20px;
             border: none;
             background: #00522c12;
+            transition: .2s cubic-bezier(0.4, 0, 1, 1);
         }
         .timeline-festivalen .buttons .button-div button.selected {
             background: #12633e73;
+        }
+        .timeline-festivalen .timeline-sider .timeline-side {
+            display: none;
+        }
+        .timeline-festivalen[selected-type="0"] .timeline-sider .timeline-side.forestillinger {
+            display: inline;
+        }
+        .timeline-festivalen[selected-type="1"] .timeline-sider .timeline-side.workshops {
+            display: inline;
         }
 
     }
@@ -684,6 +700,9 @@
         var btn = jQuery(e.currentTarget);
         jQuery('.timeline-festivalen .buttons .button-div button').removeClass('selected');
         btn.addClass('selected');
+
+        var selectedType = btn.attr('type-forestilling');
+        jQuery('.timeline-festivalen').attr('selected-type', selectedType);
     })
 </script>
 {% endblock %}
