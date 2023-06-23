@@ -67,7 +67,7 @@ $filter = function ($datetime) {
             $ret = $ret . $numberOfUnits . ' minutt' . (($numberOfUnits > 1) ? 'er' : '');
         }
         else if($val == 'time') {
-            if($numberOfUnits > 23 || !$passed) {
+            if($numberOfUnits > 23) {
                 $date = new DateTime($datetime);
 
                 return $date->format('d.m H:i');
