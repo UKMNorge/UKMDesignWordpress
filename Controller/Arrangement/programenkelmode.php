@@ -56,7 +56,7 @@ $filter = function ($datetime) {
         
         $numberOfUnits = abs(floor($time / $unit));
 
-        $ret = $passed ? 'Startet for ' : 'Om ';
+        $ret = $passed ? 'Startet for ca. ' : 'Om ca. ';
         $retSek = $passed ? 'Startet for ' : 'Starter Om ';
         
 
@@ -67,7 +67,7 @@ $filter = function ($datetime) {
             $ret = $ret . $numberOfUnits . ' minutt' . (($numberOfUnits > 1) ? 'er' : '');
         }
         else if($val == 'time') {
-            if($numberOfUnits > 23) {
+            if($numberOfUnits > 23 || !$passed) {
                 $date = new DateTime($datetime);
 
                 return $date->format('d.m H:i');
