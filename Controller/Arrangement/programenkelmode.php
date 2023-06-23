@@ -56,7 +56,7 @@ $filter = function ($datetime) {
         
         $numberOfUnits = abs(floor($time / $unit));
 
-        $ret = $passed ? 'Startet for ca. ' : 'Om ca. ';
+        $ret = $passed ? 'Startet for ' : 'Om ';
         $retSek = $passed ? 'Startet for ' : 'Starter Om ';
         
 
