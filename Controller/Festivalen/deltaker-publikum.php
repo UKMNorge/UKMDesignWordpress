@@ -70,9 +70,8 @@ $filter = function ($datetime) {
             $ret = $ret . $numberOfUnits . ' minutt' . (($numberOfUnits > 1) ? 'er' : '');
         }
         else if($val == 'time') {
-            if($numberOfUnits > 5 || !$passed) {
+            if($numberOfUnits > 23) {
                 $date = new DateTime($datetime);
-                
                 // return $date->format('d.m H:i');
                 return ucfirst($filtersClass->dato($date, 'l')) . ' ' . $date->format('H:i');
             }
