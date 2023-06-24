@@ -26,6 +26,7 @@ $arrangement = new Arrangement( get_option('pl_id') );
 $hendelser = $visInterne ? $arrangement->getProgram()->getAllInkludertInterne() : $arrangement->getProgram()->getAll();
 $program = Hendelser::sorterPerDag( $hendelser );
 
+$has_started_direktesending = false;
 
 $hendelserDato = [];
 $hendelserWorkshopDato = [];
@@ -35,6 +36,11 @@ foreach ($program as $p) {
             $hendelserWorkshopDato[] = $f;
         } else {
             $hendelserDato[] = $f;
+        }
+
+        // If forestilling er aktiv og den har videresending, aktiver has_started_direktesending
+        if($f->erAktiv() && $f->harSending()) {
+            $has_started_direktesending = true;
         }
     }
 }
@@ -86,7 +92,6 @@ Twig::addFilter('timeago', $filter);
 
 Wordpress::setPosts($posts);
 
-
 function find_closest($array, $date) {
     $currentVal = null;
     $bestKey = 0;
@@ -115,7 +120,10 @@ Wordpress::addViewData([
     'hendelserWorkshopDato' => $hendelserWorkshopDato,
     // Hvis hendelseKey er større enn 0, da går vi en gang tilbake for å starte med en hendelse tilbake
     'hendelseKey' => $hendelseKey > 0 ? ($hendelseKey-1) : $hendelseKey,
-    'workshopKey' => $workshopKey > 0 ? ($workshopKey-1) : $workshopKey
+    'workshopKey' => $workshopKey > 0 ? ($workshopKey-1) : $workshopKey,
+    'arrangement' => $arrangement,
+    'has_started_direktesending' => $has_started_direktesending
+
 ]);
 
 Wordpress::setView('Festivalen/Front/DeltakerPublikum');
