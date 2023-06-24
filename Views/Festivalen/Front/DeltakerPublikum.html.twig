@@ -104,9 +104,9 @@
                                                 <a class="w-shop-href" target="_blank" href="{{ wshop.url }}">
                                                     <div class="card card-body w-shop-card w-shop-hover">
                                                         <h5 class="w-shop-title">{{ wshop.getTitle() }}</h5>
-                                                        <span class="w-shop-sted">
+                                                        <p class="w-shop-sted">
                                                             {{ wshop.getMeta('sted') }}
-                                                        </span>
+                                                        </p>
                                                     </div>
                                                 </a>
                                             {% endfor %}
@@ -514,7 +514,9 @@
         margin: 0;
     }
     .w-shop-sted {
-        font-size: 11px;   
+        font-size: 11px;
+        margin: 0;
+        margin-top: 12px;
     }
     .w-shop-card {
         padding: 15px;
