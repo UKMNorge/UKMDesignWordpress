@@ -67,16 +67,18 @@
                     
                     <div class="alle-hendelser">
                         {% for hendelse in hendelserDato|slice(hendelseKey, 3) %}
-                            <div class="row activity-timeline {{ hendelse.erFerdig() ? 'ferdig' : '' }}">
-                                <div class="point-only"></div>
-                                <div class="left-side-item">
-                                    {{ hendelse.getStart()|date()|timeago }}
+                            <a class="a-no-decor" href="/festivalen/program-live-mode/">
+                                <div class="row activity-timeline {{ hendelse.erFerdig() ? 'ferdig' : '' }}">
+                                    <div class="point-only"></div>
+                                    <div class="left-side-item">
+                                        {{ hendelse.getStart()|date()|timeago }}
+                                    </div>
+                                    <div class="col-12 inner">
+                                        <h5 class="title">{{ hendelse.getNavn() }}</h5>
+                                        <span class="under-title">{{ hendelse.getSted() }}</span>
+                                    </div>
                                 </div>
-                                <div class="col-12 inner">
-                                    <h5 class="title">{{ hendelse.getNavn() }}</h5>
-                                    <span class="under-title">{{ hendelse.getSted() }}</span>
-                                </div>
-                            </div>
+                            </a>
                         {% endfor %}
                         <div class="row activity-timeline empty ">
                             <a class="empty-item empty-style-btn" href="/festivalen/program-live-mode">
@@ -558,7 +560,9 @@
         transform: rotate(180deg);
         transition: .2s transform;
     }
-    .w-shop-href, .w-shop-href * {
+    .a-no-decor,
+    .w-shop-href, 
+    .w-shop-href * {
         text-decoration: none !important;
         color: #000;
     }
