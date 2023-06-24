@@ -39,7 +39,7 @@ foreach ($program as $p) {
         }
 
         // If forestilling er aktiv og den har videresending, aktiver has_started_direktesending
-        if($f->erAktiv() && $f->harSending()) {
+        if($f->harSending() && $f->getSending()->erStartet()) {
             $has_started_direktesending = true;
         }
     }
