@@ -65,7 +65,7 @@
                             </div>
                         {% endfor %}
                         <div class="row activity-timeline empty ">
-                            <a class="empty-item" href="/festivalen/program-live-mode">
+                            <a class="empty-item empty-style-btn" href="/festivalen/program-live-mode">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #75797d; transform: ;msFilter:;"><path d="m12 19.24-4.95-4.95-1.41 1.42L12 22.07l6.36-6.36-1.41-1.42L12 19.24zM5.64 8.29l1.41 1.42L12 4.76l4.95 4.95 1.41-1.42L12 1.93 5.64 8.29z"></path></svg>
                             </a>
                             <div class="col-12 inner">                                        
@@ -92,11 +92,31 @@
                                 <div class="col-12 inner">
                                     <h5 class="title">{{ hendelse.getNavn() }}</h5>
                                     <span class="under-title">{{ hendelse.getSted() }}</span>
+                                    <div class="show-more-timeline">
+                                        <button class="empty-style-btn collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ hendelse.getId() }}" aria-expanded="false" aria-controls="collapse{{ hendelse.getId() }}">
+                                            <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #f21e8b; transform: ;msFilter:;"><path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path></svg>
+                                            </span>
+                                        </button>
+
+                                        <div class="collapse" id="collapse{{ hendelse.getId() }}">
+                                            {% for wshop in hendelse.getWorkshops()|sort((a, b) => a.getMeta('rekkefolge') ? a.getMeta('rekkefolge') : 0 <=> b.getMeta('rekkefolge') ? b.getMeta('rekkefolge') : 0 ) %}  
+                                                <a class="wshop-href" target="_blank" href="{{ wshop.url }}">
+                                                    <div class="card card-body w-shop-card">
+                                                        <h5 class="w-shop-title">{{ wshop.getTitle() }}</h5>
+                                                        <span class="w-shop-sted">
+                                                            {{ wshop.getMeta('sted') }}
+                                                        </span>
+                                                    </div>
+                                                </a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         {% endfor %}
-                        <div class="row activity-timeline empty ">
-                            <a class="empty-item" href="/festivalen/program-live-mode">
+                        <div class="row activity-timeline empty">
+                            <a class="empty-item empty-style-btn" href="/festivalen/program-live-mode">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #6f807e; transform: ;msFilter:;"><path d="m12 19.24-4.95-4.95-1.41 1.42L12 22.07l6.36-6.36-1.41-1.42L12 19.24zM5.64 8.29l1.41 1.42L12 4.76l4.95 4.95 1.41-1.42L12 1.93 5.64 8.29z"></path></svg>
                             </a>
                             <div class="col-12 inner">                                        
@@ -428,7 +448,6 @@
     }
     .activity-timeline {
         border-left: solid 3px #cfd8e0;
-        z-index: -1;
     }
     .activity-timeline.empty {
         z-index: 1;
@@ -453,6 +472,8 @@
     }
     .activity-timeline .empty-item {
         margin-left: -36px;
+    }
+    .empty-style-btn {
         background: #f2fff9;
         box-shadow: 0px 0px 13px 2px #f2fff9;
         padding: 4px;
@@ -480,6 +501,31 @@
     }
     .activity-timeline .empty-item:hover svg {
         fill: #fff !important;
+    }
+    .show-more-timeline .empty-style-btn {
+        padding: 5px 10px;
+        border-color: #f2d6e5;
+    }
+    .w-shop-title {
+        font-size: 13px;
+        margin: 0;
+    }
+    .w-shop-sted {
+        font-size: 11px;   
+    }
+    .w-shop-card {
+        padding: 15px;
+        background: #ffffff69;
+        margin: 10px 0;
+        border: solid 2px #f2d6e5;
+    }
+    .show-more-timeline .empty-style-btn.collapsed span svg {
+        transform: rotate(0deg);
+        transition: .2s;
+    }
+    .show-more-timeline .empty-style-btn span svg {
+        transform: rotate(180deg);
+        transition: .2s;
     }
 
     @media (max-width: 1200px) {
