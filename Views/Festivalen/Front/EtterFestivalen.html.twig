@@ -5,8 +5,9 @@
 <div id="videoSide1" class="video-background active">
     <div class="video-overlay"></div>
     <video autoplay muted loop id="myVideo">
-    <source src="//assets.{{ UKM_HOSTNAME }}/videos/festivalen/festivalen_film_bakgrunn.mp4" type="video/mp4">
+        <source src="//assets.{{ UKM_HOSTNAME }}/videos/festivalen/festivalen_film_bakgrunn.mp4" type="video/mp4">
     </video>
+    <img src="festivalen_film_bakgrunn.gif" />
 </div>
 {# <div id="videoSide2" class="video-background ">
     <div class="video-overlay"></div>
@@ -1017,6 +1018,16 @@ body {
     }
     .total-deltakere .farge-space .info-text .hoved {
         font-size: 29px;
+    }
+    #myVideo {
+        display: none;
+    }
+    .video-overlay {
+        border: 2px solid black;
+        padding: 125px;
+        background: url(//assets.ukm.dev/videos/festivalen/festivalen_film_bakgrunn.gif);
+        background-repeat: no-repeat;
+        background-size: 163%;
     }
 }
 @media (max-width: 600px) {
