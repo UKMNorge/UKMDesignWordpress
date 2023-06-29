@@ -3,8 +3,11 @@
 use UKMNorge\DesignWordpress\Environment\Wordpress;
 
 // Hvis vi skal ha plakat, fjern false
-if( false && date('m') < 3 ) {
-    Wordpress::requireController('Festivalen','plakat');
+// if(date('m') >= 6  && date('d') > 27) {
+if(is_user_logged_in() && is_super_admin()) {
+    // Wordpress::requireController('Festivalen','plakat');
+    Wordpress::requireController('Festivalen','etter-festivalen');
+
 } else {
     // Hvis det er superadmin vis nettsiden
     // if(is_super_admin()) {

@@ -1,0 +1,621 @@
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
+
+{% block content %}
+
+<div id="videoSide1" class="video-background active">
+    <div class="video-overlay"></div>
+    <video autoplay muted loop id="myVideo">
+    <source src="//assets.{{ UKM_HOSTNAME }}/videos/festivalen/01_Videobakgrunn_landingsside.mov" type="video/mp4">
+    </video>
+</div>
+<div id="videoSide2" class="video-background ">
+    <div class="video-overlay"></div>
+    <video autoplay muted loop id="myVideo">
+    <source src="//assets.{{ UKM_HOSTNAME }}/videos/festivalen/02_Videobakgrunn_landingsside.mp4" type="video/mp4">
+    </video>
+</div>
+
+<div id="etterFestivalenContainer" class="container">
+    {# side 1 #}
+    <div class="row etter-festivalen-side med-background">
+        <div class="background-title background-text">
+            <h5 class="upwards-title">Tilbakeblikk på</h5>
+            <h1 class="title">UKM-festivalen 2023</h1>
+        </div>
+        <div class="background-beskrivelse background-text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco [kort beskrivelse]</p>
+        </div>
+    </div>
+
+     {# side 2 #}
+    <div id="sideDeltakere" class="row etter-festivalen-side med-background">
+        <div class="background-title background-text">
+            <h1 class="title">Deltakere</h1>
+        </div>
+        <div class="background-beskrivelse background-text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco [kort beskrivelse]</p>
+        </div>
+
+        <div id="totalDeltakere" class="container">
+            <div class="total-deltakere col-12">
+                <div class="farge-space row">
+                    <div class="col-3 info-text">
+                        <h1 class="hoved">450+</h1>
+                        <p class="under">deltakere</p>
+                    </div>
+                    <div class="col-3 info-text">
+                        <h1 class="hoved">265+</h1>
+                        <p class="under">innslag</p>
+                    </div>
+                    <div class="col-3 info-text">
+                        <h1 class="hoved">50+</h1>
+                        <p class="under">workshops</p>
+                    </div>
+                    <div class="col-3 info-text">
+                        <h1 class="hoved">70</h1>
+                        <p class="under">kunstdeltakere</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid without-video">
+    <div class="container">
+        
+        {# side 3 #}
+        <div id="sideRedaksjonensSaker" class="row etter-festivalen-side without-background">
+            <div class="background-title">
+                <h1 class="title">Redaksjonens saker</h1>
+            </div>
+        
+            <div id="nyheterIFestivalen" class="container">
+                <div class="news-section col-12 mt-4">
+                    <div class="row d-flex justify-content-center">
+                    {% for post in posts.getAll() %}
+                        {% set riktigCat = false %}
+                        {% for cat in post.categories %}
+                            {% if cat.slug == 'pa-forsiden' %}
+                                {% set riktigCat = true %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if riktigCat %}
+                        <div class="col-12 d-flex justify-content-center d-block d-lg-none mt-4">
+                            <span class="undertitler undertitler-news">{{ post.date|dato('j. M Y') }}</span>
+                        </div>
+                        <div class="col-12 col-md-8 col-xl-6 mb-5">
+                            {% embed "Post:Grid-default.html.twig"|UKMpath with { post: post } %}{% endembed %}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# Side 4 #}
+        <div id="sideForestillinger" class="row etter-festivalen-side without-background">
+            <div class="background-title">
+                <h1 class="title">Forestillinger</h1>
+            </div>
+
+            {# Lørdag #}
+            <div class="div-with-day col-12">
+                <div class="day">
+                    <h5 class="day-title">Lørdag - 24.06.2023</h5>
+                    <div class="points">
+                        <div class="point"></div>
+                        <div class="point"></div>
+                        <div class="point"></div>
+                    </div>
+                </div>
+                <div class="first-usual-box">
+                    <div class="film">
+                        <div style="position: relative; padding-top: 56.25%;">
+                            <iframe src="https://customer-554chiv4hi7wraol.cloudflarestream.com/616a9a9efcb689a16a085962d986e72e/watch/iframe" style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true"></iframe>\
+                        </div>
+                    </div>
+                    <div class="film">
+                        <div style="position: relative; padding-top: 56.25%;">
+                            <iframe src="https://customer-554chiv4hi7wraol.cloudflarestream.com/3d2a6a076e26dd5e2f2565f203c6d043/watch/iframe" style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true"></iframe>\
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {# søndag #}
+            <div class="div-with-day col-12">
+                <div class="day">
+                    <h5 class="day-title">Søndag - 25.06.2023</h5>
+                    <div class="points">
+                        <div class="point"></div>
+                        <div class="point"></div>
+                        <div class="point"></div>
+                    </div>
+                </div>
+                <div class="first-usual-box">
+                    <div class="film">
+                        <div style="position: relative; padding-top: 56.25%;">
+                            <iframe src="https://customer-554chiv4hi7wraol.cloudflarestream.com/21fa475a2a9e923a51671aa2658524d2/watch/iframe" style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true"></iframe>\
+                        </div>
+                    </div>
+                    <div class="film">
+                        <div style="position: relative; padding-top: 56.25%;">
+                            <iframe src="https://customer-554chiv4hi7wraol.cloudflarestream.com/96218904d59263933a6e3b4441f19efa/watch/iframe" style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true"></iframe>\
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {# mandag #}
+            <div class="div-with-day col-12">
+                <div class="day">
+                    <h5 class="day-title">Mandag - 26.06.2023</h5>
+                    <div class="points">
+                        <div class="point"></div>
+                        <div class="point"></div>
+                        <div class="point"></div>
+                    </div>
+                </div>
+                <div class="first-usual-box">
+                    <div class="film">
+                        <div style="position: relative; padding-top: 56.25%;">
+                            <iframe src="https://customer-554chiv4hi7wraol.cloudflarestream.com/a5588f76fba6d157045dea653e4aa5e4/watch/iframe" style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true"></iframe>\
+                        </div>
+                    </div>
+                    <div class="film">
+                        <div style="position: relative; padding-top: 56.25%;">
+                            <iframe src="https://customer-554chiv4hi7wraol.cloudflarestream.com/ec3965d735aaa1d5b3ff2011b42a92a4/watch/iframe" style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true"></iframe>\
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons div-with-day">
+                <a type="button" href="/derdubor/" class="standard-btn btn-large d-flex justify-content-between btn-blue mt-2">
+                    <span>Søk etter deltaker</span>
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="hsl(216, 33%, 97%)">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+            </div>
+          
+        </div>
+
+
+        {# Side 5 #}
+        <div id="sidePaaScene" class="row etter-festivalen-side without-background">
+            <div class="background-title">
+                <h1 class="title">På scene</h1>
+            </div>
+
+            {# alle innslag #}
+            <div class="alle-paa-scene">
+                {% for hendelse in hendelserMedSending %}
+                    <div class="row activity-timeline bold-line">
+                        <div class="point-only"></div>
+                        <div class="left-side-item">{{ hendelse.getNavn() }}</div>
+                        <div class="col-12 inner">
+                            <div class="innslags-div first-usual-box">
+                                {% set innslags = hendelse.getInnslag().getAll() %}
+                                {% set firstInnslag = innslags[0] %}
+                                    {# START first innslag #}
+                                    <div class="innslag-div">
+                                        <div class="films">
+                                            {% for film in firstInnslag.getFilmer().getAll() %}
+                                                <div class="innslag-film">
+                                                    <div style="position: relative; padding-top: 56.25%;">
+                                                        <iframe src="https://customer-554chiv4hi7wraol.cloudflarestream.com/{{ film.getCloudflareId() }}/watch/iframe" style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true"></iframe>\
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="info">
+                                            <h5 class="innslag-title">{{ firstInnslag.getNavn() }}</h5>
+                                            <p class="innslag-beskrivelse">{{ firstInnslag.getBeskrivelse() }}</p>
+                                            <div class="personer">
+                                                {% for person in firstInnslag.getPersoner().getAll() %}
+                                                    <div class="person">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 30 30" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M7.5 6.5C7.5 8.981 9.519 11 12 11s4.5-2.019 4.5-4.5S14.481 2 12 2 7.5 4.019 7.5 6.5zM20 21h1v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h17z"></path></svg>
+                                                        <p class="navn">{{ person.getNavn() }}</p>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {# END first innslag #}
+
+                                <div class="alle-innslag-collapse collapse" id="collapse{{ hendelse.getId() }}">
+                                
+                                    {% for innslag in innslags|slice(1, length) %}
+                                        <div class="innslag-div">
+                                            <div class="films">
+                                                {% for film in innslag.getFilmer().getAll() %}
+                                                    <div class="innslag-film">
+                                                        <div style="position: relative; padding-top: 56.25%;">
+                                                            <iframe src="https://customer-554chiv4hi7wraol.cloudflarestream.com/{{ film.getCloudflareId() }}/watch/iframe" style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true"></iframe>\
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                            <div class="info">
+                                                <h5 class="innslag-title">{{ innslag.getNavn() }}</h5>
+                                                <p class="innslag-beskrivelse">{{ innslag.getBeskrivelse() }}</p>
+                                                <div class="personer">
+                                                    {% for person in innslag.getPersoner().getAll() %}
+                                                        <div class="person">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 30 30" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M7.5 6.5C7.5 8.981 9.519 11 12 11s4.5-2.019 4.5-4.5S14.481 2 12 2 7.5 4.019 7.5 6.5zM20 21h1v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h17z"></path></svg>
+                                                            <p class="navn">{{ person.getNavn() }}</p>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+
+                                {# show all #}
+                                <div class="buttons">
+                                    <button class="empty-style-btn collapsed w-shop-hover" type="button" data-toggle="collapse" data-target="#collapse{{ hendelse.getId() }}" aria-expanded="false" aria-controls="collapse{{ hendelse.getId() }}">
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #75797d; transform: ;msFilter:;"><path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path></svg>
+                                        </span>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+  font-size: 17px;
+}
+.video-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: linear-gradient(45deg, #fff0563b, #ff128b14, #ff128b14, #ff128b14, #ff128b14, #ff128b14, #ff128b14, #ff128b14, #fff0562b);
+    top: 0px;
+    bottom: 0;
+    width: 100%;
+    transition: 2s !important;
+}
+#videoSide2 .video-overlay {
+    background: linear-gradient(45deg, #ffff0021, #c8e27f00, #d8467c6e, #42427745);
+}
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+}
+.video-background.active {
+    visibility: visible;
+}
+.video-background {
+    visibility: collapse;
+}
+
+
+
+
+
+#etterFestivalenContainer {
+    padding: 0;
+    padding-top: 300px;
+}
+.background-title {
+    width: 100%;
+    margin-bottom: 100px;
+}
+.background-title.background-text {
+    margin-top: 0;
+    width: 100%;
+    background: #000;
+    color: #fff;
+    margin-bottom: 180px;
+    text-align: center;
+}
+.background-title .upwards-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+}
+.background-title .title {
+    margin: 0 !important;
+    text-align: center;
+    font-size: 60px;
+}
+.background-beskrivelse {
+    max-width: 900px;
+    margin: auto;
+}
+.background-beskrivelse p {
+    text-align: center
+    padding: 0;
+    margin: 0;
+}
+.background-text {
+    padding: 15px;
+    background-color: #000 !important;
+    color: #fff !important;
+    border-radius: 5px;
+    z-index: 1;
+    box-shadow: 0px 0px 68px -16px #000000;
+}
+.etter-festivalen-side.med-background {
+    margin-top: 700px;
+}
+.video-background.changing .video-overlay {
+    background: #bbbbbbfa !important;
+    transition: 1s;
+}
+.container-fluid.without-video {
+    margin-top: 200px;
+    background: #fff;
+    position: absolute;
+    z-index: 5;
+    border-radius: 10px;
+    padding-bottom: 500px;
+}
+
+
+#totalDeltakere {
+    padding: 0;
+    margin: 0;
+    margin-top: 180px;
+}
+.total-deltakere .farge-space {
+    width: 100%;
+    padding: 0;
+    background: linear-gradient(45deg, #fff056, #ff128b, #ff128b, #ff128b, #ff128b, #ff128b, #ff128b, #ff128b, #fff056);
+    border-radius: 30px;
+    padding: 30px;
+    box-shadow: 0px 0px 13px 1px #0000007a;
+    margin: 0;
+}
+.total-deltakere .farge-space * {
+    color: #fff;
+}   
+.total-deltakere .farge-space .info-text {
+    display: grid;
+    padding: 0;
+    text-align: center;
+    border-right: solid 1px;
+    border-color: #ffffff73;
+}
+.total-deltakere .farge-space .info-text:last-child {
+    border-right: none;
+}
+.total-deltakere .farge-space .info-text .hoved,
+.total-deltakere .farge-space .info-text .under {
+    margin: 0;
+}
+.total-deltakere .farge-space .info-text .hoved {
+    font-size: 40px;
+}
+.etter-festivalen-side.without-background {
+    margin-top: 200px;
+}
+.div-with-day {
+    margin-bottom: 100px;
+}
+.div-with-day.buttons {
+    display: flex;
+    width: 100%;
+}
+.div-with-day.buttons a {
+    margin: auto;
+}
+.div-with-day .day {
+    display: grid;
+}
+.div-with-day .day .points {
+    margin: 10px auto;
+}
+.div-with-day .day .points .point {
+    width: 10px;
+    height: 10px;
+    border: solid 3px #000000a1;
+    border-radius: 50%;
+    margin-bottom: 5px;
+    background: #ffffff;
+}
+.div-with-day .day .day-title {
+    text-align: center;
+    margin: 0;
+}
+.first-usual-box {
+    display: flex;
+    max-width: 800px;
+    border: solid 1px #f1f1f1;
+    border-radius: 15px;
+    padding: 20px;
+    margin: auto;
+    background: #fff;
+    box-shadow: 0 0.5rem 1rem rgba(90, 122, 252, 0.11);
+    border-radius: 0.9375rem;
+}
+.activity-timeline.bold-line {
+    border-left: solid 3px #cfd8e0;
+}
+.activity-timeline.bold-line .point-only {
+    left: -9px;
+}
+
+.first-usual-box .film {
+    width: 50%;
+}
+.first-usual-box .film div,
+.innslag-film {
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px -1px #00000061;
+}
+.first-usual-box .film:first-child {
+    padding-right: 10px;
+}
+.first-usual-box .film:nth-child(2) {
+    padding-left: 10px;
+}
+.first-usual-box.innslags-div {
+    display: block;
+    min-width: 670px;
+    padding: 20px 30px;
+    margin-bottom: 110px;
+}
+.innslag-div {
+    display: flex;
+    margin-bottom: 50px;
+}
+.innslag-div .films {
+    width: 350px;
+}
+.innslag-div .info  {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+.innslag-div .info .innslag-title {
+    margin: 0;
+}
+.innslag-div .info .innslag-beskrivelse {
+    margin: 0;
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+.innslag-div .info .personer .person {
+    display: flex;
+}
+.innslag-div .info .personer .person .navn {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.empty-style-btn {
+    background: #fff;
+    box-shadow: 0px 0px 13px 2px #f2fff9;
+    padding: 4px;
+    color: #6f807e8f;
+    padding: 5px 20px;
+    border: solid 2px #cfd8e0;
+    border-radius: 5px;
+}
+.innslags-div .buttons {
+    display: flex;
+}
+.innslags-div .buttons button {
+    margin: auto;
+}
+.w-shop-hover:hover {
+    background: #75797d;
+    border-color: #75797d;
+    color: #fff;
+}
+.w-shop-hover:hover span svg {
+    fill: #fff !important;
+    color: #fff !important;
+}
+.innslags-div .buttons button span svg {
+    transform: rotate(180deg);
+    transition: .2s transform;
+}
+.innslags-div .buttons button.collapsed span svg {
+    transform: rotate(0deg);
+    transition: .2s transform;
+}
+.alle-paa-scene {
+    margin: auto;
+}
+.activity-timeline .inner {
+    padding-left: 45px;
+}
+.activity-timeline .left-side-item {
+    width: 100%;
+    text-align: right;
+    left: -125px;
+    max-width: 100px;
+}
+
+
+
+
+footer.footer {
+    display: none;
+    visibility: hidden;
+}
+</style>
+
+
+<script>
+jQuery(document).scroll(function() {
+    video1 = jQuery('#videoSide1');
+    video2 = jQuery('#videoSide2');
+    var t1 = 0;
+    var t2 = 0;
+
+    if(jQuery('#sideDeltakere').isInViewport()) {
+        if(!video2.hasClass('active')) {
+            changingVideo();
+            clearTimeout(t1);
+            t1 = setTimeout(() => {
+                video2.addClass('active');
+                video1.removeClass('active');
+            }, 1000);
+        }
+    }   
+    else if(!video1.hasClass('active')) {
+        changingVideo();
+        clearTimeout(t2);
+        t2 = setTimeout(() => {
+            video1.addClass('active');
+            video2.removeClass('active');
+        }, 1000);
+    }
+
+});
+
+var timeout = 0;
+function changingVideo() {
+    jQuery('#videoSide1').addClass('changing')
+    jQuery('#videoSide2').addClass('changing')
+    
+    clearTimeout(timeout);
+    var timeout = setTimeout(() => {
+        jQuery('#videoSide1').removeClass('changing')
+        jQuery('#videoSide2').removeClass('changing')
+    }, 1000)
+}
+
+
+jQuery.fn.isInViewport = function() {
+    var elementTop = jQuery(this).offset().top;
+    var elementBottom = elementTop + jQuery(this).outerHeight();
+
+    var viewportTop = jQuery(window).scrollTop();
+    var viewportBottom = viewportTop + jQuery(window).height()-500;
+
+    return elementBottom > viewportTop && elementTop < viewportBottom;
+};
+
+
+</script>
+
+
+{% endblock %}
