@@ -207,7 +207,12 @@
                 {% for hendelse in hendelserMedSending %}
                     <div class="row activity-timeline bold-line">
                         <div class="point-only"></div>
-                        <div class="left-side-item">{{ hendelse.getNavn() }}</div>
+                        <div class="left-side-item">
+                            <p>{{ hendelse.getNavn() }}</p>
+                            <span class="dato">
+                                {{ hendelse.getStart()|dato('j. M Y') }}
+                            </span>
+                        </div>
                         <div class="col-12 inner">
                             <div class="innslags-div first-usual-box">
                                 {% set innslags = hendelse.getInnslag().getAll() %}
@@ -1011,6 +1016,12 @@ body {
     left: -125px;
     max-width: 100px;
 }
+.activity-timeline .left-side-item p {
+    margin: 0;
+}
+.activity-timeline .left-side-item span {
+    font-size: 12px;
+}
 .etter-festivalen-side.without-background.bilde-side .bilder-div .img-outer {
     margin: auto;
     margin-bottom: 30px;
@@ -1049,6 +1060,12 @@ body {
 
     .total-deltakere .farge-space .info-text .under {
         font-size: 12px;
+    }
+    .activity-timeline .left-side-item p {
+        font-size: 13px;
+    }
+    .activity-timeline .left-side-item span {
+        font-size: 11px;
     }
 }
 @media (max-width: 767px) {
@@ -1093,6 +1110,9 @@ body {
     .activity-timeline .left-side-item {
         left: -77px;
         max-width: 64px;
+    }
+    .activity-timeline .left-side-item span {
+        font-size: 10px;
     }
     .background-title .title {
         font-size: 40px;
