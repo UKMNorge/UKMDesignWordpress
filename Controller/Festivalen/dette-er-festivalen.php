@@ -8,36 +8,38 @@ use UKMNorge\DesignWordpress\Environment\Wordpress;
 use UKMNorge\DesignWordpress\Environment\Front\OmradeFront;
 
 
-UKMDesign::getHeader()->hideSectionTitle();
-UKMDesign::getHeader()->getLogo()->hide();
+var_dump('here');
 
-Wordpress::setView('Festivalen/Front/DetteErFestivalen');
+// UKMDesign::getHeader()->hideSectionTitle();
+// UKMDesign::getHeader()->getLogo()->hide();
 
-// Get post for current year
-$posts = Posts::getByYear(date("Y"));
-Wordpress::setPosts($posts);
+// Wordpress::setView('Festivalen/Front/DetteErFestivalen');
+
+// // Get post for current year
+// $posts = Posts::getByYear(date("Y"));
+// Wordpress::setPosts($posts);
 
 
-function getPageForPart($part) {
-    $toppmeny = get_pages(
-        [
-            'parent' => Wordpress::getPage()->getId(),
-            'meta_key' => 'forside-part',
-            'meta_value' => $part,
-            'sort_column' => 'menu_order',
-            'post_status' => 'publish'
-        ]
-    );
+// function getPageForPart($part) {
+//     $toppmeny = get_pages(
+//         [
+//             'parent' => Wordpress::getPage()->getId(),
+//             'meta_key' => 'forside-part',
+//             'meta_value' => $part,
+//             'sort_column' => 'menu_order',
+//             'post_status' => 'publish'
+//         ]
+//     );
     
-    if(is_array($toppmeny) && sizeof($toppmeny) == 1) {
-        $page = Page::loadByPostObject($toppmeny[0]);
-        $page->useOnlyDirectChildPageBlocks();
-        return $page;
-    }
-    return false;
-}
+//     if(is_array($toppmeny) && sizeof($toppmeny) == 1) {
+//         $page = Page::loadByPostObject($toppmeny[0]);
+//         $page->useOnlyDirectChildPageBlocks();
+//         return $page;
+//     }
+//     return false;
+// }
 
-Wordpress::addViewData('page_topp', getPageForPart('toppmeny'));
-Wordpress::addViewData('page_deltakere', getPageForPart('for-deltakere'));
-Wordpress::addViewData('page_dette_er', getPageForPart('dette-er'));
+// Wordpress::addViewData('page_topp', getPageForPart('toppmeny'));
+// Wordpress::addViewData('page_deltakere', getPageForPart('for-deltakere'));
+// Wordpress::addViewData('page_dette_er', getPageForPart('dette-er'));
 
