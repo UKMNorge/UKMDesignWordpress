@@ -215,7 +215,8 @@
                                     {# START first innslag #}
                                     <div class="innslag-div">
                                         <div class="films">
-                                            {% for film in firstInnslag.getFilmer().getAll() %}
+                                            {% set film = innslag.getFilmer().getAll()|length > 0 ? innslag.getFilmer().getAll()|last : null %}
+                                            {% if film is not null %}
                                                 <div class="innslag-film">
                                                     <a href="{{ film.getUrl() }}">
                                                         <div style="position: relative;">
@@ -225,7 +226,7 @@
                                                         </div>
                                                     </a>
                                                 </div>
-                                            {% endfor %}
+                                            {% endif %}
                                         </div>
                                         <div class="info">
                                             <h5 class="innslag-title">{{ firstInnslag.getNavn() }}</h5>
@@ -248,17 +249,17 @@
                                         <div class="innslag-div">
                                             <div class="films">
                                                 {% set film = innslag.getFilmer().getAll()|length > 0 ? innslag.getFilmer().getAll()|last : null %}
-                                                    {% if film is not null %}
-                                                        <div class="innslag-film">
-                                                            <a href="{{ film.getUrl() }}">
-                                                                <div style="position: relative;">
-                                                                    <div class="film-img-holder"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M7 6v12l10-6z"></path></svg></div>
-                                                                    <img src="{{ film.getThumbnail() }}" />
-                                                                    {# <iframe src="https://customer-554chiv4hi7wraol.cloudflarestream.com/{{ film.getCloudflareId() }}/watch/iframe" style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true"></iframe>\ #}
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    {% endif %}
+                                                {% if film is not null %}
+                                                    <div class="innslag-film">
+                                                        <a href="{{ film.getUrl() }}">
+                                                            <div style="position: relative;">
+                                                                <div class="film-img-holder"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M7 6v12l10-6z"></path></svg></div>
+                                                                <img src="{{ film.getThumbnail() }}" />
+                                                                {# <iframe src="https://customer-554chiv4hi7wraol.cloudflarestream.com/{{ film.getCloudflareId() }}/watch/iframe" style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true"></iframe>\ #}
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                {% endif %}
                                             </div>
                                             <div class="info">
                                                 <h5 class="innslag-title">{{ innslag.getNavn() }}</h5>
