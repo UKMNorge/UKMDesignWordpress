@@ -199,7 +199,7 @@
         {# Side 5 #}
         <div id="sidePaaScene" class="row etter-festivalen-side without-background">
             <div class="background-title">
-                <h1 class="title">På scene</h1>
+                <h1 class="title">På scenen</h1>
             </div>
 
             {# alle innslag #}
@@ -725,6 +725,7 @@ body {
     z-index: 9;
     width: 100%;
     height: 100%;
+    display: flex;
 }
 .film-img-holder svg {
     position: absolute;
@@ -732,10 +733,11 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    width: 100%;
-    height: 100%;
+    width: 200px;
+    height: 200px;
     padding: 40px;
     fill: #ffffffbd !important;
+    margin: auto;
 }
 .innslag-film a div .film-img-holder {
     background: #00000057;
@@ -860,13 +862,14 @@ body {
 }
 .etter-festivalen-side.without-background {
     margin-top: 200px;
+    display: block;
 }
 .div-with-day:not(.first) {
     margin-top: 100px;
 }
 .div-with-day.buttons {
     width: auto !important;
-    display: block;
+    display: grid;
     width: 320px;
     margin: auto;
     margin-top: 50px;
@@ -1025,6 +1028,18 @@ body {
 .total-deltakere {
     z-index: 2;
 }
+#sideRedaksjonensSaker .background-title {
+    margin-bottom: 0;
+}
+.news-section {
+    margin-top: 0;
+}
+.innslag-film a div .film-img-holder svg {
+    padding: 18px;
+    height: 100px;
+    width: 100px;
+}
+
 
 
 @media (max-width: 991px) {
