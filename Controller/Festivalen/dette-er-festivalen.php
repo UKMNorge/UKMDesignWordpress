@@ -8,7 +8,8 @@ use UKMNorge\DesignWordpress\Environment\Wordpress;
 use UKMNorge\DesignWordpress\Environment\Front\OmradeFront;
 
 
-var_dump('here');
+Wordpress::requireController('Festivalen','etter-festivalen');
+
 
 // UKMDesign::getHeader()->hideSectionTitle();
 // UKMDesign::getHeader()->getLogo()->hide();
