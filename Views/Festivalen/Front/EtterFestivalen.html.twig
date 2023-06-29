@@ -215,7 +215,7 @@
                                     {# START first innslag #}
                                     <div class="innslag-div">
                                         <div class="films">
-                                            {% set film = innslag.getFilmer().getAll()|length > 0 ? innslag.getFilmer().getAll()|last : null %}
+                                            {% set film = firstInnslag.getFilmer().getAll()|length > 0 ? firstInnslag.getFilmer().getAll()|last : null %}
                                             {% if film is not null %}
                                                 <div class="innslag-film">
                                                     <a href="{{ film.getUrl() }}">
