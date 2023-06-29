@@ -8,12 +8,12 @@
     <source src="//assets.{{ UKM_HOSTNAME }}/videos/festivalen/festivalen_film_bakgrunn.mp4" type="video/mp4">
     </video>
 </div>
-<div id="videoSide2" class="video-background ">
+{# <div id="videoSide2" class="video-background ">
     <div class="video-overlay"></div>
     <video autoplay muted loop id="myVideo">
-    {# <source src="//assets.{{ UKM_HOSTNAME }}/videos/festivalen/02_Videobakgrunn_landingsside.mp4" type="video/mp4"> #}
+    <source src="//assets.{{ UKM_HOSTNAME }}/videos/festivalen/02_Videobakgrunn_landingsside.mp4" type="video/mp4">
     </video>
-</div>
+</div> #}
 
 <div id="etterFestivalenContainer" class="container">
     {# side 1 #}
@@ -1127,64 +1127,64 @@ footer.footer {
 
 
 <script>
-jQuery(document).scroll(function() {
-    video1 = jQuery('#videoSide1');
-    video2 = jQuery('#videoSide2');
-    var t1 = 0;
-    var t2 = 0;
+// jQuery(document).scroll(function() {
+//     video1 = jQuery('#videoSide1');
+//     video2 = jQuery('#videoSide2');
+//     var t1 = 0;
+//     var t2 = 0;
 
 
-    // Ingen av div videoene er på viewport
-    if(!jQuery('#sideDeltakere').isInViewport() && !jQuery('#sideFestivalenInfo').isInViewport()) {
-        video1.removeClass('active');
-        video2.removeClass('active');
+//     // Ingen av div videoene er på viewport
+//     if(!jQuery('#sideDeltakere').isInViewport() && !jQuery('#sideFestivalenInfo').isInViewport()) {
+//         video1.removeClass('active');
+//         video2.removeClass('active');
         
-    }
-    else if(jQuery('#sideDeltakere').isInViewport()) {
-        if(!video2.hasClass('active')) {
-            changingVideo();
-            clearTimeout(t1);
-            t1 = setTimeout(() => {
-                video2.addClass('active');
-                video1.removeClass('active');
-            }, 1000);
-        }
-    }   
-    else if(!video1.hasClass('active')) {
-        changingVideo();
-        clearTimeout(t2);
-        t2 = setTimeout(() => {
-            video1.addClass('active');
-            video2.removeClass('active');
-        }, 1000);
-    }
+//     }
+//     else if(jQuery('#sideDeltakere').isInViewport()) {
+//         if(!video2.hasClass('active')) {
+//             changingVideo();
+//             clearTimeout(t1);
+//             t1 = setTimeout(() => {
+//                 video2.addClass('active');
+//                 video1.removeClass('active');
+//             }, 1000);
+//         }
+//     }   
+//     else if(!video1.hasClass('active')) {
+//         changingVideo();
+//         clearTimeout(t2);
+//         t2 = setTimeout(() => {
+//             video1.addClass('active');
+//             video2.removeClass('active');
+//         }, 1000);
+//     }
 
     
 
-});
+// });
 
-var timeout = 0;
-function changingVideo() {
-    jQuery('#videoSide1').addClass('changing')
-    jQuery('#videoSide2').addClass('changing')
+// var timeout = 0;
+// function changingVideo() {
+//     jQuery('#videoSide1').addClass('changing')
+//     jQuery('#videoSide2').addClass('changing')
     
-    clearTimeout(timeout);
-    var timeout = setTimeout(() => {
-        jQuery('#videoSide1').removeClass('changing')
-        jQuery('#videoSide2').removeClass('changing')
-    }, 1000)
-}
+//     clearTimeout(timeout);
+//     var timeout = setTimeout(() => {
+//         jQuery('#videoSide1').removeClass('changing')
+//         jQuery('#videoSide2').removeClass('changing')
+//     }, 1000)
+// }
 
 
-jQuery.fn.isInViewport = function() {
-    var elementTop = jQuery(this).offset().top;
-    var elementBottom = elementTop + jQuery(this).outerHeight();
+// jQuery.fn.isInViewport = function() {
+//     var elementTop = jQuery(this).offset().top;
+//     var elementBottom = elementTop + jQuery(this).outerHeight();
 
-    var viewportTop = jQuery(window).scrollTop();
-    var viewportBottom = viewportTop + jQuery(window).height()-500;
+//     var viewportTop = jQuery(window).scrollTop();
+//     var viewportBottom = viewportTop + jQuery(window).height()-500;
 
-    return elementBottom > viewportTop && elementTop < viewportBottom;
-};
+//     return elementBottom > viewportTop && elementTop < viewportBottom;
+// };
 
 
 </script>
