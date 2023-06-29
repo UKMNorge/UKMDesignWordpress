@@ -20,11 +20,9 @@
 <div id="etterFestivalenContainer" class="container">
     {# side 1 #}
     <div id="sideFestivalenInfo" class="row etter-festivalen-side med-background">
-        <div class="background-title background-text">
+        <div class="background-title background-text rosa">
             <h5 class="upwards-title">Tilbakeblikk på</h5>
             <h1 class="title">UKM-festivalen 2023</h1>
-        </div>
-        <div class="background-beskrivelse background-text">
             <p>Den nasjonale UKM-festivalen ble avholdt i Trondheim 23.-27. juni, og for en fest det ble! Ungdom fra hele Norge deltok med sitt kulturuttrykk. Vi sitter igjen med mange fine minner, erfaringer og nye vennskap; her kan du ta en titt!</p>
         </div>
 
@@ -32,10 +30,8 @@
 
      {# side 2 #}
     <div id="sideDeltakere" class="row etter-festivalen-side med-background">
-        <div class="background-title background-text">
+        <div class="background-title background-text blue">
             <h1 class="title">Deltakere</h1>
-        </div>
-        <div class="background-beskrivelse background-text">
             <p>UKM-festivalen er et pulserende samlingsted for unge fra ulike deler av landet. Med over 500 deltakere er festivalen et livlig og mangfoldig fellesskap som feirer ungdommens kreativitet, lidenskap og unike uttrykk.</p>
         </div>
     </div>
@@ -745,6 +741,18 @@ body {
     color: #fff;
     margin-bottom: 10px;
     text-align: center;
+    border-radius: 20px;
+    padding: 40px;
+}
+.background-title.background-text.rosa {
+    background: linear-gradient(45deg, #fff056, #ff128b, #ff128b, #ff128b, #ff128b, #ff128b, #ff128b, #ff128b, #fff056);
+}
+.background-title.background-text.blue {
+    background: linear-gradient(45deg,hsl(var(--color-primary-blue-800,var(--color-primary-orange-900))),hsl(var(--color-primary-blue-600,var(--color-primary-orange-900))))
+}
+.background-title.background-text p {
+    margin: 0;
+    margin-top: 10px;
 }
 .background-title .upwards-title {
     margin-top: 0;
@@ -1036,6 +1044,9 @@ body {
         background-repeat: no-repeat;
         background-size: 370%;
         background-position: 50%, -50%;
+    }
+    .background-title.background-text {
+        padding: 20px;
     }
 }
 @media (max-width: 600px) {
