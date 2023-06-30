@@ -93,7 +93,7 @@
                         <div class="col-12 d-flex justify-content-center d-block d-lg-none mt-4">
                             <span class="undertitler undertitler-news">{{ post.date|dato('j. M Y') }}</span>
                         </div>
-                        <div class="col-12 col-md-8 col-xl-6 mb-5">
+                        <div class="col-12 col-md-8 col-xl-6 mb-5" style="margin-bottom: 20px !important">
                             {% embed "Post:Grid-default.html.twig"|UKMpath with { post: post } %}{% endembed %}
                         </div>
                         {% endif %}
