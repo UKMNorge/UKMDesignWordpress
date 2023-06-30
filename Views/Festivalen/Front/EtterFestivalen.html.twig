@@ -4,17 +4,7 @@
 
 <div id="videoSide1" class="video-background active">
     <div class="video-overlay mobile-gif"></div>
-    <div class="video-overlay"></div>
-    <video autoplay muted playsinline loop id="myVideo">
-        <source src="//assets.{{ UKM_HOSTNAME }}/videos/festivalen/festivalen_film_bakgrunn.mp4" type="video/mp4">
-    </video>
 </div>
-{# <div id="videoSide2" class="video-background ">
-    <div class="video-overlay"></div>
-    <video autoplay muted loop id="myVideo">
-    <source src="//assets.{{ UKM_HOSTNAME }}/videos/festivalen/02_Videobakgrunn_landingsside.mp4" type="video/mp4">
-    </video>
-</div> #}
 
 <div id="etterFestivalenContainer" class="container">
     {# side 1 #}
@@ -1101,7 +1091,14 @@ body {
 .news-case .row.card-element.card-element-end.mt-3 {
     margin-top: 5px !important;
 }
-
+.video-overlay.mobile-gif {
+    border: 2px solid black;
+    padding: 125px;
+    background: url(//assets.{{ UKM_HOSTNAME }}/videos/festivalen/bck_mobil.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%, -50%;
+}
 
 
 @media (max-width: 991px) {
@@ -1137,17 +1134,6 @@ body {
     }
     .total-deltakere .farge-space .info-text .hoved {
         font-size: 29px;
-    }
-    #myVideo {
-        display: none;
-    }
-    .video-overlay.mobile-gif {
-        border: 2px solid black;
-        padding: 125px;
-        background: url(//assets.{{ UKM_HOSTNAME }}/videos/festivalen/bck_mobil.jpeg);
-        background-repeat: no-repeat;
-        background-size: 370%;
-        background-position: 50%, -50%;
     }
     .background-title.background-text {
         padding: 20px;
