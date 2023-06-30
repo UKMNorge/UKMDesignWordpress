@@ -341,139 +341,56 @@
                 </div>
             </div>
 
-            <div class="bilder-div col-12">
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="https://ukm.no/festivalen/files/2023/06/Aggressive-Broderier-Mina-Lekang-Eiterjord-1007-1.jpg" />
-                    </div>
-                    <h4 class="img-title">Aggressive Broderier - Mina Lekang Eiterjord</h4>
+            {% set bilderWorkshop = 
+                {
+                    'Aggressive Broderier - Mina Lekang Eiterjord' : 'https://ukm.no/festivalen/files/2023/06/Aggressive-Broderier-Mina-Lekang-Eiterjord-1007-1.jpg',
+                    'Bårebuketten - Salomon Spikkeland' : 'http://ukm.no/festivalen/files/2023/06/Bårebuketten-Salomon-Spikkeland-9137-scaled.jpg',
+                    'Bårebuketten - Salomon Spikkeland' : 'http://ukm.no/festivalen/files/2023/06/Bårebuketten-Salomon-Spikkeland-9176-scaled.jpg',
+                    'Dansworkshop - Saleon Spikkeland' : 'http://ukm.no/festivalen/files/2023/06/Dansworkshop-Saleon-Spikkeland-2-scaled.jpg',
+                    'Digital kunst - Salomon Spikkeland' : 'http://ukm.no/festivalen/files/2023/06/Digital-kunst-Salomon-Spikkeland-9180-scaled.jpg',
+                    'DJ Ursula - Julie Johnsen' : 'http://ukm.no/festivalen/files/2023/06/DJ-Ursula-Julie-Johnsen-0031-scaled.jpg',
+                    'DJ Ursula - Julie Johnsen' : 'http://ukm.no/festivalen/files/2023/06/DJ-Ursula-Julie-Johnsen-1034-scaled.jpg',
+                    'DJ Ursula - Sandra Victoria Eriksson' : 'http://ukm.no/festivalen/files/2023/06/DJ-Ursula-Sandra-Victoria-Eriksson-0033-scaled.jpg',
+                    'DJ Ursula - Sandra Victoria Eriksson' : 'http://ukm.no/festivalen/files/2023/06/DJ-Ursula-Sandra-Victoria-Eriksson-0051-scaled.jpg',
+                    'Figurtegning - Salomon Spikkeland' : 'http://ukm.no/festivalen/files/2023/06/Figurtegning-Salomon-Spikkeland-9214-scaled.jpg',
+                    'Hekling - Mina Lekang Eiterjord' : 'http://ukm.no/festivalen/files/2023/06/Hekling-Mina-Lekang-Eiterjord-0147-scaled.jpg',
+                    'Improteater - Andrea Pihl' : 'http://ukm.no/festivalen/files/2023/06/Improteater-Andrea-Pihl-3-scaled.jpg',
+                    'Jakkeworkshop - Camilla Angelina Ostojić' : 'http://ukm.no/festivalen/files/2023/06/Jakkeworkshop-Camilla-Angelina-Ostojić-2-1-scaled.jpg',
+                    'Musikal - Andrea Pihl' : 'http://ukm.no/festivalen/files/2023/06/Musikal-Andrea-Pihl-8275-1-scaled.jpg',
+                    'Punch needle - Jacqueline Balavonie' : 'http://ukm.no/festivalen/files/2023/06/Punch-needle-Jacqueline-Balavonie-0012-scaled.jpg',
+                    'Punch needle - Mina Lekang Eiterjord' : 'http://ukm.no/festivalen/files/2023/06/Punch-needle-Mina-Lekang-Eiterjord-0072-scaled.jpg',
+                    'Quilling - Camilla Angelina Ostojić' : 'http://ukm.no/festivalen/files/2023/06/Quilling-Camilla-Angelina-Ostojić-5306-scaled.jpg',
+                    'Selvportrett - Gabriela Navarro' : 'http://ukm.no/festivalen/files/2023/06/Selvportrett-Gabriela-Navarro-0138-scaled.jpg',
+                    'Trommeworkshop - Salomon Spikkeland' : 'http://ukm.no/festivalen/files/2023/06/Trommeworkshop-Salomon-Spikkeland-9666-scaled.jpg',
+                    'Trøndertunband - Camilla Angelina Ostojić' : 'http://ukm.no/festivalen/files/2023/06/Trondertunband-Camilla-Angelina-Ostojić-5389-scaled.jpg',
+                    'Vogue - Salomon Spikkeland' : 'http://ukm.no/festivalen/files/2023/06/Vogue-Salomon-Spikkeland-044-scaled.jpg',
+                    'Vrengpedal - Bjørn Nikolas Rognså' : 'http://ukm.no/festivalen/files/2023/06/Vrengpedal-Bjorn-Nikolas-Rognså-2-scaled.jpg'
+                }
+            %}
+
+            <h4 class="mini-title-top">Bilder fra workshopene</h4>
+            <div id="imagesliderWorkshops" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    {% set active = 'active' %}
+                    {% for key, bilde in bilderWorkshop %}
+                        <div class="carousel-item {{ active }}">
+                            <a href="{{ bilde }}" target="_blank">
+                                <img src="{{ bilde }}" class="img-carousel d-block w-100">
+                                <span class="bilde-beskrivelse">{{ key }}<span>
+                            </a>
+                        </div>
+                        {% set active = '' %}
+                    {% endfor %}
                 </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Bårebuketten-Salomon-Spikkeland-9137-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Bårebuketten - Salomon Spikkeland</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Bårebuketten-Salomon-Spikkeland-9176-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Bårebuketten - Salomon Spikkeland</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Dansworkshop-Saleon-Spikkeland-2-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Dansworkshop - Saleon Spikkeland</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Digital-kunst-Salomon-Spikkeland-9180-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Digital kunst - Salomon Spikkeland</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/DJ-Ursula-Julie-Johnsen-0031-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">DJ Ursula - Julie Johnsen</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/DJ-Ursula-Julie-Johnsen-1034-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">DJ Ursula - Julie Johnsen</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/DJ-Ursula-Sandra-Victoria-Eriksson-0033-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">DJ Ursula - Sandra Victoria Eriksson</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/DJ-Ursula-Sandra-Victoria-Eriksson-0051-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">DJ Ursula - Sandra Victoria Eriksson</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Figurtegning-Salomon-Spikkeland-9214-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Figurtegning - Salomon Spikkeland</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Hekling-Mina-Lekang-Eiterjord-0147-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Hekling - Mina Lekang Eiterjord</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Improteater-Andrea-Pihl-3-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Improteater - Andrea Pihl</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Jakkeworkshop-Camilla-Angelina-Ostojić-2-1-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Jakkeworkshop - Camilla Angelina Ostojić</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Musikal-Andrea-Pihl-8275-1-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Musikal - Andrea Pihl</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Punch-needle-Jacqueline-Balavonie-0012-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Punch needle - Jacqueline Balavonie</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Punch-needle-Mina-Lekang-Eiterjord-0072-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Punch needle - Mina Lekang Eiterjord</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Quilling-Camilla-Angelina-Ostojić-5306-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Quilling - Camilla Angelina Ostojić</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Selvportrett-Gabriela-Navarro-0138-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Selvportrett - Gabriela Navarro</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Trommeworkshop-Salomon-Spikkeland-9666-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Trommeworkshop - Salomon Spikkeland</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Trondertunband-Camilla-Angelina-Ostojić-5389-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Trøndertunband - Camilla Angelina Ostojić</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Vogue-Salomon-Spikkeland-044-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Vogue - Salomon Spikkeland</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Vrengpedal-Bjorn-Nikolas-Rognså-2-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Vrengpedal - Bjørn Nikolas Rognså</h4>
-                </div>
+
+                <a class="carousel-control-prev" href="#imagesliderWorkshops" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#imagesliderWorkshops" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
         </div>
 
@@ -1273,6 +1190,82 @@ body {
     }
 }
 
+
+/* carousel */
+.carousel-item a {
+    display: flex;
+}
+.carousel-item a .img-carousel {
+    max-height: 750px;
+    min-height: auto;
+    width: auto !important;
+    margin: auto;
+    margin-bottom: 0;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 20px !important;
+}
+.carousel.slide {
+    height: 700px !important;
+    overflow: hidden !important;
+    display: flex;
+    border-radius: 20px;
+}
+.col.article-div {
+    margin-top: 3px !important;
+    background: #fff;
+    box-shadow: 0px -10px 15px 9px #ffffff;
+}
+.info-text-section.mt-3 {
+    margin-top: 0 !important;
+    padding-top: 0;
+}
+.carousel-inner {
+    margin: auto;
+    margin-bottom: 0;
+    display: flex;
+    height: 100%;
+}
+.carousel-item {
+    /* margin: auto !important; */
+}
+.article-header {
+    text-align: center;
+}
+.carousel-control-prev {
+    /* background: linear-gradient(90deg, #e5e5e5, transparent); */
+    border-radius: 20px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.carousel-control-next {
+    /* background: linear-gradient(-90deg, #e5e5e5, transparent); */
+    border-radius: 20px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.carousel-item a span.bilde-beskrivelse {
+    position: absolute;
+    bottom: 17px;
+    width: 100%;
+    text-align: center;
+    background: #ffffff8a;
+    padding: 2px;
+}
+
+@media(max-width: 992px) {
+    .carousel.slide {
+        height: 485px !important;
+    }
+}
+@media(max-width: 768px) {
+    .carousel.slide {
+        height: 350px !important;
+    }
+    .carousel-item a .img-carousel {
+        max-height: 350px;
+    }
+}
 
 
 footer.footer {
