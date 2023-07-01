@@ -453,26 +453,40 @@
                 <p>Cinemateket er en liten kinosal med plass til 45 personer. Under festivalen har Cinemateket vektlagt mangfoldet i UKM, derfor finner vi alt fra rene gamingaktiviteter til foredrag om å klare seg som kunstner, tradisjonell filmvisning og quiz der fylkene konkurrerer mot hverandre.</p>
             </div>
 
-            <div class="bilder-div col-12">
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/IMG_3050-Enhanced-NR-CInemateket_BjornNikolasRognså-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Cinemateket - Bjørn Nikolas Rognså</h4>
+            {% set bilderCinemateket = 
+                [
+                    ['Cinemateket - Bjørn Nikolas Rognså' , 'http://ukm.no/festivalen/files/2023/06/IMG_3050-Enhanced-NR-CInemateket_BjornNikolasRognså-scaled.jpg'],
+                    ['Cinemateket - Bjørn Nikolas Rognså' , 'http://ukm.no/festivalen/files/2023/06/IMG_3056-Enhanced-NR-CInemateket_BjornNikolasRognså-scaled.jpg'],
+                    ['Cinemateket - Bjørn Nikolas Rognså' , 'http://ukm.no/festivalen/files/2023/06/IMG_3060-Enhanced-NR-CInemateket_BjornNikolasRognså-scaled.jpg']
+                ]
+            %}
+
+            <h4 class="mini-title-top">Bilder fra Cinemateket</h4>
+            <div id="imagesliderCinemateket" class="carousel slide" data-interval="false" data-ride="carousel">
+                <div class="carousel-inner">
+                    {% set active = 'active' %}
+                    {% for bilde in bilderCinemateket %}
+                        <div class="carousel-item {{ active }}">
+                            <a href="{{ bilde[1] }}" target="_blank">
+                                <img src="{{ bilde[1] }}" class="img-carousel d-block w-100">
+                                <span class="bilde-beskrivelse">{{ bilde[0] }}<span>
+                            </a>
+                        </div>
+                        {% set active = '' %}
+                    {% endfor %}
                 </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/IMG_3056-Enhanced-NR-CInemateket_BjornNikolasRognså-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Cinemateket - Bjørn Nikolas Rognså</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/IMG_3060-Enhanced-NR-CInemateket_BjornNikolasRognså-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Cinemateket - Bjørn Nikolas Rognså</h4>
-                </div>                
+
+                <a class="carousel-control-prev" href="#imagesliderCinemateket" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#imagesliderCinemateket" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
+
+            
         </div>
 
 
@@ -491,8 +505,47 @@
                     <iframe src="https://customer-554chiv4hi7wraol.cloudflarestream.com/74f571b91279e726cd9ac1eac9e83814/iframe?poster=https%3A%2F%2Fcustomer-554chiv4hi7wraol.cloudflarestream.com%2F74f571b91279e726cd9ac1eac9e83814%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600" style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true"></iframe>
                 </div>
             </div>
+            
 
-            <div class="bilder-div col-12">
+            {% set bilderRedesign = 
+                [
+                    ['Aggressive Broderier - Mina Lekang Eiterjord', 'http://ukm.no/festivalen/files/2023/06/Aggressive-Broderier-Mina-Lekang-Eiterjord-0990-scaled.jpg'],
+                    ['Aggressive Broderier - Mina Lekang Eiterjord', 'http://ukm.no/festivalen/files/2023/06/Aggressive-Broderier-Mina-Lekang-Eiterjord-0993-scaled.jpg'],
+                    ['Jakkeworkshop - Camilla Angelina Ostojić', 'http://ukm.no/festivalen/files/2023/06/Jakkeworkshop-Camilla-Angelina-Ostojić-2-2-scaled.jpg'],
+                    ['Norges Husflidslag - Astrid K. Djupvik', 'http://ukm.no/festivalen/files/2023/06/Norges-Husflidslag-Astrid-K.-Djupvik-8472-scaled.jpg'],
+                    ['Norges Husflidslag - Bjørn Nikolas Rognså', 'http://ukm.no/festivalen/files/2023/06/Norges-Husflidslag-Bjorn-Nikolas-Rognså-3453-scaled.jpg'],
+                    ['Redesign - Bjørn Nikolas Rognså', 'http://ukm.no/festivalen/files/2023/06/Redesign-Bjorn-Nikolas-Rognså-2662-scaled.jpg'],
+                    ['Redesign - Bjørn Nikolas Rognså', 'http://ukm.no/festivalen/files/2023/06/Redesign-Bjorn-Nikolas-Rognså-2683-scaled.jpg'],
+                    ['Redesign - Bjørn Nikolas Rognså', 'http://ukm.no/festivalen/files/2023/06/Redesign-Bjorn-Nikolas-Rognså-2691-scaled.jpg']
+                ]
+            %}
+
+            <h4 class="mini-title-top">Bilder fra redesignområdet</h4>
+            <div id="imagesliderRedesign" class="carousel slide" data-interval="false" data-ride="carousel">
+                <div class="carousel-inner">
+                    {% set active = 'active' %}
+                    {% for bilde in bilderRedesign %}
+                        <div class="carousel-item {{ active }}">
+                            <a href="{{ bilde[1] }}" target="_blank">
+                                <img src="{{ bilde[1] }}" class="img-carousel d-block w-100">
+                                <span class="bilde-beskrivelse">{{ bilde[0] }}<span>
+                            </a>
+                        </div>
+                        {% set active = '' %}
+                    {% endfor %}
+                </div>
+
+                <a class="carousel-control-prev" href="#imagesliderRedesign" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#imagesliderRedesign" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+            {# <div class="bilder-div col-12">
 
                 <div class="col-8 img-outer first-usual-box">
                     <div class="img-div">
@@ -543,7 +596,7 @@
                     <h4 class="img-title">Redesign - Bjørn Nikolas Rognså</h4>
                 </div>   
 
-            </div>
+            </div> #}
         </div>
 
 
@@ -594,9 +647,8 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
+
         </div>
-
-
     </div>
 </div>
 
