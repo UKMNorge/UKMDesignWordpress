@@ -364,7 +364,7 @@
 
             {# Carousel #}
             <h4 class="mini-title-top">Bilder fra workshopene</h4>
-            <div id="imagesliderWorkshops" class="carousel slide" data-ride="carousel">
+            <div id="imagesliderWorkshops" class="carousel slide" data-interval="false" data-ride="carousel">
                 <div class="carousel-inner">
                     {% set active = 'active' %}
                     {% for bilde in bilderWorkshop %}
@@ -419,7 +419,7 @@
             %}
 
             <h4 class="mini-title-top">Bilder fra Gamezone</h4>
-            <div id="imagesliderGamezone" class="carousel slide" data-ride="carousel">
+            <div id="imagesliderGamezone" class="carousel slide" data-interval="false" data-ride="carousel">
                 <div class="carousel-inner">
                     {% set active = 'active' %}
                     {% for bilde in bilderGamezone %}
@@ -554,69 +554,45 @@
                 <p>Kvelden var fylt med pulserende rytmer, glitrende lys og en atmosfære som får alle til å danse. En av høydepunktene på denne aktiviteten var den talentfulle DJ-en Ursulla</p>
             </div>
 
-            <div class="bilder-div col-12">
 
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Jasmine-Furuseth-1955-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">DJ Ursula Klubbkveld - Jasmine Furuseth</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Jasmine-Furuseth-1978-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">DJ Ursula Klubbkveld - Jasmine Furuseth</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Jasmine-Furuseth-2014-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">DJ Ursula Klubbkveld - Jasmine Furuseth</h4>
-                </div>                
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Julie-Johnsen-1457-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">DJ Ursula Klubbkveld - Julie Johnsen</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Julie-Johnsen-1541-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">DJ Ursula Klubbkveld - Julie Johnsen</h4>
-                </div>
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Julie-Johnsen-1625-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">DJ Ursula Klubbkveld - Julie Johnsen</h4>
-                </div>   
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Klubbkveld-Andrea-Pihl-8379-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Klubbkveld - Andrea Pihl</h4>
-                </div>   
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Klubbkveld-Andrea-Pihl-8450-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Klubbkveld - Andrea Pihl</h4>
-                </div>   
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Klubbkveld-Astrid-K.-Djupvik-1485-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Klubbkveld - Astrid K. Djupvik</h4>
-                </div>   
-                <div class="col-8 img-outer first-usual-box">
-                    <div class="img-div">
-                        <img src="http://ukm.no/festivalen/files/2023/06/Klubbkveld-Julie-Johnsen-0174-scaled.jpg" />
-                    </div>
-                    <h4 class="img-title">Klubbkveld - Julie Johnsen</h4>
-                </div>   
+            {% set bilderKlubbkveld = 
+                [
+                    ['DJ Ursula Klubbkveld - Jasmine Furuseth' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Jasmine-Furuseth-2014-scaled.jpg'],
+                    ['DJ Ursula Klubbkveld - Jasmine Furuseth' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Jasmine-Furuseth-1978-scaled.jpg'],
+                    ['DJ Ursula Klubbkveld - Julie Johnsen' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Julie-Johnsen-1457-scaled.jpg'],
+                    ['DJ Ursula Klubbkveld - Julie Johnsen' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Julie-Johnsen-1541-scaled.jpg'],
+                    ['DJ Ursula Klubbkveld - Jasmine Furuseth' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Jasmine-Furuseth-1955-scaled.jpg'],
+                    ['DJ Ursula Klubbkveld - Julie Johnsen' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Julie-Johnsen-1625-scaled.jpg'],
+                    ['Klubbkveld - Andrea Pihl' , 'http://ukm.no/festivalen/files/2023/06/Klubbkveld-Andrea-Pihl-8379-scaled.jpg'],
+                    ['Klubbkveld - Andrea Pihl' , 'http://ukm.no/festivalen/files/2023/06/Klubbkveld-Andrea-Pihl-8450-scaled.jpg'],
+                    ['Klubbkveld - Astrid K. Djupvik' , 'http://ukm.no/festivalen/files/2023/06/Klubbkveld-Astrid-K.-Djupvik-1485-scaled.jpg'],
+                    ['Klubbkveld - Julie Johnsen' , 'http://ukm.no/festivalen/files/2023/06/Klubbkveld-Julie-Johnsen-0174-scaled.jpg']
+                ]
+            %}
 
+            <h4 class="mini-title-top">Bilder fra klubbkveld</h4>
+            <div id="imagesliderKlubbkveld" class="carousel slide" data-interval="false" data-ride="carousel">
+                <div class="carousel-inner">
+                    {% set active = 'active' %}
+                    {% for bilde in bilderKlubbkveld %}
+                        <div class="carousel-item {{ active }}">
+                            <a href="{{ bilde[1] }}" target="_blank">
+                                <img src="{{ bilde[1] }}" class="img-carousel d-block w-100">
+                                <span class="bilde-beskrivelse">{{ bilde[0] }}<span>
+                            </a>
+                        </div>
+                        {% set active = '' %}
+                    {% endfor %}
+                </div>
+
+                <a class="carousel-control-prev" href="#imagesliderKlubbkveld" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#imagesliderKlubbkveld" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
         </div>
 
