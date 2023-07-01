@@ -610,16 +610,16 @@
 
             {% set bilderKlubbkveld = 
                 [
-                    ['DJ Ursula Klubbkveld - Jasmine Furuseth' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Jasmine-Furuseth-2014-scaled.jpg'],
-                    ['DJ Ursula Klubbkveld - Jasmine Furuseth' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Jasmine-Furuseth-1978-scaled.jpg'],
-                    ['DJ Ursula Klubbkveld - Julie Johnsen' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Julie-Johnsen-1457-scaled.jpg'],
-                    ['DJ Ursula Klubbkveld - Julie Johnsen' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Julie-Johnsen-1541-scaled.jpg'],
-                    ['DJ Ursula Klubbkveld - Jasmine Furuseth' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Jasmine-Furuseth-1955-scaled.jpg'],
-                    ['DJ Ursula Klubbkveld - Julie Johnsen' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Julie-Johnsen-1625-scaled.jpg'],
-                    ['Klubbkveld - Andrea Pihl' , 'http://ukm.no/festivalen/files/2023/06/Klubbkveld-Andrea-Pihl-8379-scaled.jpg'],
-                    ['Klubbkveld - Andrea Pihl' , 'http://ukm.no/festivalen/files/2023/06/Klubbkveld-Andrea-Pihl-8450-scaled.jpg'],
-                    ['Klubbkveld - Astrid K. Djupvik' , 'http://ukm.no/festivalen/files/2023/06/Klubbkveld-Astrid-K.-Djupvik-1485-scaled.jpg'],
-                    ['Klubbkveld - Julie Johnsen' , 'http://ukm.no/festivalen/files/2023/06/Klubbkveld-Julie-Johnsen-0174-scaled.jpg']
+                    ['DJ Ursula Klubbkveld - Jasmine Furuseth' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Jasmine-Furuseth-2014-scaled.jpg', 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Jasmine-Furuseth-2014-600x400.jpg'],
+                    ['DJ Ursula Klubbkveld - Jasmine Furuseth' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Jasmine-Furuseth-1978-scaled.jpg', 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Jasmine-Furuseth-1978-600x600.jpg'],
+                    ['DJ Ursula Klubbkveld - Julie Johnsen' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Julie-Johnsen-1457-scaled.jpg', 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Julie-Johnsen-1457-600x400.jpg'],
+                    ['DJ Ursula Klubbkveld - Julie Johnsen' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Julie-Johnsen-1541-scaled.jpg', 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Julie-Johnsen-1541-600x400.jpg'],
+                    ['DJ Ursula Klubbkveld - Jasmine Furuseth' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Jasmine-Furuseth-1955-scaled.jpg', 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Jasmine-Furuseth-1955-600x400.jpg'],
+                    ['DJ Ursula Klubbkveld - Julie Johnsen' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Julie-Johnsen-1625-scaled.jpg', 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Julie-Johnsen-1625-600x400.jpg'],
+                    ['Klubbkveld - Andrea Pihl' , 'http://ukm.no/festivalen/files/2023/06/Klubbkveld-Andrea-Pihl-8379-scaled.jpg', 'http://ukm.no/festivalen/files/2023/06/Klubbkveld-Andrea-Pihl-8379-407x600.jpg'],
+                    ['Klubbkveld - Andrea Pihl' , 'http://ukm.no/festivalen/files/2023/06/Klubbkveld-Andrea-Pihl-8450-scaled.jpg', 'http://ukm.no/festivalen/files/2023/06/Klubbkveld-Andrea-Pihl-8450-400x600.jpg'],
+                    ['Klubbkveld - Astrid K. Djupvik' , 'http://ukm.no/festivalen/files/2023/06/Klubbkveld-Astrid-K.-Djupvik-1485-scaled.jpg', 'http://ukm.no/festivalen/files/2023/06/Klubbkveld-Astrid-K.-Djupvik-1485-551x600.jpg'],
+                    ['Klubbkveld - Julie Johnsen' , 'http://ukm.no/festivalen/files/2023/06/Klubbkveld-Julie-Johnsen-0174-scaled.jpg', 'http://ukm.no/festivalen/files/2023/06/Klubbkveld-Julie-Johnsen-0174-480x600.jpg']
                 ]
             %}
 
@@ -630,7 +630,7 @@
                     {% for bilde in bilderKlubbkveld %}
                         <div class="carousel-item {{ active }}">
                             <a href="{{ bilde[1] }}" target="_blank">
-                                <img src="{{ bilde[1] }}" class="img-carousel d-block w-100">
+                                <img src="{{ bilde[2] }}" class="img-carousel d-block w-100">
                                 <span class="bilde-beskrivelse">{{ bilde[0] }}<span>
                             </a>
                         </div>
