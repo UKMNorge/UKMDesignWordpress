@@ -199,6 +199,16 @@
 
             {# alle innslag #}
             <div class="alle-paa-scene">
+
+                {% set hendelserFlickr = [
+                    "<a data-flickr-embed='true' data-footer='true' href='https://www.flickr.com/photos/ukm/albums/72177720309307853' title='Forestilling 1 @ UKM-Festivalen 2023 by UKM Norge, on Flickr'><img src='https://live.staticflickr.com/65535/52998730798_2fb16e5b30_b.jpg' width='800' height='600' alt='Bendix Søgaard'></a><script async src='https://embedr.flickr.com/assets/client-code.js' charset='utf-8'></script>",
+                    "<a data-flickr-embed='true' data-footer='true' href='https://www.flickr.com/photos/ukm/albums/72177720309316984' title='Forestilling 2 @ UKM-Festivalen 2023 by UKM Norge, on Flickr'><img src='https://live.staticflickr.com/65535/52999234707_7416942b49_b.jpg' width='800' height='600' alt='Defusion'></a><script async src='https://embedr.flickr.com/assets/client-code.js' charset='utf-8'></script>",
+                    "<a data-flickr-embed='true' data-footer='true' href='https://www.flickr.com/photos/ukm/albums/72177720309331093' title='Forestilling 3 @ UKM-Festivalen 2023 by UKM Norge, on Flickr'><img src='https://live.staticflickr.com/65535/53001008449_0fee65cf20_b.jpg' width='800' height='600' alt='DJ CHAZE'></a><script async src='https://embedr.flickr.com/assets/client-code.js' charset='utf-8'></script>",
+                    "<a data-flickr-embed='true' data-footer='true' href='https://www.flickr.com/photos/ukm/albums/72177720309347083' title='Forestilling 4 @ UKM-Festivalen 2023 by UKM Norge, on Flickr'><img src='https://live.staticflickr.com/65535/53002976943_077e7a2cb6_b.jpg' width='800' height='600' alt='Adhira'></a><script async src='https://embedr.flickr.com/assets/client-code.js' charset='utf-8'></script>",
+                    "<a data-flickr-embed='true' data-footer='true' href='https://www.flickr.com/photos/ukm/albums/72177720309339126' title='Forestilling 5 @ UKM-Festivalen 2023 by UKM Norge, on Flickr'><img src='https://live.staticflickr.com/65535/53003195936_e9d4c9b64f_b.jpg' width='800' height='600' alt='Beryllius'></a><script async src='https://embedr.flickr.com/assets/client-code.js' charset='utf-8'></script>",
+                    "<a data-flickr-embed='true' data-footer='true' href='https://www.flickr.com/photos/ukm/albums/72177720309358996' title='Forestilling 6 @ UKM-Festivalen 2023 by UKM Norge, on Flickr'><img src='https://live.staticflickr.com/65535/53005584675_0870167a33_b.jpg' width='800' height='600' alt='Ambrosius'></a><script async src='https://embedr.flickr.com/assets/client-code.js' charset='utf-8'></script>",
+                ]%}
+
                 {% for hendelse in hendelserMedSending %}
                     <div class="row activity-timeline bold-line">
                         <div class="point-only"></div>
@@ -208,8 +218,17 @@
                                 {{ hendelse.getStart()|dato('j. M Y') }}
                             </span>
                         </div>
+
                         <div class="col-12 inner">
                             <div class="innslags-div first-usual-box">
+                                <h5>Bilder</h5>
+                                <div class="imgs-flickr in-innslag">
+                                    <div class="outer">
+                                        {{ hendelserFlickr[loop.index-1]|raw }}
+                                    </div>
+                                </div>
+
+                                <h5>Filmer</h5>
                                 {% set innslags = hendelse.getInnslag().getAll() %}
                                 {% set firstInnslag = innslags[0] %}
                                     {# START first innslag #}
@@ -274,6 +293,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     {% endfor %}
                                 </div>
 
@@ -314,9 +334,17 @@
                     Galleriet er ofte delt inn i forskjellige seksjoner eller temaer, slik at kunstverkene kan presenteres på en sammenhengende måte.
                 </p>
             </div>
-            <div>
+            
+            <div class="video-side-header staende">
                 <div style="position: relative; padding-top: 56.25%;"><iframe src="https://customer-554chiv4hi7wraol.cloudflarestream.com/279c3e93db67c5694dc36d96cfee51c9/iframe?poster=https%3A%2F%2Fcustomer-554chiv4hi7wraol.cloudflarestream.com%2F279c3e93db67c5694dc36d96cfee51c9%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600" style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true"></iframe></div>
             </div>
+
+            <div class="imgs-flickr">
+                <div class="outer">
+                    <a data-flickr-embed='true' data-footer='true' href='https://www.flickr.com/photos/ukm/albums/72177720309304908' title='Kunstutstilling @ UKM-Festivalen 2023 by UKM Norge, on Flickr'><img src='https://live.staticflickr.com/65535/52998325460_b639b8cf9e_b.jpg' width='800' height='600' alt='Kunstutstilling'></a><script async src='https://embedr.flickr.com/assets/client-code.js' charset='utf-8'></script>
+                </div>
+            </div>
+
         </div>
 
         {# side 6 - Workshops #}
@@ -335,7 +363,12 @@
                 </div>
             </div>
 
-            {% set bilderWorkshop = 
+            <div class="imgs-flickr">
+                <div class="outer">
+                    <a data-flickr-embed='true' data-footer='true' href='https://www.flickr.com/photos/ukm/albums/72177720309287726' title='Workshops @ UKM-Festivalen 2023 by UKM Norge, on Flickr'><img src='https://live.staticflickr.com/65535/52998437988_3836f9f019_b.jpg' width='800' height='600' alt='Danseworkshop med Nji'></a><script async src='https://embedr.flickr.com/assets/client-code.js' charset='utf-8'></script>
+                </div>
+            </div>
+            {# {% set bilderWorkshop = 
                 [
                     ['Aggressive Broderier - Mina Lekang Eiterjord' , 'https://ukm.no/festivalen/files/2023/06/Aggressive-Broderier-Mina-Lekang-Eiterjord-1007-1.jpg'],
                     ['Bårebuketten - Salomon Spikkeland' , 'http://ukm.no/festivalen/files/2023/06/Bårebuketten-Salomon-Spikkeland-9137-scaled.jpg'],
@@ -362,7 +395,6 @@
                 ]
             %}
 
-            {# Carousel #}
             <h4 class="mini-title-top">Bilder fra workshopene</h4>
             <div id="imagesliderWorkshops" class="carousel slide" data-interval="false" data-ride="carousel">
                 <div class="carousel-inner">
@@ -386,7 +418,7 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
-            </div>
+            </div> #}
 
         </div>
 
@@ -405,8 +437,13 @@
                 </div>
             </div>
 
+            <div class="imgs-flickr">
+                <div class="outer">
+                    <a data-flickr-embed='true' data-footer='true' href='https://www.flickr.com/photos/ukm/albums/72177720309304519' title='Gamezone @ UKM-Festivalen 2023 by UKM Norge, on Flickr'><img src='https://live.staticflickr.com/65535/52998896218_61bb4da697_b.jpg' width='800' height='600' alt='Gamezone'></a><script async src='https://embedr.flickr.com/assets/client-code.js' charset='utf-8'></script>
+                </div>
+            </div>
 
-            {% set bilderGamezone = 
+            {# {% set bilderGamezone = 
                 [
                     ['Gamezone - Jacqueline Balavoine' , 'http://ukm.no/festivalen/files/2023/06/Gamezone-Jacqueline-Balavoine-0402-scaled.jpg'], 
                     ['Gamezone - Jacqueline Balavoine' , 'http://ukm.no/festivalen/files/2023/06/Gamezone-Jacqueline-Balavoine-0412-scaled.jpg'], 
@@ -441,7 +478,7 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
-            </div>
+            </div> #}
             
         </div>
 
@@ -506,8 +543,12 @@
                 </div>
             </div>
             
-
-            {% set bilderRedesign = 
+            <div class="imgs-flickr">
+                <div class="outer">
+                    <a data-flickr-embed='true' data-footer='true' href='https://www.flickr.com/photos/ukm/albums/72177720309295385' title='Norges Husflidslag og Fretex i Redesignområdet @ UKM-Festivalen 2023 by UKM Norge, on Flickr'><img src='https://live.staticflickr.com/65535/52998905850_253c3d3bac_b.jpg' width='800' height='600' alt='Fretex'></a><script async src='https://embedr.flickr.com/assets/client-code.js' charset='utf-8'></script>
+                </div>
+            </div>
+            {# {% set bilderRedesign = 
                 [
                     ['Aggressive Broderier - Mina Lekang Eiterjord', 'http://ukm.no/festivalen/files/2023/06/Aggressive-Broderier-Mina-Lekang-Eiterjord-0990-scaled.jpg'],
                     ['Aggressive Broderier - Mina Lekang Eiterjord', 'http://ukm.no/festivalen/files/2023/06/Aggressive-Broderier-Mina-Lekang-Eiterjord-0993-scaled.jpg'],
@@ -543,7 +584,7 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
-            </div>
+            </div> #}
 
             {# <div class="bilder-div col-12">
 
@@ -607,8 +648,13 @@
                 <p>Kvelden var fylt med pulserende rytmer, glitrende lys og en atmosfære som får alle til å danse. En av høydepunktene på denne aktiviteten var den talentfulle DJ-en Ursulla</p>
             </div>
 
+            <div class="imgs-flickr">
+                <div class="outer">            
+                    <a data-flickr-embed='true' data-footer='true' href='https://www.flickr.com/photos/ukm/albums/72177720309321883' title='Klubbkvelder @ UKM-Festivalen 2023 by UKM Norge, on Flickr'><img src='https://live.staticflickr.com/65535/52999363202_b26f511ee4_b.jpg' width='800' height='600' alt='Klubbkveld'></a><script async src='https://embedr.flickr.com/assets/client-code.js' charset='utf-8'></script>
+                </div>
+            </div>
 
-            {% set bilderKlubbkveld = 
+            {# {% set bilderKlubbkveld = 
                 [
                     ['DJ Ursula Klubbkveld - Jasmine Furuseth' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Jasmine-Furuseth-2014-scaled.jpg', 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Jasmine-Furuseth-2014-600x400.jpg'],
                     ['DJ Ursula Klubbkveld - Jasmine Furuseth' , 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Jasmine-Furuseth-1978-scaled.jpg', 'http://ukm.no/festivalen/files/2023/06/DJUrsulaKlubbkveld-Jasmine-Furuseth-1978-600x600.jpg'],
@@ -646,7 +692,7 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
-            </div>
+            </div> #}
 
         </div>
     </div>
@@ -1275,6 +1321,17 @@ body {
     background: #ffffff8a;
     padding: 2px;
     bottom: 57px;   
+}
+.imgs-flickr {
+    display: flex;
+}
+.imgs-flickr.in-innslag {
+    margin-bottom: 40px;
+}
+.imgs-flickr .outer {
+    margin: auto;
+    border-radius: 10px !important;
+    overflow: hidden;
 }
 
 @media(max-width: 992px) {
