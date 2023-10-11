@@ -1,7 +1,10 @@
 {% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
 
 {% block content %}
+{% set omradeArr = omrader ? omrader : [omrade] %}
+
 	<div class="container">
+	{% for omrade in omradeArr %}
 		<div class="row">
 			<div class="col-12">
 				<h3>Kontaktpersoner for
@@ -22,12 +25,18 @@
 				</div>
 			{% endfor %}
 		</div>
+		{% endfor %}
+
 		<div class="clearfix my-3"></div>
 		<div class="row">
 			<div class="col-12">
 				<p>
-					<a href="{{ omrade.getLink() }}">Tilbake til
-						{{ omrade.getNavn() }}</a>
+					{% if omrader %}
+						<a href="{{ omrade.getLink() }}">Tilbake</a>
+					{% else %}
+						<a href="{{ omrade.getLink() }}">Tilbake til
+							{{ omrade.getNavn() }}</a>
+					{% endif %}
 				</p>
 			</div>
 		</div>

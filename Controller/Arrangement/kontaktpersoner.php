@@ -19,9 +19,20 @@ if( null != $pl_id ) {
 	Wordpress::getPage()
 	    ->setTitle('Kontaktpersoner for '. $arrangement->getNavn());
 } elseif($site_type == 'kommune') {
+	$omrader = [];
 	$omrade = Omrade::getByKommune(get_option('kommune'));
+
+	// Kommuner som bruker felles kommuneside må også ha felles kontaktpersoner
+	if($omrade->getKommune()->getModifiedPath()) {
+		$omrader[] = $omrade;
+		foreach ($omrade->getKommune()->getKommunerOnSamePath() as $kommune) {
+			$omrader[] = Omrade::getByKommune($kommune->getId());
+		}
+	}
+	
 	Wordpress::setView('Kontaktpersoner/Omrade');
 	Wordpress::addViewData('omrade', $omrade);
+	Wordpress::addViewData('omrader', $omrader);
 	Wordpress::getPage()
 	    ->setTitle('Kontaktpersoner for '. $omrade->getNavn());
 
