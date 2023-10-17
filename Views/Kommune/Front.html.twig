@@ -22,7 +22,11 @@
 				{% include "Front/Part/Arrangementer.html.twig" %}
 
 				<div class="mt-4">
+				{% if omrade.getType() == 'kommune' and omrade.getKommune().getModifiedPath() %}
+					{% include "Front/Part/Kontakt.html.twig" with { kontaktpersoner: omrade.getKontaktpersoner(), expand: false } %}
+				{% else %}
 					{% include "Front/Part/Kontakt.html.twig" with { kontaktpersoner: omrade.getKontaktpersoner(), expand: omrade.getKommendeArrangementer().getAntall() == 0 } %}
+				{% endif %}
 				</div>
 
 				{% if menu is defined %}
