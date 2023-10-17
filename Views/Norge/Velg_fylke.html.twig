@@ -9,6 +9,7 @@
         </div>
         <div class="row pageContainer mt-4">
             <div class="col-12 col-md-6">
+            {{ dump((fylker|length/2)|round(0, "ceil")) }}
                 {% for fylke in fylker|slice(0, (fylker|length/2)|round(0, "ceil")) %}
                     <div class="fylke-item">
                         <a class="dropdown-item drop-item choice-item mb-2" href="//{{UKM_HOSTNAME}}/{{ fylke.getLink() }}/">
@@ -21,7 +22,9 @@
                 {% endfor %}
             </div>
             <div class="col-12 col-md-6">
-                {% for fylke in fylker|slice((fylker|length/2)|round(0, "floor")+1) %}
+                {% set plusValue = fylker|length is odd ? 1 : 0 %}
+
+                {% for fylke in fylker|slice((fylker|length/2)|round(0, "floor")+plusValue) %}
                     <div class="fylke-item">
                         <a class="dropdown-item drop-item choice-item mb-2" href="//{{UKM_HOSTNAME}}/{{ fylke.getLink() }}/">
                             <span class="accordSubtext">{{ fylke.getNavn() }}</span>
