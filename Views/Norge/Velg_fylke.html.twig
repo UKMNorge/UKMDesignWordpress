@@ -9,7 +9,6 @@
         </div>
         <div class="row pageContainer mt-4">
             <div class="col-12 col-md-6">
-            {{ dump((fylker|length/2)|round(0, "ceil")) }}
                 {% for fylke in fylker|slice(0, (fylker|length/2)|round(0, "ceil")) %}
                     <div class="fylke-item">
                         <a class="dropdown-item drop-item choice-item mb-2" href="//{{UKM_HOSTNAME}}/{{ fylke.getLink() }}/">
