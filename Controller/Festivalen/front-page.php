@@ -2,8 +2,23 @@
 
 use UKMNorge\DesignWordpress\Environment\Wordpress;
 
+$arrangement = new Arrangement(get_option('pl_id'));
+
+// Arrangement er ferdig
+if($arrangement->$this->erFerdig()) {
+    Wordpress::requireController('Festivalen','etter-festivalen');
+    return;
+}
+else {
+    Wordpress::requireController('Festivalen','deltaker-publikum');
+}
+
+
+
+
 // Hvis vi skal ha plakat, fjern false
 // if(date('m') >= 6  && date('d') > 27) {
+
 if(true) {
     // Wordpress::requireController('Festivalen','plakat');
     Wordpress::requireController('Festivalen','etter-festivalen');
