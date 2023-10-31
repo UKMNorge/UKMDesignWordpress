@@ -7,7 +7,7 @@ use UKMNorge\Arrangement\Arrangement;
 $arrangement = new Arrangement(get_option('pl_id'));
 
 // Arrangement er ferdig
-if($arrangement->$this->erFerdig()) {
+if($arrangement->erFerdig()) {
     Wordpress::requireController('Festivalen','etter-festivalen');
     return;
 }
