@@ -10,10 +10,13 @@ use UKMNorge\Arrangement\Arrangement;
 
 // Get alle posts på kategori 'pa-forside'
 $catid = get_category_by_slug('pa-forsiden')->term_id;
-$posts = Posts::getByCategory($catid);
-$posts->paged = 0;
-$posts->setPostsPerPage(200);
-$posts->loadPosts();
+if($catId) {
+    $posts = Posts::getByCategory($catid);
+    $posts->paged = 0;
+    $posts->setPostsPerPage(200);
+    $posts->loadPosts();
+    Wordpress::setPosts($posts);
+}
 
 $arrangement = new Arrangement( get_option('pl_id') );
 
@@ -25,7 +28,6 @@ foreach ($arrangement->getProgram()->getAll() as $hendelse) {
 }
 
 
-Wordpress::setPosts($posts);
 Wordpress::addViewData([
     'hendelserMedSending' => $hendelserMedSending
 ]);
