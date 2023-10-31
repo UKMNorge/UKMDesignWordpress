@@ -1,6 +1,8 @@
 <?php
 
 use UKMNorge\DesignWordpress\Environment\Wordpress;
+use UKMNorge\Arrangement\Arrangement;
+
 
 $arrangement = new Arrangement(get_option('pl_id'));
 
