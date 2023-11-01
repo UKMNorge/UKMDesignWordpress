@@ -41,33 +41,70 @@
             
         </div>
     {% endif %}
-    
 
-    {# andre del #}
-    <div class="sider sider-timeline">
-        <h1 class="title-for-row">Tidsplan</h1>
-        <div class="timeline-festivalen col-12" selected-type="0">
-            <div class="buttons">
-                <div class="button-div">
-                    <button type-forestilling="0" class="selected">Forestillinger</button>
-                </div>
-                <div class="button-div">
-                    <button type-forestilling="1">Workshops</button>
-                </div>
-            </div>
-            
-            <div class="col-12 timeline-sider nop">
 
-                {# Forestillinger #}
-                    
-                <div class="timeline-side nop left forestillinger col-12 col-md-6">
-                    <div class="top-title">
-                        <h4 class="title forestillinger">Forestillinger</h4>
+    {% set currentDate = "now"|date("U") %}
+    {% set fiveDaysTimestamp = currentDate|date_modify('-5 days')|date('U') %}
+    {% set thirtyDaysTimestamp = currentDate|date_modify('+30 days')|date('U') %}
+    {# Viser timeplan 5 dager før festivalen starter og 30 dager etter festivalen #}
+    {% if arrangement.getStart().getTimestamp() > fiveDaysTimestamp and arrangement.getStop().getTimestamp() < thirtyDaysTimestamp %}
+        {# andre del #}
+        <div class="sider sider-timeline">
+            <h1 class="title-for-row">Tidsplan</h1>
+            <div class="timeline-festivalen col-12" selected-type="0">
+                <div class="buttons">
+                    <div class="button-div">
+                        <button type-forestilling="0" class="selected">Forestillinger</button>
                     </div>
-                    
-                    <div class="alle-hendelser">
-                        {% for hendelse in hendelserDato|slice(hendelseKey, 3) %}
-                            <a class="a-no-decor" href="/festivalen/program-live-mode/">
+                    <div class="button-div">
+                        <button type-forestilling="1">Workshops</button>
+                    </div>
+                </div>
+                
+                <div class="col-12 timeline-sider nop">
+
+                    {# Forestillinger #}
+                        
+                    <div class="timeline-side nop left forestillinger col-12 col-md-6">
+                        <div class="top-title">
+                            <h4 class="title forestillinger">Forestillinger</h4>
+                        </div>
+                        
+                        <div class="alle-hendelser">
+                            {% for hendelse in hendelserDato|slice(hendelseKey, 3) %}
+                                <a class="a-no-decor" href="/festivalen/program-live-mode/">
+                                    <div class="row activity-timeline {{ hendelse.erFerdig() ? 'ferdig' : '' }}">
+                                        <div class="point-only"></div>
+                                        <div class="left-side-item">
+                                            {{ hendelse.getStart()|date()|timeago }}
+                                        </div>
+                                        <div class="col-12 inner">
+                                            <h5 class="title">{{ hendelse.getNavn() }}</h5>
+                                            <span class="under-title">{{ hendelse.getSted() }}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endfor %}
+                            <div class="row activity-timeline empty ">
+                                <a class="empty-item empty-style-btn" href="/festivalen/program-live-mode">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #75797d; transform: ;msFilter:;"><path d="m12 19.24-4.95-4.95-1.41 1.42L12 22.07l6.36-6.36-1.41-1.42L12 19.24zM5.64 8.29l1.41 1.42L12 4.76l4.95 4.95 1.41-1.42L12 1.93 5.64 8.29z"></path></svg>
+                                </a>
+                                <div class="col-12 inner">                                        
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    {# Workshops #}
+                    <div class="timeline-side workshops nop col-12 col-md-6">
+                        <div class="top-title">
+                            <h4 class="title workshops">Workshops</h4>
+                        </div>
+                        
+                        <div class="alle-hendelser">
+                            {% for hendelse in hendelserWorkshopDato|slice(workshopKey, 3) %}
                                 <div class="row activity-timeline {{ hendelse.erFerdig() ? 'ferdig' : '' }}">
                                     <div class="point-only"></div>
                                     <div class="left-side-item">
@@ -76,75 +113,44 @@
                                     <div class="col-12 inner">
                                         <h5 class="title">{{ hendelse.getNavn() }}</h5>
                                         <span class="under-title">{{ hendelse.getSted() }}</span>
-                                    </div>
-                                </div>
-                            </a>
-                        {% endfor %}
-                        <div class="row activity-timeline empty ">
-                            <a class="empty-item empty-style-btn" href="/festivalen/program-live-mode">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #75797d; transform: ;msFilter:;"><path d="m12 19.24-4.95-4.95-1.41 1.42L12 22.07l6.36-6.36-1.41-1.42L12 19.24zM5.64 8.29l1.41 1.42L12 4.76l4.95 4.95 1.41-1.42L12 1.93 5.64 8.29z"></path></svg>
-                            </a>
-                            <div class="col-12 inner">                                        
+                                        <div class="show-more-timeline">
+                                            <button class="empty-style-btn collapsed w-shop-hover" type="button" data-toggle="collapse" data-target="#collapse{{ hendelse.getId() }}" aria-expanded="false" aria-controls="collapse{{ hendelse.getId() }}">
+                                                <span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #f21e8b; transform: ;msFilter:;"><path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path></svg>
+                                                </span>
+                                            </button>
 
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-
-                {# Workshops #}
-                <div class="timeline-side workshops nop col-12 col-md-6">
-                    <div class="top-title">
-                        <h4 class="title workshops">Workshops</h4>
-                    </div>
-                    
-                    <div class="alle-hendelser">
-                        {% for hendelse in hendelserWorkshopDato|slice(workshopKey, 3) %}
-                            <div class="row activity-timeline {{ hendelse.erFerdig() ? 'ferdig' : '' }}">
-                                <div class="point-only"></div>
-                                <div class="left-side-item">
-                                    {{ hendelse.getStart()|date()|timeago }}
-                                </div>
-                                <div class="col-12 inner">
-                                    <h5 class="title">{{ hendelse.getNavn() }}</h5>
-                                    <span class="under-title">{{ hendelse.getSted() }}</span>
-                                    <div class="show-more-timeline">
-                                        <button class="empty-style-btn collapsed w-shop-hover" type="button" data-toggle="collapse" data-target="#collapse{{ hendelse.getId() }}" aria-expanded="false" aria-controls="collapse{{ hendelse.getId() }}">
-                                            <span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #f21e8b; transform: ;msFilter:;"><path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path></svg>
-                                            </span>
-                                        </button>
-
-                                        <div class="collapse" id="collapse{{ hendelse.getId() }}">
-                                            {% for wshop in hendelse.getWorkshops()|sort((a, b) => a.getMeta('rekkefolge') ? a.getMeta('rekkefolge') : 0 <=> b.getMeta('rekkefolge') ? b.getMeta('rekkefolge') : 0 ) %}  
-                                                <a class="w-shop-href" target="_blank" href="{{ wshop.url }}">
-                                                    <div class="card card-body w-shop-card w-shop-hover">
-                                                        <h5 class="w-shop-title">{{ wshop.getTitle() }}</h5>
-                                                        <p class="w-shop-sted">
-                                                            {{ wshop.getMeta('sted') }}
-                                                        </p>
-                                                    </div>
-                                                </a>
-                                            {% endfor %}
+                                            <div class="collapse" id="collapse{{ hendelse.getId() }}">
+                                                {% for wshop in hendelse.getWorkshops()|sort((a, b) => a.getMeta('rekkefolge') ? a.getMeta('rekkefolge') : 0 <=> b.getMeta('rekkefolge') ? b.getMeta('rekkefolge') : 0 ) %}  
+                                                    <a class="w-shop-href" target="_blank" href="{{ wshop.url }}">
+                                                        <div class="card card-body w-shop-card w-shop-hover">
+                                                            <h5 class="w-shop-title">{{ wshop.getTitle() }}</h5>
+                                                            <p class="w-shop-sted">
+                                                                {{ wshop.getMeta('sted') }}
+                                                            </p>
+                                                        </div>
+                                                    </a>
+                                                {% endfor %}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        {% endfor %}
-                        <div class="row activity-timeline empty">
-                            <a class="empty-item empty-style-btn" href="/festivalen/program-live-mode">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #6f807e; transform: ;msFilter:;"><path d="m12 19.24-4.95-4.95-1.41 1.42L12 22.07l6.36-6.36-1.41-1.42L12 19.24zM5.64 8.29l1.41 1.42L12 4.76l4.95 4.95 1.41-1.42L12 1.93 5.64 8.29z"></path></svg>
-                            </a>
-                            <div class="col-12 inner">                                        
+                            {% endfor %}
+                            <div class="row activity-timeline empty">
+                                <a class="empty-item empty-style-btn" href="/festivalen/program-live-mode">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #6f807e; transform: ;msFilter:;"><path d="m12 19.24-4.95-4.95-1.41 1.42L12 22.07l6.36-6.36-1.41-1.42L12 19.24zM5.64 8.29l1.41 1.42L12 4.76l4.95 4.95 1.41-1.42L12 1.93 5.64 8.29z"></path></svg>
+                                </a>
+                                <div class="col-12 inner">                                        
 
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            
             </div>
-           
         </div>
-    </div>
+    {% endif %}
 
     {# tredje del #}
     <div class="sider row">
