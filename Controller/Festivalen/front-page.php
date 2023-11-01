@@ -9,7 +9,6 @@ $arrangement = new Arrangement(get_option('pl_id'));
 // Arrangement er ferdig
 if($arrangement->erFerdig()) {
     Wordpress::requireController('Festivalen','etter-festivalen');
-    return;
 }
 else {
     Wordpress::requireController('Festivalen','deltaker-publikum');
@@ -21,21 +20,21 @@ else {
 // Hvis vi skal ha plakat, fjern false
 // if(date('m') >= 6  && date('d') > 27) {
 
-if(true) {
+// if(true) {
     // Wordpress::requireController('Festivalen','plakat');
-    Wordpress::requireController('Festivalen','etter-festivalen');
+    // Wordpress::requireController('Festivalen','etter-festivalen');
 
-} else {
+// } else {
     // Hvis det er superadmin vis nettsiden
     // if(is_super_admin()) {
-        Wordpress::requireController('Festivalen','deltaker-publikum');
+        // Wordpress::requireController('Festivalen','deltaker-publikum');
     // }
     // Ellers info om nettsiden
     // else {
     //     Wordpress::requireController('Festivalen','ferdig');
     // }
     
-}
+// }
 
 /*
 case 'festival/plakat':
