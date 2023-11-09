@@ -1,14 +1,21 @@
 {% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
 
 {% block content %}
-
+{# <pre>
+{{ dump(arrangement) }}
+</pre> #}
 <div id="festivalenMainContainer" class="container">
     <div class="sider xs-reverse row">
         <div class="side info-text col-md-6 col-12">
-            <h1 class="hoved-tittel">Velkommen til <br> Trondheim <br> 23.-27. juni!</h1>
+            {% if arrangement.getStart()|dato('m') == arrangement.getStop()|dato('m') %}
+                <h1 class="hoved-tittel">Velkommen til <br> {{ arrangement.getSted() }} <br> {{ arrangement.getStart()|dato('d') }}.-{{ arrangement.getStop()|dato('d') }}. juni!</h1>
+            {% else %}
+                <h1 class="hoved-tittel">Velkommen til <br> {{ arrangement.getSted() }} <br> {{ arrangement.getStart()|dato('d') }}. {{ arrangement.getStart()|dato('M') }} - {{ arrangement.getStop()|dato('d') }}. {{ arrangement.getStop()|dato('M') }}!</h1>
+            {% endif %}
+            
 
             <div class="left-down-text">
-                <h2 class="under-hoved-tittel">Er du deltaker på UKM-festivalen 2023?</h2>
+                <h2 class="under-hoved-tittel">Er du deltaker på UKM-festivalen {{ arrangement.getStart()|dato('Y') }}?</h2>
 
                 <div class="buttons">
                     <a type="button" href="/festivalen/deltaker-info/" class="standard-btn btn-large d-flex justify-content-between btn-blue mt-2">
@@ -182,8 +189,11 @@
         <div class="side-single col-xs-12">
             <img src="//assets.{{ UKM_HOSTNAME }}/img/festival/toppbilde2-2023.png" />
             <h1 class="text-center-all">Velkommen til å vise oss det du har på hjertet; og gled deg til å se alt de andre har forberedt!</h1>
-            <h5 class="under-text">Et lite tilbakeblikk på en fantastisk fest fra i fjor!</h5>
+            <h5 class="under-text">Et lite tilbakeblikk på en fantastisk fest fra 2023 og 2022!</h5>
             <div class="buttons">
+                <a href="/festivalen-arkiv-2023/" class="standard-btn button festival-style btn-large btn-xs d-flex justify-content-between btn-blue mt-2">
+                    UKM-festivalen 2023
+                </a>
                 <a class="standard-btn button festival-style with-collapse collapsed btn-large btn-xs d-flex justify-content-between btn-blue mt-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                     UKM-festivalen 2022
                 </a>
@@ -299,7 +309,8 @@
         /* margin-top: 50px; */
     }
     #festivalenMainContainer .sider .side-single .buttons {
-        display: flex;
+        display: grid;
+        margin-bottom: 10px;
     }
     #festivalenMainContainer .sider .side.info-text {
         min-height: 480px;
