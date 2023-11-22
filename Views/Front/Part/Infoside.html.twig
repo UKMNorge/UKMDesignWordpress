@@ -15,7 +15,7 @@
         });
 	</script>
 	<div class="infoside">
-		<div class="utdrag">{{ infoside.list_excerpt|raw }}
+		<div class="utdrag">{{ infoside.content_wo_lead|raw }}
 			{% if infoside.list_excerpt|length != infoside.getContent()|striptags|length %}
 				...
 				<a href="#" id="infoside-les-mer">Les mer</a>
