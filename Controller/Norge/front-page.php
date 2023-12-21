@@ -49,7 +49,9 @@ if( $start_nasjonaldag < $now && $stop_nasjonaldag > $now || isset($_GET['nasjon
 
 // NYHETER
 
-switch_to_blog(BLOG_ID_REDAKSJONELT);
+if(defined('BLOG_ID_REDAKSJONELT')) {
+    switch_to_blog(BLOG_ID_REDAKSJONELT);
+}
 
 $posts = new Posts(3);
 restore_current_blog();
