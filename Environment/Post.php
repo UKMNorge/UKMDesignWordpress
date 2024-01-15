@@ -15,6 +15,7 @@ class Post extends WPOO_Post
     private $featured_film;
     private $featured_image;
     private $authors;
+    public $meta;
 
     /**
      * Hent eventuelt bilde som skal vises på topp
@@ -141,9 +142,9 @@ class Post extends WPOO_Post
             return false;
         }
 
-        if( $treatArrayAsOne && is_array( $this->meta->$key) && isset( $this->meta->$key[0])) {
-            return $this->meta->$key[0];
-        }
+        if( $treatArrayAsOne && is_array( $this->meta->{$key}) && isset($this->meta->{$key}[0])) {
+            return $this->meta->{$key}[0];
+        }        
 
         return $this->meta->$key;
     }
