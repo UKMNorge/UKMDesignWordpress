@@ -15,16 +15,22 @@
             
 
             <div class="left-down-text">
-                <h2 class="under-hoved-tittel">Er du deltaker på UKM-festivalen {{ arrangement.getStart()|dato('Y') }}?</h2>
+                {# <h2 class="under-hoved-tittel">Er du deltaker på UKM-festivalen {{ arrangement.getStart()|dato('Y') }}?</h2> #}
+                <h2 class="under-hoved-tittel">Les mer om UKM-festivalen {{ arrangement.getStart()|dato('Y') }}</h2>
 
                 <div class="buttons">
-                    <a type="button" href="/festivalen/deltaker-info/" class="standard-btn btn-large d-flex justify-content-between btn-blue mt-2">
+                    {# <a type="button" href="/festivalen/deltaker-info/" class="standard-btn btn-large d-flex justify-content-between btn-blue mt-2">
                         <span>Jeg er deltaker</span>
                     </a>
 
                     <a type="button" href="/festivalen/andre-deltakere/" class="empty-style standard-btn btn-large d-flex justify-content-between btn-blue mt-2">
                         <span>Jeg er foresatt/annet</span>
+                    </a> #}
+
+                    <a type="button" href="https://ukmnordland.notion.site/Landfestivalen-2024-i-Bod-Arktisk-Puls-info-1-293b1c6a3e3a4dbdaeb7003b3b4a6d5f" class="empty-style standard-btn btn-large d-flex justify-content-between btn-blue mt-2">
+                        <span>Landsfestivalen i Bodø</span>
                     </a>
+                    
                 </div>
             </div>
         </div>
@@ -32,6 +38,33 @@
         <div class="side col-md-6 col-12">
             <div class="space-img-div">
                 <img src="//assets.{{ UKM_HOSTNAME }}/img/festival/toppbilde2023.png" />
+            </div>
+        </div>
+    </div>
+
+    {# NYHETER #}
+    <div id="nyheterIFestivalen" class="container sider">
+        {% if posts.getAll()|length %}
+        <h1 class="center">Nyheter</h1>
+        {% endif %}
+        <div class="news-section mt-4">
+            <div class="row d-flex justify-content-center">
+            {% for post in posts.getAll() %}
+                {% set riktigCat = false %}
+                {% for cat in post.categories %}
+                    {% if cat.slug == 'pa-forsiden' %}
+                        {% set riktigCat = true %}
+                    {% endif %}
+                {% endfor %}
+                {% if riktigCat %}
+                <div class="col-12 d-flex justify-content-center d-block d-lg-none mt-4">
+                    <span class="undertitler undertitler-news">{{ post.date|dato('j. M Y') }}</span>
+                </div>
+                <div class="col-12 col-md-8 col-xl-6 mb-5">
+                    {% embed "Post:Grid-default.html.twig"|UKMpath with { post: post } %}{% endembed %}
+                </div>
+                {% endif %}
+            {% endfor %}
             </div>
         </div>
     </div>
@@ -215,36 +248,6 @@
 
 
 
-
-
-{# NYHETER #}
-
-
-<div id="nyheterIFestivalen" class="container">
-    {% if posts.getAll()|length %}
-    <h1 class="center">Nyheter</h1>
-    {% endif %}
-    <div class="news-section mt-4">
-        <div class="row d-flex justify-content-center">
-        {% for post in posts.getAll() %}
-            {% set riktigCat = false %}
-            {% for cat in post.categories %}
-                {% if cat.slug == 'pa-forsiden' %}
-                    {% set riktigCat = true %}
-                {% endif %}
-            {% endfor %}
-            {% if riktigCat %}
-            <div class="col-12 d-flex justify-content-center d-block d-lg-none mt-4">
-                <span class="undertitler undertitler-news">{{ post.date|dato('j. M Y') }}</span>
-            </div>
-            <div class="col-12 col-md-8 col-xl-6 mb-5">
-                {% embed "Post:Grid-default.html.twig"|UKMpath with { post: post } %}{% endembed %}
-            </div>
-            {% endif %}
-        {% endfor %}
-        </div>
-    </div>
-</div>
 
 <div class="container prev-year-festival">
     <div class="col-12 question-box-festivalen">

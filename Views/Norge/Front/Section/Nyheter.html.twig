@@ -41,11 +41,7 @@
 								</div>
 								<div class="col pr-0 d-flex flex-wrap align-items-center">
 									<div class="card-body news-body">
-										{% for category in post.categories %}								
-											<span class="card-text">{{ category.title }}</span>
-											{% if not loop.last %},
-											{% endif %}
-										{% endfor %}
+										
 										<span class="card-text">{{ post.getTitle() }}</span>
 										<p class="card-text truncate-overflow">{{ post.lead }}</p>
 									</div>
