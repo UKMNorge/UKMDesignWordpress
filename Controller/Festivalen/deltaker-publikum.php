@@ -16,10 +16,14 @@ Wordpress::setView('Festivalen/Front/Underveis');
 
 // Get alle posts på kategori 'pa-forside'
 $catid = get_category_by_slug('pa-forsiden')->term_id;
-$posts = Posts::getByCategory($catid);
-$posts->paged = 0;
-$posts->setPostsPerPage(200);
-$posts->loadPosts();
+
+if($catid) {
+    $posts = Posts::getByCategory($catid);
+    $posts->paged = 0;
+    $posts->setPostsPerPage(200);
+    $posts->loadPosts();
+    Wordpress::setPosts($posts);
+}
 
 $arrangement = new Arrangement( get_option('pl_id') );
 
@@ -90,7 +94,6 @@ $filter = function ($datetime) {
 
 Twig::addFilter('timeago', $filter);
 
-Wordpress::setPosts($posts);
 
 function find_closest($array, $date) {
     $currentVal = null;
