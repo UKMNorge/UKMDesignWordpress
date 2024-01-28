@@ -152,7 +152,7 @@
 										<div class="point-only"></div>
 										<div class="left-side-item">{{ forestilling.getStart()|dato('d.m H:i') }}</div>
 										<div class="col-12 inner">
-											<a href="/festivalen/program/{{ forestilling.getId() }}">
+											<a href="/{{ forestilling.getMonstring().getPath() }}/program/{{ forestilling.getId() }}">
 												<h5 class="title">
 												{{ forestilling.getNavn() }}
 												</h5>
