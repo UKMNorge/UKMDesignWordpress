@@ -221,7 +221,11 @@ templates:
         file: Festivalen/dette-er-festivalen
         description: >
           Bør slettes, da det kun er for demo-formål før vi får en "go" på lansering
-
+      collapse-list:
+        name: Collapse liste som kan brukes for å vise en liste med elementer som collapser
+        file: Festivalen/collapse-list
+        description: >
+          Husk å bruke UKMviseng=collapse-list på parentside -> UKMblock=list og designmal må settes på 'Liste-element'
 
   
           

@@ -1,0 +1,57 @@
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
+
+{% block css %}
+	{{ parent() }}
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+        {% set showFirstElement = true %}
+        {% for underpage in page.getPageBlocks().getAll() %}
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="heading{{ underpage.getId() }}">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse{{ underpage.getId() }}" aria-expanded="false" aria-controls="collapse{{ underpage.getId() }}">
+                            {{ underpage.getTitle() }}
+                        </button>
+                    </h5>
+                    </div>
+
+                    <div id="collapse{{ underpage.getId() }}" class="collapse {{ showFirstElement ? 'show' : '' }}" aria-labelledby="heading{{ underpage.getId() }}" data-parent="#accordion">
+                    <div class="card-body">
+                        {{ underpage.getContent()|raw }}
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            {% set showFirstElement = false %}
+        {% endfor %}
+            
+
+	</div>
+
+<style>
+    .card-header {
+        padding: 0;
+    }
+    .btn.btn-link {
+        width: 100%;
+        text-align: left;
+        padding: 20px;
+        text-decoration: none;
+        color: hsl(var(--color-primary-blue-800));
+        border-radius: 0;
+    }
+    .btn.btn-link:hover {
+        box-shadow: 0 0.5rem 0.9375rem rgb(0 0 0 / 20%);
+        background: hsl(var(--color-primary-blue-800));
+        color: #fff;
+    }
+    .card {
+        margin-top: -2px;
+        border-radius: 0;
+    }
+</style>
+{% endblock %}
