@@ -17,6 +17,7 @@
         {% for underpage in page.getPageBlocks().getAll() %}
             <div id="accordion">
                 <div class="card">
+                    <a style="display: none" href="{{ underpage.redirectLenke }}">{{ underpage.getTitle() }}</a>
                     <div class="card-header" id="heading{{ underpage.getId() }}">
                     <h5 class="mb-0">
                         <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse{{ underpage.getId() }}" aria-expanded="false" aria-controls="collapse{{ underpage.getId() }}">
