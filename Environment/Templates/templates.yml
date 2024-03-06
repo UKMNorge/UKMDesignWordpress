@@ -35,6 +35,11 @@ templates:
   norge:
     name: Den nasjonale siden for ungdom (UKM.no)
     controllers:
+      arrangementfinder:
+        name: Arrangement Finner
+        file: Norge/arrangement_finder
+        description: >
+          Viser en liste over alle arrangement som er tilknyttet en gitt kommune.
       dinmonstring:
         name: Velg fylke
         file: Norge/velg_fylke
