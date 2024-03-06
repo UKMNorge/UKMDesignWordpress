@@ -104,3 +104,6 @@ typings/
 
 # All files in source but not main.ts
 !src/main.ts
+
+dist/assets/*.html
+index.html
