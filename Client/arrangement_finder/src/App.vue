@@ -21,7 +21,7 @@
             </div>
             <div class="as-margin-top-space-6">
                 <div class="as-margin-top-space-2 as-display-flex" v-for="arrangement in tilgjengeligeArrangementer" :key="arrangement.id">
-                    <button href="#" class="event-box as-margin-auto as-padding-space-3 as-btn-default as-btn-hover-default as-card-1">
+                    <button @click="arrangementClicked(arrangement)" class="event-box as-margin-auto as-padding-space-3 as-btn-default as-btn-hover-default as-card-1">
                         <div class="float-left overunder mr-3" style="align-self: center; border-right: solid 2px #A0AEC0; padding-right: 16px;">
                             <div class="over" style="font-size: .7em;">
                                 TIR
@@ -156,8 +156,12 @@ export default {
             }
             
         },
+        // Clicks
         userToAlleFylker() {
             window.location.href = "/din_monstring/";
+        },
+        arrangementClicked(arrangement : any) {
+            window.location.href = arrangement.url;
         }
     }
 }

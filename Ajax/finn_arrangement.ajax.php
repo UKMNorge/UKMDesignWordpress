@@ -57,5 +57,6 @@ function _generateArrangement(Arrangement $arrangement,) {
         'id' => $arrangement->getId(),
         'navn' => $arrangement->getNavn(),
         'kommune' => $arrangement->getKommune()->getNavn(),
+        'url' => $arrangement->getLink(),
     ];
 } 
