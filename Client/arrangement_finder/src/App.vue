@@ -1,11 +1,55 @@
 <template>
     <div class="as-container container">
-        <button class="as-btn-simple as-margin-right-space-3 as-btn-hover-default btn-with-icon">Finn arrangement</button>
-        <p>{{ locationLoading }}</p>
-        <p v-if="locationLoading">Loading...</p>
-        <p v-if="!locationLoading">NOT Loading...</p>
-        <p>{{ kommune }}</p>
-        <p>{{ kommunenummer }}</p>
+        <!-- Finner arrangementer nær deg... -->
+        <div v-if="locationLoading">
+            <h1 class="as-text-center">Finner arrangementer nær deg...</h1>
+            <div class="as-display-flex as-margin-top-space-6">
+                <div class="as-margin-auto">
+                    <LoadingComponent />
+                    <div class="as-margin-top-space-5">
+                        <p class="as-text-center">Tillat tilgang til din lokasjon for å finne arrangementer nær deg</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tilgjengelige arrangementer -->
+        <div v-if="!locationLoading">
+            <div>
+                <h1 v-if="tilgjengeligeArrangementer.length == 1" class="as-text-center">Skal du delta på {{ tilgjengeligeArrangementer[0].navn }}?</h1>
+                <h1 v-else class="as-text-center">Arrangementer nær deg</h1>
+            </div>
+            <div class="as-margin-top-space-6">
+                <div class="as-margin-top-space-2 as-display-flex" v-for="arrangement in tilgjengeligeArrangementer" :key="arrangement.id">
+                    <button href="#" class="event-box as-margin-auto as-padding-space-3 as-btn-default as-btn-hover-default as-card-1">
+                        <div class="float-left overunder mr-3" style="align-self: center; border-right: solid 2px #A0AEC0; padding-right: 16px;">
+                            <div class="over" style="font-size: .7em;">
+                                TIR
+                            </div>
+                            <div class="under" style="font-size:1.4em;">
+                                07
+                            </div>
+                            <div class="under" style="font-size: .7em; margin-top: 0.2em; white-space: nowrap;">
+                                MAI
+                                2024
+                            </div>
+                        </div>
+                        <h3 style="align-self: center; margin-right: 10px;">
+                            {{ arrangement.navn }}
+                        </h3>
+                        <div class="icon-arrangement-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="as-margin-top-space-8 as-display-flex">
+                <button @click="userToAlleFylker()" v-if="tilgjengeligeArrangementer.length == 1" class="as-btn-simple as-margin-auto as-btn-hover-default default">Letter du ikke etter {{ tilgjengeligeArrangementer[0].navn }}?</button>
+                <button @click="userToAlleFylker()" v-else class="as-btn-simple as-margin-auto as-btn-hover-default default">Finner du ikke arrangementet i listen?</button>
+            </div>
+            
+        </div>
         <!-- <div class="tab-button">
             <button @click="openTab('first')">First Tab</button>
             <button @click="openTab('second')">Second Tab</button>
@@ -17,6 +61,7 @@
 
 <script lang="ts">
 import FirstTab from './tabs/FirstTab.vue';
+import LoadingComponent from './components/LoadingComponent.vue';
 import { SPAInteraction } from 'ukm-spa/SPAInteraction';
 import { Director } from 'ukm-spa/Director';
 import { ref, onMounted } from 'vue'
@@ -32,12 +77,14 @@ export default {
             kommune: '' as string,
             kommunenummer: 0 as number,
             name : "World" as String,
-            activeTab : 'first' as String
+            activeTab : 'first' as String,
+            tilgjengeligeArrangementer : [] as Array<any>
         }
     },
 
     components : {
-        FirstTab : FirstTab
+        FirstTab : FirstTab,
+        LoadingComponent : LoadingComponent
     },
 
     mounted: function () {
@@ -102,12 +149,32 @@ export default {
             console.log(ukmHostname);
 
             var response = await spaInteraction.runAjaxCall('finn_arrangement.ajax.php', 'POST', data);
+
+            for(var arrangement of response.arrangementer) {
+                console.log(arrangement);
+                this.$data.tilgjengeligeArrangementer.push(arrangement);
+            }
             
+        },
+        userToAlleFylker() {
+            window.location.href = "/din_monstring/";
         }
     }
 }
 </script>
 
+<style scoped>
+.event-box {
+    background: var(--color-primary-bla-25);
+    max-width: 600px;
+    min-width: 35vw;
+    margin: auto !important;
+}
+.icon-arrangement-btn {
+    margin: auto;
+    margin-right: 0;
+}
+</style>
 
 
 
