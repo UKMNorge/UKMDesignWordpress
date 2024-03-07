@@ -1,4 +1,4 @@
-/*!
+.loader-container[data-v-c1edca47]{display:flex}.loader[data-v-c1edca47]{margin:auto;border:16px solid #f3f3f3;border-top:16px solid #3498db;border-radius:50%;width:120px;height:120px;animation:spin-c1edca47 2s cubic-bezier(.63,.19,.48,.56) infinite}@keyframes spin-c1edca47{0%{transform:rotate(0)}to{transform:rotate(360deg)}}.event-box[data-v-cead63cd]{background:var(--color-primary-bla-25);max-width:600px;min-width:35vw;margin:auto!important}.icon-arrangement-btn[data-v-cead63cd]{margin:auto 0 auto auto}/*!
   Theme: Dracula
   Author: Mike Barkmin (http://github.com/mikebarkmin) based on Dracula Theme (http://github.com/dracula)
   License: ~ MIT (or more permissive) [via base16-schemes-source]
