@@ -24,14 +24,14 @@
                     <button @click="arrangementClicked(arrangement)" class="event-box as-margin-auto as-padding-space-3 as-btn-default as-btn-hover-default as-card-1">
                         <div class="float-left overunder mr-3" style="align-self: center; border-right: solid 2px #A0AEC0; padding-right: 16px;">
                             <div class="over" style="font-size: .7em;">
-                                TIR
+                                {{ getDag(arrangement.dato, true).toUpperCase() }}
                             </div>
                             <div class="under" style="font-size:1.4em;">
-                                07
+                                {{ arrangement.dato.toLocaleString('en-US', { day: '2-digit' }) }}
                             </div>
                             <div class="under" style="font-size: .7em; margin-top: 0.2em; white-space: nowrap;">
-                                MAI
-                                2024
+                                {{ getMaaned(arrangement.dato, true) }}
+                                {{ arrangement.dato.getFullYear() }}
                             </div>
                         </div>
                         <h3 style="align-self: center; margin-right: 10px;">
@@ -109,20 +109,7 @@ export default {
             this.getKommuneFraGeoNorge(latitude, longitude);
         },
         showError(error : any) {
-            switch(error.code) {
-                case error.PERMISSION_DENIED:
-                    alert("User denied the request for Geolocation.");
-                break;
-                case error.POSITION_UNAVAILABLE:
-                    alert("Location information is unavailable.");
-                break;
-                case error.TIMEOUT:
-                    alert("The request to get user location timed out.");
-                break;
-                case error.UNKNOWN_ERROR:
-                    alert("An unknown error occurred.");
-                break;
-            }
+            this.userToAlleFylker();
         },
         async getKommuneFraGeoNorge(latitude : number, longitude : number) {
             var spaInteraction = new SPAInteraction(null, 'https://ws.geonorge.no/kommuneinfo/v1/punkt?' +
@@ -151,10 +138,34 @@ export default {
             var response = await spaInteraction.runAjaxCall('finn_arrangement.ajax.php', 'POST', data);
 
             for(var arrangement of response.arrangementer) {
-                console.log(arrangement);
+                arrangement.dato = new Date(arrangement.dato.date);
                 this.$data.tilgjengeligeArrangementer.push(arrangement);
             }
             
+        },
+        // Functions to be moved to a separate file
+        getMaaned(date : Date, isShort : boolean = false) {
+            const monthNames =  ['Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni',
+                'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'
+            ];
+            const monthNamesShort = ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Des'
+            ];
+
+            if(isShort) {
+                return monthNamesShort[date.getMonth()];
+            }
+            return monthNames[date.getMonth()];
+        },
+        getDag(date : Date, isShort : boolean = false) {
+		    const dayNames = ['Søndag','Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag']
+            const dayNamesShort = ['Søn','Man','Tir','Ons','Tor','Fre','Lør'];
+
+            if(isShort) {
+                return dayNamesShort[date.getDay()];
+            }
+
+            return dayNames[date.getDay()];
         },
         // Clicks
         userToAlleFylker() {
