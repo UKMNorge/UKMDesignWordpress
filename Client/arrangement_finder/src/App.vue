@@ -8,7 +8,11 @@
                     <LoadingComponent />
                     <div class="as-margin-top-space-5">
                         <div class="as-margin-top-space-4 as-display-flex">
-                            <div class="as-margin-auto">
+                            <div v-if="error" class="as-margin-auto">
+                                <WriteChatComponent :textToShow="'Vi klarte dessverre ikke å få tilgang til din lokasjon'" :interval="50"/>
+                                <WriteChatComponent :textToShow="'Videresender deg til alle kommuner!'" :interval="50" :timeout="tilAlleFylkerTimeout*0.4"/>
+                            </div>
+                            <div v-else class="as-margin-auto">
                                 <WriteChatComponent v-if="locationLoading" :textToShow="'Tillat tilgang til din lokasjon for å finne arrangementer nær deg'" :interval="50"/>
                                 <WriteChatComponent v-else :textToShow="'Henter arrangementer'" :interval="500"/>
                             </div>
@@ -50,8 +54,8 @@
             </div>
             
             <div class="as-margin-top-space-8 as-display-flex">
-                <button @click="userToAlleFylker()" v-if="tilgjengeligeArrangementer.length == 1" class="as-btn-simple as-margin-auto as-btn-hover-default default">Letter du ikke etter {{ tilgjengeligeArrangementer[0].navn }}?</button>
-                <button @click="userToAlleFylker()" v-else class="as-btn-simple as-margin-auto as-btn-hover-default default">Finner du ikke arrangementet i listen?</button>
+                <button @click="userToAlleFylker(true)" v-if="tilgjengeligeArrangementer.length == 1" class="as-btn-simple as-margin-auto as-btn-hover-default default">Letter du ikke etter {{ tilgjengeligeArrangementer[0].navn }}?</button>
+                <button @click="userToAlleFylker(true)" v-else class="as-btn-simple as-margin-auto as-btn-hover-default default">Finner du ikke arrangementet i listen?</button>
             </div>
             
         </div>
@@ -96,7 +100,8 @@ export default {
             activeTab : 'first' as String,
             tilgjengeligeArrangementer : [] as Array<any>,
             tilAlleFylkerTimeout : 4000 as number,
-            fetchedArrangementer : false as boolean
+            fetchedArrangementer : false as boolean,
+            error : false as boolean
         }
     },
 
@@ -128,6 +133,8 @@ export default {
             this.getKommuneFraGeoNorge(latitude, longitude);
         },
         showError(error : any) {
+            this.$data.locationLoading = false;
+            this.$data.error = true;
             this.userToAlleFylker();
         },
         async getKommuneFraGeoNorge(latitude : number, longitude : number) {
@@ -164,9 +171,7 @@ export default {
                 this.$data.fetchedArrangementer = true;
             }
             if(response.arrangementer.length < 1) {
-                setTimeout(() => {
-                    // this.userToAlleFylker();
-                }, this.$data.tilAlleFylkerTimeout);
+                this.userToAlleFylker();
             }
             
         },
@@ -195,8 +200,15 @@ export default {
             return dayNames[date.getDay()];
         },
         // Clicks
-        userToAlleFylker() {
-            window.location.href = "/din_monstring/";
+        userToAlleFylker(noTimeout : boolean = false) {
+            if(noTimeout) {
+                window.location.href = "/din_monstring/";
+                return;
+            }
+            
+            setTimeout(() => {
+                window.location.href = "/din_monstring/";
+            }, this.$data.tilAlleFylkerTimeout);
         },
         arrangementClicked(arrangement : any) {
             window.location.href = arrangement.url;
