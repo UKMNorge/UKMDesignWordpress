@@ -1,5 +1,5 @@
 <template>
-    <div class="as-container container">
+    <div class="as-container container as-card-1 as-padding-space-6 nosh-impt">
         <!-- Finner arrangementer nær deg... -->
         <div v-if="locationLoading">
             <h1 class="as-text-center">Finner arrangementer nær deg...</h1>
@@ -14,7 +14,7 @@
         </div>
 
         <!-- Tilgjengelige arrangementer -->
-        <div v-if="!locationLoading">
+        <div v-if="!locationLoading && tilgjengeligeArrangementer.length > 0">
             <div>
                 <h1 v-if="tilgjengeligeArrangementer.length == 1" class="as-text-center">Skal du delta på {{ tilgjengeligeArrangementer[0].navn }}?</h1>
                 <h1 v-else class="as-text-center">Arrangementer nær deg</h1>
@@ -50,12 +50,22 @@
             </div>
             
         </div>
-        <!-- <div class="tab-button">
-            <button @click="openTab('first')">First Tab</button>
-            <button @click="openTab('second')">Second Tab</button>
-        </div> -->
-
-     
+        <!-- Ingen arrangementer i nærheten -->
+        <div v-else>
+            <div v-if="!locationLoading">
+                <h1 class="as-text-center">Vi fant ingen arrangementer i nærheten!</h1>
+                <div class="as-margin-top-space-4 as-display-flex">
+                    <div class="as-margin-auto">
+                        <WriteChatComponent :textToShow="'På neste side kan velge din kommune for å finne arrangementer'" :interval="50" />
+                    </div>
+                </div>
+                <div class="as-margin-top-space-2 as-display-flex">
+                    <div class="as-margin-auto">
+                        <WriteChatComponent :textToShow="'Videresender deg til finn UKM der du bor!'" :interval="50" :timeout="tilAlleFylkerTimeout*0.4"/>
+                    </div>
+                </div>
+            </div>
+        </div>    
     </div>
 </template>
 
@@ -65,6 +75,7 @@ import LoadingComponent from './components/LoadingComponent.vue';
 import { SPAInteraction } from 'ukm-spa/SPAInteraction';
 import { Director } from 'ukm-spa/Director';
 import { ref, onMounted } from 'vue'
+import WriteChatComponent from './components/WriteChatComponent.vue';
 var ukmHostname : string = (<any>window).UKM_HOSTNAME; // Kommer fra global
 var UKM : string = (<any>window).UKM; // Kommer fra global
 
@@ -78,13 +89,15 @@ export default {
             kommunenummer: 0 as number,
             name : "World" as String,
             activeTab : 'first' as String,
-            tilgjengeligeArrangementer : [] as Array<any>
+            tilgjengeligeArrangementer : [] as Array<any>,
+            tilAlleFylkerTimeout : 4000 as number
         }
     },
 
     components : {
         FirstTab : FirstTab,
-        LoadingComponent : LoadingComponent
+        LoadingComponent : LoadingComponent,
+        WriteChatComponent : WriteChatComponent
     },
 
     mounted: function () {
@@ -133,13 +146,18 @@ export default {
                 kommune: kommune,
                 kommunenummer: kommunenummer
             };
-            console.log(ukmHostname);
 
             var response = await spaInteraction.runAjaxCall('finn_arrangement.ajax.php', 'POST', data);
 
             for(var arrangement of response.arrangementer) {
                 arrangement.dato = new Date(arrangement.dato.date);
                 this.$data.tilgjengeligeArrangementer.push(arrangement);
+            }
+
+            if(response.arrangementer.length < 1) {
+                setTimeout(() => {
+                    // this.userToAlleFylker();
+                }, this.$data.tilAlleFylkerTimeout);
             }
             
         },
@@ -188,6 +206,9 @@ export default {
 .icon-arrangement-btn {
     margin: auto;
     margin-right: 0;
+}
+.as-container {
+    background: var(--color-primary-grey-extra-lightes);
 }
 </style>
 
