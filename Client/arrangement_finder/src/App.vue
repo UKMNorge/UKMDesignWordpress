@@ -1,20 +1,25 @@
 <template>
     <div class="as-container container as-card-1 as-padding-space-6 nosh-impt">
         <!-- Finner arrangementer nær deg... -->
-        <div v-if="locationLoading">
+        <div v-if="locationLoading || !fetchedArrangementer">
             <h1 class="as-text-center">Finner arrangementer nær deg...</h1>
             <div class="as-display-flex as-margin-top-space-6">
                 <div class="as-margin-auto">
                     <LoadingComponent />
                     <div class="as-margin-top-space-5">
-                        <p class="as-text-center">Tillat tilgang til din lokasjon for å finne arrangementer nær deg</p>
+                        <div class="as-margin-top-space-4 as-display-flex">
+                            <div class="as-margin-auto">
+                                <WriteChatComponent v-if="locationLoading" :textToShow="'Tillat tilgang til din lokasjon for å finne arrangementer nær deg'" :interval="50"/>
+                                <WriteChatComponent v-else :textToShow="'Henter arrangementer'" :interval="500"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Tilgjengelige arrangementer -->
-        <div v-if="!locationLoading && tilgjengeligeArrangementer.length > 0">
+        <div v-if="!locationLoading && fetchedArrangementer && tilgjengeligeArrangementer.length > 0">
             <div>
                 <h1 v-if="tilgjengeligeArrangementer.length == 1" class="as-text-center">Skal du delta på {{ tilgjengeligeArrangementer[0].navn }}?</h1>
                 <h1 v-else class="as-text-center">Arrangementer nær deg</h1>
@@ -52,7 +57,7 @@
         </div>
         <!-- Ingen arrangementer i nærheten -->
         <div v-else>
-            <div v-if="!locationLoading">
+            <div v-if="!locationLoading && fetchedArrangementer">
                 <h1 class="as-text-center">Vi fant ingen arrangementer i nærheten!</h1>
                 <div class="as-margin-top-space-4 as-display-flex">
                     <div class="as-margin-auto">
@@ -90,7 +95,8 @@ export default {
             name : "World" as String,
             activeTab : 'first' as String,
             tilgjengeligeArrangementer : [] as Array<any>,
-            tilAlleFylkerTimeout : 4000 as number
+            tilAlleFylkerTimeout : 4000 as number,
+            fetchedArrangementer : false as boolean
         }
     },
 
@@ -154,6 +160,9 @@ export default {
                 this.$data.tilgjengeligeArrangementer.push(arrangement);
             }
 
+            if(response.arrangementer) {
+                this.$data.fetchedArrangementer = true;
+            }
             if(response.arrangementer.length < 1) {
                 setTimeout(() => {
                     // this.userToAlleFylker();
