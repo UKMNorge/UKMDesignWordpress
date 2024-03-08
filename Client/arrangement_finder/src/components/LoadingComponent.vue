@@ -16,8 +16,8 @@
   }
   .loader {
     margin: auto;
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
+    border: 16px solid #fff;
+    border-top: 16px solid var(--color-primary-bla-400);
     border-radius: 50%;
     width: 120px;
     height: 120px;
