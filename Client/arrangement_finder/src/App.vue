@@ -14,7 +14,7 @@
                             </div>
                             <div v-else class="as-margin-auto">
                                 <WriteChatComponent v-if="locationLoading" :textToShow="'Tillat tilgang til din lokasjon for å finne arrangementer nær deg'" :interval="50"/>
-                                <WriteChatComponent v-else :textToShow="'Henter arrangementer'" :interval="500"/>
+                                <WriteChatComponent v-else :textToShow="'Henter arrangementer'" :interval="100"/>
                             </div>
                         </div>
                     </div>
