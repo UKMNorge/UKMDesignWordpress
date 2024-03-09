@@ -228,6 +228,15 @@ export default {
 .as-container {
     background: var(--color-primary-grey-extra-lightes);
 }
+
+/* CSS for screens smaller than 600px */
+@media (max-width: 600px) {
+    .event-box {
+        min-width: 100%;
+    }
+}
+
+
 </style>
 
 
