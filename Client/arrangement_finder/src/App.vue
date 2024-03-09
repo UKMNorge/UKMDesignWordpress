@@ -150,12 +150,9 @@ export default {
             this.getArrangementer(response.kommunenavn, response.kommunenummer);
         },
         async getArrangementer(kommune : string, kommunenummer : number) {
-
-            const spaInteraction = new SPAInteraction(null, 'https://'+ ukmHostname +'/wp-content/themes/UKMDesignWordpress/ajax/');
+            const url = ukmHostname == 'ukm.no' ? 'https://api.ukm.no/public:arrangement-finder/' : 'https://'+ ukmHostname +'/wp-content/themes/UKMDesignWordpress/ajax/';
+            const spaInteraction = new SPAInteraction(null, url);
             var data = {
-                action: 'UKMrapporter_ajax',
-                controller: 'finn_arrangement',
-                testArg: 'test',
                 kommune: kommune,
                 kommunenummer: kommunenummer
             };
