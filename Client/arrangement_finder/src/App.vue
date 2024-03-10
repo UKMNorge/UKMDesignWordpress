@@ -114,6 +114,7 @@ export default {
     },
 
     mounted: function () {
+        console.log('initialized');
         this.initArrangementFinder();
     },
     
