@@ -13,7 +13,8 @@
                                 <WriteChatComponent :textToShow="'Videresender deg til alle kommuner!'" :interval="50" :timeout="tilAlleFylkerTimeout*0.4"/>
                             </div>
                             <div v-else class="as-margin-auto">
-                                <WriteChatComponent v-if="locationLoading" :textToShow="'Tillat tilgang til din lokasjon for å finne arrangementer nær deg'" :interval="50"/>
+                                <WriteChatComponent v-if="gettingKommune" :textToShow="'Henter informasjon om din kommune.'" :interval="50"/>
+                                <WriteChatComponent v-else-if="locationLoading" :textToShow="'Tillat tilgang til din lokasjon for å finne arrangementer nær deg'" :interval="50"/>
                                 <WriteChatComponent v-else :textToShow="'Henter arrangementer'" :interval="100"/>
                             </div>
                         </div>
@@ -94,6 +95,7 @@ export default {
     data() {
         return {
             locationLoading: true as boolean,
+            gettingKommune: false as boolean,
             kommune: '' as string,
             kommunenummer: 0 as number,
             name : "World" as String,
@@ -138,6 +140,7 @@ export default {
             this.userToAlleFylker();
         },
         async getKommuneFraGeoNorge(latitude : number, longitude : number) {
+            this.$data.gettingKommune = true;
             var spaInteraction = new SPAInteraction(null, 'https://ws.geonorge.no/kommuneinfo/v1/punkt?' +
                 'nord=' + latitude +
                 '&ost=' + longitude +
@@ -150,6 +153,7 @@ export default {
             this.getArrangementer(response.kommunenavn, response.kommunenummer);
         },
         async getArrangementer(kommune : string, kommunenummer : number) {
+            this.$data.gettingKommune = false;
             const url = ukmHostname == 'ukm.no' ? 'https://api.ukm.no/public:arrangement-finder/' : 'https://'+ ukmHostname +'/wp-content/themes/UKMDesignWordpress/ajax/finn_arrangement.ajax.php';
             const spaInteraction = new SPAInteraction(null, url);
             var data = {
@@ -158,6 +162,7 @@ export default {
             };
 
             var response = await spaInteraction.runAjaxCall('', 'POST', data);
+        
 
             for(var arrangement of response.arrangementer) {
                 arrangement.dato = new Date(arrangement.dato.date);
@@ -169,8 +174,7 @@ export default {
             }
             if(response.arrangementer.length < 1) {
                 this.userToAlleFylker();
-            }
-            
+            }            
         },
         // Functions to be moved to a separate file
         getMaaned(date : Date, isShort : boolean = false) {
