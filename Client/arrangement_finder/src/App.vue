@@ -26,7 +26,7 @@
         <!-- Tilgjengelige arrangementer -->
         <div v-if="!locationLoading && fetchedArrangementer && tilgjengeligeArrangementer.length > 0">
             <div>
-                <h1 v-if="tilgjengeligeArrangementer.length == 1" class="as-text-center">Skal du delta på {{ kommune }}?</h1>
+                <h1 v-if="tilgjengeligeArrangementer.length == 1" class="as-text-center">Skal du delta på {{ kommune }} kommune?</h1>
                 <h1 v-else class="as-text-center">Arrangementer nær deg</h1>
             </div>
             <div class="as-margin-top-space-6">
