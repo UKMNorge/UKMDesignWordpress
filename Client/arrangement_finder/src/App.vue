@@ -26,7 +26,7 @@
         <!-- Tilgjengelige arrangementer -->
         <div v-if="!locationLoading && fetchedArrangementer && tilgjengeligeArrangementer.length > 0">
             <div>
-                <h1 v-if="tilgjengeligeArrangementer.length == 1" class="as-text-center">Skal du delta på {{ tilgjengeligeArrangementer[0].navn }}?</h1>
+                <h1 v-if="tilgjengeligeArrangementer.length == 1" class="as-text-center">Skal du delta på {{ kommune }}?</h1>
                 <h1 v-else class="as-text-center">Arrangementer nær deg</h1>
             </div>
             <div class="as-margin-top-space-6">
@@ -55,7 +55,7 @@
             </div>
             
             <div class="as-margin-top-space-8 as-display-flex">
-                <button @click="userToAlleFylker(true)" v-if="tilgjengeligeArrangementer.length == 1" class="as-btn-simple as-margin-auto as-btn-hover-default default">Letter du ikke etter {{ tilgjengeligeArrangementer[0].navn }}?</button>
+                <button @click="userToAlleFylker(true)" v-if="tilgjengeligeArrangementer.length == 1" class="as-btn-simple as-margin-auto as-btn-hover-default default">Leter du ikke etter {{ tilgjengeligeArrangementer[0].navn }}?</button>
                 <button @click="userToAlleFylker(true)" v-else class="as-btn-simple as-margin-auto as-btn-hover-default default">Finner du ikke arrangementet i listen?</button>
             </div>
             
