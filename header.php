@@ -83,8 +83,8 @@ if (!empty(strip_tags(Wordpress::getPage()->lead))) {
 }
 
 echo '<link rel="stylesheet" id="UKMArrSysStyle-css" href="//assets.'. UKM_HOSTNAME .'//css/arr-sys.css?ver=6.4.3" media="all">';
-echo '<div id="messageMainDiv"><div class="container"><div data-v-cb24bd16="" class="info-type vue-componment-notification-message nosh-impt as-card-2 as-padding-space-2 as-margin-space-2 as-margin-top-space-2"><h5 data-v-cb24bd16="" class="title as-padding-bottom-space-1">Viktig varsel</h5><span data-v-cb24bd16="" class="description nop">På grunn av planlagt vedlikehold vil ukm.no og alle våre systemer være ustabile eller utilgjengelige mandag den 25. mars 2024. Vi beklager eventuelle ulemper dette måtte medføre!</span></div></div></div>';
-echo '<style>#messageMainDiv{padding: 10px;background: #02024b}.vue-componment-notification-message {    background: var(--as-color-primary-warning-lightest);border: solid 2px var(--as-color-primary-warning-light);}</style>';
+echo '<div id="messageMainDiv"><div class="container"><div data-v-cb24bd16="" class="info-type vue-componment-notification-message nosh-impt as-card-2 as-padding-space-1 as-padding-left-space-2 as-padding-right-space-2 as-margin-top-space-1"><h6 data-v-cb24bd16="" class="title">Viktig varsel</h6><span data-v-cb24bd16="" class="description nop">På grunn av planlagt vedlikehold vil ukm.no og alle våre systemer være ustabile eller utilgjengelige mandag den 25. mars 2024. Vi beklager eventuelle ulemper dette måtte medføre!</span></div></div></div>';
+echo '<style>#messageMainDiv span{font-size: 13px;}#messageMainDiv{padding: 10px; background: #02024b}.vue-componment-notification-message {    background: var(--as-color-primary-warning-lightest);border: solid 2px var(--as-color-primary-warning-light);}</style>';
 
 /**
  * 
