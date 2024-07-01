@@ -13,7 +13,7 @@
 						{% if main_post.image.medium.src is not defined %}
 							<img class="card-image" src="//assets.{{ UKM_HOSTNAME }}/img/bilde.png"/>
 						{% else %}
-							<div class="card-image" style="background: url('{{ main_post.getFeaturedImage().getUrl() }}') no-repeat center/cover;"></div>
+							<div class="card-image" style="background: url('{{ main_post.getFeaturedImage().getUrl() }}') no-repeat center/cover; background-position: {{ main_post.meta and main_post.meta.backgroundPosition != null ? main_post.meta.backgroundPosition : 'center'}};"></div>
 						{% endif %}
 					</div>
 					<div class="row card-element d-flex flex-wrap align-items-center card-news">
