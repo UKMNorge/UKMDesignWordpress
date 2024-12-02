@@ -10,6 +10,19 @@ use UKMNorge\Geografi\Kommune;
 
 require_once('vendor/autoload.php');
 
+// OpenID Connect Server (plugin: https://github.com/Automattic/wp-openid-connect-server)
+add_filter('oidc_registered_clients', 'my_oidc_clients');
+function my_oidc_clients() {
+    return array(
+        FSS_OIDC_USER => array(
+            'name'         => 'FSS - Festival Styring System',
+            'secret'       => FSS_OIDC_SECRET,
+            'redirect_uri' => FSS_OIDC_CALLBACK,
+            'grant_types'  => array('authorization_code'),
+            'scope'        => 'openid profile',
+        ),
+    );
+}
 add_theme_support( 'post-thumbnails' );
 add_theme_support( 'menus' );
 
