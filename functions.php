@@ -19,7 +19,14 @@ function my_oidc_clients() {
             'secret'       => FSS_OIDC_SECRET,
             'redirect_uri' => FSS_OIDC_CALLBACK,
             'grant_types'  => array('authorization_code'),
-            'scope'        => 'openid profile',
+            'scope'        => 'openid profile email phone',
+        ),
+        DELTA_OIDC_USER => array(
+            'name'         => 'UKM Påmeldingssystemet',
+            'secret'       => DELTA_OIDC_SECRET,
+            'redirect_uri' => DELTA_OIDC_CALLBACK,
+            'grant_types'  => array('authorization_code'),
+            'scope'        => 'openid profile email phone',
         ),
     );
 }
