@@ -1,12 +1,14 @@
 <div class="clearfix">
-	<div class="float-left mr-3" style="margin-top: .25em;">
+	<div class="float-left mr-3" style="margin-top: .5em;">
 		{% if kontakt.getBilde() is not empty %}
 			<div class="center kontakt-placeholder-large">
-				<div class="kontaktperson-bilde" style="background-image: url('{{ kontakt.getBilde() }}');">&nbsp;</div>
+				<div class="kontaktperson-bilde">
+					<img src="{{ kontakt.getBilde() }}" class="bruker-img" />
+				</div>
 			</div>
 		{% else %}
-			<div class="center">
-				<div class="icon icon-user kontaktPlaceholder"></div>
+			<div class="kontaktperson-bilde card-img-top center placholder-bilde-kontaktperson">
+				<img src="https://assets.{{ UKM_HOSTNAME }}/img/avatar-universal.png" class="avatar bruker-img">
 			</div>
 		{% endif %}
 	</div>
