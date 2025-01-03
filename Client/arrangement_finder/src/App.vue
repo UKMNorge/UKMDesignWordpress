@@ -44,7 +44,7 @@
                                 {{ arrangement.dato.getFullYear() }}
                             </div>
                         </div>
-                        <h3 style="align-self: center; margin-right: 10px;">
+                        <h3 class="arr-finder-arr-navn">
                             {{ arrangement.navn }}
                         </h3>
                         <div class="icon-arrangement-btn">
@@ -234,11 +234,19 @@ export default {
 .as-container {
     background: var(--color-primary-grey-extra-lightes);
 }
+.arr-finder-arr-navn {
+    align-self: center; 
+    margin-right: var(--initial-space-box);
+    word-break: break-word;
+}
 
 /* CSS for screens smaller than 600px */
 @media (max-width: 600px) {
     .event-box {
         min-width: 100%;
+    }
+    .as-container {
+        padding: calc(var(--initial-space-box) * 2) !important;
     }
 }
 
