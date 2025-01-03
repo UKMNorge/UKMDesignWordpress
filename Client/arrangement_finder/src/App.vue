@@ -195,7 +195,11 @@ export default {
 		    const dayNames = ['Søndag','Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag']
             const dayNamesShort = ['Søn','Man','Tir','Ons','Tor','Fre','Lør'];
             
+
             console.log('date');
+            console.log(date);
+            console.log('---');
+            console.log('day');
             console.log(date.getDay());
             if(isShort) {
                 return dayNamesShort[date.getDay()];
