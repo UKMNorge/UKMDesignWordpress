@@ -166,7 +166,8 @@ export default {
         
 
             for(var arrangement of response.arrangementer) {
-                arrangement.dato = new Date(arrangement.dato.date);
+                const isoDateString = arrangement.dato.date.replace(' ', 'T');
+                arrangement.dato = new Date(isoDateString);
                 this.$data.tilgjengeligeArrangementer.push(arrangement);
             }
 
@@ -194,17 +195,10 @@ export default {
         getDag(date : Date, isShort : boolean = false) {
 		    const dayNames = ['Søndag','Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag']
             const dayNamesShort = ['Søn','Man','Tir','Ons','Tor','Fre','Lør'];
-            
 
-            console.log('date');
-            console.log(date);
-            console.log('---');
-            console.log('day');
-            console.log(date.getDay());
             if(isShort) {
                 return dayNamesShort[date.getDay()];
             }
-
 
             return dayNames[date.getDay()];
         },
