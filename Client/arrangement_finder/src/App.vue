@@ -244,9 +244,10 @@ export default {
 @media (max-width: 600px) {
     .event-box {
         min-width: 100%;
+        padding: calc(var(--initial-space-box) * 3) calc(var(--initial-space-box) * 2) !important;
     }
     .as-container {
-        padding: calc(var(--initial-space-box) * 2) !important;
+        padding: calc(var(--initial-space-box) * 3) calc(var(--initial-space-box) * 2) !important;
     }
 }
 
