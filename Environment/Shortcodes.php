@@ -52,7 +52,8 @@ class Shortcodes
      * @return String HTML
      */
     static function _grafisk($container, $attributes)
-    {
+    {   
+        Wordpress::init();
         $elementer = UKMDesign::getConfig($container);
         if (is_array($attributes) && isset($attributes['element']) && isset($elementer[$attributes['element']])) {
             return Wordpress::getTemplateRenderer()->render(
@@ -73,6 +74,7 @@ class Shortcodes
      */
     static function gallery($gallery)
     {
+        Wordpress::init();
         $ids = explode(',', $gallery['ids']);
         $bilder = [];
         foreach ($ids as $image_id) {
