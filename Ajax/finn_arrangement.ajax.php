@@ -29,7 +29,10 @@ try {
         foreach( $osloFylke->getKommuner()->getAll() as $kommune ) {
             $alle_arrangementer = Omrade::getByKommune($kommune->getId())->getKommendeArrangementer()->getAll();
             foreach( $alle_arrangementer as $arrangement ) {
-                $tilgjengelige_arrangementer[] = _generateArrangement($arrangement);
+                // Kun hvis arrangementet er synlig
+                if($arrangement->erSynlig()) {
+                    $tilgjengelige_arrangementer[] = _generateArrangement($arrangement);
+                }
             }
         }
     }
@@ -38,7 +41,10 @@ try {
     }
     
     foreach ($alle_arrangementer as $arrangement) {
-        $tilgjengelige_arrangementer[] = _generateArrangement($arrangement);
+        // Kun hvis arrangementet er synlig
+        if($arrangement->erSynlig()) {
+            $tilgjengelige_arrangementer[] = _generateArrangement($arrangement);
+        }
     }
 
     $handleCall->sendToClient([
