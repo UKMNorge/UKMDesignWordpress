@@ -224,7 +224,7 @@ export default {
 .event-box {
     background: var(--color-primary-bla-25);
     max-width: 600px;
-    min-width: 35vw;
+    width: 100%;
     margin: auto !important;
 }
 .icon-arrangement-btn {
@@ -238,6 +238,11 @@ export default {
     align-self: center; 
     margin-right: var(--initial-space-box);
     word-break: break-word;
+}
+@media (max-width: 1200px) {
+    .event-box {
+        min-width: 35vw;
+    }
 }
 
 /* CSS for screens smaller than 600px */
