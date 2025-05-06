@@ -274,7 +274,7 @@
 										<a href="{{ bilde.getSize("original").getUrl()|replace({'http:':'https:'}) }}" target="_blank">
 											<img src="{{ bilde.getSize("medium").getUrl()|replace({'http:':'https:'}) }}" class="mt-2" />
 										</a>
-										<p class="lead">Foto: {{ bilde.getAuthor().getDisplayName() }}</p>
+										<p class="lead">Foto: {{ bilde.getAuthor().getDisplayName() ? bilde.getAuthor().getDisplayName() : bilde.getAuthor().getName() }}</p>
 									{% endfor %}
 								</center>
 							</div>
